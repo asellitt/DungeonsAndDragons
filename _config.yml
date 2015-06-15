@@ -1,5 +1,5 @@
 # Site settings
-title: Travelogue
+title: Debauchery Tea Party
 
 baseurl: '' # the subpath of your site, e.g. /blog
 url: 'http://yourdomain.com' # the base hostname & protocol for your site
@@ -23,10 +23,4 @@ defaults:
         path: '_posts'
         type: 'posts'
       values:
-        reading_time: true
-        # Meta
-        show_tags: true
-        show_categories: true
-        # Social
-        share_buttons: true
-        disqus: true
+        some_value: true

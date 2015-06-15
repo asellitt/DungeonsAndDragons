@@ -11,7 +11,7 @@ home: true
         {% assign source = site.posts %}
         {% endif %}
 
-        {% for post in source %}
+        {% for post in source reversed %}
         <li>
             <a href="{{ post.url | prepend: site.baseurl }}" class="post-list-link">
                 <div class="post-list-info">
@@ -24,12 +24,4 @@ home: true
         </li>
         {% endfor %}
     </ul>
-
-    <!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
-    <!-- <p class="rss-subscribe">
-        <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-            Subscribe via RSS
-            <i class="icon ion-social-rss"></i>
-        </a>
-    </p> -->
 </div>
