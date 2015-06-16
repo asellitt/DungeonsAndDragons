@@ -2,9 +2,7 @@
 layout: post
 title: "Story Notes"
 date: 2015-06-16
-backgrounds:
-    - https://dl.dropboxusercontent.com/u/18322837/cdn/Streetwill/the-desk.jpg
-thumb: https://dl.dropboxusercontent.com/u/18322837/cdn/Streetwill/thumbs/coding.jpg
+thumb: /assets/images/about/tea-party.jpg
 ---
 
 # The Blackfang Saga
@@ -31,7 +29,7 @@ thumb: https://dl.dropboxusercontent.com/u/18322837/cdn/Streetwill/thumbs/coding
 - found corpse of goblin sister and took the toy back to king
 - king was happy and shared some ale with pring
 - was happy his sister was dead because she stole his toy
-- found lake, tied rope to pring to go to far side 
+- found lake, tied rope to pring to go to far side
 - encountered reefclaw fought underwater and on shore
 - found dragon bane bitey sword pring took wraps for punchy time
 - found a magic obelisc, fumbled around a lot before solving it
@@ -97,7 +95,7 @@ thumb: https://dl.dropboxusercontent.com/u/18322837/cdn/Streetwill/thumbs/coding
 - he revived just before party left celler
 - left jeeremy in the care of the church, after ensuring that he couldn't transform anymore
 
-# Zaradae's wolf
+# Lupum Comitem
 
 - asked branne for more work
 - suggested looking into the adventurers guild
