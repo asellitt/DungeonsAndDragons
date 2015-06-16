@@ -24,8 +24,12 @@ body {
     font-size: $base-font-size;
     font-weight: 400;
     line-height: $base-line-height;
-
     -webkit-text-size-adjust: 100%;
+    background: url($background-image) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
