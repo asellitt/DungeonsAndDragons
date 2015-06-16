@@ -9,6 +9,7 @@
 
 .container {
     background: $background-color;
+    background-image: url($post-background-image);
     padding: 0;
     position: relative;
     margin: 0 auto;
