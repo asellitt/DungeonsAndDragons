@@ -18,6 +18,7 @@
 
     @include media-query($on-palm) {
         background: rgba($background-color, .95);
+        background-image: url($post-background-image);
         width: 100%;
     }
 }
