@@ -33,7 +33,23 @@ Moonfeather spent the remainder of the day strolling about Sandpoint and enjoyin
 
 The inn's main hall was well lit, with chandeliers full of magically enchanted smokeless candles that never burn down. Moonfeathers eyes were immediately drawn to the long timber bar, where she watched the dancing candle lights reflect of its highly polished surface.
 
-"Oi! Bar wench! Ale, please!" Moonfeather looked over to find one of the patrons, a large half orc staring right at her. "Actually, better make it two!"
+"Oi! Bar wench! Ale, please!" Moonfeather looked around the hall to find one of the patrons, a large half orc, staring right at her. "Actually, better make it two!"
+
+"I'm not-", began Moonfeather.
+
+"Pring, you halfwit, she's clearly not a bar wench." said the half orcs elven companion.
+
+Moonfeather decided to act on this opportunity and headed over to the bar. She then strolled over to Pring and his companion, bearing two flagons of ale.
+
+"Here you are," she said as she sat down. "My name is Moonfeather, and I'm looking for some help with a local matter."
+
+Before Moonfeather had even finished her sentence, Pring had quaffed the first ale in what appeared to be a single gulp, and had managed to get half way throught the second one. The elf watched him with a look of disgust on her face.
+
+"Forgive my brutish friend. I'm Zaradae. What did you need?" the elf asked.
+
+Pring cut in and began talking over Zaradae; "Err, will there be more ale? If we help you, I mean?"
+
+"Yes, err, Pring, was it? There will be lots more ale if we manage to complete our task." Moonfeather recounted the details of the job to the unlikely pair, showing them the blackened claw. Pleased with the prospect of more ale, Pring acquiesced. It was clear to Moonfeather that Zaradae had reservations about the job, but was not going to let Pring go along without her.
 
 # The Blackfang Saga
 
