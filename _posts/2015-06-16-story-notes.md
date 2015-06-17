@@ -2,7 +2,7 @@
 layout: post
 title: "Story Notes"
 date: 2015-06-16
-thumb: /assets/images/about/tea-party.jpg
+thumb: /assets/images/posts/tea-party.jpg
 ---
 
 # The Blackfang Saga
