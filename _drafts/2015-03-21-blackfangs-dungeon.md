@@ -19,7 +19,7 @@ The nod from Moonfeather was more than enough to send Kendra into an excited flu
 
 "All of the reports I've read thus far are from here. My advisers assure me that the creature should be within this area." Kendra waved her arm about in an approximation of a circle. "There is an abandoned cave system here, and I have been told that the creature is likely there."
 
-An owl shaped tattoo on Moonfeather's upper arm began to glow with a pale white light. The light floated away from her arm and coalesced into a snowy coloured owl. Kendra's eyes widened in shock and she took a few steps back as the owl perched upon Moonfeather's shoulder. 
+An owl shaped tattoo on Moonfeather's upper arm began to glow with a pale white light. The light floated away from her arm and coalesced into a snowy coloured owl. Kendra's eyes widened in shock and she took a few steps back as the owl perched upon Moonfeather's shoulder.
 
 "Don't be alarmed, Mayor. This is Archemedes." Moonfeather felt a wave of apprehension emanate from Archemedes and flow through her. "Abandoned caves, right. I think I may require some help. May I hang on to this claw?"
 
@@ -31,6 +31,9 @@ The salty smell of the coastal air was the first thing that Moonfeather noticed 
 
 Moonfeather spent the remainder of the day strolling about Sandpoint and enjoying its various sights. Before she knew it, the sky had darkened and a loud rumbling signalled that this was not a night to be caught out side. Following a few locals down Market Street, Moonfeather stopped short of crossing South Bridge, and found herself staring at a large wooden building with an oversized and rusted dragon statue looming out from over the roof. The Rusty Dragon was a reputable inn, and so Moonfeather decided to enquire about some food and lodging.
 
+The inn's main hall was well lit, with chandeliers full of magically enchanted smokeless candles that never burn down. Moonfeathers eyes were immediately drawn to the long timber bar, where she watched the dancing candle lights reflect of its highly polished surface.
+
+"Oi! Bar wench! Ale, please!" Moonfeather looked over to find one of the patrons, a large half orc staring right at her. "Actually, better make it two!"
 
 # The Blackfang Saga
 
