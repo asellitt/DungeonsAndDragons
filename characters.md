@@ -1,21 +1,12 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Characters
+permalink: /characters/
 ---
-
-![Tea Party](/assets/images/about/tea-party.jpg)
-
-Follow the adventures of Moonfeather, Pring Tzhao, Stannis d'Aguillon, Venalis
-Shadowsong, and Zaradae while they stumble about Golarion in a drunken stupor as
-they attempt to save the world from the warped and twisted mind of the Game
-Master.
-
-
 
 #Moonfeather, Half-Elf Sorceress
 
-![Moonfeather](/assets/images/about/moonfeather.png)
+![Moonfeather](/assets/images/characters/moonfeather.png)
 
 Moonfeather was born to a noble mother in a important elven community. At the
 age of 6 Moonfeather was saved during a raid on the village and ended up living
@@ -32,14 +23,14 @@ it long in ruin. Since then Moonfeather has been searching for her missing
 history. Her noble birth has given her the skills she needs to work with others
 and also to get other people to help her with tasks.
 
-With the help of her familiar, Archemides, she searches and helps those who are
+With the help of her familiar, Archemedes, she searches and helps those who are
 less fortunate then her.
 
-
+![break](/assets/images/posts/break.png)
 
 #Pring Tzhao, Half-Orc Monk
 
-![Pring](/assets/images/about/pring.png)
+![Pring](/assets/images/characters/pring.png)
 
 The Khurshid people have always been a nomadic tribe of outcasts. The Tzhao
 family were shunned and banished from their village of Dumitru when the royal
@@ -70,11 +61,11 @@ Determined to eventually avenge the loss of his mother and find his heritage,
 Pring decided to follow Zaradae in the hope her elven abilities will help him
 eventually extract his revenge.
 
-
+![break](/assets/images/posts/break.png)
 
 #Stannis d'Aguillon, Human Paladin
 
-![Stannis](/assets/images/about/stannis.png)
+![Stannis](/assets/images/characters/stannis.png)
 
 From a young age Stannis d’Aguillion knew he had the entire world before him.
 Born from a noble family Stannis was the eldest son with 2 younger brothers, he
@@ -99,11 +90,11 @@ strength. Sadly the enemy was too numerous for Stannis to try and hold back his
 men were being cut down before his eyes, he fell to his knees despair had taken
 over the once proud warrior unable to do anything, powerless to save his men.
 
-
+![break](/assets/images/posts/break.png)
 
 #Venalis Shadowsong, Elf Druid
 
-![Venalis](/assets/images/about/venalis.png)
+![Venalis](/assets/images/characters/venalis.png)
 
 Venalis was born into a family of well respected elves in the city of Easthallow
 situated deep in the Shadowsong forest. His early years were spent learning
@@ -139,11 +130,11 @@ Venalis had only a short time to say goodbye to his mother Nexxis, promising her
 that he'd be back as fast as possible. Venalis left Easthollow, heading towards
 the capital of the dwarves.
 
-
+![break](/assets/images/posts/break.png)
 
 #Zaradae, Elf Ranger
 
-![Zaradae](/assets/images/about/zaradae.png)
+![Zaradae](/assets/images/characters/zaradae.png)
 
 Born and raised an elf of Mirkwood, a young Zaradae immediately knew that the
 life of a self-centred forest dweller was not for her. Her views on what was
@@ -182,3 +173,5 @@ obliged to do after the Khurshid people has slain his mother. Pring doesn't show
 much interest in Zaradae, which suited her as she don't say much and doesn’t
 want him to know that she was part of the tribe that killed his mother. The less
 he knew about her the better.
+
+![break](/assets/images/posts/break.png)
