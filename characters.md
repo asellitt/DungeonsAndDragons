@@ -23,7 +23,7 @@ it long in ruin. Since then Moonfeather has been searching for her missing
 history. Her noble birth has given her the skills she needs to work with others
 and also to get other people to help her with tasks.
 
-With the help of her familiar, Archemides, she searches and helps those who are
+With the help of her familiar, Archemedes, she searches and helps those who are
 less fortunate then her.
 
 ![break](/assets/images/posts/break.png)
