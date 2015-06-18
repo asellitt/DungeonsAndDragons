@@ -33,19 +33,19 @@ Moonfeather spent the remainder of the day strolling about Sandpoint and enjoyin
 
 The inn's main hall was well lit, with chandeliers full of magically enchanted smokeless candles that never burn down. Moonfeathers eyes were immediately drawn to the long timber bar, where she watched the dancing candle lights reflect of its highly polished surface.
 
-"Oi! Bar wench! Ale, please!" Moonfeather looked around the hall to find one of the patrons, a large half orc, staring right at her. "Actually, better make it two!"
+"Oi! Bar wench! Ale, please!" Moonfeather looked around the hall to find one of the patrons, a large Half Orc, staring right at her. "Actually, better make it two!"
 
 "I'm not-", began Moonfeather.
 
-"Pring, you halfwit, she's clearly not a bar wench." said the half orcs elven companion.
+"Pring, you halfwit, she's clearly not a bar wench." said the Half Orcs elven companion.
 
 Moonfeather decided to act on this opportunity and headed over to the bar. She then strolled over to Pring and his companion, bearing two flagons of ale.
 
 "Here you are," she said as she sat down. "My name is Moonfeather, and I'm looking for some help with a local matter."
 
-Before Moonfeather had even finished her sentence, Pring had quaffed the first ale in what appeared to be a single gulp, and had managed to get half way throught the second one. The elf watched him with a look of disgust on her face.
+Before Moonfeather had even finished her sentence, Pring had quaffed the first ale in what appeared to be a single gulp, and had managed to get half way throught the second one. The Elf watched him with a look of disgust on her face.
 
-"Forgive my brutish friend. I'm Zaradae. What do you need?" the elf asked.
+"Forgive my brutish friend. I'm Zaradae. What do you need?" the Elf asked.
 
 Pring cut in and began talking over Zaradae; "Err, will there be more ale? If we help you, I mean?"
 
@@ -89,9 +89,17 @@ Pring left the Garrison and immediately headed off in the direction of the Rusty
 
 Before long the trio found themselves on the road out of Sandpoint. The morning passed rather uneventfully, and before long the adventurers found themselves on the path between Shankswood and Tickwood when Moonfeather felt a sudden tension from Archemedes. "Careful, there's something up ahead."
 
-Clearly a much practiced maneuver, Zaradae unslung her bow and knocked an arrow while Pring rotated his shoulders and stretched his arms. This was all the warning they had before a group of goblins appeared from around the bend ahead of the trio. This was all the warning that they needed as Zaradae let the arrow fly. The arrow struck the first goblin in the chest, just as an enraged Pring bounded up and punched it square in the jaw. The goblin went down, but two more swarmed over it and swung their clubs at Pring. He deftly dodged the first, and caught the second club on his upper arm. The grin the goblin gave Pring made the half orcs blood boil, it was short lived, however as a bright blue missile of pure arcane energy slammed into its torso. Pring focused his rage and delivered a second blow to the formerly smiling goblin's head, knocking it down flat. Two more goblins rounded the bend, the first rushing at Pring, brandishing its notched shortsword. The last goblin made a dash for Moonfeather and stabbed at her with its rusted shortsword, grazing her thigh.
+Clearly a much practiced maneuver, Zaradae unslung her bow and knocked an arrow while Pring rotated his shoulders and stretched his arms. This was all the warning they had before a group of Goblins appeared from around the bend ahead of the trio. This was all the warning that they needed as Zaradae let the arrow fly. The arrow struck the first Goblin in the chest, just as an enraged Pring bounded up and punched it square in the jaw. The Goblin went down, but two more swarmed over it and swung their clubs at Pring. He deftly dodged the first, and caught the second club on his upper arm. The grin the Goblin gave Pring made the Half Orcs blood boil, it was short lived, however as a bright blue missile of pure arcane energy slammed into its torso. Pring focused his rage and delivered a second blow to the formerly smiling Goblin's head, knocking it down flat. Two more Goblins rounded the bend, the first rushing at Pring, brandishing its notched shortsword. The last Goblin made a dash for Moonfeather and stabbed at her with its rusted shortsword, grazing her thigh.
 
-With two goblins down, two engaged with Pring, and the last one harrasing Moonfeather, Zaradae made a quick decision and fired her bow at the goblin that was about to take a swing at Moonfeather. The arrow scraped along the goblins arm, barely slowing it down. Archemedes swooped down at the same goblin and raked his talons across its face, badly injuring one of its eyes. Moonfeather swung her quaterstaff at its head and delivered a punishing blow. Pring danced between the jabs made by the remaining two goblins, and between each returned a flurry of blows at the sword wielding goblin. He managed to land two solid strikes, in vital areas, dropping the goblin instantly. The last goblin, realising that he was out matched threw down his club and fled into the Shankswood.
+With two Goblins down, two engaged with Pring, and the last one harrasing Moonfeather, Zaradae made a quick decision and fired her bow at the Goblin that was about to take a swing at Moonfeather. The arrow scraped along the Goblins arm, barely slowing it down. Archemedes swooped down at the same Goblin and raked his talons across its face, badly injuring one of its eyes. Moonfeather swung her quaterstaff at its head and delivered a punishing blow. Pring danced between the jabs made by the remaining two Goblins, and between each returned a flurry of blows at the sword wielding Goblin. He managed to land two solid strikes, in vital areas, dropping the Goblin instantly. The last Goblin, realising that he was out matched threw down his club and fled into the Shankswood. Pring immediately gave chase and he charged headlong after the Goblin, smacking low hanging branches out of his way. With a sigh, Zaradae motioned Moonfeather to come her, and carefully followed after the quickly disapearing Half Orc.
+
+Pring watched as the Goblin tumbled to the ground with an arrow protruding from his eye socket. Shocked, he looked past his quarry and found himself staring at the business end of a longbow, held by an unfamiliar Elf.
+
+"Friend of yours?" the Elf aksed. Just as he finished, Zaradae and Moonfeather came into view from behind the trees. "Ah, we have you surrounded now, filth. No sudden movements."
+
+"Hey, Elf. You have it all wrong. This is a very close friend of mine. Put the bow down, lets talk about it. My name is Zaradae" Zaradae attempted to clam the situation down.
+
+Clearly confused, the Elf slowly lowered his bow, all the while staring at Zaradae. "What strange company you keep, Zaradae." he said in fluent Elven. "My name is Venalis Shadowsong."
 
 # The Blackfang Saga
 
@@ -102,11 +110,11 @@ With two goblins down, two engaged with Pring, and the last one harrasing Moonfe
 - found a fountain
 - pring didn't pay, but drank the wawhat (bad things)
 - used spare swords to hold doors open
-- found goblins, moonfeather fumbled her way out of a confrontation
-- goblin king requested party to retrieve dragon toy from his sister
+- found Goblins, moonfeather fumbled her way out of a confrontation
+- Goblin king requested party to retrieve dragon toy from his sister
 - venalis took fire ruby from fire trap room
 - foiled spider ambush, and defeated it
-- found corpse of goblin sister and took the toy back to king
+- found corpse of Goblin sister and took the toy back to king
 - king was happy and shared some ale with pring
 - was happy his sister was dead because she stole his toy
 - found lake, tied rope to pring to go to far side
