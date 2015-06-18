@@ -45,19 +45,52 @@ Moonfeather decided to act on this opportunity and headed over to the bar. She t
 
 Before Moonfeather had even finished her sentence, Pring had quaffed the first ale in what appeared to be a single gulp, and had managed to get half way throught the second one. The elf watched him with a look of disgust on her face.
 
-"Forgive my brutish friend. I'm Zaradae. What did you need?" the elf asked.
+"Forgive my brutish friend. I'm Zaradae. What do you need?" the elf asked.
 
 Pring cut in and began talking over Zaradae; "Err, will there be more ale? If we help you, I mean?"
 
 "Yes, err, Pring, was it? There will be lots more ale if we manage to complete our task." Moonfeather recounted the details of the job to the unlikely pair, showing them the blackened claw. Pleased with the prospect of more ale, Pring acquiesced. It was clear to Moonfeather that Zaradae had reservations about the job, but was not going to let Pring go along without her.
 
+Now that Moonfeather had enlisted some help, she went about securing a room. Zaradae suggested that they may get a discounted rate if the three of them were to stay in the same room. Pring was having none of this.
+
+"Pay? To stay here!? We can sleep out side and use that money for more ale!" His outburst was punctuated by a loud thunderclap. He shot up to his feet and made an unsteady beeline to the door. Moonfeather stared at Zaradae with a look of confusion on her face. If Pring had been slightly less intoxicated, he may have noticed the short robed figure that followed him out.
+
+Scanning the street in front of him as he was being pelted with rain, Pring spotted a tree with a broad canopy. As he neared it, a bolt of thick lightning arced down from the bowels of an angry purple cloud and struck the tree, causing it to explode in a shower of rent leaves and wood chips. The shockwave knocked Pring prone and, now that he was lying down, he immediately fell asleep. Had he stayed awake for but a moment longer, he would have heard the dimunuitive robed figure chuckling mightily to himself.
+
+![break](/assets/images/posts/break.png)
+
+Pring awoke to find a thin stream of sunlight shining down right onto his face. He took a moment to clear his bleary eyes and took in his surroundings. Mouldy lengths of straw barely covered an uneven stone floor, timber benches protruded from the three crude stone walls. The final wall was made of floor to ceiling thick metal bars. Sleeping on the benches were three other drunks. Pring climbed up onto the bench to look out of the small barred window. He grabbed onto the bars and gave them a bit of a shake. The bars came loose in a shower of crumbled mortar, and, with a self satisfied smirk on his face, Pring began to squeeze out of the window.
+
+"What's all this then!" a loud booming voice startled Pring mid-escape and he banged his knee into the wall.
+
+Pring sheepishly slid back into the cell and made his way over to the Guard, "Ugh, you'll probably want these back," he said holding out the window bars.
+
+"You do understand that this is the drunk tank. You only had to let me know you were awake and sober and you would have been on your way. Destruction of property is a very different and expensive matter"
+
+"I don't have any coin on me..."
+
+The sly smirk disappeared off of the Guards face, and he abruptly turned around and began walking away.
+
+"Wait! Wait, I think I've found some. Here's a copper kit." The Guard just stared at Pring. "Oh alright. Here, five copper kits."
+
+The guard pocketed the coins and opened the cell.
+
+![break](/assets/images/posts/break.png)
+
+Pring left the Garrison and immediately headed off in the direction of the Rusty Dragon. The Sandpoint Market was in full swing, and even Pring was having trouble making his way through the crowd. He barely made it half way through before he bumped into Moonfeather and Zaradae.
+
+"Sleep well?" Zaradae asked drily.
+
+"I'll be better after my breakfast ale!"
+
+"Not this morning, you're not. We've finished buying supplies and are about to head out."  Zaradae didn't even wait for Prings response and began walking up Fesival Street, towards North Bridge.
+
+"But, but..."
+
+Before long the trio found themselves on the road out of Sandpoint.
+
 # The Blackfang Saga
 
-- moonfeather recruited zaradae and pring in tavern
-- lightning bolt tree, KOd pring
-- pring spend night in drunk tank
-- attempted to escape
-- found out had to bribe guard
 - began trek out of town through forest
 - set upon by goblins
 - one goblin ran off
