@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Lupum Comitem"
+title: "The Dire Situation"
 date: 2015-05-12
 thumb: /assets/images/posts/ogres.jpg
 ---
 
-# Lupum Comitem
+# The Dire Situation
 
 - asked branne for more work
 - suggested looking into the adventurers guild

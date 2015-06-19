@@ -5,7 +5,7 @@ date: 2015-06-16
 thumb: /assets/images/posts/tea-party.jpg
 ---
 
-# The Blackfang Saga
+# The Unlikely Company
 
 - moonfeather recruited zaradae and pring in tavern
 - lightning bolt tree, KOd pring
@@ -16,6 +16,9 @@ thumb: /assets/images/posts/tea-party.jpg
 - set upon by goblins
 - one goblin ran off
 - met venalis, who finished off the runner
+
+# Blackfang's Dungeon
+
 - continued on to blackfangs cave
 - found chest, pring destroyed it to get to contents
 - venalis found key under mattress
@@ -95,7 +98,7 @@ thumb: /assets/images/posts/tea-party.jpg
 - he revived just before party left celler
 - left jeeremy in the care of the church, after ensuring that he couldn't transform anymore
 
-# Lupum Comitem
+# The Dire Situation
 
 - asked branne for more work
 - suggested looking into the adventurers guild
