@@ -233,7 +233,8 @@
 
 .post-content {
     margin-bottom: $spacing-unit;
-    line-height: 2;
+    line-height: 1.5;
+    text-align: justify;
 
     h2 {
         font-size: 32px;
@@ -257,6 +258,14 @@
         @include media-query($on-laptop) {
             font-size: 18px;
         }
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    p::before {
+        content: '\a0\a0\a0\a0\a0\a0'
     }
 }
 
