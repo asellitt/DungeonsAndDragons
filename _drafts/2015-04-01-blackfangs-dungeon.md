@@ -7,9 +7,22 @@ thumb: /assets/images/posts/blackfang.jpg
 
 ---
 
+Clearly intrigued by the Elf, Venalis decided to join the company on their way to discover the whereabouts of the creature. Pring was clearly unhappy about this, and Venalis' insistence on conversing in Elven to Zaradae only served to increase Prings level of frustration.
+
+"COMMON! SPEAK IN COMMON!" he roared, loud enough to shock several birds off of their perches and send them soaring into the sky.
+
+Venalis drew his blade and in clear, unaccented, Common warned Pring, "You will watch your tongue, or I will remove it from your face, Orc."
+
+Zaradae smoothly stepped in between the two, knowing full well the magnitude of the explosion that is Prings temper. She was a little worried about Venalis physical well being.
+
+Before Zaradae could say anything, Moonfeather jumped in. "Enough. Both of you. Pring has a point, you have chosen to join us and there can be no secrets between us if we are to find this creature. It is also nearly time to make camp. We should decide who takes watch."
+
+Moonfeather was right, of course, the sun had long since begun its downward journey, and twilight had descended over the road. The companions made camp, Zaradae offered to take the first watch, and Venalis offered to take the second. Pring slept lightly that night and roused himself when Zaradae shook Venalis awake for his watch. Clearly distrustful of the Elf, Pring decided a half nights rest would be preferrable to the risk that Venalis may betray them, and entered into a light meditative state.
+
+Venalis awoke the party just prior to dawn. Reaching out to wake Pring, his eyes widened in surprise as he realised that Pring was watching him.
+
 # The Blackfang Saga
 
-- met venalis, who finished off the runner
 - continued on to blackfangs cave
 - found chest, pring destroyed it to get to contents
 - venalis found key under mattress
