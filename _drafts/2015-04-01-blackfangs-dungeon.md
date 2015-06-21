@@ -23,6 +23,12 @@ Venalis awoke the party just prior to dawn. Reaching out to wake Pring, his eyes
 
 Distracted by the statue, the companions were caught unawares as the thick, green moss curtain parted and a pair of clearly drunk Goblins stumbled out. Still clutching their flagons, and bearing large toothy grins, they charged at the party. They had imbibed far more alcohol than they realised and were barely able to rush without tripping over themselves. With the element of surprise lost, the ugly creatures did not stand a chance.
 
+After quickly dispatching with the two drunkards, Venalis pulled back the curtain to reveal a dark cavernous room with two bare straw filled pallets and a half rotten old chest.
+
+"Stand back, I've got this!" And without any other form of warning, Pring stepped up to the decrepid box and began to pummel it into splinters. Although it took him a bit longer than expected, he was rather pleased with himself when the chest finally broke apart and revealed its treasures.
+
+Waiting patiently for Pring to finish, Venalis lifted up one of the straw pallets and revealed an ornate and rusted key. Moonfeather, Zaradae and Venalis shared a hearty laugh at the Half-Orcs expense.
+
 
 # The Blackfang Saga
 
