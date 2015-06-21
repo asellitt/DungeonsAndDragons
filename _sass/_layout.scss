@@ -236,6 +236,22 @@
     line-height: 1.5;
     text-align: justify;
 
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 60px;
+    -moz-column-gap: 60px;
+    column-gap: 60px;
+    -webkit-column-rule: 1px dashed $grey-color-dark;
+    -moz-column-rule: 1px dashed $grey-color-dark;
+    column-rule: 1px dashed $grey-color-dark;
+
+    @include media-query($on-palm) {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+
     h2 {
         font-size: 32px;
 
@@ -265,7 +281,7 @@
     }
 
     p::before {
-        content: '\a0\a0\a0\a0\a0\a0'
+        content: '\a0\a0\a0'
     }
 }
 
