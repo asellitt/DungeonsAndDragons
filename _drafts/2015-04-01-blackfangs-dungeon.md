@@ -19,11 +19,12 @@ Before Zaradae could say anything, Moonfeather jumped in. "Enough. Both of you. 
 
 Moonfeather was right, of course, the sun had long since begun its downward journey, and twilight had descended over the road. The companions made camp, Zaradae offered to take the first watch, and Venalis offered to take the second. Pring slept lightly that night and roused himself when Zaradae shook Venalis awake for his watch. Clearly distrustful of the Elf, Pring decided a half nights rest would be preferrable to the risk that Venalis may betray them, and entered into a light meditative state.
 
-Venalis awoke the party just prior to dawn. Reaching out to wake Pring, his eyes widened in surprise as he realised that Pring was watching him.
+Venalis awoke the party just prior to dawn. Reaching out to wake Pring, his eyes widened in surprise as he realised that Pring was watching him. The rest of the party came awake and they continued their journey. Little before mid morning the company spied their destination. The entrance looked more like a cave than that of an underground fortress. A thick curtain of green moss hung over the doorway, obscuring whatever lay beyond. Standing in front of the entrance was an old, menacing stone statue of a warrior. Upon closer inspection, Pring and Venalis realised that the warrior statue was well over a hundred years old. It was impossible to tell what race the warrior represented as its features were damaged beyond recognition by what appeared to be acid scars.
+
+Distracted by the statue, the companions were caught unawares as the thick, green moss curtain parted and a pair of clearly drunk Goblins stumbled out.
 
 # The Blackfang Saga
 
-- continued on to blackfangs cave
 - found chest, pring destroyed it to get to contents
 - venalis found key under mattress
 - found a fountain
