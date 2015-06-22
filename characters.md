@@ -1,5 +1,5 @@
 ---
-layout: single_column
+layout: single-column
 title: Characters
 permalink: /characters/
 ---
