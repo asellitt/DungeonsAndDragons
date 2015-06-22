@@ -278,8 +278,14 @@
 
     p {
         margin-bottom: 15px;
-        text-indent: 2em;
+        text-indent: 1.5em;
     }
+}
+
+.single-column {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
 }
 
 
