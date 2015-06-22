@@ -282,6 +282,12 @@
     }
 }
 
+.single-column {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+}
+
 
 .post-meta {
     display: -webkit-box;
