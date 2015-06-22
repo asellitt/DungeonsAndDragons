@@ -25,9 +25,11 @@ Distracted by the statue, the companions were caught unawares as the thick, gree
 
 After quickly dispatching with the two drunkards, Venalis pulled back the curtain to reveal a dark cavernous room with two bare straw filled pallets and a half rotten old chest.
 
-"Stand back, I've got this!" And without any other form of warning, Pring stepped up to the decrepid box and began to pummel it into splinters. Although it took him a bit longer than expected, he was rather pleased with himself when the chest finally broke apart and revealed its treasures.
+"Stand back, I've got this!" Without any other form of warning, Pring stepped up to the decrepid box and began to pummel it into splinters. Although it took him a bit longer than expected, he was rather pleased with himself when the chest finally broke apart and revealed its treasures.
 
-Waiting patiently for Pring to finish, Venalis lifted up one of the straw pallets and revealed an ornate and rusted key. Moonfeather, Zaradae and Venalis shared a hearty laugh at the Half-Orcs expense.
+Waiting patiently for Pring to finish, Venalis lifted up one of the straw pallets and revealed an ornate and rusted key. Moonfeather, Zaradae and Venalis shared a hearty laugh at the Half-Orcs expense. Grumbling to himself, Pring proceeded past them into the next room.
+
+
 
 
 # The Blackfang Saga
