@@ -278,10 +278,7 @@
 
     p {
         margin-bottom: 15px;
-    }
-
-    p::before {
-        content: '\a0\a0\a0'
+        text-indent: 2em;
     }
 }
 
