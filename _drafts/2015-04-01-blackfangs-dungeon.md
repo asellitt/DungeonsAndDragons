@@ -3,7 +3,9 @@
 layout: post
 title: "Blackfang's Dungeon"
 date: 2015-04-01
+author: Anthony Sellitti
 thumb: /assets/images/posts/blackfang.jpg
+backgrounds: /assets/images/posts/blackfangs_dungeon.jpg
 
 ---
 
@@ -41,25 +43,43 @@ He once again stormed out on the rest of the party, back through the doors that 
 
 "Old habits. He is a touchy one, isnt he?" The glare from Zaradae silenced him.
 
-The party tried many things to rouse him from his meditation, even the promise of ale, but all failed. Resigning themselves to the possibility of facing the creature with one fewer member, they decided to continue on. Seeing no ill effects from the fountain on Moonfeather, both Zaradae and Venalis flicked a coin in and drank a mouthful of the enchanted waters. With two exits from this chamber, a tunnel leading north and stone doors concealing a path to the east, the companions decided to head east. ##Actually,we went north##
+The party tried many things to rouse him from his meditation, even the promise of ale, but all failed. Resigning themselves to the possibility of facing the creature with one fewer member, they decided to continue on. Seeing no ill effects from the fountain on Moonfeather, both Zaradae and Venalis flicked a coin in and drank a mouthful of the enchanted waters. With two exits from this chamber, a tunnel leading north and stone doors concealing a path to the east. With no real strategy in mind, Zaradae stepped closer to the northern tunnel. The faint voices grew louder.
 
-Feeling nervous about Prings outburst and wanting to ensure a quick escape, the companions used the rusted swords that they looted off of the bodies of the Goblins that attacked them in the forest to hold open the stone doors. The doors swung open silently to reveal a chamber bathed in red light. On the far east side of the room a pair of stone statues stood like sentinels on either side of a large, rune inscribed, stone altar. Atop the altar sat a thick layer of dust, not thick enough, however, to obscure the dim, creepy red light spewing forth from the large gemstone sitting on it.
+"I hear something up ahead, step lightly"
 
-Venalis, suspecting a trap, cast a minor enchantment to reveal magical signatures. He discovered that both the stone statues and the red gemstone were, indeed, magically enchanted. Warning his companions, he took a tentative step forward.
+Faint torchlight comming from up ahead revealed several crude drawings of Goblins on the tunnel walls. Following the short tunnel around, the adventurers found that the drawings covered the walls of the chamber. A handful of Goblins stood around another Goblin sitting in what appeared to be a throne made from animal bones. The surrounding Goblins were in a heated arguement, shoving and shouting in their language at each other and at the seated Goblin. It took them a moment to notice that intruders had entered their domain and they immediately stopped arguing and stared menacingly at the party. The throned Goblin, relieved that the shouting had stopped, pulled is fingers from his ears and opened his eyes, and was visibily startled to see the newcomers.
 
-"Approach with humility and live!" boomed a loud voice from the stone statues.
+Clearly an attempt to impress his followers, the throned Goblin straightened in his seat and in broken Common grunted, "Who you? This throne room of me, King Fatmouth!"
+
+Moonfeather took stock of the situation, the Goblins didn't appear to be getting ready for a fight, and took a chance. "Ah hello! We're adventurers looking for a large creature. Can you&mdash;"
+
+The King Fatmouth harrumphed and waved at his followers. The began to draw their weapons.
+
+"Ah, if you would... Your impressive excellency!" Moonfeather performed a deep bow, "Please&mdash;"
+
+"Impressive? Yes! Impressive! King Fatmouth most impressive!" Moonfeather cleverly managed to inflate the Kings sense of self worth. He waved down his followers, who resheathed their weapons. "You want help? Me want help first. Me sister, Bucktooth, stole dragon toy. Her missing now. These idiots too scared to find toy. You find toy! I let you live and you can visit many times!"
+
+"A most agreeable trade, my King"
+
+"Dragon toy have wing and mouth that move. Bucktooth took to cave with big spider webs. That way" The Goblin pointed back the way they had come from.
 
 ![break](/assets/images/posts/break.png)
 
-Pring heard the booming rumble and gracefully arose from his meditation. Having cleared his mind, he felt ready to grant the arrogant Venalis a second chance. Stealthily, Pring followed in his companions footsteps, stopping along the way to drink from the fountain. He did not offer a gold coin.
+Feeling a wave of serenity wash over him, Pring gracefully arose from his meditation. Having cleared his mind, he felt ready to grant the arrogant Venalis a second chance. Stealthily, Pring followed in his companions footsteps, stopping along the way to drink from the fountain. He did not offer a gold coin.
 
 ![break](/assets/images/posts/break.png)
+
+The companions backtracked towards the fountain room and found Pring staring at the stone door leading to the eastward room. No words were exchanged and Pring pushed open the doors. The doors swung open silently to reveal a chamber bathed in red light. On the far east side of the room a pair of stone statues stood like sentinels on either side of a large, rune inscribed, stone altar. Atop the altar sat a thick layer of dust, not thick enough, however, to obscure the dim, creepy red light spewing forth from the large gemstone sitting on it.
+
+Feeling nervous about Prings outburst and wanting to ensure a quick escape, the Moonfeather suggested that they use the rusted swords that they looted off of the Goblins that attacked them in the forest to hold open the stone doors. Venalis, suspecting a trap, cast a minor enchantment to reveal magical signatures. He discovered that both the stone statues and the red gemstone were, indeed, magically enchanted. Warning his companions, he took a tentative step forward.
+
+"Approach with humility and live!" deep, loud voice boomed from the stone statues. As the others entered the room, the statues intonned the same warning.
+
+"Perhaps we should pay our respects to the altar?" Moonfeather suggested
 
 
 # The Blackfang Saga
 
-- found Goblins, moonfeather fumbled her way out of a confrontation
-- Goblin king requested party to retrieve dragon toy from his sister
 - venalis took fire ruby from fire trap room
 - foiled spider ambush, and defeated it
 - found corpse of Goblin sister and took the toy back to king
