@@ -3,7 +3,9 @@
 layout: post
 title: "Blackfang's Dungeon"
 date: 2015-04-01
+author: Anthony Sellitti
 thumb: /assets/images/posts/blackfang.jpg
+backgrounds: /assets/images/posts/blackfangs_dungeon.jpg
 
 ---
 
