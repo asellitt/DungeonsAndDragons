@@ -75,12 +75,15 @@ Feeling nervous about Prings outburst and wanting to ensure a quick escape, the 
 
 "Approach with humility and live!" deep, loud voice boomed from the stone statues. As the others entered the room, the statues intonned the same warning.
 
-"Perhaps we should pay our respects to the altar?" Moonfeather suggested
+"Perhaps we should pay our respects to the altar?" Moonfeather suggested.
+
+Deciding to test Moonfeathers suggestion out, Pring approached the altar carefully. Taking small cautious steps, he found himself at the foot of the dias; throwing caution to the wind, bowed his head he knelt down on the dias. As his knee made contact with the floor the entire room errupted into flames. Two geysers of fire spurted out of the stone statues, passing over Prings head and stopping just short of the rest of the party. Stunned beyond words, Pring remained frozen and before long the fire stopped. A short time after that, it errupted again.
+
+Venalis paid careful attention to the timing, realising that the flames spurted out for precicely fifteen seconds, and remained dormant for exactly five seconds afterwards. Picking his way carefully around the edge of the room, careful not to step into any of the areas he had mentally marked as dangerous, he nimbly lept up on the dias and snatched the ruby from the altar. Breathing rapidly, he lay prone on the floor next to Pring and waited for the flames to subside.
 
 
 # The Blackfang Saga
 
-- venalis took fire ruby from fire trap room
 - foiled spider ambush, and defeated it
 - found corpse of Goblin sister and took the toy back to king
 - king was happy and shared some ale with pring
