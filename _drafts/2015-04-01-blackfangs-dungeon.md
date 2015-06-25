@@ -71,7 +71,7 @@ Feeling a wave of serenity wash over him, Pring gracefully arose from his medita
 
 The companions backtracked towards the fountain room and found Pring staring at the stone door leading to the eastward room. No words were exchanged and Pring pushed open the doors. The doors swung open silently to reveal a chamber bathed in red light. On the far east side of the room a pair of stone statues stood like sentinels on either side of a large, rune inscribed, stone altar. Atop the altar sat a thick layer of dust, not thick enough, however, to obscure the dim, creepy red light spewing forth from the large gemstone sitting on it.
 
-Feeling nervous about Prings outburst and wanting to ensure a quick escape, the Moonfeather suggested that they use the rusted swords that they looted off of the Goblins that attacked them in the forest to hold open the stone doors. Venalis, suspecting a trap, cast a minor enchantment to reveal magical signatures. He discovered that both the stone statues and the red gemstone were, indeed, magically enchanted. Warning his companions, he took a tentative step forward.
+Feeling nervous about Prings outburst and wanting to ensure a quick escape, the Moonfeather suggested that they use the rusted sword that they looted off of the Goblins that attacked them in the forest to hold open the stone doors. Venalis, suspecting a trap, cast a minor enchantment to reveal magical signatures. He discovered that both the stone statues and the red gemstone were, indeed, magically enchanted. Warning his companions, he took a tentative step forward.
 
 "Approach with humility and live!" deep, loud voice boomed from the stone statues. As the others entered the room, the statues intonned the same warning.
 
@@ -81,10 +81,28 @@ Deciding to test Moonfeathers suggestion out, Pring approached the altar careful
 
 Venalis paid careful attention to the timing, realising that the flames spurted out for precicely fifteen seconds, and remained dormant for exactly five seconds afterwards. Picking his way carefully around the edge of the room, careful not to step into any of the areas he had mentally marked as dangerous, he nimbly lept up on the dias and snatched the ruby from the altar. Breathing rapidly, he lay prone on the floor next to Pring and waited for the flames to subside.
 
+Once the pair were safely away from the threat of the flames Venalis took a moment to study the ruby. Remembering that there was something more to this gem, he took a moment to perform his divinaion once more.
+
+"Oh, my! This is an energy heart. If I'm reading this aura correctly it should be able to save its owner from a portion of elemental damage. Uhm, fire, acid, cold and possibly electric." Venalis pocketed the gem. "Shall we continue?"
+
+Not quite over their paranoia, this time the group used the notched sword to keep the southward door open. Stepping through into the short corridor the company quickly found themselves covered in whispy strands of spider webs.
+
+"I think this may have been where Fatmouth's sister ran off to." Moonfeather observed, "Perhaps Archemedes can have a wander around and see what he can see."
+
+Just before Moonfeather sent the owl on its way, Venalis placed a hand on his lips and motioned for quiet. In an extremely lucky happenstance he spied the tiniest of movements amongst the thicker webbing further into the room. Pointing this out to his companions, they barely managed to make out the outline of the giant spider lying in wait for the unfortunate souls to step into its domain.
+
+With the element of surprise on their side both Venalis and Zaradae unslung their long bows and prepared to fire. Almost simultaneously Moonfeather readied a burst of arcane energy. The three projectiles slammed into the creature, severely wounding it but not quite finishing it off outright. Pring, not one to wait, bounded out infront of the others and pounced onto the spider. In a combination of pain and surprise the spider reared back and attempted to sink its fangs into Prings unarmoured chest. Far more nimble than a creature his size should rightly be, Pring leaped frogged over the spider, landing behind it and pivoted to begin pummeling its abdomen. Deciding that the Half-Orc was the more immediate threat, the spider spun around and once again attempted to deliver a venomous bite. Before it could finish the maneuver, two more arrows embedded into its body and Pring watched as the light slowly faded from its many eyes.
+
+The companions allowed themselves a quick moment of congratulations before exploring the chamber more thoroughly. They quickly discovered the dessicated remains of a small Goblinoid creature and at its feet, tangled amongst the webs, discovered a small poorly crafted wooden box. Inside the found a handful of coins, a wand with a few remaining charges of magic missiles and an extremely well crafted dragon figurine.
+
+"Ah excellent, this should allow us to pass the Goblins without any trouble." Moonfeather was quite pleased about the deal she had secured.
+
+"Pah, Half-Elf! They're just Goblins. Are you afraid of them?" Pring chided.
+
+The look Moonfeather shot at Pring silenced his laughs immediately.
 
 # The Blackfang Saga
 
-- foiled spider ambush, and defeated it
 - found corpse of Goblin sister and took the toy back to king
 - king was happy and shared some ale with pring
 - was happy his sister was dead because she stole his toy
