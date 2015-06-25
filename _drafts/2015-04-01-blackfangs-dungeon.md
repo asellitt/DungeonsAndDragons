@@ -115,7 +115,7 @@ After Fatmouth finished his ale, he warned the companions about the creature. "I
 
 "Yes, well before we charge in, lets have a more thorough look around here." Venalis gestured to a different tunnel that also lead to the east.
 
-They rounded a bend in the tunnel and found themselves in a cavern almost as large as the ones the Goblins called home. Up ahead they found a subterranean pond which nearly complely filled the chamber. On the far side of the body of water they spied a small island where some unidentifiable thing glittered in the torchlight.
+They rounded a bend in the tunnel and found themselves in a cavern almost as large as the one the Goblins called home. Up ahead they found a subterranean pond which nearly complely filled the chamber. On the far side of the body of water they spied a small island where some unidentifiable thing glittered in the torchlight.
 
 "Tie a rope around me, I'll swim across." Pring suggested. "If it looks like I might be in trouble, pull me back. Fast."
 
