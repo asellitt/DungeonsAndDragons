@@ -111,11 +111,18 @@ Prings eyes immediately lit up. "Moonfeather! Maybe this wasn't such a bad idea!
 
 After Fatmouth finished his ale, he warned the companions about the creature. "If you here to fight dragon, aim for belly. Got soft belly scales." He just managed to finish his sentence before blasting out a loud belch. Rising to the challenge, Pring followed suit with an even more impressive burp. "North. Go that way for dragon lair."
 
-"Dragon..?" A wave of unease passed through the adventurers.
+"Dragon..?" A wave of unease passed through the adventurers. "At least now we know what it is." Zaradae found herself having second thoughts.
+
+"Yes, well before we charge in, lets have a more thorough look around here." Venalis gestured to a different tunnel that also lead to the east.
+
+They rounded a bend in the tunnel and found themselves in a cavern almost as large as the ones the Goblins called home. Up ahead they found a subterranean pond which nearly complely filled the chamber. On the far side of the body of water they spied a small island where some unidentifiable thing glittered in the torchlight.
+
+"Tie a rope around me, I'll swim across." Pring suggested. "If it looks like I might be in trouble, pull me back. Fast."
+
+Securely tied to one end of the rope, pring jumped into the pool and began kicking his powerful legs to reach the other side. He thought he saw a dark shape swim under him, but when nothing happened, he felt sure that it was just a trick of the light. He reached the far shore with no problems and began to wipe the water from his face. As he turned toward his companions to signal the success, a dark shape shot out of the water and landed on the shore. Its dark elongated body was covered in long red spikes and it held its two massive claws menacingly in front of it. Making clicking aounds with its pincers, it charged at Pring.
 
 # The Blackfang Saga
 
-- found lake, tied rope to pring to go to far side
 - encountered reefclaw fought underwater and on shore
 - found dragon bane bitey sword pring took wraps for punchy time
 - found a magic obelisc, fumbled around a lot before solving it
