@@ -119,7 +119,9 @@ They rounded a bend in the tunnel and found themselves in a cavern almost as lar
 
 "Tie a rope around me, I'll swim across." Pring suggested. "If it looks like I might be in trouble, pull me back. Fast."
 
-Securely tied to one end of the rope, pring jumped into the pool and began kicking his powerful legs to reach the other side. He thought he saw a dark shape swim under him, but when nothing happened, he felt sure that it was just a trick of the light. He reached the far shore with no problems and began to wipe the water from his face. As he turned toward his companions to signal the success, a dark shape shot out of the water and landed on the shore. Its dark elongated body was covered in long red spikes and it held its two massive claws menacingly in front of it. Making clicking aounds with its pincers, it charged at Pring.
+Securely tied to one end of the rope, Pring jumped into the pool and began kicking his powerful legs to reach the other side. He thought he saw a dark shape swim under him, but when nothing happened, he felt sure that it was just a trick of the light. He reached the far shore with no problems and began to wipe the water from his face. As he turned toward his companions to signal the success, a dark shape shot out of the water and landed on the shore. Its dark elongated body was covered in long red spikes and it held its two massive claws menacingly in front of it. Making clicking aounds with its pincers, it charged at Pring.
+
+Bracing himself against the attack, Pring attempted to sidestep the reefclaws pincer, but mistimed his maneuver and found himself grappled in the reefclaws spined claw.
 
 # The Blackfang Saga
 
