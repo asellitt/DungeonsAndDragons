@@ -27,7 +27,31 @@
 
       .searched {
         transition:text-shadow 1s ease-in-out;
-        text-shadow: 0px 5px 5px rgba(255,0,0,1);
+        text-shadow: 0px 5px 5px red;
+      }
+
+      .moonfeather:after, .moonfeather:before {
+        color: red;
+      }
+
+      .venalis:after, .venalis:before {
+        color: green;
+      }
+
+      .stannis:after, .stannis:before {
+        color: white;
+      }
+
+      .zaradae:after, .zaradae:before {
+        color: blue;
+      }
+
+      .anakis:after, .anakis:before {
+        color: purple;
+      }
+
+      .pring:after, .pring:before {
+        color: yellow;
       }
 
       .select2-container {
@@ -35,13 +59,14 @@
         width: 200px;
         top: 20px;
         left: 20px;
+        z-index: 2;
       }
 
       .hidden {
         display: none;
       }
 
-      .--right:after{
+      .--right:after {
         content: '.';
         font-size: 60px;
         display: inline-block;
@@ -51,7 +76,7 @@
         left: 13px;
       }
 
-      .--left:before{
+      .--left:before {
         content: '.';
         font-size: 60px;
         display: inline-block;
@@ -97,38 +122,25 @@
     <select></select>
 
     <div class="points-of-interest">
-      <!-- General -->
-      <span disabled="disabled" class="--left" style="top:912px;left:777px;" data-value="Sandpoint">Sandpoint</span>
-      <span disabled="disabled" class="--left" style="top:949px;left:813px;" data-value="Jay Farmstead">Jay Farmstead</span>
-      <span disabled="disabled" class="--right hidden" style="top:912px;left:604px;" data-value="Pirate Cove">Pirate Cove</span>
-      <span disabled="disabled" class="--right hidden" style="top:467px;left:467px;" data-value="Van Dervaals">Van Dervaals</span>
-
-      <!-- Moonfeather -->
-      <span disabled="disabled" class="--left hidden" style="top:109px;left:2651px;" data-value="Valengel">Valengel</span>
-      <span disabled="disabled" class="--right" style="top:582px;left:1098px;" data-value="Shoanti Grounds">Shoanti Grounds</span>
-      <span disabled="disabled" class="--left hidden" style="top:213px;left:2111px;" data-value="Kovaren">Kovaren</span>
-
-      <!-- Venalis -->
-      <span disabled="disabled" class="--left" style="top:1208px;left:2241px;" data-value="Vohrn Valdhur">Vohrn Valdhur</span>
-      <span disabled="disabled" class="--left hidden" style="top:770px;left:883px;" data-value="Dryaden (Nayven Clan)">Dryaden (Nayven Clan)</span>
-      <span disabled="disabled" class="--left hidden" style="top:1016px;left:1660px;" data-value="Easthallow">Easthallow</span>
-      <span disabled="disabled" class="--right hidden" style="top:794px;left:1570px;" data-value="Tizonspire">Tizonspire</span>
-
-      <!-- Stannis -->
-      <span disabled="disabled" class="--right" style="top:924px;left:1793px;" data-value="Vildenvale">Vildenvale</span>
-
-      <!-- Zaradae -->
-      <span disabled="disabled" class="--left" style="top:635px;left:2344px;" data-value="Mirkwood">Mirkwood</span>
-
-      <!-- Anakis -->
-      <span disabled="disabled" class="--right hidden" style="top:1064px;left:1303px;" data-value="Ilustriram">Ilustriram</span>
-      <span disabled="disabled" class="--left hidden" style="top:3264px;left:1835px;" data-value="Creativity's End">Creativity's End</span>
-
-      <!-- Pring -->
-      <span disabled="disabled" class="--right" style="top:398px;left:1256px;" data-value="Xunjifeng Monestary">Xunjifeng Monestary</span>
-      <span disabled="disabled" class="--left" style="top:1889px;left:1715px;" data-value="Khurshid Grounds">Khurshid Grounds</span>
-      <span disabled="disabled" class="--right hidden" style="top:1861px;left:1515px;" data-value="Dumitru Village">Dumitru Village</span>
-      <span disabled="disabled" class="--right hidden" style="top:1926px;left:1588px;" data-value="Gulbrandia">Gulbrandia</span>
+      <span class="--left" style="top:912px;left:777px;" data-value="Sandpoint">Sandpoint</span>
+      <span class="--left" style="top:949px;left:813px;" data-value="Jay Farmstead">Jay Farmstead</span>
+      <span class="hidden --right" style="top:912px;left:604px;" data-value="Pirate Cove">Pirate Cove</span>
+      <span class="hidden --right" style="top:467px;left:467px;" data-value="Van Dervaals">Van Dervaals</span>
+      <span class="moonfeather --right" style="top:582px;left:1098px;" data-value="Shoanti Grounds">Shoanti Grounds</span>
+      <span class="hidden moonfeather --left" style="top:109px;left:2651px;" data-value="Valengel">Valengel</span>
+      <span class="hidden moonfeather --left" style="top:213px;left:2111px;" data-value="Kovaren">Kovaren</span>
+      <span class="venalis --left" style="top:1208px;left:2241px;" data-value="Vohrn Valdhur">Vohrn Valdhur</span>
+      <span class="venalis --left" style="top:1016px;left:1660px;" data-value="Easthallow">Easthallow</span>
+      <span class="hidden venalis --left" style="top:770px;left:883px;" data-value="Dryaden (Nayven Clan)">Dryaden (Nayven Clan)</span>
+      <span class="hidden venalis --right" style="top:794px;left:1570px;" data-value="Tizonspire">Tizonspire</span>
+      <span class="stannis --right" style="top:924px;left:1793px;" data-value="Vildenvale">Vildenvale</span>
+      <span class="zaradae --left" style="top:635px;left:2344px;" data-value="Mirkwood">Mirkwood</span>
+      <span class="hidden anakis --right" style="top:1064px;left:1303px;" data-value="Ilustriram">Ilustriram</span>
+      <span class="hidden anakis --left" style="top:3264px;left:1835px;" data-value="Creativity's End">Creativity's End</span>
+      <span class="pring --right" style="top:398px;left:1256px;" data-value="Xunjifeng Monestary">Xunjifeng Monestary</span>
+      <span class="pring --left" style="top:1889px;left:1715px;" data-value="Khurshid Grounds">Khurshid Grounds</span>
+      <span class="hidden pring --right" style="top:1861px;left:1515px;" data-value="Dumitru Village">Dumitru Village</span>
+      <span class="hidden pring --right" style="top:1926px;left:1588px;" data-value="Gulbrandia">Gulbrandia</span>
     </div>
   </body>
 </html>
