@@ -4,4 +4,4 @@ title: World Map
 permalink: /world-map/
 ---
 
-[![World Map](/assets/images/world-map/map-20150622.jpg)](/world_map.html)
+[![World Map](/assets/images/world-map/map-20150622.jpg)](/golarion.html)
