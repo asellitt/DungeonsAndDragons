@@ -10,9 +10,11 @@
         {% for node in pages_list %}
             {% if node.title != null %}
                 {% if node.layout == "page" or node.layout == "single-column" %}
-                <li class="sb-close {% if page.url == node.url %}active{% endif %}">
-                    <a href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a>
-                </li>
+                  {% unless node.exclude %}
+                    <li class="sb-close {% if page.url == node.url %}active{% endif %}">
+                        <a href="{{ node.url | prepend: site.baseurl }}">{{ node.title }}</a>
+                    </li>
+                  {% endunless %}
                 {% endif %}
             {% endif %}
         {% endfor %}
