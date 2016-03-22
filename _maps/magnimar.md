@@ -2,6 +2,7 @@
 layout: map
 title: Magnimar
 map: /assets/images/maps/magnimar.jpg
+thumb: /assets/images/maps/magnimar-thumb.jpg
 width: 1602px
 height: 2048px
 ---

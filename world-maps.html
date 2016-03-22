@@ -1,0 +1,20 @@
+---
+layout: default
+title: World Maps
+---
+
+<div class="home">
+    <ul class="post-list">
+        {% for map in site.maps %}
+        <li>
+            <a href="{{ map.url | prepend: site.baseurl }}" class="post-list-link">
+                <div class="post-list-info">
+                    <h2 class="post-list-title">{{ map.title }}</h2>
+                </div>
+            </a>
+
+            <img src="{{ map.thumb }}" class="post-list-thumb" />
+        </li>
+        {% endfor %}
+    </ul>
+</div>

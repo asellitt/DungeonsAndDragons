@@ -2,6 +2,7 @@
 layout: map
 title: Golarion
 map: /assets/images/maps/golarion.jpg
+thumb: /assets/images/maps/golarion-thumb.jpg
 height: 4096px
 width: 3150px
 ---
