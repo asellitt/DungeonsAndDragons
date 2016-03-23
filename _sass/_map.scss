@@ -1,0 +1,104 @@
+html {
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  padding: 0;
+  margin: 0;
+}
+
+body.map {
+  position: absolute;
+  background-attachment: scroll;
+  background-color: #F2F2F2;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: auto;
+  box-sizing: content-box;
+  font-family: Sans-Serif;
+  line-height: normal;
+  margin: 8px;
+}
+
+.point-of-interest {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  font-smoothing: antialiased;
+}
+
+.--right:after {
+  content: '.';
+  -webkit-text-stroke: 1px #eeeeee;
+  -webkit-user-select: none;
+  text-fill-color: black;
+  color: black;
+  font-size: 60px;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: relative;
+  top: 3px;
+  left: 13px;
+}
+
+.--left:before {
+  content: '.';
+  -webkit-text-stroke: 1px #eeeeee;
+  -webkit-user-select: none;
+  text-fill-color: black;
+  color: black;
+  font-size: 60px;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: relative;
+  top: 3px;
+  left: 13px;
+}
+
+.point-of-interest__overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  height: 30px;
+  z-index: -1;
+}
+
+.searched {
+  transition:text-shadow 1s ease-in-out;
+  text-shadow: 0px 5px 5px red;
+}
+
+.moonfeather:after, .moonfeather:before {
+  color: red;
+}
+
+.venalis:after, .venalis:before {
+  color: green;
+}
+
+.stannis:after, .stannis:before {
+  color: silver;
+}
+
+.zaradae:after, .zaradae:before {
+  color: blue;
+}
+
+.anakis:after, .anakis:before {
+  color: purple;
+}
+
+.pring:after, .pring:before {
+  color: yellow;
+}
+
+.select2-container {
+  position: fixed;
+  width: 200px;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+.hidden {
+  display: none;
+}
