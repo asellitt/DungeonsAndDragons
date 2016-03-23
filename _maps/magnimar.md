@@ -6,14 +6,14 @@ thumb: /assets/images/maps/magnimar-thumb.jpg
 width: 1602px
 height: 2048px
 ---
-<span class="--left" style="top:1174px;left:1242px;">Guild Hall</span>
-<span class="--left venalis" style="top:1245px;left:1271px;">Alchemist</span>
-<span class="--right" style="top:915px;left:778px;">Old Fang Tavern</span>
-<span class="--left moonfeather" style="top:1533px;left:329px;">Underbridge Orphanage</span>
-<span class="--left" style="top:1614px;left:314px;">Dilapidated Church</span>
-<span class="--right pring" style="top:294px;left:692px;">School of the Four Winds</span>
-<span class="hidden --right venalis" style="top:1093px;left:1008px;">The Oakenbark</span>
-<span class="hidden --right zaradae" style="top:108px;left:703px;">Hornsby Mannor</span>
-<span class="hidden --right" style="top:1385px;left:1041px;">Aatarum's Tower</span>
-<span class="--right" style="top:1385px;left:964px;">Lilliana Browning's Tower</span>
+<span class="--left" style="top:1182px;left:1250px;">Guild Hall</span>
+<span class="--left venalis" style="top:1253px;left:1279px;">Alchemist</span>
+<span class="--right" style="top:923px;left:786px;">Old Fang Tavern</span>
+<span class="--left moonfeather" style="top:1541px;left:337px;">Underbridge Orphanage</span>
+<span class="--left" style="top:1622px;left:322px;">Dilapidated Church</span>
+<span class="--right pring" style="top:302px;left:700px;">School of the Four Winds</span>
+<span class="hidden --right venalis" style="top:1101px;left:1016px;">The Oakenbark</span>
+<span class="hidden --right zaradae" style="top:116px;left:711px;">Hornsby Mannor</span>
+<span class="hidden --right" style="top:1393px;left:1049px;">Aatarum's Tower</span>
+<span class="--right" style="top:1393px;left:972px;">Lilliana Browning's Tower</span>
 
