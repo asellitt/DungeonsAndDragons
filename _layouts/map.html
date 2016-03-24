@@ -27,10 +27,12 @@
 
         $('span').each(function() {
           $(this).addClass('point-of-interest')
+
           var width = $(this).width() + 10
           var top = $(this).position().top + 32
           var left = $(this).position().left - 5
           var display = $(this).css('display')
+          var uuid = guid()
 
           var overlay = '<div ' +
             'class="point-of-interest__overlay" ' +
@@ -39,20 +41,22 @@
               'left:' + left + 'px;' +
               'width:' + width + 'px;' +
               'display:' + display + '"' +
+            'data-uuid="' + uuid + '"' +
           '/>'
           $(overlay).insertAfter(this)
+          $(this).attr('data-uuid', uuid)
         })
 
         $('body').animate({scrollTop: 0, scrollLeft: 0})
 
         var data = [{ id:0, text:'' }]
         $('span:not(.hidden)').sort(sortAlpha).each(function(index) {
-          data.push({ id: $(this).attr('style'), text: $(this).text() })
+          data.push({ id: $(this).data('uuid'), text: $(this).text() })
         })
 
         $('select').select2({data: data})
           .on('change', function(event) {
-            var element = $('span[style="'+$(this).val()+'"]')
+            var element = $('div[data-uuid="'+$(this).val()+'"]')
             var x = (element.offset().left - ($(window).width() / 2))
             var y = (element.offset().top - ($(window).height() / 2))
 
@@ -66,6 +70,13 @@
 
       function sortAlpha(a,b) {
         return a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase() ? 1 : -1
+      }
+
+      function guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
       }
     </script>
   </body>
