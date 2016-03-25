@@ -13,7 +13,7 @@ height: 2048px
 <span class="--left" style="top:1622px;left:322px;">Dilapidated Church</span>
 <span class="--right pring" style="top:302px;left:700px;">School of the Four Winds</span>
 <span class="hidden --right venalis" style="top:1101px;left:1016px;">The Oakenbark</span>
-<span class="hidden --right zaradae" style="top:116px;left:711px;">Hornsby Mannor</span>
+<span class="--right zaradae" style="top:116px;left:711px;">Hornsby Mannor</span>
 <span class="hidden --right" style="top:1393px;left:1049px;">Aatarum's Tower</span>
 <span class="--right" style="top:1393px;left:972px;">Lilliana Browning's Tower</span>
 <span class="--right stannis" style="top:1718px;left:967px;">Rusty Narwahl</span>
