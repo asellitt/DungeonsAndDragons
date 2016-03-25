@@ -16,5 +16,6 @@ height: 2048px
 <span class="hidden --right zaradae" style="top:116px;left:711px;">Hornsby Mannor</span>
 <span class="hidden --right" style="top:1393px;left:1049px;">Aatarum's Tower</span>
 <span class="--right" style="top:1393px;left:972px;">Lilliana Browning's Tower</span>
-<span class="--right" style="top:1718px;left:967px;">Rusty Narwahl</span>
-<span class="--right" style="top:1508px;left:853px;">Pig and Whistle</span>
+<span class="--right stannis" style="top:1718px;left:967px;">Rusty Narwahl</span>
+<span class="--right stannis" style="top:1508px;left:853px;">Pig and Whistle</span>
+<span class="--right" style="top:70px;left:808px;">Lord Magnimar's Estate</span>
