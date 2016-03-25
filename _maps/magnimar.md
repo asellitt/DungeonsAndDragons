@@ -19,3 +19,4 @@ height: 2048px
 <span class="--right stannis" style="top:1718px;left:967px;">Rusty Narwahl</span>
 <span class="--right stannis" style="top:1508px;left:853px;">Pig and Whistle</span>
 <span class="--right" style="top:70px;left:808px;">Lord Magnimar's Estate</span>
+<span class="--right" style="top:375px;left:661px;">Temple of the Dawnflower</span>
