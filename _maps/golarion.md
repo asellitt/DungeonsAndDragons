@@ -27,3 +27,4 @@ width: 3150px
 <span class="hidden pring --right" style="top:1869px;left:1523px;">Dumitru Village</span>
 <span class="hidden pring --right" style="top:1934px;left:1596px;">Gulbrandia</span>
 <span class="hidden pring --right" style="top:2890px;left:458px;">Elvyta Isle</span>
+<span class="--right" style="top:1043px;left:458px;">Magnimar Hunting Grounds</span>
