@@ -9,7 +9,7 @@ width: 3150px
 <span class="--left" style="top:920px;left:785px;">Sandpoint</span>
 <span class="--left" style="top:957px;left:821px;">Jay Farmstead</span>
 <span class="hidden --right" style="top:920px;left:612px;">Pirate Cove</span>
-<span class="hidden --right" style="top:475px;left:475px;">Van Dervaals</span>
+<span class="--right" style="top:475px;left:475px;">Van Derwaals</span>
 <span class="moonfeather --right" style="top:560px;left:1106px;">Shoanti Grounds</span>
 <span class="hidden moonfeather --left" style="top:117px;left:2659px;">Valengel</span>
 <span class="hidden moonfeather --left" style="top:221px;left:2119px;">Kovaren</span>
