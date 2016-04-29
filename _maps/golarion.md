@@ -11,7 +11,7 @@ width: 3150px
 <span class="hidden --right" style="top:920px;left:612px;">Pirate Cove</span>
 <span class="--right" style="top:475px;left:475px;">Van Derwaals</span>
 <span class="moonfeather --right" style="top:560px;left:1106px;">Shoanti Grounds</span>
-<span class="hidden moonfeather --left" style="top:117px;left:2659px;">Valengel</span>
+<span class="moonfeather --left" style="top:117px;left:2659px;">Valengel</span>
 <span class="hidden moonfeather --left" style="top:221px;left:2119px;">Kovaren</span>
 <span class="hidden moonfeather --left" style="top:2556px;left:2238px;">Archemede's Tomb</span>
 <span class="venalis --left" style="top:1216px;left:2249px;">Vohrn Valdhur</span>
