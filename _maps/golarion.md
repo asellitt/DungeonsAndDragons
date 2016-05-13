@@ -20,7 +20,7 @@ width: 3150px
 <span class="hidden venalis --right" style="top:802px;left:1578px;">Tizonspire</span>
 <span class="stannis --right" style="top:936px;left:1801px;">Vildenvale</span>
 <span class="zaradae --left" style="top:643px;left:2352px;">Mirkwood</span>
-<span class="hidden anakis --right" style="top:1072px;left:1311px;">Ilustriram</span>
+<span class="anakis --right" style="top:1072px;left:1311px;">Ilustriram</span>
 <span class="hidden anakis --left" style="top:3272px;left:1843px;">Creativity's Cradle</span>
 <span class="pring --right" style="top:406px;left:1264px;">Xunjifeng Monestary</span>
 <span class="pring --left" style="top:1897px;left:1723px;">Khurshid Grounds</span>
