@@ -22,3 +22,6 @@ collections:
   maps:
     output: true
     permalink: /maps/:path/
+  items:
+    output: true
+    permalink: /magic-items/:path/
