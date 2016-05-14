@@ -26,34 +26,6 @@ body.map {
   font-smoothing: antialiased;
 }
 
-.--right:after {
-  content: '.';
-  -webkit-text-stroke: 1px #eeeeee;
-  -webkit-user-select: none;
-  text-fill-color: black;
-  color: black;
-  font-size: 60px;
-  display: inline-block;
-  transform: rotate(45deg);
-  position: relative;
-  top: 3px;
-  left: 13px;
-}
-
-.--left:before {
-  content: '.';
-  -webkit-text-stroke: 1px #eeeeee;
-  -webkit-user-select: none;
-  text-fill-color: black;
-  color: black;
-  font-size: 60px;
-  display: inline-block;
-  transform: rotate(45deg);
-  position: relative;
-  top: 3px;
-  left: 13px;
-}
-
 .point-of-interest__overlay {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
@@ -62,35 +34,57 @@ body.map {
   z-index: -1;
 }
 
+.point-of-interest__pin {
+  width: 10px;
+  height: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
+  stroke: white;
+  fill: black;
+}
+
 .searched {
   outline: none;
   border-color: red;
   box-shadow: 0 0 50px red;
+  -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 
-.moonfeather:after, .moonfeather:before {
+.moonfeather .point-of-interest__pin {
   color: red;
+  stroke: white;
+  fill: red;
 }
 
-.venalis:after, .venalis:before {
+.venalis .point-of-interest__pin {
   color: green;
+  stroke: white;
+  fill: green;
 }
 
-.stannis:after, .stannis:before {
+.stannis .point-of-interest__pin {
   color: silver;
+  stroke: white;
+  fill: silver;
 }
 
-.zaradae:after, .zaradae:before {
+.zaradae .point-of-interest__pin {
   color: blue;
+  stroke: white;
+  fill: blue;
 }
 
-.anakis:after, .anakis:before {
+.anakis .point-of-interest__pin {
   color: purple;
+  stroke: white;
+  fill: purple;
 }
 
-.pring:after, .pring:before {
+.pring .point-of-interest__pin {
   color: yellow;
+  stroke: white;
+  fill: yellow;
 }
 
 .select2-container {
