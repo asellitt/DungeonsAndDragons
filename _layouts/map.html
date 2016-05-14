@@ -28,8 +28,8 @@
         $('span').each(function() {
           $(this).addClass('point-of-interest')
 
-          var width = $(this).width() + 10
-          var top = $(this).position().top + 32
+          var width = $(this).width() + 30
+          var top = $(this).position().top - 3
           var left = $(this).position().left - 5
           var display = $(this).css('display')
           var uuid = guid()
@@ -45,6 +45,20 @@
           '/>'
           $(overlay).insertAfter(this)
           $(this).attr('data-uuid', uuid)
+        })
+
+        $('.--left').each(function() {
+          var point = '<svg class="point-of-interest__pin"> ' +
+              '<polygon points="0,5,5,0,10,5,5,10" /> ' +
+            '</svg>'
+          $(this).html(point + $(this).html())
+        })
+
+        $('.--right').each(function() {
+          var point = '<svg class="point-of-interest__pin"> ' +
+              '<polygon points="0,5,5,0,10,5,5,10" /> ' +
+            '</span>'
+          $(this).html($(this).html() + point)
         })
 
         $('body').animate({scrollTop: 0, scrollLeft: 0})
