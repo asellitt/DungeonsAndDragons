@@ -1,0 +1,64 @@
+#template {
+  display: none;
+}
+
+input {
+  width: 200px;
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+}
+
+table {
+  width:100%;
+  color: #58170D;
+}
+
+td {
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 175px;
+}
+
+b {
+  line-height: 1.5;
+}
+
+.inputs {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.encounter {
+  width: 400px;
+  color: #58170D;
+  font-family: 'Helvetica Neue', 'Open Sans Condensed', sans-serif;
+  display: inline-block;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.name {
+  margin-top: 10px;
+  border-bottom: 1px solid red;
+  color: #58170D;
+  font-variant: small-caps;
+  font-size: 1.5em;
+}
+
+.skills {
+  width: 49%;
+  display: inline-block;
+}
+
+.actions {
+  color: black;
+}
+
+.spellcasting {
+  color: black;
+}
