@@ -1,0 +1,353 @@
+---
+layout: default
+title: Encounters
+---
+
+<div class="inputs">
+  <div>
+    <label>Average Party Level</label> <input class="js-level" type="number" placeholder="Average Party Level" min="1" max="20" autofocus="true" />
+  </div>
+  <div>
+    <label>Number of Players</label> <input class="js-players" type="number" placeholder="Number of Players" min="1" max="20" />
+  </div>
+</div>
+
+<div id="encounters"></div>
+
+<div id="template" class="encounter">
+  <div class="name">
+    <span class="js-name"></span>
+  </div>
+  <div>
+    <div><b>Armour Class</b> <span class="js-ac"></span></div>
+    <div><b>Hit Points</b> <span class="js-hp"></span></div>
+    <div><b>Speed</b> 30ft.</div>
+    <div><b>Initiative</b> <span class="js-initiative"></span></div>
+  </div>
+  <div class="name">Attributes</div>
+  <table>
+    <tr>
+      <th>STR</th>
+      <th>DEX</th>
+      <th>CON</th>
+      <th>INT</th>
+      <th>WIS</th>
+      <th>CHA</th>
+    </tr>
+    <tr>
+      <td><span class="js-str-base"></span> (<span class="js-str-mod"></span>)</td>
+      <td><span class="js-dex-base"></span> (<span class="js-dex-mod"></span>)</td>
+      <td><span class="js-con-base"></span> (<span class="js-con-mod"></span>)</td>
+      <td><span class="js-int-base"></span> (<span class="js-int-mod"></span>)</td>
+      <td><span class="js-wis-base"></span> (<span class="js-wis-mod"></span>)</td>
+      <td><span class="js-cha-base"></span> (<span class="js-cha-mod"></span>)</td>
+    </tr>
+  </table>
+  <div class="name">Skills</div>
+  <div>
+    <div class="skills">
+      <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
+      <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
+      <div><b>Arcana</b> <span class="js-arcana"></span></div>
+      <div><b>Athletics</b> <span class="js-athletics"></span></div>
+      <div><b>Deception</b> <span class="js-deception"></span></div>
+      <div><b>History</b> <span class="js-history"></span></div>
+      <div><b>Insight</b> <span class="js-insight"></span></div>
+      <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
+      <div><b>Investigation</b> <span class="js-investigation"></span></div>
+    </div>
+    <div class="skills">
+      <div><b>Medicine</b> <span class="js-medicine"></span></div>
+      <div><b>Nature</b> <span class="js-nature"></span></div>
+      <div><b>Perception</b> <span class="js-perception"></span></div>
+      <div><b>Performance</b> <span class="js-performance"></span></div>
+      <div><b>Persuasion</b> <span class="js-persuasion"></span></div>
+      <div><b>Religion</b> <span class="js-religion"></span></div>
+      <div><b>Sleight of Hand</b> <span class="js-sleight-of-hand"></span></div>
+      <div><b>Stealth</b> <span class="js-stealth"></span></div>
+      <div><b>Survival</b> <span class="js-survival"></span></div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="name">Actions</div>
+    <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
+    <div><i>Hit:</i> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.
+    <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
+    <div class="js-spellcasting">
+      <div><b><i>Spellcasting</i></b></div>
+      <table class="spellcasting">
+        <tr>
+          <th>Cantrips</th>
+          <th>1st</th>
+          <th>2nd</th>
+          <th>3rd</th>
+          <th>4th</th>
+          <th>5th</th>
+          <th>6th</th>
+          <th>7th</th>
+          <th>8th</th>
+          <th>9th</th>
+        </tr>
+        <tr>
+          <td>At will</td>
+          <td><span class="js-1-slot">&mdash;</span></td>
+          <td><span class="js-2-slot">&mdash;</span></td>
+          <td><span class="js-3-slot">&mdash;</span></td>
+          <td><span class="js-4-slot">&mdash;</span></td>
+          <td><span class="js-5-slot">&mdash;</span></td>
+          <td><span class="js-6-slot">&mdash;</span></td>
+          <td><span class="js-7-slot">&mdash;</span></td>
+          <td><span class="js-8-slot">&mdash;</span></td>
+          <td><span class="js-9-slot">&mdash;</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.js-players').on('change', encounter)
+    $('.js-level').on('change', encounter)
+  })
+
+  function encounter() {
+    var players = parseInt($('.js-players').val())
+    var level = parseInt($('.js-level').val())
+
+    if(parseInt(players, 10) && parseInt(level, 10)) {
+      clearEncounters()
+      var numberOfEnemies = estimateNumberOfEnemies(players)
+
+      do {
+        var sizeOfGroup = d(4)
+        generateEncounterGroup(sizeOfGroup, level)
+        numberOfEnemies -= sizeOfGroup
+      }
+      while(numberOfEnemies >= 4)
+      generateEncounterGroup(numberOfEnemies, level)
+    }
+  }
+
+  function d(sides) {
+    return Math.floor(Math.random() * sides) + 1
+  }
+
+  function clearEncounters() {
+    $('#encounters').empty()
+  }
+
+  function estimateNumberOfEnemies(numberOfPlayers) {
+    return numberOfPlayers + d(Math.min(numberOfPlayers, 4))
+  }
+
+  function selectArchetype() {
+    var archetypes = [
+      {
+        role: 'Heavy'
+        ,hitDie: 12
+        ,acModifier: 3
+        ,abilityWeighting: ['str', 'con']
+        ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
+        ,spellcasting: false
+      }
+      ,{
+        role: 'Light'
+        ,hitDie: 10
+        ,acModifier: 2
+        ,abilityWeighting: ['dex', 'con']
+        ,skillProficiencies: [ 'acrobatics', 'stealth', 'sleight-of-hand', 'investigation', 'perception', 'deception' ]
+        ,spellcasting: false
+      }
+      ,{
+        role: 'Ranged'
+        ,hitDie: 8
+        ,acModifier: 2
+        ,abilityWeighting: ['dex', 'wis']
+        ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
+        ,spellcasting: false
+      }
+      ,{
+        role: 'Arcane Caster'
+        ,hitDie: 6
+        ,acModifier: 1
+        ,abilityWeighting: ['int', 'cha']
+        ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
+        ,spellcasting: true
+      }
+      ,{
+        role: 'Divine Caster'
+        ,hitDie: 8
+        ,acModifier: 2
+        ,abilityWeighting: ['str', 'wis']
+        ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
+        ,spellcasting: true
+      }
+    ]
+
+    return archetypes[d(archetypes.length) - 1]
+  }
+
+  function distributeAttributes(encounterGroup, baseAttributes, archetype, beastial) {
+    var dumpAbilities = [ 'str', 'dex', 'con', 'int', 'wis', 'cha' ]
+
+    for(i = 0; i < archetype.abilityWeighting.length; i++) {
+      var prioritizedAttribute = archetype.abilityWeighting[i]
+      var prioritizedAttributeIndex = dumpAbilities.indexOf(prioritizedAttribute)
+      dumpAbilities.splice(prioritizedAttributeIndex, 1)
+
+      var largestAbility = Math.max.apply(Math,baseAttributes)
+      var largestAbilityIndex = baseAttributes.indexOf(largestAbility)
+      encounterGroup.find('.js-' + prioritizedAttribute + '-base').text(baseAttributes.splice(largestAbilityIndex, 1))
+    }
+
+    for(i = 0; i < dumpAbilities.length; i++) {
+      var randomAbility = dumpAbilities[i]
+      var randomAbilityIndex = d(baseAttributes.length) - 1
+      encounterGroup.find('.js-' + randomAbility + '-base').text(baseAttributes.splice(randomAbilityIndex, 1))
+    }
+
+    if(beastial) {
+      encounterGroup.find('.js-int-base').text(d(6))
+      encounterGroup.find('.js-cha-base').text(d(6) +  d(6))
+    }
+  }
+
+  function assignSkillProficiencies(encounterGroup, archetype, proficiencyBonus) {
+    for(i = 0; i < archetype.skillProficiencies.length; i++) {
+      var skill = encounterGroup.find('.js-' + archetype.skillProficiencies[i])
+      var skillBonus = parseInt(skill.text(), 10)
+      skill.text(skillBonus + proficiencyBonus)
+    }
+  }
+
+  function calculateAttributes(averagePartyLevel) {
+    var baseAttributes = [ 15, 14, 13, 12, 10, 8 ]
+    var additionalAttributes = 4 + 2 * Math.floor(averagePartyLevel / 4)
+    for(i = 0; i < additionalAttributes; i++) {
+      baseAttributes[d(6) - 1] += 1
+    }
+
+    return baseAttributes
+  }
+
+  function calculateAttributeModifier(attribute) {
+    return Math.floor(attribute/2 - 5)
+  }
+
+  function calculateProficiencyBonus(averagePartyLevel) {
+    return 1 + Math.ceil(averagePartyLevel/4)
+  }
+
+  function calculateHitPoints(hitDie, conModifier, averagePartyLevel) {
+    return hitDie + conModifier + (averagePartyLevel - 1) * (Math.floor(hitDie/2) + 1 + conModifier)
+  }
+
+  function calculateSpellSlots(averagePartyLevel) {
+    var spellSlots = [
+       [2]
+      ,[3]
+      ,[4,2]
+      ,[4,3]
+      ,[4,3,2]
+      ,[4,3,3]
+      ,[4,3,3,1]
+      ,[4,3,3,2]
+      ,[4,3,3,3,1]
+      ,[4,3,3,3,2]
+      ,[4,3,3,3,2,1]
+      ,[4,3,3,3,2,1]
+      ,[4,3,3,3,2,1,1]
+      ,[4,3,3,3,2,1,1]
+      ,[4,3,3,3,2,1,1,1]
+      ,[4,3,3,3,2,1,1,1]
+      ,[4,3,3,3,2,1,1,1,1]
+      ,[4,3,3,3,3,1,1,1,1]
+      ,[4,3,3,3,3,2,1,1,1]
+      ,[4,3,3,3,3,2,2,1,1]
+    ]
+
+    return spellSlots[averagePartyLevel - 1]
+  }
+
+  function calculateBeastialLikelihood(archetype) {
+    if(archetype.role == 'Heavy' || archetype.role == 'Light') {
+      return (d(4) === 1)
+    }
+    else {
+      return false
+    }
+  }
+
+  function generateEncounterGroup(sizeOfGroup, averagePartyLevel) {
+    if(sizeOfGroup < 1) {
+      return
+    }
+
+    var template = $('#template').clone()
+    template.attr('id', '')
+
+    var archetype = selectArchetype()
+    var beastial = calculateBeastialLikelihood(archetype)
+    var baseAttributes = calculateAttributes(averagePartyLevel)
+    var proficiencyBonus = calculateProficiencyBonus(averagePartyLevel)
+
+    distributeAttributes(template, baseAttributes, archetype, beastial)
+
+    var strModifier = calculateAttributeModifier(template.find('.js-str-base').text())
+    var dexModifier = calculateAttributeModifier(template.find('.js-dex-base').text())
+    var conModifier = calculateAttributeModifier(template.find('.js-con-base').text())
+    var intModifier = calculateAttributeModifier(template.find('.js-int-base').text())
+    var wisModifier = calculateAttributeModifier(template.find('.js-wis-base').text())
+    var chaModifier = calculateAttributeModifier(template.find('.js-cha-base').text())
+
+    template.find('.js-name').text((beastial ? 'Beastial ' : '') + archetype.role + ' (' + sizeOfGroup + ')')
+    template.find('.js-ac').text(10 + Math.max(0, dexModifier) + archetype.acModifier * proficiencyBonus)
+    template.find('.js-hp').text(calculateHitPoints(archetype.hitDie, conModifier, averagePartyLevel))
+    template.find('.js-initiative').text(dexModifier + d(20))
+
+    template.find('.js-str-mod').text(strModifier)
+    template.find('.js-dex-mod').text(dexModifier)
+    template.find('.js-con-mod').text(conModifier)
+    template.find('.js-int-mod').text(intModifier)
+    template.find('.js-wis-mod').text(wisModifier)
+    template.find('.js-cha-mod').text(chaModifier)
+
+    template.find('.js-acrobatics').text(dexModifier)
+    template.find('.js-animal-handling').text(wisModifier)
+    template.find('.js-arcana').text(intModifier)
+    template.find('.js-athletics').text(strModifier)
+    template.find('.js-deception').text(chaModifier)
+    template.find('.js-history').text(intModifier)
+    template.find('.js-insight').text(wisModifier)
+    template.find('.js-intimidation').text(chaModifier)
+    template.find('.js-investigation').text(intModifier)
+    template.find('.js-medicine').text(wisModifier)
+    template.find('.js-nature').text(intModifier)
+    template.find('.js-perception').text(wisModifier)
+    template.find('.js-performance').text(chaModifier)
+    template.find('.js-persuasion').text(chaModifier)
+    template.find('.js-religion').text(intModifier)
+    template.find('.js-sleight-of-hand').text(dexModifier)
+    template.find('.js-stealth').text(dexModifier)
+    template.find('.js-survival').text(wisModifier)
+
+    assignSkillProficiencies(template, archetype, proficiencyBonus)
+
+    template.find('.js-attack-to-hit').text(Math.max(strModifier, dexModifier) + proficiencyBonus + d(4))
+    template.find('.js-attack-damage-die').text(proficiencyBonus + 'd8')
+    template.find('.js-attack-damage-mod').text(Math.max(strModifier, dexModifier) + d(4))
+    template.find('.js-multiattack').text(proficiencyBonus)
+    if(!archetype.spellcasting) {
+      template.find('.js-spellcasting').hide()
+    }
+    else {
+      var spellSlots = calculateSpellSlots(averagePartyLevel)
+      for(i=0; i < spellSlots.length; i++) {
+        template.find('.js-' + (i+1) + '-slot').text(spellSlots[i])
+      }
+    }
+
+    $('#encounters').append(template)
+  }
+</script>
