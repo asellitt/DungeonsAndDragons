@@ -388,8 +388,12 @@ title: Encounters
       for(i=0; i < spellSlots.length; i++) {
         template.find('.js-' + (i+1) + '-slot').text(spellSlots[i])
       }
-      var casterAbilityBonus = ( archetype.role === 'Divine Caster' ? abilityModifiers.wis : Math.max(abilityModifiers.int, abilityModifiers.cha) )
-      template.find('.js-spell-to-hit').text(casterAbilityBonus + proficiencyBonus + d(2))
+      if(archetype.role == 'Divine Caster') {
+        template.find('.js-spell-to-hit').text(abilityModifiers.wis + proficiencyBonus + d(2))
+      }
+      else {
+        template.find('.js-spell-to-hit').text(Math.max(abilityModifiers.int, abilityModifiers.cha) + proficiencyBonus + d(2))
+      }
     }
 
     $('#encounters').append(template)
