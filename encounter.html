@@ -147,7 +147,7 @@ title: Encounters
 
     if(parseInt(players, 10) && parseInt(level, 10)) {
       clearEncounters()
-      var numberOfEnemies = estimateNumberOfEnemies(players)
+      var numberOfEnemies = calculateNumberOfEnemies(players)
 
       do {
         var sizeOfGroup = d(4) + 1
@@ -169,8 +169,8 @@ title: Encounters
     $('#encounters').empty()
   }
 
-  function estimateNumberOfEnemies(numberOfPlayers) {
-    return numberOfPlayers + d(Math.min(numberOfPlayers, 4))
+  function calculateNumberOfEnemies(numberOfPlayers) {
+    return numberOfPlayers + d(Math.min(numberOfPlayers, 2))
   }
 
   function sortEncounters() {
