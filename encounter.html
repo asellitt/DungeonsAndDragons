@@ -247,31 +247,6 @@ title: Encounters
     return (archetype.skillProficiencies.indexOf(skill) != -1)
   }
 
-  function distributeAttributes(encounterGroup, baseAttributes, archetype, beastial) {
-    var dumpAbilities = [ 'str', 'dex', 'con', 'int', 'wis', 'cha' ]
-
-    for(i = 0; i < archetype.abilityWeighting.length; i++) {
-      var prioritizedAttribute = archetype.abilityWeighting[i]
-      var prioritizedAttributeIndex = dumpAbilities.indexOf(prioritizedAttribute)
-      dumpAbilities.splice(prioritizedAttributeIndex, 1)
-
-      var largestAbility = Math.max.apply(Math,baseAttributes)
-      var largestAbilityIndex = baseAttributes.indexOf(largestAbility)
-      encounterGroup.find('.js-' + prioritizedAttribute + '-base').text(baseAttributes.splice(largestAbilityIndex, 1))
-    }
-
-    for(i = 0; i < dumpAbilities.length; i++) {
-      var randomAbility = dumpAbilities[i]
-      var randomAbilityIndex = d(baseAttributes.length) - 1
-      encounterGroup.find('.js-' + randomAbility + '-base').text(baseAttributes.splice(randomAbilityIndex, 1))
-    }
-
-    if(beastial) {
-      encounterGroup.find('.js-int-base').text(d(6))
-      encounterGroup.find('.js-cha-base').text(d(6) +  d(6))
-    }
-  }
-
   function calculateAttributes(averagePartyLevel) {
     var baseAttributes = [ 15, 14, 13, 12, 10, 8 ]
     var additionalAttributes = 4 + 2 * Math.floor(averagePartyLevel / 4)
@@ -355,18 +330,7 @@ title: Encounters
     var baseAttributes = calculateAttributes(averagePartyLevel)
     var proficiencyBonus = calculateProficiencyBonus(averagePartyLevel)
 
-    distributeAttributes(template, baseAttributes, archetype, beastial)
-
-    var abilityModifiers = {
-      str: calculateAttributeModifier(template.find('.js-str-base').text()),
-      dex: calculateAttributeModifier(template.find('.js-dex-base').text()),
-      con: calculateAttributeModifier(template.find('.js-con-base').text()),
-      int: calculateAttributeModifier(template.find('.js-int-base').text()),
-      wis: calculateAttributeModifier(template.find('.js-wis-base').text()),
-      cha: calculateAttributeModifier(template.find('.js-cha-base').text())
-    }
-
-    fillInAbilityTable(template, abilityModifiers, proficiencyBonus, archetype)
+    var abilityModifiers = fillInAbilityTable(template, baseAttributes, beastial, proficiencyBonus, archetype)
     fillInSkillTable(template, abilityModifiers, proficiencyBonus, archetype)
 
     template.find('.js-name').text((beastial ? 'Beastial ' : '') + archetype.role + ' (' + sizeOfGroup + ')')
@@ -399,17 +363,59 @@ title: Encounters
     $('#encounters').append(template)
   }
 
-  function fillInAbilityTable(template, modifiers, proficiencyBonus, archetype) {
+  function fillInAbilityTable(encounterGroup, baseAttributes, beastial, proficiencyBonus, archetype) {
+    var modifiers = distributeAttributes(encounterGroup, baseAttributes, archetype, beastial)
+
     var attributes = [ 'str', 'dex', 'con', 'int', 'wis', 'cha' ]
     for(i = 0; i < attributes.length; i++) {
       var attribute = attributes[i]
       var modifier = modifiers[attribute]
       var plusSymbol = (modifier < 0 ? '' : '+')
 
-      template.find('.js-' + attribute + '-mod').text(plusSymbol + modifier)
-      template.find('.js-' + attribute + '-dc').text(calculateDC(modifier, proficiencyBonus, isProficientWithAttribute(archetype, attribute)))
-      template.find('.js-' + attribute + '-save').text(plusSymbol + calculateSaveModifier(modifier, proficiencyBonus, isProficientWithAttribute(archetype, attribute)))
+      encounterGroup.find('.js-' + attribute + '-mod').text(plusSymbol + modifier)
+      encounterGroup.find('.js-' + attribute + '-dc').text(calculateDC(modifier, proficiencyBonus, isProficientWithAttribute(archetype, attribute)))
+      encounterGroup.find('.js-' + attribute + '-save').text(plusSymbol + calculateSaveModifier(modifier, proficiencyBonus, isProficientWithAttribute(archetype, attribute)))
     }
+
+    return modifiers
+  }
+
+  function distributeAttributes(encounterGroup, baseAttributes, archetype, beastial) {
+    var abilityModifiers = { }
+    var dumpAbilities = [ 'str', 'dex', 'con', 'int', 'wis', 'cha' ]
+
+    for(i = 0; i < archetype.abilityWeighting.length; i++) {
+      var prioritizedAttribute = archetype.abilityWeighting[i]
+      var prioritizedAttributeIndex = dumpAbilities.indexOf(prioritizedAttribute)
+      dumpAbilities.splice(prioritizedAttributeIndex, 1)
+
+      var largestAbility = Math.max.apply(Math,baseAttributes)
+      var largestAbilityIndex = baseAttributes.indexOf(largestAbility)
+      var ability = baseAttributes.splice(largestAbilityIndex, 1)
+
+      encounterGroup.find('.js-' + prioritizedAttribute + '-base').text(ability)
+      abilityModifiers[prioritizedAttribute] = calculateAttributeModifier(ability)
+    }
+
+    for(i = 0; i < dumpAbilities.length; i++) {
+      var randomAbility = dumpAbilities[i]
+      var randomAbilityIndex = d(baseAttributes.length) - 1
+      var ability = baseAttributes.splice(randomAbilityIndex, 1)
+      encounterGroup.find('.js-' + randomAbility + '-base').text(ability)
+      abilityModifiers[randomAbility] = calculateAttributeModifier(ability)
+    }
+
+    if(beastial) {
+      var int = d(6)
+      encounterGroup.find('.js-int-base').text(int)
+      abilityModifiers['int'] = calculateAttributeModifier(int)
+
+      var cha = d(6) +  d(6)
+      encounterGroup.find('.js-cha-base').text(cha)
+      abilityModifiers['cha'] = calculateAttributeModifier(cha)
+    }
+
+    return abilityModifiers
   }
 
   function fillInSkillTable(encounterGroup, modifiers, proficiencyBonus, archetype) {
