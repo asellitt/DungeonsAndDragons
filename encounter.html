@@ -197,7 +197,7 @@ title: Encounters
       {
         role: 'Heavy'
         ,hitDie: 12
-        ,acModifier: 3
+        ,ac: function(dexModifier) { return 13 + d(6) }
         ,abilityWeighting: ['str', 'con']
         ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
         ,spellcasting: false
@@ -205,7 +205,7 @@ title: Encounters
       ,{
         role: 'Light'
         ,hitDie: 10
-        ,acModifier: 2
+        ,ac: function(dexModifier) { return (11 + d(4) + Math.min(2, dexModifier)) }
         ,abilityWeighting: ['dex', 'con']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'sleight-of-hand', 'investigation', 'perception', 'deception' ]
         ,spellcasting: false
@@ -213,7 +213,7 @@ title: Encounters
       ,{
         role: 'Ranged'
         ,hitDie: 8
-        ,acModifier: 2
+        ,ac: function(dexModifier) { return (11 + d(4) + Math.min(2, dexModifier)) }
         ,abilityWeighting: ['dex', 'wis']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
         ,spellcasting: false
@@ -221,7 +221,7 @@ title: Encounters
       ,{
         role: 'Arcane Caster'
         ,hitDie: 6
-        ,acModifier: 1
+        ,ac: function(dexModifier) { return 10 + dexModifier }
         ,abilityWeighting: ['int', 'cha']
         ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
         ,spellcasting: true
@@ -229,7 +229,7 @@ title: Encounters
       ,{
         role: 'Divine Caster'
         ,hitDie: 8
-        ,acModifier: 2
+        ,ac: function(dexModifier) { return 13 + d(6) }
         ,abilityWeighting: ['str', 'wis']
         ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
         ,spellcasting: true
@@ -370,7 +370,7 @@ title: Encounters
     fillInSkillTable(template, abilityModifiers, proficiencyBonus, archetype)
 
     template.find('.js-name').text((beastial ? 'Beastial ' : '') + archetype.role + ' (' + sizeOfGroup + ')')
-    template.find('.js-ac').text(10 + Math.max(0, abilityModifiers.dex) + archetype.acModifier * proficiencyBonus)
+    template.find('.js-ac').text(archetype.ac(abilityModifiers.dex))
     template.find('.js-hp').text(calculateHitPoints(archetype.hitDie, abilityModifiers.con, averagePartyLevel))
     template.find('.js-initiative').text(abilityModifiers.dex + d(20))
 
