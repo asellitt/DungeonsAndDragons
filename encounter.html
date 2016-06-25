@@ -412,24 +412,24 @@ title: Encounters
     }
   }
 
-  function fillInSkillTable(template, modifiers, proficiencyBonus, archetype) {
-    template.find('.js-acrobatics').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'acrobatics')))
-    template.find('.js-animal-handling').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'animal-handling')))
-    template.find('.js-arcana').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'arcana')))
-    template.find('.js-athletics').text(calculateSkillModifier(modifiers.str, proficiencyBonus, isProficientWithSkill(archetype, 'athletics')))
-    template.find('.js-deception').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'deception')))
-    template.find('.js-history').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'history')))
-    template.find('.js-insight').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'insight')))
-    template.find('.js-intimidation').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'intimidation')))
-    template.find('.js-investigation').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'investigation')))
-    template.find('.js-medicine').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'medicine')))
-    template.find('.js-nature').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'nature')))
-    template.find('.js-perception').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'perception')))
-    template.find('.js-performance').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'performance')))
-    template.find('.js-persuasion').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'persuasion')))
-    template.find('.js-religion').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'religion')))
-    template.find('.js-sleight-of-hand').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'sleight-of-hand')))
-    template.find('.js-stealth').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'stealth')))
-    template.find('.js-survival').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'survival')))
+  function fillInSkillTable(encounterGroup, modifiers, proficiencyBonus, archetype) {
+    encounterGroup.find('.js-acrobatics').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'acrobatics')))
+    encounterGroup.find('.js-animal-handling').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'animal-handling')))
+    encounterGroup.find('.js-arcana').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'arcana')))
+    encounterGroup.find('.js-athletics').text(calculateSkillModifier(modifiers.str, proficiencyBonus, isProficientWithSkill(archetype, 'athletics')))
+    encounterGroup.find('.js-deception').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'deception')))
+    encounterGroup.find('.js-history').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'history')))
+    encounterGroup.find('.js-insight').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'insight')))
+    encounterGroup.find('.js-intimidation').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'intimidation')))
+    encounterGroup.find('.js-investigation').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'investigation')))
+    encounterGroup.find('.js-medicine').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'medicine')))
+    encounterGroup.find('.js-nature').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'nature')))
+    encounterGroup.find('.js-perception').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'perception')))
+    encounterGroup.find('.js-performance').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'performance')))
+    encounterGroup.find('.js-persuasion').text(calculateSkillModifier(modifiers.cha, proficiencyBonus, isProficientWithSkill(archetype, 'persuasion')))
+    encounterGroup.find('.js-religion').text(calculateSkillModifier(modifiers.int, proficiencyBonus, isProficientWithSkill(archetype, 'religion')))
+    encounterGroup.find('.js-sleight-of-hand').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'sleight-of-hand')))
+    encounterGroup.find('.js-stealth').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'stealth')))
+    encounterGroup.find('.js-survival').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'survival')))
   }
 </script>
