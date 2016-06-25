@@ -378,7 +378,7 @@ title: Encounters
     template.find('.js-attack-damage-die').text(Math.ceil(proficiencyBonus/2) + 'd' + (archetype.hitDie - 2))
     template.find('.js-attack-damage-mod').text(Math.max(abilityModifiers.str, abilityModifiers.dex) + d(2))
     template.find('.js-multiattack').text(proficiencyBonus)
-    template.find('.js-multiattack-damage-die').text(Math.ceil(proficiencyBonus/2) + 'd' + (archetype.hitDie - 4))
+    template.find('.js-multiattack-damage-die').text(Math.floor(proficiencyBonus/3) + 'd' + (archetype.hitDie - 4))
     template.find('.js-multiattack-damage-mod').text(Math.max(abilityModifiers.str, abilityModifiers.dex))
     if(!archetype.spellcasting) {
       template.find('.js-spellcasting').hide()
