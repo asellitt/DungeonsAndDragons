@@ -58,9 +58,13 @@ b {
   font-size: 1.5em;
 }
 
-.column {
+.two-column {
   width: 49%;
   display: inline-block;
+}
+
+.skills {
+  display: none;
 }
 
 .actions {

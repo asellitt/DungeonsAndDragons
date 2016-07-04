@@ -19,11 +19,11 @@ title: Encounters
     <span class="js-name"></span>
   </div>
   <div>
-    <div class="column">
+    <div class="two-column">
       <div><b>Armour Class</b> <span class="js-ac"></span></div>
       <div><b>Hit Points</b> <span class="js-hp"></span></div>
     </div>
-    <div class="column">
+    <div class="two-column">
       <div><b>Speed</b> 30ft.</div>
       <div><b>Initiative</b> <span class="js-initiative"></span></div>
     </div>
@@ -50,12 +50,12 @@ title: Encounters
     </tr>
     <tr>
       <td><b>Mod</b></td>
-      <td><span class="js-str-mod"></span></td>
-      <td><span class="js-dex-mod"></span></td>
-      <td><span class="js-con-mod"></span></td>
-      <td><span class="js-int-mod"></span></td>
-      <td><span class="js-wis-mod"></span></td>
-      <td><span class="js-cha-mod"></span></td>
+      <td>(<span class="js-str-mod"></span>)</td>
+      <td>(<span class="js-dex-mod"></span>)</td>
+      <td>(<span class="js-con-mod"></span>)</td>
+      <td>(<span class="js-int-mod"></span>)</td>
+      <td>(<span class="js-wis-mod"></span>)</td>
+      <td>(<span class="js-cha-mod"></span>)</td>
     </tr>
     <tr>
       <td><b>DC</b></td>
@@ -76,9 +76,9 @@ title: Encounters
       <td><span class="js-cha-save"></span></td>
     </tr>
   </table>
-  <div class="name">Skills</div>
-  <div>
-    <div class="column">
+  <div class="js-skills name">Skills &#9662;</div>
+  <div class="js-skills-list skills">
+    <div class="two-column">
       <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
       <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
       <div><b>Arcana</b> <span class="js-arcana"></span></div>
@@ -89,7 +89,7 @@ title: Encounters
       <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
       <div><b>Investigation</b> <span class="js-investigation"></span></div>
     </div>
-    <div class="column">
+    <div class="two-column">
       <div><b>Medicine</b> <span class="js-medicine"></span></div>
       <div><b>Nature</b> <span class="js-nature"></span></div>
       <div><b>Perception</b> <span class="js-perception"></span></div>
@@ -102,39 +102,41 @@ title: Encounters
     </div>
   </div>
   <div class="actions">
-    <div class="name">Actions</div>
-    <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
-    <div><i>Hit:</i> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
-    <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
-    <div><i>Hit:</i> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
-    <div class="js-spellcasting">
-      <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
-      <table class="spellcasting">
-        <tr>
-          <th>Cantrips</th>
-          <th>1st</th>
-          <th>2nd</th>
-          <th>3rd</th>
-          <th>4th</th>
-          <th>5th</th>
-          <th>6th</th>
-          <th>7th</th>
-          <th>8th</th>
-          <th>9th</th>
-        </tr>
-        <tr>
-          <td>At will</td>
-          <td><span class="js-1-slot">&mdash;</span></td>
-          <td><span class="js-2-slot">&mdash;</span></td>
-          <td><span class="js-3-slot">&mdash;</span></td>
-          <td><span class="js-4-slot">&mdash;</span></td>
-          <td><span class="js-5-slot">&mdash;</span></td>
-          <td><span class="js-6-slot">&mdash;</span></td>
-          <td><span class="js-7-slot">&mdash;</span></td>
-          <td><span class="js-8-slot">&mdash;</span></td>
-          <td><span class="js-9-slot">&mdash;</span></td>
-        </tr>
-      </table>
+    <div class="js-actions name">Actions &#9662;</div>
+    <div class="js-actions-list">
+      <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
+      <div><i>Hit:</i> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
+      <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
+      <div><i>Hit:</i> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
+      <div class="js-spellcasting">
+        <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
+        <table class="spellcasting">
+          <tr>
+            <th>Cantrips</th>
+            <th>1st</th>
+            <th>2nd</th>
+            <th>3rd</th>
+            <th>4th</th>
+            <th>5th</th>
+            <th>6th</th>
+            <th>7th</th>
+            <th>8th</th>
+            <th>9th</th>
+          </tr>
+          <tr>
+            <td>At will</td>
+            <td><span class="js-1-slot">&mdash;</span></td>
+            <td><span class="js-2-slot">&mdash;</span></td>
+            <td><span class="js-3-slot">&mdash;</span></td>
+            <td><span class="js-4-slot">&mdash;</span></td>
+            <td><span class="js-5-slot">&mdash;</span></td>
+            <td><span class="js-6-slot">&mdash;</span></td>
+            <td><span class="js-7-slot">&mdash;</span></td>
+            <td><span class="js-8-slot">&mdash;</span></td>
+            <td><span class="js-9-slot">&mdash;</span></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -366,6 +368,9 @@ title: Encounters
         template.find('.js-spell-to-hit').text(Math.max(abilityModifiers.int, abilityModifiers.cha) + proficiencyBonus + d(2))
       }
     }
+
+    template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
+    template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
 
     $('#encounters').append(template)
   }
