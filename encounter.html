@@ -19,10 +19,14 @@ title: Encounters
     <span class="js-name"></span>
   </div>
   <div>
-    <div><b>Armour Class</b> <span class="js-ac"></span></div>
-    <div><b>Hit Points</b> <span class="js-hp"></span></div>
-    <div><b>Speed</b> 30ft.</div>
-    <div><b>Initiative</b> <span class="js-initiative"></span></div>
+    <div class="column">
+      <div><b>Armour Class</b> <span class="js-ac"></span></div>
+      <div><b>Hit Points</b> <span class="js-hp"></span></div>
+    </div>
+    <div class="column">
+      <div><b>Speed</b> 30ft.</div>
+      <div><b>Initiative</b> <span class="js-initiative"></span></div>
+    </div>
   </div>
   <div class="name">Attributes</div>
   <table>
@@ -74,7 +78,7 @@ title: Encounters
   </table>
   <div class="name">Skills</div>
   <div>
-    <div class="skills">
+    <div class="column">
       <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
       <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
       <div><b>Arcana</b> <span class="js-arcana"></span></div>
@@ -85,7 +89,7 @@ title: Encounters
       <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
       <div><b>Investigation</b> <span class="js-investigation"></span></div>
     </div>
-    <div class="skills">
+    <div class="column">
       <div><b>Medicine</b> <span class="js-medicine"></span></div>
       <div><b>Nature</b> <span class="js-nature"></span></div>
       <div><b>Perception</b> <span class="js-perception"></span></div>
@@ -137,6 +141,9 @@ title: Encounters
 
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#encounters').sortable()
+    $('#encounters').disableSelection()
+
     $('.js-players').on('change', encounter)
     $('.js-level').on('change', encounter)
   })
