@@ -192,6 +192,7 @@ title: Encounters
     if(parseInt(level, 10) && archetype !== 'None') {
       boss = generateEncounterGroup(1, selectArchetype(archetype), (level + 3))
       boss.find('.js-name').text(archetype + ' (BOSS)')
+      boss.removeClass('js-encounter-group')
       boss.addClass('js-boss-encounter')
       $('#encounters').prepend(boss)
     }
@@ -202,7 +203,7 @@ title: Encounters
   }
 
   function clearEncounters() {
-    $('#encounters').empty()
+    $('.js-encounter-group').remove()
   }
 
   function calculateNumberOfEnemies(numberOfPlayers) {
@@ -211,7 +212,7 @@ title: Encounters
 
   function sortEncounters() {
     encountersContainer = $('#encounters')
-    encounters = encountersContainer.children('.encounter')
+    encounters = encountersContainer.children('.js-encounter-group')
 
     encounters.sort(function(a, b) {
       var an = parseInt($(a).find('.js-initiative').text(), 10)
@@ -365,6 +366,7 @@ title: Encounters
 
     var template = $('#template').clone()
     template.attr('id', '')
+    template.addClass('js-encounter-group')
 
     var beastial = calculateBeastialLikelihood(archetype)
     var baseAttributes = calculateAttributes(averagePartyLevel)
