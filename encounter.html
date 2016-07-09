@@ -10,8 +10,20 @@ title: Encounters
   <div>
     <label>Number of Players</label> <input class="js-players" type="number" placeholder="Number of Players" min="1" max="20" />
   </div>
+  <div>
+    <label>Boss</label>
+    <select class="js-boss">
+      <option>None</option>
+      <option>Heavy</option>
+      <option>Light</option>
+      <option>Ranged</option>
+      <option>Arcane Caster</option>
+      <option>Divine Caster</option>
+    </select>
+  </div>
 </div>
 
+<div id="boss"></div>
 <div id="encounters"></div>
 
 <div id="template" class="encounter">
@@ -148,6 +160,7 @@ title: Encounters
 
     $('.js-players').on('change', encounter)
     $('.js-level').on('change', encounter)
+    $('.js-boss').on('change', bossEncounter)
   })
 
   function encounter() {
@@ -169,6 +182,17 @@ title: Encounters
     }
 
     sortEncounters()
+  }
+
+  function bossEncounter() {
+    var level = parseInt($('.js-level').val())
+    var archetype = $('.js-boss').val()
+
+    if(parseInt(level, 10) && archetype !== 'None') {
+      level += 3
+      $('#boss').empty()
+      $('#boss').append(generateEncounterGroup(1, selectArchetype(), level))
+    }
   }
 
   function d(sides) {
