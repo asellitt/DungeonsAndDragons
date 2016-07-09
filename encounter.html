@@ -23,7 +23,6 @@ title: Encounters
   </div>
 </div>
 
-<div id="boss"></div>
 <div id="encounters"></div>
 
 <div id="template" class="encounter">
@@ -188,10 +187,13 @@ title: Encounters
     var level = parseInt($('.js-level').val())
     var archetype = $('.js-boss').val()
 
+    $('.js-boss-encounter').remove()
+
     if(parseInt(level, 10) && archetype !== 'None') {
-      level += 3
-      $('#boss').empty()
-      $('#boss').append(generateEncounterGroup(1, selectArchetype(), level))
+      boss = generateEncounterGroup(1, selectArchetype(archetype), (level + 3))
+      boss.find('.js-name').text(archetype + ' (BOSS)')
+      boss.addClass('js-boss-encounter')
+      $('#encounters').prepend(boss)
     }
   }
 
@@ -226,7 +228,7 @@ title: Encounters
     encounters.detach().appendTo(encountersContainer)
   }
 
-  function selectArchetype() {
+  function selectArchetype(archetypeIdentifier) {
     var archetypes = [
       {
         role: 'Heavy'
@@ -270,6 +272,11 @@ title: Encounters
       }
     ]
 
+    for(i = 0; i < archetypes.length; i++) {
+      if(archetypes[i].role == archetypeIdentifier) {
+        return archetypes[i]
+      }
+    }
     return archetypes[d(archetypes.length) - 1]
   }
 
