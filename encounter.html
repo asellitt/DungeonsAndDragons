@@ -160,11 +160,12 @@ title: Encounters
 
       do {
         var sizeOfGroup = d(4) + 1
-        generateEncounterGroup(sizeOfGroup, level)
+        $('#encounters').append(generateEncounterGroup(sizeOfGroup, selectArchetype(), level))
+
         numberOfEnemies -= sizeOfGroup
       }
       while(numberOfEnemies >= 5)
-      generateEncounterGroup(numberOfEnemies, level)
+      $('#encounters').append(generateEncounterGroup(numberOfEnemies, selectArchetype(), level))
     }
 
     sortEncounters()
@@ -326,7 +327,7 @@ title: Encounters
     }
   }
 
-  function generateEncounterGroup(sizeOfGroup, averagePartyLevel) {
+  function generateEncounterGroup(sizeOfGroup, archetype, averagePartyLevel) {
     if(sizeOfGroup < 1) {
       return
     }
@@ -334,7 +335,6 @@ title: Encounters
     var template = $('#template').clone()
     template.attr('id', '')
 
-    var archetype = selectArchetype()
     var beastial = calculateBeastialLikelihood(archetype)
     var baseAttributes = calculateAttributes(averagePartyLevel)
     var proficiencyBonus = calculateProficiencyBonus(averagePartyLevel)
@@ -372,7 +372,7 @@ title: Encounters
     template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
     template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
 
-    $('#encounters').append(template)
+    return template
   }
 
   function fillInAbilityTable(encounterGroup, baseAttributes, beastial, proficiencyBonus, archetype) {
