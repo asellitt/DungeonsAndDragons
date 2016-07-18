@@ -295,7 +295,24 @@ title: Encounters
         ,abilityWeighting: ['int', 'cha']
         ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
         ,spellcasting: true
-        ,reactions: []
+        ,reactions: [
+          {
+            name: 'Counterspell'
+            ,description: function(proficiencyBonus) { return '(3rd Level) If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell’s level. On a success, the creature’s spell fails and has no effect.' }
+          }
+          ,{
+            name: 'Feather Fall'
+            ,description: function(proficiencyBonus) { return '(1st Level) Choose up to five falling creatures within range. A falling creature’s rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature.' }
+          }
+          ,{
+            name: 'Hellish Rebuke'
+            ,description: function(proficiencyBonus) { return '(1st Level) The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return '(1st Level) Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.' }
+          }
+        ]
       }
       ,{
         role: 'Divine Caster'
@@ -304,7 +321,16 @@ title: Encounters
         ,abilityWeighting: ['str', 'wis']
         ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
         ,spellcasting: true
-        ,reactions: []
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+        ]
       }
     ]
 
@@ -534,6 +560,7 @@ title: Encounters
           reaction.description(proficiencyBonus) +
         '</div>'
       )
+      encounterGroup.find('.reactions').toggle()
     }
   }
 </script>
