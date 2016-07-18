@@ -150,6 +150,10 @@ title: Encounters
       </div>
     </div>
   </div>
+  <div class="reactions">
+    <div class="js-reactions name">Reactions &#9662;</div>
+    <div class="js-reactions-list"></div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -238,6 +242,20 @@ title: Encounters
         ,abilityWeighting: ['str', 'con']
         ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
         ,spellcasting: false
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+          ,{
+            name: 'Redirect Attack'
+            ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
+          }
+        ]
       }
       ,{
         role: 'Light'
@@ -246,6 +264,20 @@ title: Encounters
         ,abilityWeighting: ['dex', 'con']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'sleight-of-hand', 'investigation', 'perception', 'deception' ]
         ,spellcasting: false
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+          ,{
+            name: 'Redirect Attack'
+            ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
+          }
+        ]
       }
       ,{
         role: 'Ranged'
@@ -254,6 +286,7 @@ title: Encounters
         ,abilityWeighting: ['dex', 'wis']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
         ,spellcasting: false
+        ,reactions: []
       }
       ,{
         role: 'Arcane Caster'
@@ -262,6 +295,7 @@ title: Encounters
         ,abilityWeighting: ['int', 'cha']
         ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
         ,spellcasting: true
+        ,reactions: []
       }
       ,{
         role: 'Divine Caster'
@@ -270,6 +304,7 @@ title: Encounters
         ,abilityWeighting: ['str', 'wis']
         ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
         ,spellcasting: true
+        ,reactions: []
       }
     ]
 
@@ -402,6 +437,12 @@ title: Encounters
       }
     }
 
+    if(!beastial) {
+      fillInReaction(template, archetype, proficiencyBonus)
+      template.find('.js-reactions').on('click', function() { template.find('.js-reactions-list').toggle() })
+      template.find('.js-reactions')
+    }
+
     template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
     template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
 
@@ -482,5 +523,17 @@ title: Encounters
     encounterGroup.find('.js-sleight-of-hand').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'sleight-of-hand')))
     encounterGroup.find('.js-stealth').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'stealth')))
     encounterGroup.find('.js-survival').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'survival')))
+  }
+
+  function fillInReaction(encounterGroup, archetype, proficiencyBonus) {
+    if(archetype.reactions.length > 0) {
+      var reaction = archetype.reactions[d(archetype.reactions.length) - 1]
+      encounterGroup.find('.js-reactions-list').append(
+        '<div>'+
+          '<b><i>' + reaction.name + '</i></b> ' +
+          reaction.description(proficiencyBonus) +
+        '</div>'
+      )
+    }
   }
 </script>
