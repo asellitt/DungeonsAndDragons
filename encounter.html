@@ -10,6 +10,17 @@ title: Encounters
   <div>
     <label>Number of Players</label> <input class="js-players" type="number" placeholder="Number of Players" min="1" max="20" />
   </div>
+  <div>
+    <label>Boss</label>
+    <select class="js-boss">
+      <option>None</option>
+      <option>Heavy</option>
+      <option>Light</option>
+      <option>Ranged</option>
+      <option>Arcane Caster</option>
+      <option>Divine Caster</option>
+    </select>
+  </div>
 </div>
 
 <div id="encounters"></div>
@@ -19,10 +30,14 @@ title: Encounters
     <span class="js-name"></span>
   </div>
   <div>
-    <div><b>Armour Class</b> <span class="js-ac"></span></div>
-    <div><b>Hit Points</b> <span class="js-hp"></span></div>
-    <div><b>Speed</b> 30ft.</div>
-    <div><b>Initiative</b> <span class="js-initiative"></span></div>
+    <div class="two-column">
+      <div><b>Armour Class</b> <span class="js-ac"></span></div>
+      <div><b>Hit Points</b> <span class="js-hp"></span></div>
+    </div>
+    <div class="two-column">
+      <div><b>Speed</b> 30ft.</div>
+      <div><b>Initiative</b> <span class="js-initiative"></span></div>
+    </div>
   </div>
   <div class="name">Attributes</div>
   <table>
@@ -46,12 +61,12 @@ title: Encounters
     </tr>
     <tr>
       <td><b>Mod</b></td>
-      <td><span class="js-str-mod"></span></td>
-      <td><span class="js-dex-mod"></span></td>
-      <td><span class="js-con-mod"></span></td>
-      <td><span class="js-int-mod"></span></td>
-      <td><span class="js-wis-mod"></span></td>
-      <td><span class="js-cha-mod"></span></td>
+      <td>(<span class="js-str-mod"></span>)</td>
+      <td>(<span class="js-dex-mod"></span>)</td>
+      <td>(<span class="js-con-mod"></span>)</td>
+      <td>(<span class="js-int-mod"></span>)</td>
+      <td>(<span class="js-wis-mod"></span>)</td>
+      <td>(<span class="js-cha-mod"></span>)</td>
     </tr>
     <tr>
       <td><b>DC</b></td>
@@ -72,9 +87,9 @@ title: Encounters
       <td><span class="js-cha-save"></span></td>
     </tr>
   </table>
-  <div class="name">Skills</div>
-  <div>
-    <div class="skills">
+  <div class="js-skills name">Skills &#9662;</div>
+  <div class="js-skills-list skills">
+    <div class="two-column">
       <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
       <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
       <div><b>Arcana</b> <span class="js-arcana"></span></div>
@@ -85,7 +100,7 @@ title: Encounters
       <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
       <div><b>Investigation</b> <span class="js-investigation"></span></div>
     </div>
-    <div class="skills">
+    <div class="two-column">
       <div><b>Medicine</b> <span class="js-medicine"></span></div>
       <div><b>Nature</b> <span class="js-nature"></span></div>
       <div><b>Perception</b> <span class="js-perception"></span></div>
@@ -98,47 +113,57 @@ title: Encounters
     </div>
   </div>
   <div class="actions">
-    <div class="name">Actions</div>
-    <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
-    <div><i>Hit:</i> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
-    <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
-    <div><i>Hit:</i> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
-    <div class="js-spellcasting">
-      <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
-      <table class="spellcasting">
-        <tr>
-          <th>Cantrips</th>
-          <th>1st</th>
-          <th>2nd</th>
-          <th>3rd</th>
-          <th>4th</th>
-          <th>5th</th>
-          <th>6th</th>
-          <th>7th</th>
-          <th>8th</th>
-          <th>9th</th>
-        </tr>
-        <tr>
-          <td>At will</td>
-          <td><span class="js-1-slot">&mdash;</span></td>
-          <td><span class="js-2-slot">&mdash;</span></td>
-          <td><span class="js-3-slot">&mdash;</span></td>
-          <td><span class="js-4-slot">&mdash;</span></td>
-          <td><span class="js-5-slot">&mdash;</span></td>
-          <td><span class="js-6-slot">&mdash;</span></td>
-          <td><span class="js-7-slot">&mdash;</span></td>
-          <td><span class="js-8-slot">&mdash;</span></td>
-          <td><span class="js-9-slot">&mdash;</span></td>
-        </tr>
-      </table>
+    <div class="js-actions name">Actions &#9662;</div>
+    <div class="js-actions-list">
+      <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
+      <div><i>Hit:</i> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
+      <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
+      <div><i>Hit:</i> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
+      <div class="js-spellcasting">
+        <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
+        <table class="spellcasting">
+          <tr>
+            <th>Cantrips</th>
+            <th>1st</th>
+            <th>2nd</th>
+            <th>3rd</th>
+            <th>4th</th>
+            <th>5th</th>
+            <th>6th</th>
+            <th>7th</th>
+            <th>8th</th>
+            <th>9th</th>
+          </tr>
+          <tr>
+            <td>At will</td>
+            <td><span class="js-1-slot">&mdash;</span></td>
+            <td><span class="js-2-slot">&mdash;</span></td>
+            <td><span class="js-3-slot">&mdash;</span></td>
+            <td><span class="js-4-slot">&mdash;</span></td>
+            <td><span class="js-5-slot">&mdash;</span></td>
+            <td><span class="js-6-slot">&mdash;</span></td>
+            <td><span class="js-7-slot">&mdash;</span></td>
+            <td><span class="js-8-slot">&mdash;</span></td>
+            <td><span class="js-9-slot">&mdash;</span></td>
+          </tr>
+        </table>
+      </div>
     </div>
+  </div>
+  <div class="reactions">
+    <div class="js-reactions name">Reactions &#9662;</div>
+    <div class="js-reactions-list"></div>
   </div>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#encounters').sortable()
+    $('#encounters').disableSelection()
+
     $('.js-players').on('change', encounter)
     $('.js-level').on('change', encounter)
+    $('.js-boss').on('change', bossEncounter)
   })
 
   function encounter() {
@@ -151,14 +176,30 @@ title: Encounters
 
       do {
         var sizeOfGroup = d(4) + 1
-        generateEncounterGroup(sizeOfGroup, level)
+        $('#encounters').append(generateEncounterGroup(sizeOfGroup, selectArchetype(), level))
+
         numberOfEnemies -= sizeOfGroup
       }
       while(numberOfEnemies >= 5)
-      generateEncounterGroup(numberOfEnemies, level)
+      $('#encounters').append(generateEncounterGroup(numberOfEnemies, selectArchetype(), level))
     }
 
     sortEncounters()
+  }
+
+  function bossEncounter() {
+    var level = parseInt($('.js-level').val())
+    var archetype = $('.js-boss').val()
+
+    $('.js-boss-encounter').remove()
+
+    if(parseInt(level, 10) && archetype !== 'None') {
+      boss = generateEncounterGroup(1, selectArchetype(archetype), (level + 3))
+      boss.find('.js-name').text(archetype + ' (BOSS)')
+      boss.removeClass('js-encounter-group')
+      boss.addClass('js-boss-encounter')
+      $('#encounters').prepend(boss)
+    }
   }
 
   function d(sides) {
@@ -166,7 +207,7 @@ title: Encounters
   }
 
   function clearEncounters() {
-    $('#encounters').empty()
+    $('.js-encounter-group').remove()
   }
 
   function calculateNumberOfEnemies(numberOfPlayers) {
@@ -175,7 +216,7 @@ title: Encounters
 
   function sortEncounters() {
     encountersContainer = $('#encounters')
-    encounters = encountersContainer.children('.encounter')
+    encounters = encountersContainer.children('.js-encounter-group')
 
     encounters.sort(function(a, b) {
       var an = parseInt($(a).find('.js-initiative').text(), 10)
@@ -192,7 +233,7 @@ title: Encounters
     encounters.detach().appendTo(encountersContainer)
   }
 
-  function selectArchetype() {
+  function selectArchetype(archetypeIdentifier) {
     var archetypes = [
       {
         role: 'Heavy'
@@ -201,6 +242,20 @@ title: Encounters
         ,abilityWeighting: ['str', 'con']
         ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
         ,spellcasting: false
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+          ,{
+            name: 'Redirect Attack'
+            ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
+          }
+        ]
       }
       ,{
         role: 'Light'
@@ -209,6 +264,20 @@ title: Encounters
         ,abilityWeighting: ['dex', 'con']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'sleight-of-hand', 'investigation', 'perception', 'deception' ]
         ,spellcasting: false
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+          ,{
+            name: 'Redirect Attack'
+            ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
+          }
+        ]
       }
       ,{
         role: 'Ranged'
@@ -217,6 +286,7 @@ title: Encounters
         ,abilityWeighting: ['dex', 'wis']
         ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
         ,spellcasting: false
+        ,reactions: []
       }
       ,{
         role: 'Arcane Caster'
@@ -225,6 +295,24 @@ title: Encounters
         ,abilityWeighting: ['int', 'cha']
         ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
         ,spellcasting: true
+        ,reactions: [
+          {
+            name: 'Counterspell'
+            ,description: function(proficiencyBonus) { return '(3rd Level) If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell’s level. On a success, the creature’s spell fails and has no effect.' }
+          }
+          ,{
+            name: 'Feather Fall'
+            ,description: function(proficiencyBonus) { return '(1st Level) Choose up to five falling creatures within range. A falling creature’s rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature.' }
+          }
+          ,{
+            name: 'Hellish Rebuke'
+            ,description: function(proficiencyBonus) { return '(1st Level) The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return '(1st Level) Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.' }
+          }
+        ]
       }
       ,{
         role: 'Divine Caster'
@@ -233,9 +321,24 @@ title: Encounters
         ,abilityWeighting: ['str', 'wis']
         ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
         ,spellcasting: true
+        ,reactions: [
+          {
+            name: 'Parry'
+            ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
+          }
+          ,{
+            name: 'Shield'
+            ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+          }
+        ]
       }
     ]
 
+    for(i = 0; i < archetypes.length; i++) {
+      if(archetypes[i].role == archetypeIdentifier) {
+        return archetypes[i]
+      }
+    }
     return archetypes[d(archetypes.length) - 1]
   }
 
@@ -317,15 +420,15 @@ title: Encounters
     }
   }
 
-  function generateEncounterGroup(sizeOfGroup, averagePartyLevel) {
+  function generateEncounterGroup(sizeOfGroup, archetype, averagePartyLevel) {
     if(sizeOfGroup < 1) {
       return
     }
 
     var template = $('#template').clone()
     template.attr('id', '')
+    template.addClass('js-encounter-group')
 
-    var archetype = selectArchetype()
     var beastial = calculateBeastialLikelihood(archetype)
     var baseAttributes = calculateAttributes(averagePartyLevel)
     var proficiencyBonus = calculateProficiencyBonus(averagePartyLevel)
@@ -360,7 +463,16 @@ title: Encounters
       }
     }
 
-    $('#encounters').append(template)
+    if(!beastial) {
+      fillInReaction(template, archetype, proficiencyBonus)
+      template.find('.js-reactions').on('click', function() { template.find('.js-reactions-list').toggle() })
+      template.find('.js-reactions')
+    }
+
+    template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
+    template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
+
+    return template
   }
 
   function fillInAbilityTable(encounterGroup, baseAttributes, beastial, proficiencyBonus, archetype) {
@@ -437,5 +549,18 @@ title: Encounters
     encounterGroup.find('.js-sleight-of-hand').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'sleight-of-hand')))
     encounterGroup.find('.js-stealth').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'stealth')))
     encounterGroup.find('.js-survival').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'survival')))
+  }
+
+  function fillInReaction(encounterGroup, archetype, proficiencyBonus) {
+    if(archetype.reactions.length > 0) {
+      var reaction = archetype.reactions[d(archetype.reactions.length) - 1]
+      encounterGroup.find('.js-reactions-list').append(
+        '<div>'+
+          '<b><i>' + reaction.name + '</i></b> ' +
+          reaction.description(proficiencyBonus) +
+        '</div>'
+      )
+      encounterGroup.find('.reactions').toggle()
+    }
   }
 </script>

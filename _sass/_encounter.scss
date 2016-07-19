@@ -2,7 +2,7 @@
   display: none;
 }
 
-input {
+input, select {
   width: 200px;
   display: inline-block;
   padding: 10px;
@@ -58,13 +58,22 @@ b {
   font-size: 1.5em;
 }
 
-.skills {
+.two-column {
   width: 49%;
   display: inline-block;
 }
 
+.skills {
+  display: none;
+}
+
 .actions {
   color: black;
+}
+
+.reactions {
+  color: black;
+  display: none;
 }
 
 .spellcasting {
