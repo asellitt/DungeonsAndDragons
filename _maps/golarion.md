@@ -16,7 +16,7 @@ width: 3150px
 <span class="hidden moonfeather --left" style="top:2591px;left:2238px;">Archemede's Tomb</span>
 <span class="venalis --left" style="top:1251px;left:2249px;">Vohrn Valdhur</span>
 <span class="venalis --left" style="top:1059px;left:1668px;">Easthallow</span>
-<span class="hidden venalis --left" style="top:813px;left:891px;">Dryaden (Nayven Clan)</span>
+<span class="venalis --left" style="top:813px;left:891px;">Dryaden (Nayven Clan)</span>
 <span class="hidden venalis --right" style="top:837px;left:1578px;">Tizonspire</span>
 <span class="stannis --right" style="top:971px;left:1801px;">Vildenvale</span>
 <span class="zaradae --left" style="top:678px;left:2352px;">Mirkwood</span>
