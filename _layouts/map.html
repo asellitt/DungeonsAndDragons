@@ -19,6 +19,8 @@
         $(window).konami({
           cheat: function() {
             $('.hidden').toggle({duration: 400})
+            console.log({{page.gridsize}})
+            createGrid({{ page.gridsize }})
           }
         })
 
@@ -88,6 +90,28 @@
           return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+
+      function createGrid(size) {
+        $('.map .grid').remove();
+
+        var ratioW = Math.floor($('.map').width()/size),
+            ratioH = Math.floor($('.map').height()/size);
+
+        var parent = $('<div />', {
+          class: 'grid',
+          width: ratioW  * size,
+          height: ratioH  * size
+        }).addClass('grid').appendTo('body');
+
+        for (var i = 0; i < ratioH; i++) {
+          for(var p = 0; p < ratioW; p++){
+            $('<div />', {
+              width: size - 1,
+              height: size - 1
+            }).appendTo(parent);
+          }
+        }
       }
     </script>
   </body>
