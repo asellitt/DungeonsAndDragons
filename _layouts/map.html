@@ -18,8 +18,13 @@
       $(document).ready(function() {
         $(window).konami({
           cheat: function() {
-            $('.hidden').toggle({duration: 400})
-            createGrid({{ page.gridsize }})
+            $('.hidden').toggle()
+            if($('.hidden').is(':visible')) {
+              createGrid({{ page.gridsize }})
+            }
+            else {
+              $('.map .grid').remove()
+            }
           }
         })
 
@@ -86,29 +91,57 @@
 
       function guid() {
         function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
         }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
       }
 
       function createGrid(size) {
-        $('.map .grid').remove();
-
-        var ratioW = Math.floor($('.map').width()/size),
-            ratioH = Math.floor($('.map').height()/size);
+        var ratioW = Math.floor($('.map').width()/size)
+        var ratioH = Math.floor($('.map').height()/size)
+        var thirdsize=size/3
+        var halfsize=size/2
+        var twothirdsize=2*thirdsize
 
         var parent = $('<div />', {
           class: 'grid',
           width: ratioW  * size,
           height: ratioH  * size
-        }).addClass('grid').appendTo('body');
+        }).addClass('grid').appendTo('body')
 
         for (var i = 0; i < ratioH; i++) {
-          for(var p = 0; p < ratioW; p++){
-            $('<div />', {
-              width: size - 1,
-              height: size - 1
-            }).appendTo(parent);
+          for(var p = 0; p < ratioW; p++) {
+            var div = $('<div>', { width: size, height: size }).appendTo(parent)
+            var canvas = $('<canvas width="'+size+'"  height="'+size+'">').appendTo(div)
+            var context = canvas[0].getContext('2d')
+            context.strokeStyle="#CCC"
+            context.lineWidth=2
+
+            if(p % 2 == 0) {
+              context.moveTo(0, 0);
+              context.lineTo(thirdsize, 0);
+              context.moveTo(thirdsize, 0);
+              context.lineTo(twothirdsize, halfsize);
+              context.moveTo(twothirdsize, halfsize);
+              context.lineTo(size, halfsize);
+              context.moveTo(twothirdsize, halfsize);
+              context.lineTo(thirdsize, size);
+              context.moveTo(thirdsize, size);
+              context.lineTo(0, size);
+            }
+            else {
+              context.moveTo(size, 0);
+              context.lineTo(twothirdsize, 0);
+              context.moveTo(twothirdsize, 0);
+              context.lineTo(thirdsize, halfsize);
+              context.moveTo(thirdsize, halfsize);
+              context.lineTo(0, halfsize);
+              context.moveTo(thirdsize, halfsize);
+              context.lineTo(twothirdsize, size);
+              context.moveTo(twothirdsize, size);
+              context.lineTo(size, size);
+            }
+            context.stroke();
           }
         }
       }

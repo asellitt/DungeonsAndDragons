@@ -52,16 +52,12 @@ body.map {
 }
 
 .grid {
-  border: 1px solid #ccc;
-  border-width: 1px 0 0 1px;
   position: absolute;
   top: 0;
   left: 0;
 }
 
 .grid div {
-  border: 1px solid #ccc;
-  border-width: 0 1px 1px 0;
   float: left;
 }
 
