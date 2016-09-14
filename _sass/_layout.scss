@@ -2,6 +2,14 @@
    LAYOUT
    ========================================================================== */
 
+h1 {
+    text-align: center;
+}
+
+img[alt=break] {
+    margin-bottom: 60px;
+}
+
 #sb-site {
     background-color: transparent;
     padding: ($spacing-unit * 2) 0;
