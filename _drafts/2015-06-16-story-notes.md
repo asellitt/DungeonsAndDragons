@@ -102,7 +102,6 @@ thumb: /assets/images/posts/tea-party.jpg
 
 - asked branne for more work
 - suggested looking into the adventurers guild
-s
 
 # The Cult Exposed
 
