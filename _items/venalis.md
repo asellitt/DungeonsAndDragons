@@ -12,3 +12,4 @@ thumb: /assets/images/items/venalis.jpg
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/24"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/40"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/83"></iframe>
+<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/82"></iframe>
