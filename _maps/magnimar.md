@@ -6,6 +6,7 @@ thumb: /assets/images/maps/magnimar-thumb.jpg
 width: 1602px
 height: 2048px
 gridsize: 50
+gridcolor: CCC
 ---
 <span class="--left" style="top:1217px;left:1250px;">Guild Hall</span>
 <span class="--left venalis" style="top:1288px;left:1279px;">Alchemist</span>
