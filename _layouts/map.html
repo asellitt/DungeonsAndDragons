@@ -20,12 +20,6 @@
         $(window).konami({
           cheat: function() {
             $('.hidden').toggle()
-            if($('.hidden').is(':visible')) {
-              createGrid({{ page.gridsize }})
-            }
-            else {
-              $('.map .grid').remove()
-            }
           }
         })
 
