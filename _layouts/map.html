@@ -20,12 +20,6 @@
         $(window).konami({
           cheat: function() {
             $('.hidden').toggle()
-            if($('.hidden').is(':visible')) {
-              createGrid({{ page.gridsize }})
-            }
-            else {
-              $('.map .grid').remove()
-            }
           }
         })
 
@@ -90,7 +84,7 @@
             $('.map .grid').remove()
           }
           else {
-            createGrid({{ page.gridsize }})
+            createGrid({{ page.gridsize }}, '{{ page.gridcolor }}')
           }
         })
       })
@@ -106,7 +100,7 @@
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
       }
 
-      function createGrid(size) {
+      function createGrid(size, color) {
         var ratioW = Math.floor($('.map').width()/size)
         var ratioH = Math.floor($('.map').height()/size)
         var thirdsize=size/3
@@ -124,7 +118,7 @@
             var div = $('<div>', { width: size, height: size }).appendTo(parent)
             var canvas = $('<canvas width="'+size+'"  height="'+size+'">').appendTo(div)
             var context = canvas[0].getContext('2d')
-            context.strokeStyle="#CCC"
+            context.strokeStyle='#'+color
             context.lineWidth=2
 
             if(p % 2 == 0) {
