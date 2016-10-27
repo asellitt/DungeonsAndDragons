@@ -3,6 +3,7 @@
   {% include head.html %}
   <body class="map free dragscroll" style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
     <select></select>
+    <button id="drawGrid">Grid</button>
 
     <div>
       {{ content }}
@@ -83,6 +84,15 @@
             element.addClass('searched')
           })
         $('.select2').css('width', '')
+
+        $('#drawGrid').click(function() {
+          if($('.map .grid').length) {
+            $('.map .grid').remove()
+          }
+          else {
+            createGrid({{ page.gridsize }})
+          }
+        })
       })
 
       function sortAlpha(a,b) {
