@@ -5,7 +5,7 @@ map: /assets/images/maps/sword-coast.jpg
 thumb: /assets/images/maps/sword-coast-thumb.jpg
 height: 4096px
 width: 6463px
-gridsize: 153
+gridsize: 115
 gridcolor: F00
 ---
 <span class="--right" style="top:358px;left:2123px;">Fireshear</span>
