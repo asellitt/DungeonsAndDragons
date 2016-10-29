@@ -45,6 +45,7 @@ gridcolor: F00
 <span class="--right" style="top:693px;left:3938px;">Hellgate Dell</span>
 <span class="--right" style="top:786px;left:2506px;">Helm's Hold</span>
 <span class="--right" style="top:1911px;left:6137px;">Hillsfar</span>
+<span class="--left" style="top:3967px;left:6012px;">Hlondeth</span>
 <span class="--right" style="top:2955px;left:4369px;">Iriaebor</span>
 <span class="--left" style="top:2445px;left:1929px;">Iron Keep</span>
 <span class="--right" style="top:195px;left:2102px;">Ironmaster</span>
@@ -59,15 +60,18 @@ gridcolor: F00
 <span class="--left" style="top:502px;left:2714px;">Morgur's Mound</span>
 <span class="--right" style="top:606px;left:2456px;">Mount Hotenow</span>
 <span class="--right" style="top:2773px;left:5747px;">Mulhessen</span>
+<span class="--left" style="top:3761px;left:3433px;">Murann</span>
 <span class="--right" style="top:2049px;left:5904px;">Myth Drannor</span>
 <span class="--right" style="top:748px;left:2433px;">Neverwinter</span>
 <span class="--left" style="top:1489px;left:3010px;">Nightstone</span>
 <span class="--left" style="top:358px;left:3612px;">One Stone</span>
 <span class="--left" style="top:2550px;left:6094px;">Ordulin</span>
+<span class="--right" style="top:3891px;left:5353px;">Ormath</span>
 <span class="--right" style="top:1739px;left:3709px;">Orogoth</span>
 <span class="--left" style="top:3038px;left:4745px;">Priapurl</span>
 <span class="--left" style="top:2886px;left:4760px;">Proskur</span>
 <span class="--right" style="top:236px;left:2458px;">Ravens Rock</span>
+<span class="--right" style="top:3874px;left:4437px;">Riatavin</span>
 <span class="--right" style="top:2299px;left:1677px;">Rogarshiem</span>
 <span class="--left" style="top:1476px;left:1578px;">Ruathym</span>
 <span class="--right" style="top:588px;left:706px;">Ruins of Ascarl</span>
