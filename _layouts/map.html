@@ -3,7 +3,10 @@
   {% include head.html %}
   <body class="map free dragscroll" style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
     <select></select>
-    <button id="drawGrid">Grid</button>
+    <div class="button-panel">
+      <button id="drawGrid">Grid</button>
+      <button id="rawMap">Raw</button>
+    </div>
 
     <div>
       {{ content }}
@@ -86,6 +89,10 @@
           else {
             createGrid({{ page.gridsize }}, '{{ page.gridcolor }}')
           }
+        })
+
+        $('#rawMap').click(function() {
+          window.location = '{{ page.map }}'
         })
       })
 
