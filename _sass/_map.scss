@@ -6,12 +6,15 @@ html {
   margin: 0;
 }
 
-button {
+.button-panel {
   position: fixed;
   top: 21px;
   left: 224px;
-  line-height: 2;
   z-index: 10;
+}
+
+button {
+  line-height: 2;
 }
 
 body.map {
