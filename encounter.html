@@ -31,6 +31,7 @@ title: Encounters
   </div>
   <div>
     <div class="two-column">
+      <div><b>Level</b> <span class="js-level"></span></div>
       <div><b>Armour Class</b> <span class="js-ac"></span></div>
       <div><b>Hit Points</b> <span class="js-hp"></span></div>
     </div>
@@ -195,7 +196,7 @@ title: Encounters
 
     if(parseInt(level, 10) && archetype !== 'None') {
       boss = generateEncounterGroup(1, selectArchetype(archetype), (level + 3))
-      boss.find('.js-name').text(archetype + ' (BOSS)')
+      boss.find('.js-name').text(boss.find('.js-name').text().replace('(1)', '(BOSS)'))
       boss.removeClass('js-encounter-group')
       boss.addClass('js-boss-encounter')
       $('#encounters').prepend(boss)
@@ -238,7 +239,7 @@ title: Encounters
       {
         role: 'Heavy'
         ,hitDie: 12
-        ,ac: function(dexModifier) { return 13 + d(6) }
+        ,ac: function(dexModifier) { return 14 + d(6) }
         ,abilityWeighting: ['str', 'con']
         ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
         ,spellcasting: false
@@ -295,6 +296,82 @@ title: Encounters
         ,abilityWeighting: ['int', 'cha']
         ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
         ,spellcasting: true
+        ,school: [
+          {
+            name: 'Mage'
+            ,spells: [
+              {
+                level: 'Cantrips'
+                ,spells: ['fire bolt', 'light', 'mage hand', 'prestidigitation']
+              }
+              ,{
+                level: '1st level'
+                ,spells: ['detect magic', 'mage armor', 'magic missile', 'shield']
+              }
+              ,{
+                level: '2nd level'
+                ,spells: ['misty step', 'suggestion']
+              }
+              ,{
+                level: '3rd level'
+                ,spells: ['counterspell', 'fireball', 'fly']
+              }
+              ,{
+                level: '4th level'
+                ,spells: ['greater invisibility', 'ice storm']
+              }
+              ,{
+                level: '5th level'
+                ,spells: ['cone of cold']
+              }
+            ]
+          }
+          ,{
+            name: 'Archmage'
+            ,spells: [
+              {
+                level: 'Cantrips'
+                ,spells: ['fire bolt', 'light', 'mage hand', 'prestidigitation', 'shocking grasp']
+              }
+              ,{
+                level: '1st level'
+                ,spells: ['detect magic', 'identify', 'mage armor', 'magic missile']
+              }
+              ,{
+                level: '2nd level'
+                ,spells: ['detect thoughts', 'mirror image', 'misty step']
+              }
+              ,{
+                level: '3rd level'
+                ,spells: ['counterspell', 'fly', 'lightning bolt']
+              }
+              ,{
+                level: '4th level'
+                ,spells: ['banishment', 'fire shield', 'stoneskin']
+              }
+              ,{
+                level: '5th level'
+                ,spells: ['cone of cold', 'scrying', 'wall of force']
+              }
+              ,{
+                level: '6th level'
+                ,spells: ['globe of invulnerability']
+              }
+              ,{
+                level: '7th level'
+                ,spells: ['teleport']
+              }
+              ,{
+                level: '8th level'
+                ,spells: ['mind blank']
+              }
+              ,{
+                level: '9th level'
+                ,spells: ['time stop']
+              }
+            ]
+          }
+        ]
         ,reactions: [
           {
             name: 'Counterspell'
@@ -321,6 +398,63 @@ title: Encounters
         ,abilityWeighting: ['str', 'wis']
         ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
         ,spellcasting: true
+        ,school: [
+          {
+            name: 'Priest'
+            ,spells: [
+              {
+                level: 'Cantrips'
+                ,spells: ['light', 'sacred flame ', 'thaumaturgy']
+              }
+              ,{
+                level: '1st level'
+                ,spells: ['cure wounds', 'guiding bolt', 'sanctuary']
+              }
+              ,{
+                level: '2nd level'
+                ,spells: ['lesser restoration', 'spiritual weapon']
+              }
+              ,{
+                level: '3rd level'
+                ,spells: ['dispel magic', 'spirit guardians']
+              }
+            ]
+          }
+          ,{
+            name: 'Druid'
+            ,spells: [
+              {
+                level: 'Cantrips'
+                ,spells: ['druidcraft', 'produce flame', 'shillelagh']
+              }
+              ,{
+                level: '1st level'
+                ,spells: ['entangle', 'longstrider', 'speak with animals', 'thunderwave']
+              }
+              ,{
+                level: '2nd level'
+                ,spells: ['animal messenger', 'barkskin']
+              }
+            ]
+          }
+          ,{
+            name: 'Cultist'
+            ,spells: [
+              {
+                level: 'Cantrips'
+                ,spells: ['light', 'sacredflame', 'thaumaturgy']
+              }
+              ,{
+                level: '1st level'
+                ,spells: ['command', 'inflict wounds', 'shield of faith ']
+              }
+              ,{
+                level: '2nd level'
+                ,spells: ['hold person', 'spiritual weapon']
+              }
+            ]
+          }
+        ]
         ,reactions: [
           {
             name: 'Parry'
@@ -437,6 +571,7 @@ title: Encounters
     fillInSkillTable(template, abilityModifiers, proficiencyBonus, archetype)
 
     template.find('.js-name').text((beastial ? 'Beastial ' : '') + archetype.role + ' (' + sizeOfGroup + ')')
+    template.find('.js-level').text(averagePartyLevel)
     template.find('.js-ac').text(archetype.ac(abilityModifiers.dex))
     template.find('.js-hp').text(calculateHitPoints(archetype.hitDie, abilityModifiers.con, averagePartyLevel))
     template.find('.js-initiative').text(abilityModifiers.dex + d(20))
@@ -461,6 +596,7 @@ title: Encounters
       else {
         template.find('.js-spell-to-hit').text(Math.max(abilityModifiers.int, abilityModifiers.cha) + proficiencyBonus + d(2))
       }
+      fillInCasterSchool(template, archetype)
     }
 
     if(!beastial) {
@@ -561,6 +697,25 @@ title: Encounters
         '</div>'
       )
       encounterGroup.find('.reactions').toggle()
+    }
+  }
+
+  function fillInCasterSchool(encounterGroup, archetype) {
+    var school = archetype.school[d(archetype.school.length) - 1]
+    encounterGroup.find('.js-name').prepend(school.name + ' ')
+    for(i = 0; i < school.spells.length; i++) {
+      var spells = '<div>' + school.spells[i].level + ': '
+      for(j = 0; j < school.spells[i].spells.length; j++) {
+        spells += '<i>' +
+          '<a target="_blank" href="https://thegrimoire.xyz/spells/' + school.spells[i].spells[j].replace(' ', '-') + '">' +
+            school.spells[i].spells[j] +
+          '</a>, '
+        '</i>'
+      }
+      spells += '</div>'
+      if(i === 0 || $.isNumeric(encounterGroup.find('.js-' + i + '-slot').text())) {
+        encounterGroup.find('.js-spellcasting').append(spells)
+      }
     }
   }
 </script>
