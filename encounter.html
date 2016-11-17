@@ -200,6 +200,7 @@ title: Encounters
       boss.find('.js-name').text(boss.find('.js-name').text().replace('(1)', '(BOSS)'))
       boss.removeClass('js-encounter-group')
       boss.addClass('js-boss-encounter')
+      boss.find('.js-reroll').remove()
       $('#encounters').prepend(boss)
     }
   }
