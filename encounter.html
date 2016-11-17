@@ -202,7 +202,6 @@ title: Encounters
       boss.find('.js-name').text(boss.find('.js-name').text().replace('(1)', '(BOSS)'))
       boss.removeClass('js-encounter-group')
       boss.addClass('js-boss-encounter')
-      boss.find('.js-reroll').remove()
       $('#encounters').prepend(boss)
     }
   }
@@ -1103,8 +1102,14 @@ title: Encounters
   }
 
   function reroll(encounterGroupId, sizeOfGroup, averagePartyLevel) {
-    $('[data-id="'+ encounterGroupId +'"').after(generateEncounterGroup(sizeOfGroup, selectArchetype(), averagePartyLevel))
-    $('[data-id="'+ encounterGroupId +'"').remove()
+    encounterGroup = $('[data-id="'+ encounterGroupId +'"')
+    if(encounterGroup.find('.js-name').text().indexOf('(BOSS)')) {
+      bossEncounter()
+    }
+    else {
+      encounterGroup.after(generateEncounterGroup(sizeOfGroup, selectArchetype(), averagePartyLevel))
+      encounterGroup.remove()
+    }
   }
 
   function generateUuid() {
