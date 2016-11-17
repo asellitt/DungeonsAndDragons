@@ -28,6 +28,7 @@ title: Encounters
 <div id="template" class="encounter">
   <div class="name">
     <span class="js-name"></span>
+    <span class="reroll js-reroll">(reroll)</span>
   </div>
   <div>
     <div class="two-column">
@@ -561,6 +562,7 @@ title: Encounters
 
     var template = $('#template').clone()
     template.attr('id', '')
+    template.attr('data-id', generateUuid())
     template.addClass('js-encounter-group')
 
     var beastial = calculateBeastialLikelihood(archetype)
@@ -608,6 +610,7 @@ title: Encounters
     template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
     template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
 
+    template.find('.js-reroll').on('click', function() { reroll(template.attr('data-id'), sizeOfGroup, averagePartyLevel) })
     return template
   }
 
@@ -717,5 +720,14 @@ title: Encounters
         encounterGroup.find('.js-spellcasting').append(spells)
       }
     }
+  }
+
+  function reroll(encounterGroupId, sizeOfGroup, averagePartyLevel) {
+    $('[data-id="'+ encounterGroupId +'"').after(generateEncounterGroup(sizeOfGroup, selectArchetype(), averagePartyLevel))
+    $('[data-id="'+ encounterGroupId +'"').remove()
+  }
+
+  function generateUuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
   }
 </script>
