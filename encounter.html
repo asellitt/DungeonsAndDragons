@@ -196,7 +196,7 @@ title: Encounters
     $('.js-boss-encounter').remove()
 
     if(parseInt(level, 10) && archetype !== 'None') {
-      boss = generateEncounterGroup(1, selectArchetype(archetype), (level + 3))
+      boss = generateEncounterGroup(1, selectArchetype(archetype), Math.min(20, level + 3))
       boss.find('.js-name').text(boss.find('.js-name').text().replace('(1)', '(BOSS)'))
       boss.removeClass('js-encounter-group')
       boss.addClass('js-boss-encounter')
