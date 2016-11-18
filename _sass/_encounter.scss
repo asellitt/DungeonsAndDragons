@@ -59,13 +59,18 @@ b {
   clear: both;
 }
 
-.reroll {
-  float: right;
-}
-
 .two-column {
   width: 49%;
   display: inline-block;
+}
+
+.reroll {
+  height: 24px;
+}
+
+.dice {
+  float: right;
+  height: 24px;
 }
 
 .skills {
