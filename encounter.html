@@ -305,27 +305,27 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['fire bolt', 'light', 'mage hand', 'prestidigitation']
+                ,spells: ['Fire Bolt', 'Light', 'Mage Hand', 'Prestidigitation']
               }
               ,{
                 level: '1st level'
-                ,spells: ['detect magic', 'mage armor', 'magic missile', 'shield']
+                ,spells: ['Detect Magic', 'Mage Armor', 'Magic Missile', 'Shield']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['misty step', 'suggestion']
+                ,spells: ['Misty Step', 'Suggestion']
               }
               ,{
                 level: '3rd level'
-                ,spells: ['counterspell', 'fireball', 'fly']
+                ,spells: ['Counterspell', 'Fireball', 'Fly']
               }
               ,{
                 level: '4th level'
-                ,spells: ['greater invisibility', 'ice storm']
+                ,spells: ['Greater Invisibility', 'Ice Storm']
               }
               ,{
                 level: '5th level'
-                ,spells: ['cone of cold']
+                ,spells: ['Cone Of Cold']
               }
             ]
           }
@@ -334,43 +334,43 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['fire bolt', 'light', 'mage hand', 'prestidigitation', 'shocking grasp']
+                ,spells: ['Fire Bolt', 'Light', 'Mage Hand', 'Prestidigitation', 'Shocking Grasp']
               }
               ,{
                 level: '1st level'
-                ,spells: ['detect magic', 'identify', 'mage armor', 'magic missile']
+                ,spells: ['Detect Magic', 'Identify', 'Mage Armor', 'Magic Missile']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['detect thoughts', 'mirror image', 'misty step']
+                ,spells: ['Detect Thoughts', 'Mirror Image', 'Misty Step']
               }
               ,{
                 level: '3rd level'
-                ,spells: ['counterspell', 'fly', 'lightning bolt']
+                ,spells: ['Counterspell', 'Fly', 'Lightning Bolt']
               }
               ,{
                 level: '4th level'
-                ,spells: ['banishment', 'fire shield', 'stoneskin']
+                ,spells: ['Banishment', 'Fire Shield', 'Stoneskin']
               }
               ,{
                 level: '5th level'
-                ,spells: ['cone of cold', 'scrying', 'wall of force']
+                ,spells: ['Cone Of Cold', 'Scrying', 'Wall Of Force']
               }
               ,{
                 level: '6th level'
-                ,spells: ['globe of invulnerability']
+                ,spells: ['Globe Of Invulnerability']
               }
               ,{
                 level: '7th level'
-                ,spells: ['teleport']
+                ,spells: ['Teleport']
               }
               ,{
                 level: '8th level'
-                ,spells: ['mind blank']
+                ,spells: ['Mind Blank']
               }
               ,{
                 level: '9th level'
-                ,spells: ['time stop']
+                ,spells: ['Time Stop']
               }
             ]
           }
@@ -429,15 +429,15 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['friends', 'Mage Hand', 'Vicious Mockery']
+                ,spells: ['Friends', 'Mage Hand', 'Vicious Mockery']
               }
               ,{
                 level: '1st level'
-                ,spells: ['charm Person', 'Healing Word', 'Heroism', 'Sleep', 'Thunderwave']
+                ,spells: ['Charm Person', 'Healing Word', 'Heroism', 'Sleep', 'Thunderwave']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['invisibility', 'Shatter']
+                ,spells: ['Invisibility', 'Shatter']
               }
             ]
           }
@@ -693,19 +693,19 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['light', 'sacred flame ', 'thaumaturgy']
+                ,spells: ['Light', 'Sacred Flame', 'Thaumaturgy']
               }
               ,{
                 level: '1st level'
-                ,spells: ['cure wounds', 'guiding bolt', 'sanctuary']
+                ,spells: ['Cure Wounds', 'Guiding Bolt', 'Sanctuary']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['lesser restoration', 'spiritual weapon']
+                ,spells: ['Lesser Restoration', 'Spiritual Weapon']
               }
               ,{
                 level: '3rd level'
-                ,spells: ['dispel magic', 'spirit guardians']
+                ,spells: ['Dispel Magic', 'Spirit Guardians']
               }
             ]
           }
@@ -714,15 +714,15 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['druidcraft', 'produce flame', 'shillelagh']
+                ,spells: ['Druidcraft', 'Produce Flame', 'Shillelagh']
               }
               ,{
                 level: '1st level'
-                ,spells: ['entangle', 'longstrider', 'speak with animals', 'thunderwave']
+                ,spells: ['Entangle', 'Longstrider', 'Speak With Animals', 'Thunderwave']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['animal messenger', 'barkskin']
+                ,spells: ['Animal Messenger', 'Barkskin']
               }
             ]
           }
@@ -731,15 +731,15 @@ title: Encounters
             ,spells: [
               {
                 level: 'Cantrips'
-                ,spells: ['light', 'sacredflame', 'thaumaturgy']
+                ,spells: ['Light', 'Sacredflame', 'Thaumaturgy']
               }
               ,{
                 level: '1st level'
-                ,spells: ['command', 'inflict wounds', 'shield of faith']
+                ,spells: ['Command', 'Inflict Wounds', 'Shield Of Faith']
               }
               ,{
                 level: '2nd level'
-                ,spells: ['hold person', 'spiritual weapon']
+                ,spells: ['Hold Person', 'Spiritual Weapon']
               }
             ]
           }
@@ -1088,8 +1088,13 @@ title: Encounters
     for(i = 0; i < school.spells.length; i++) {
       var spells = '<div>' + school.spells[i].level + ': '
       for(j = 0; j < school.spells[i].spells.length; j++) {
+        var grimoireLink = 'https://thegrimoire.xyz/spells/' +
+          school.spells[i].spells[j].
+            replace(' ', '-').
+            replace('/', '').
+            toLowerCase()
         spells += '<i>' +
-          '<a target="_blank" href="https://thegrimoire.xyz/spells/' + school.spells[i].spells[j].replace(' ', '-') + '">' +
+          '<a target="_blank" href="' + grimoireLink + '">' +
             school.spells[i].spells[j] +
           '</a>, '
         '</i>'
