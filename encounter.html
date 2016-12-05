@@ -19,6 +19,7 @@ title: Encounters
       <option>Ranged</option>
       <option>Arcane Caster</option>
       <option>Divine Caster</option>
+      <option>Blighter</option>
     </select>
   </div>
 </div>
@@ -157,6 +158,10 @@ title: Encounters
         </table>
       </div>
     </div>
+  </div>
+  <div class="bonus-actions">
+    <div class="js-bonus-actions name">Bonus Actions &#9662;</div>
+    <div class="js-bonus-actions-list"></div>
   </div>
   <div class="reactions">
     <div class="js-reactions name">Reactions &#9662;</div>
@@ -478,6 +483,8 @@ title: Encounters
       template.find('.js-reactions')
     }
 
+    fillInBonusAction(template, archetype, proficiencyBonus)
+
     template.find('.js-skills').on('click', function() { template.find('.js-skills-list').toggle() })
     template.find('.js-actions').on('click', function() { template.find('.js-actions-list').toggle() })
 
@@ -559,6 +566,19 @@ title: Encounters
     encounterGroup.find('.js-sleight-of-hand').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'sleight-of-hand')))
     encounterGroup.find('.js-stealth').text(calculateSkillModifier(modifiers.dex, proficiencyBonus, isProficientWithSkill(archetype, 'stealth')))
     encounterGroup.find('.js-survival').text(calculateSkillModifier(modifiers.wis, proficiencyBonus, isProficientWithSkill(archetype, 'survival')))
+  }
+
+  function fillInBonusAction(encounterGroup, archetype, proficiencyBonus) {
+    if(archetype.bonusActions.length > 0) {
+      var reaction = archetype.bonusActions[d(archetype.bonusActions.length) - 1]
+      encounterGroup.find('.js-bonus-actions-list').append(
+        '<div>'+
+          '<b><i>' + reaction.name + '</i></b> ' +
+          reaction.description(proficiencyBonus) +
+        '</div>'
+      )
+      encounterGroup.find('.bonus-actions').toggle()
+    }
   }
 
   function fillInReaction(encounterGroup, archetype, proficiencyBonus) {
