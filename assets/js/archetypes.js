@@ -21,6 +21,7 @@ function selectArchetype(archetypeIdentifier) {
           ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
         }
       ]
+      ,bonusActions: []
     }
     ,{
       role: 'Light'
@@ -43,6 +44,7 @@ function selectArchetype(archetypeIdentifier) {
           ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
         }
       ]
+      ,bonusActions: []
     }
     ,{
       role: 'Ranged'
@@ -52,6 +54,7 @@ function selectArchetype(archetypeIdentifier) {
       ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
       ,spellcasting: false
       ,reactions: []
+      ,bonusActions: []
     }
     ,{
       role: 'Arcane Caster'
@@ -440,6 +443,7 @@ function selectArchetype(archetypeIdentifier) {
           ,description: function(proficiencyBonus) { return '(1st Level) Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.' }
         }
       ]
+      ,bonusActions: []
     }
     ,{
       role: 'Divine Caster'
@@ -604,6 +608,89 @@ function selectArchetype(archetypeIdentifier) {
         ,{
           name: 'Shield'
           ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
+        }
+      ]
+      ,bonusActions: []
+    }
+    ,{
+      role: 'Blighter'
+      ,hitDie: 8
+      ,ac: function(dexModifier) { return 13 + d(6) }
+      ,abilityWeighting: ['str', 'wis']
+      ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
+      ,spellcasting: true
+      ,school: [
+        {
+          name: 'Blight'
+          ,spells: [
+            {
+              level: 'Cantrips'
+              ,spells: ['Chill Touch', 'Dancing Lights', 'Mending', 'Poison Spray']
+            }
+            ,{
+              level: '1st level'
+              ,spells: ['Cure Wounds', 'Entangle', 'False Life', 'Ray Of Sickness']
+            }
+            ,{
+              level: '2nd level'
+              ,spells: ['Blindness/Deafness', 'Ray Of Enfeeblement', 'Web']
+            }
+            ,{
+              level: '3rd level'
+              ,spells: ['Animate Dead', 'Bestow Curse', 'Vampiric Touch']
+            }
+            ,{
+              level: '4th level'
+              ,spells: ['Blight', 'Dominate Beast', 'Stoneskin']
+            }
+            ,{
+              level: '5th level'
+              ,spells: ['Contagion', 'Cloudkill' , 'Tree Stride']
+            }
+            ,{
+              level: '6th level'
+              ,spells: ['Circle Of Death', 'Heal', 'Create Undead']
+            }
+            ,{
+              level: '7th level'
+              ,spells: ['Finger Of Death']
+            }
+            ,{
+              level: '8th level'
+              ,spells: ['Abi Dalzims Horrid Wilting']
+            }
+            ,{
+              level: '9th level'
+              ,spells: ['Power Word Kill']
+            }
+          ]
+        }
+      ]
+      ,reactions: []
+      ,bonusActions: [
+        {
+          name: 'Wild Shape'
+          ,description: function(proficiencyBonus) {
+            shapes = '<br/>'
+            if(proficiencyBonus >= 6) {
+              shapes += '<i>Skeletal Mammoth</i>: AC 13, HP 126 (Gore, Stomp)<br/>'
+            }
+            if(proficiencyBonus >= 5) {
+              shapes += '<i>Skeletal Triceratops</i>: AC 13, HP 95 (Gore, Stomp)<br/>'
+            }
+            if(proficiencyBonus >= 4) {
+              shapes += '<i>Skeletal Elephant</i>: AC 12, HP 76 (Gore, Stomp)<br/>'
+            }
+            if(proficiencyBonus >= 3) {
+              shapes += '<i>Skeletal Giant Scorpion</i>: AC 15, HP 52 (Claws, Sting)<br/>'
+            }
+            if(proficiencyBonus >= 2) {
+              shapes += '<i>Skeletal Giant Vulture</i>: AC 10, HP 22 (Beak, Talon)<br/>'
+            }
+            shapes += '<i>Skeletal Polar Bear</i>: AC 12, HP 42 (Bite, Claw)<br/>'
+
+            return shapes
+          }
         }
       ]
     }
