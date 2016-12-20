@@ -621,7 +621,7 @@ function selectArchetype(archetypeIdentifier) {
       ,spellcasting: true
       ,school: [
         {
-          name: 'Blight'
+          name: 'Mirran'
           ,spells: [
             {
               level: 'Cantrips'
@@ -637,7 +637,7 @@ function selectArchetype(archetypeIdentifier) {
             }
             ,{
               level: '3rd level'
-              ,spells: ['Animate Dead', 'Bestow Curse', 'Vampiric Touch']
+              ,spells: ['Bestow Curse', 'Slow', 'Vampiric Touch']
             }
             ,{
               level: '4th level'
@@ -649,7 +649,7 @@ function selectArchetype(archetypeIdentifier) {
             }
             ,{
               level: '6th level'
-              ,spells: ['Circle Of Death', 'Heal', 'Create Undead']
+              ,spells: ['Circle Of Death', 'Heal', 'Wall Of Thorns']
             }
             ,{
               level: '7th level'
@@ -672,23 +672,10 @@ function selectArchetype(archetypeIdentifier) {
           name: 'Wild Shape'
           ,description: function(proficiencyBonus) {
             shapes = '<br/>'
-            if(proficiencyBonus >= 6) {
-              shapes += '<i>Skeletal Mammoth</i>: AC 13, HP 126 (Gore, Stomp)<br/>'
-            }
-            if(proficiencyBonus >= 5) {
-              shapes += '<i>Skeletal Triceratops</i>: AC 13, HP 95 (Gore, Stomp)<br/>'
-            }
             if(proficiencyBonus >= 4) {
-              shapes += '<i>Skeletal Elephant</i>: AC 12, HP 76 (Gore, Stomp)<br/>'
+              shapes += '<i>Blight Bear</i>: AC 12, HP 90 (Bite: +7, 1d8+5 and 2x Claw: +7, 2d6+5)<br/>On a bite, target must make a DC' + (10+proficiencyBonus) + ' Constitution saving throw, taking 2d8 poison damage on failure, half on success<br/><br/>'
             }
-            if(proficiencyBonus >= 3) {
-              shapes += '<i>Skeletal Giant Scorpion</i>: AC 15, HP 52 (Claws, Sting)<br/>'
-            }
-            if(proficiencyBonus >= 2) {
-              shapes += '<i>Skeletal Giant Vulture</i>: AC 10, HP 22 (Beak, Talon)<br/>'
-            }
-            shapes += '<i>Skeletal Polar Bear</i>: AC 12, HP 42 (Bite, Claw)<br/>'
-
+            shapes += '<i>Plague Wolf</i>: AC 14, HP 60 (Bite: +5, 2d6+3)<br/>On a bite, target must make a DC' + (10+proficiencyBonus) + ' Constitution saving throw, taking 2d8 poison damage on failure, half on success'
             return shapes
           }
         }
