@@ -13,3 +13,5 @@ thumb: /assets/images/items/shargonoth.jpg
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/119"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/120"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/131"></iframe>
+<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/132"></iframe>
+<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/133"></iframe>
