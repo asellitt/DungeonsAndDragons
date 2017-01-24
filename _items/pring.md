@@ -10,7 +10,7 @@ thumb: /assets/images/items/pring.jpg
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/6"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/10"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/25"></iframe>
-<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/40"></iframe>
+<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/41"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/56"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/85"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/80"></iframe>
