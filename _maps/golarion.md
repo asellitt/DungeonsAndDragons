@@ -5,8 +5,9 @@ map: /assets/images/maps/golarion.jpg
 thumb: /assets/images/maps/golarion-thumb.jpg
 height: 4096px
 width: 3150px
-gridsize: 60
-gridcolor: F00
+pixelunit: 1.29
+timedistance: day
+gridcolor: 494949
 ---
 <span class="--right" style="top:999px;left:696px;">Sandpoint</span>
 <span class="--left" style="top:1029px;left:772px;">Jay Farmstead</span>

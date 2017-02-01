@@ -5,7 +5,8 @@ map: /assets/images/maps/varisia.jpg
 thumb: /assets/images/maps/varisia-thumb.jpg
 width: 2048px
 height: 1583px
-gridsize: 150
+pixelunit: 3.22
+timedistance: day
 gridcolor: F00
 ---
 <span class="--left" style="top:1332px;left:551px;">Jay Farmstead</span>

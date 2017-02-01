@@ -2,9 +2,16 @@
 <html>
   {% include head.html %}
   <body class="map free dragscroll" style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
-    <select></select>
     <div class="button-panel">
-      <button id="drawGrid">Grid</button>
+      <select class="points-of-interest-list"></select>
+      <select class="grid-speeds">
+        <option value=""></option>
+        <option value="192">Airship</option>
+        <option value="60">Warhorse</option>
+        <option value="30">Horse</option>
+        <option value="24">Walking</option>
+        <option value="">Remove Grid</option>
+      </select>
       <button id="rawMap">Raw</button>
     </div>
 
@@ -69,7 +76,7 @@
           data.push({ id: $(this).data('uuid'), text: $(this).text() })
         })
 
-        $('select').select2({data: data})
+        $('.points-of-interest-list').select2({data: data})
           .on('change', function(event) {
             var element = $('div[data-uuid="'+$(this).val()+'"]')
             var x = (element.offset().left - ($(window).width() / 2))
@@ -82,14 +89,22 @@
           })
         $('.select2').css('width', '')
 
-        $('#drawGrid').click(function() {
-          if($('.map .grid').length) {
-            $('.map .grid').remove()
-          }
-          else {
-            createGrid({{ page.gridsize }}, '{{ page.gridcolor }}')
-          }
-        })
+        $('.grid-speeds').select2()
+          .on('change', function(event) {
+            var miles = $(this).val()
+
+            if(miles === '') {
+              $('.map .grid').remove()
+            }
+            else {
+              createGrid(
+                (miles * {{ page.pixelunit }}),
+                '{{ page.gridcolor }}'
+              )
+            }
+          })
+
+        $('.select2').css('width', '')
 
         $('#rawMap').click(function() {
           window.location = '{{ page.map }}'
@@ -107,52 +122,59 @@
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
       }
 
-      function createGrid(size, color) {
-        var ratioW = Math.floor($('.map').width()/size)
-        var ratioH = Math.floor($('.map').height()/size)
-        var thirdsize=size/3
-        var halfsize=size/2
-        var twothirdsize=2*thirdsize
+      function createGrid(width, color) {
+        $('.map .grid').remove()
 
-        var parent = $('<div />', {
-          class: 'grid',
-          width: ratioW  * size,
-          height: ratioH  * size
+        var length = width / Math.sqrt(3)
+        var height = length * 1.5
+        var angle = 30 * (Math.PI / 180)
+
+        var ratioW = Math.floor($('.map').width() / width)
+        var ratioH = Math.floor($('.map').height() / height)
+
+        var grid = $('<div />', {
+          width: $('.map').width(),
+          height: $('.map').height()
         }).addClass('grid').appendTo('body')
 
-        for (var i = 0; i < ratioH; i++) {
-          for(var p = 0; p < ratioW; p++) {
-            var div = $('<div>', { width: size, height: size }).appendTo(parent)
-            var canvas = $('<canvas width="'+size+'"  height="'+size+'">').appendTo(div)
-            var context = canvas[0].getContext('2d')
-            context.strokeStyle='#'+color
-            context.lineWidth=2
+        for (var i = 0; i < ratioH + 1 ; i++) {
+          var row = $('<div />', {
+            width: ((ratioW + 1) * width)
+          }).addClass('grid-row').appendTo(grid)
 
-            if(p % 2 == 0) {
-              context.moveTo(0, 0);
-              context.lineTo(thirdsize, 0);
-              context.moveTo(thirdsize, 0);
-              context.lineTo(twothirdsize, halfsize);
-              context.moveTo(twothirdsize, halfsize);
-              context.lineTo(size, halfsize);
-              context.moveTo(twothirdsize, halfsize);
-              context.lineTo(thirdsize, size);
-              context.moveTo(thirdsize, size);
-              context.lineTo(0, size);
+          for(var p = 0; p < ratioW + 1; p++) {
+            var cell = $('<div />', {
+              width: width,
+              height: height
+            }).addClass('grid-cell').appendTo(row)
+
+            if (i % 2 == 1) {
+              row.css('left', (-width / 2) + 'px')
             }
-            else {
-              context.moveTo(size, 0);
-              context.lineTo(twothirdsize, 0);
-              context.moveTo(twothirdsize, 0);
-              context.lineTo(thirdsize, halfsize);
-              context.moveTo(thirdsize, halfsize);
-              context.lineTo(0, halfsize);
-              context.moveTo(thirdsize, halfsize);
-              context.lineTo(twothirdsize, size);
-              context.moveTo(twothirdsize, size);
-              context.lineTo(size, size);
+
+            var canvas = $('<canvas width="'+width+'"  height="'+height+'">').appendTo(cell)
+            var context = canvas[0].getContext('2d')
+            context.strokeStyle = '#'+color
+            context.lineWidth = 3
+
+            var pos = { x: 0, y: 0 }
+            context.moveTo(pos.x, pos.y)
+            pos = { x: 0, y: length }
+            context.lineTo(pos.x, pos.y)
+
+            pos = {
+              x: pos.x + length * Math.cos(angle),
+              y: pos.y + length * Math.sin(angle)
             }
-            context.stroke();
+            context.lineTo(pos.x, pos.y)
+
+            pos = {
+              x: pos.x + length * Math.cos(-angle),
+              y: pos.y + length * Math.sin(-angle)
+            }
+            context.lineTo(pos.x, pos.y)
+
+            context.stroke()
           }
         }
       }

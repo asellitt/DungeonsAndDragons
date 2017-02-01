@@ -5,8 +5,9 @@ map: /assets/images/maps/sword-coast.jpg
 thumb: /assets/images/maps/sword-coast-thumb.jpg
 height: 4096px
 width: 6463px
-gridsize: 115
-gridcolor: F00
+pixelunit: 2.39
+timedistance: day
+gridcolor: 494949
 ---
 <span class="--left" style="top:1314px;left:2912px;">Amphail</span>
 <span class="--left" style="top:2550px;left:5171px;">Arabel</span>

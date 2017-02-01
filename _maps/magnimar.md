@@ -5,7 +5,8 @@ map: /assets/images/maps/magnimar.jpg
 thumb: /assets/images/maps/magnimar-thumb.jpg
 width: 1602px
 height: 2048px
-gridsize: 50
+pixelunit: 50
+timedistance: hour
 gridcolor: CCC
 ---
 <span class="--left" style="top:1217px;left:1250px;">Guild Hall</span>
