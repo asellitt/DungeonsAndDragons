@@ -19,7 +19,7 @@ gridcolor: 494949
 <span class="hidden moonfeather --left" style="top:2591px;left:2238px;">Archemede's Tomb</span>
 <span class="venalis --left" style="top:1251px;left:2249px;">Vohrn Valdhur</span>
 <span class="venalis --left" style="top:1059px;left:1668px;">Easthallow</span>
-<span class="venalis --left" style="top:813px;left:891px;">Dryaden (Nayven Clan)</span>
+<span class="venalis --left" style="top:813px;left:891px;">Dryaden</span>
 <span class="hidden venalis --right" style="top:837px;left:1578px;">Tizonspire</span>
 <span class="stannis --right" style="top:971px;left:1801px;">Vildenvale</span>
 <span class="zaradae --left" style="top:678px;left:2352px;">Mirkwood</span>
@@ -31,3 +31,4 @@ gridcolor: 494949
 <span class="hidden pring --right" style="top:1969px;left:1596px;">Gulbrandia</span>
 <span class="hidden pring --right" style="top:2925px;left:458px;">Elvyta Isle</span>
 <span class="--right" style="top:1078px;left:481px;">Magnimar Hunting Grounds</span>
+<span class="venalis --right" style="top:845px;left:939px;">Temple of the Lycan</span>

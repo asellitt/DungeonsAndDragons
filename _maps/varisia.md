@@ -14,4 +14,6 @@ gridcolor: F00
 <span class="moonfeather --right" style="top:283px;left:1400px;">Lyrune Mesa</span>
 <span class="--left" style="top:140px;left:140px;">Van Derwaals</span>
 <span class="venalis --left" style="top:830px;left:830px;">Dryaden</span>
+<span class="venalis --left" style="top:888px;left:1338px;">Temple of the Lycan</span>
+
 
