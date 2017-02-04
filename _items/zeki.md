@@ -12,3 +12,4 @@ thumb: /assets/images/items/zeki.jpg
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/124"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/134"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/158"></iframe>
+<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/117"></iframe>
