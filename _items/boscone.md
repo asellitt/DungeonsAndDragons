@@ -8,6 +8,5 @@ thumb: /assets/images/items/boscone.jpg
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/157"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/162"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/163"></iframe>
-<iframe onload="" src="http://magic-items.herokuapp.com/item/embed/164"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/165"></iframe>
 <iframe onload="" src="http://magic-items.herokuapp.com/item/embed/166"></iframe>
