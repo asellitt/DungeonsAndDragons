@@ -10,3 +10,4 @@ thumb: /assets/images/items/seleek.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/122"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/118"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/171"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/173"></iframe>
