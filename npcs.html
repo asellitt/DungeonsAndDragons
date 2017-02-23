@@ -1,0 +1,396 @@
+---
+layout: default
+title: NPCS
+---
+<div id="npcs">
+  <div class="npc">
+    <p>@"<span class="js-name campaign-logger"></span>" (<span class="js-gender"></span>, <span class="js-race"></span>)</p>
+    <br>
+    <p><b>Appearance: </b><span class="js-appearance"></span></p>
+    <p><b>High Ability: </b><span class="js-high-ability"></span></p>
+    <p><b>Low Ability: </b><span class="js-low-ability"></span></p>
+    <p><b>Talent: </b><span class="js-talent"></span></p>
+    <p><b>Mannerism: </b><span class="js-mannerism"></span></p>
+    <p><b>Trait: </b><span class="js-trait"></span></p>
+    <p><b>Ideal: </b><span class="js-ideal"></span></p>
+    <p><b>Bond: </b><span class="js-bond"></span></p>
+    <p><b>Secret: </b><span class="js-secret"></span></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    generateNpc()
+
+    $('.js-name').on('click', generateName)
+    $('.js-gender').on('click', generateGender)
+    $('.js-race').on('click', generateRace)
+    $('.js-appearance').on('click', generateAppearance)
+    $('.js-high-ability').on('click', generateHighAbility)
+    $('.js-low-ability').on('click', generateLowAbility)
+    $('.js-talent').on('click', generateTalent)
+    $('.js-mannerism').on('click', generateMannerism)
+    $('.js-trait').on('click', generateTrait)
+    $('.js-ideal').on('click', generateIdeal)
+    $('.js-bond').on('click', generateBond)
+    $('.js-secret').on('click', generateSecret)
+  })
+
+  function generateNpc() {
+    generateName()
+    generateGender()
+    generateRace()
+    generateAppearance()
+    generateHighAbility()
+    generateLowAbility()
+    generateTalent()
+    generateMannerism()
+    generateTrait()
+    generateIdeal()
+    generateBond()
+    generateSecret()
+  }
+
+  function generateName() {
+    $('.js-name').text(name() + ' ' + name())
+  }
+
+  function generateGender() {
+    $('.js-gender').text(gender())
+  }
+
+  function generateRace() {
+    $('.js-race').text(race())
+  }
+
+  function generateAppearance() {
+    $('.js-appearance').text(appearance())
+  }
+
+  function generateHighAbility() {
+    $('.js-high-ability').text(highAbility())
+  }
+
+  function generateLowAbility() {
+    $('.js-low-ability').text(lowAbility())
+  }
+
+  function generateTalent() {
+    $('.js-talent').text(talent())
+  }
+
+  function generateMannerism() {
+    $('.js-mannerism').text(mannerism())
+  }
+
+  function generateTrait() {
+    $('.js-trait').text(trait())
+  }
+
+  function generateIdeal() {
+    $('.js-ideal').text(ideal())
+  }
+
+  function generateBond() {
+    $('.js-bond').text(bond())
+  }
+
+  function generateSecret() {
+    $('.js-secret').text(secret())
+  }
+
+  function name() {
+    return '' +
+      [
+        'A', 'Be', 'De',
+        'Ef', 'Fa', 'Jo',
+        'Ki', 'La', 'Ma',
+        'Na', 'O', 'Pa',
+        'Re', 'Si', 'Ta',
+        'Va'
+      ][d(16) - 1] +
+      [
+        'bar', 'ched', 'dell',
+        'far', 'gran', 'hal',
+        'jen', 'kel', 'lim',
+        'mor', 'ner', 'penn',
+        'quil', 'rond', 'sark',
+        'shen', 'tur', 'vash',
+        'yor', 'zen'
+      ][d(20) - 1] +
+      [
+        'a', 'ac', 'ai',
+        'al', 'am', 'an',
+        'ar', 'ea', 'el',
+        'er', 'ess', 'ett',
+        'ic', 'id', 'il',
+        'in', 'is', 'or',
+        'us'
+      ][d(19) - 1]
+  }
+
+  function gender() {
+    return [
+      'Male',
+      'Female'
+    ][d(2) - 1]
+  }
+
+  function race() {
+    return [
+      'Hill Dwarf',
+      'Mountain Dwarf',
+      'Shield Dwarf',
+      'Gold Dwarf',
+      'Gray Dwarf',
+      'High Elf',
+      'Wood Elf',
+      'Moon Elf',
+      'Sun Elf',
+      'Dark Elf',
+      'Lightfoot Halfling',
+      'Stout Halfling',
+      'Strongheart Halfling',
+      'Human',
+      'Dragonborn',
+      'Forest Gnome',
+      'Rock Gnome',
+      'Deep Gnome',
+      'Half-Elf',
+      'Half-Orc',
+      'Half-Dwarf',
+      'Tiefling'
+    ][d(22) - 1]
+  }
+
+  function appearance() {
+    return [
+      'Distinctive earrings',
+      'Distinctive necklace',
+      'Distinctive circlet',
+      'Distinctive bracelets',
+      'Piercings',
+      'Flamboyant clothes',
+      'Outlandish clothes',
+      'Formal, clean clothes',
+      'Ragged, dirty clothes',
+      'Pronounced scar',
+      'Missing teeth',
+      'Missing fingers',
+      'Unusual eye color',
+      'Two different eye colors',
+      'Tattoos',
+      'Birthmark',
+      'Unusual skin color',
+      'Bald',
+      'Braided beard',
+      'Braided hair',
+      'Unusual hair color',
+      'Nervous eye twitch',
+      'Distinctive nose',
+      'Distinctive crooked posture',
+      'Distinctive rigid posture',
+      'Exceptionally beautiful',
+      'Exceptionally ugly'
+    ][d(27) - 1]
+  }
+
+  function highAbility() {
+    return [
+      'Powerful (Strength)',
+      'Brawny (Strength)',
+      'Strong as an ox (Strength)',
+      'Lithe (Dexterity)',
+      'Agile (Dexterity)',
+      'Graceful (Dexterity)',
+      'Hardy (Constitution)',
+      'Hale (Constitution)',
+      'Healthy (Constitution)',
+      'Studious (Intelligence)',
+      'Learned (Intelligence)',
+      'Inquisitive (Intelligence)',
+      'Perceptive (Wisdom)',
+      'Spiritual (Wisdom)',
+      'Insightful (Wisdom)',
+      'Persuasive (Charisma)',
+      'Forceful (Charisma)',
+      'Born leader (Charisma))'
+    ][d(18) - 1]
+  }
+
+  function lowAbility() {
+    return [
+      'Feeble (Strength)',
+      'Scrawny (Strength)',
+      'Clumsy (Dexterity)',
+      'Fumbling (Dexterity)',
+      'Sickly (Constitution)',
+      'Pale (Constitution)',
+      'Dimwitted (Intelligence)',
+      'Slow (Intelligence)',
+      'Oblivious (Wisdom)',
+      'Absentminded (Wisdom)',
+      'Dull (Charisma)',
+      'Boring (Charisma)'
+    ][d(12) - 1]
+  }
+
+  function talent() {
+    return [
+      'Plays a musical instrument',
+      'Speaks several languages fluently',
+      'Unbelievably lucky',
+      'Perfect memory',
+      'Great with animals',
+      'Great with children',
+      'Great at solving puzzles',
+      'Great at one game',
+      'Great at impersonations',
+      'Draws beautifully',
+      'Paints beautifully',
+      'Sings beautifully',
+      'Drinks everyone under the table',
+      'Expert carpenter',
+      'Expert cook',
+      'Expert dart thrower and rock skipper',
+      'Expert juggler',
+      'Skilled actor and master of disguise',
+      'Skilled dancer',
+      'Knows thieves cant'
+    ][d(20) - 1]
+  }
+
+  function mannerism() {
+    return [
+      'Prone to singing',
+      'Prone to whistling',
+      'Prone to humming quietly',
+      'Speaks in rhyme',
+      'Speaks in some peculiar way',
+      'Particularly low voice',
+      'Particularly high voice',
+      'Slurs words',
+      'Has a lisp',
+      'Has a stutter',
+      'Enunciates overly clearly',
+      'Speaks loudly',
+      'Whispers',
+      'Uses flowery speech',
+      'Uses long words',
+      'Frequently uses the wrong word',
+      'Uses colorful oaths and exclamations',
+      'Makes constant jokes',
+      'Makes constant puns',
+      'Prone to predictions of doom',
+      'Fidgets',
+      'Squints',
+      'Stares into the distance',
+      'Chews something',
+      'Paces',
+      'Taps fingers',
+      'Bites fingernails',
+      'Twirls hair',
+      'Tugs beard'
+    ][d(29) - 1]
+  }
+
+  function trait() {
+    return [
+      'Argumentative',
+      'Arrogant',
+      'Blustering',
+      'Rude',
+      'Curious',
+      'Friendly',
+      'Honest',
+      'Hot tempered',
+      'Irritable',
+      'Ponderous',
+      'Quiet',
+      'Suspicious'
+    ][d(12) - 1]
+  }
+
+  function ideal() {
+    return [
+      'Beauty (Good)',
+      'Charity (Good)',
+      'Greater good (Good)',
+      'Life (Good)',
+      'Respect (Good)',
+      'Self-sacrifice (Good)',
+      'Domination (Evil)',
+      'Greed (Evil)',
+      'Might (Evil)',
+      'Pain (Evil)',
+      'Retribution (Evil)',
+      'Slaughter (Evil)',
+      'Community (Lawful)',
+      'Fairness (Lawful)',
+      'Honor (Lawful)',
+      'Logic (Lawful)',
+      'Responsibility (Lawful)',
+      'Tradition (Lawful)',
+      'Change (Chaotic)',
+      'Creativity (Chaotic)',
+      'Freedom (Chaotic)',
+      'Independence (Chaotic)',
+      'No limits (Chaotic)',
+      'Whimsy (Chaotic)',
+      'Balance (Neutral)',
+      'Knowledge (Neutral)',
+      'Live and let live (Neutral)',
+      'Moderation (Neutral)',
+      'Neutrality (Neutral)',
+      'People (Neutral)',
+      'Aspiration (Other)',
+      'Discovery (Other)',
+      'Glory (Other)',
+      'Nation (Other)',
+      'Redemption (Other)',
+      'Self-knowledge (Other)'
+    ][d(36) - 1]
+  }
+
+  function bond() {
+    return [
+      'Dedicated to fulfilling a personal life goal',
+      'Protective of close family members',
+      'Protective of colleagues',
+      'Protective of compatriots',
+      'Loyal to a benefactor',
+      'Loyal to a patron',
+      'Loyal to a employer',
+      'Captivated by a romantic interest',
+      'Drawn to a special place',
+      'Protective of a sentimental keepsake',
+      'Protective of a valuable possession',
+      'Out for revenge'
+    ][d(12) - 1]
+  }
+
+  function secret() {
+    return [
+      'Forbidden love',
+      'Susceptibility to romance',
+      'Enjoys decadent pleasures',
+      'Arrogance',
+      'Envies another creatures possessions',
+      'Envies another creatures station',
+      'Overpowering greed',
+      'Prone to rage',
+      'Has a powerful enemy',
+      'Specific phobia',
+      'Shameful history',
+      'Scandalous history',
+      'Secret crime',
+      'Secret misdeed',
+      'Possession of forbidden lore',
+      'Foolhardy bravery'
+    ][d(16) - 1]
+  }
+
+  function d(sides) {
+    return Math.floor(Math.random() * sides) + 1
+  }
+</script>
