@@ -1,92 +1,94 @@
-#template {
-  display: none;
-}
+#encounter {
+  #template {
+    display: none;
+  }
 
-input, select {
-  width: 200px;
-  display: inline-block;
-  padding: 10px;
-  margin: 5px;
-}
+  input, select {
+    width: 200px;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+  }
 
-table {
-  width:100%;
-  color: #58170D;
-  border: 0px;
-  border-collapse: collapse;
-}
+  table {
+    width:100%;
+    color: #58170D;
+    border: 0px;
+    border-collapse: collapse;
+  }
 
-td {
-  text-align: center;
-}
+  td {
+    text-align: center;
+  }
 
-tr:nth-child(even) {
-  background: #bdffcc;
-}
+  tr:nth-child(even) {
+    background: #bdffcc;
+  }
 
-label {
-  display: inline-block;
-  width: 175px;
-}
+  label {
+    display: inline-block;
+    width: 175px;
+  }
 
-b {
-  line-height: 1.5;
-}
+  b {
+    line-height: 1.5;
+  }
 
-.inputs {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-align: center;
-}
+  .inputs {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+  }
 
-.encounter {
-  width: 400px;
-  color: #58170D;
-  font-family: 'Helvetica Neue', 'Open Sans Condensed', sans-serif;
-  display: inline-block;
-  padding: 20px;
-  vertical-align: top;
-}
+  .encounter {
+    width: 400px;
+    color: #58170D;
+    font-family: 'Helvetica Neue', 'Open Sans Condensed', sans-serif;
+    display: inline-block;
+    padding: 20px;
+    vertical-align: top;
+  }
 
-.name {
-  margin-top: 10px;
-  border-bottom: 1px solid red;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  color: #58170D;
-  font-variant: small-caps;
-  font-size: 1.5em;
-  clear: both;
-}
+  .name {
+    margin-top: 10px;
+    border-bottom: 1px solid red;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    color: #58170D;
+    font-variant: small-caps;
+    font-size: 1.5em;
+    clear: both;
+  }
 
-.two-column {
-  width: 49%;
-  display: inline-block;
-}
+  .two-column {
+    width: 49%;
+    display: inline-block;
+  }
 
-.reroll {
-  height: 24px;
-  display: inline;
-}
+  .reroll {
+    height: 24px;
+    display: inline;
+  }
 
-.dice {
-  float: right;
-  height: 24px;
-}
+  .dice {
+    float: right;
+    height: 24px;
+  }
 
-.skills {
-  display: none;
-}
+  .skills {
+    display: none;
+  }
 
-.actions {
-  color: black;
-}
+  .actions {
+    color: black;
+  }
 
-.reactions, .bonus-actions {
-  color: black;
-  display: none;
-}
+  .reactions, .bonus-actions {
+    color: black;
+    display: none;
+  }
 
-.spellcasting {
-  color: black;
+  .spellcasting {
+    color: black;
+  }
 }

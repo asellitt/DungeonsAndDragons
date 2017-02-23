@@ -3,169 +3,171 @@ layout: default
 title: Encounters
 ---
 
-<div class="inputs">
-  <div>
-    <label>Average Party Level</label> <input class="js-level" type="number" placeholder="Average Party Level" min="1" max="20" autofocus="true" />
-  </div>
-  <div>
-    <label>Number of Players</label> <input class="js-players" type="number" placeholder="Number of Players" min="1" max="20" />
-  </div>
-  <div>
-    <label>Boss</label>
-    <select class="js-boss">
-      <option>None</option>
-      <option>Heavy</option>
-      <option>Light</option>
-      <option>Ranged</option>
-      <option>Arcane Caster</option>
-      <option>Divine Caster</option>
-      <option>Blighter</option>
-    </select>
-  </div>
-</div>
-
-<div id="encounters"></div>
-
-<div id="template" class="encounter">
-  <div class="name">
-    <span class="js-name"></span>
-  </div>
-  <div>
-    <div class="two-column">
-      <div><b>Level</b> <span class="js-level"></span></div>
-      <div><b>Armour Class</b> <span class="js-ac"></span></div>
-      <div><b>Hit Points</b> <span class="js-hp"></span></div>
+<div id="encounter">
+  <div class="inputs">
+    <div>
+      <label>Average Party Level</label> <input class="js-level" type="number" placeholder="Average Party Level" min="1" max="20" autofocus="true" />
     </div>
-    <div class="two-column">
-      <div><b>CR</b> <span class="js-cr">4</span>
-        <div class="reroll js-reroll">
-          <svg class="dice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <path stroke="#58170D" d="M80.644,87.982l16.592-41.483c0.054-0.128,0.088-0.26,0.108-0.394c0.006-0.039,0.007-0.077,0.011-0.116  c0.007-0.087,0.008-0.174,0.002-0.26c-0.003-0.046-0.007-0.091-0.014-0.137c-0.014-0.089-0.036-0.176-0.063-0.262  c-0.012-0.034-0.019-0.069-0.031-0.103c-0.047-0.118-0.106-0.229-0.178-0.335c-0.004-0.006-0.006-0.012-0.01-0.018L67.999,3.358  c-0.01-0.013-0.003-0.026-0.013-0.04L68,3.315V4c0,0-0.033,0-0.037,0c-0.403-1-1.094-1.124-1.752-0.976  c0,0.004-0.004-0.012-0.007-0.012C66.201,3.016,66.194,3,66.194,3H66.19h-0.003h-0.003h-0.004h-0.003c0,0-0.004,0-0.007,0  s-0.003-0.151-0.007-0.151L20.495,15.227c-0.025,0.007-0.046-0.019-0.071-0.011c-0.087,0.028-0.172,0.041-0.253,0.083  c-0.054,0.027-0.102,0.053-0.152,0.085c-0.051,0.033-0.101,0.061-0.147,0.099c-0.044,0.036-0.084,0.073-0.124,0.113  c-0.048,0.048-0.093,0.098-0.136,0.152c-0.03,0.039-0.059,0.076-0.085,0.117c-0.046,0.07-0.084,0.145-0.12,0.223  c-0.011,0.023-0.027,0.042-0.036,0.066L2.911,57.664C2.891,57.715,3,57.768,3,57.82v0.002c0,0.186,0,0.375,0,0.562  c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004v0.002c0,0.074-0.002,0.15,0.012,0.223  C3.015,58.631,3,58.631,3,58.633c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004c0,0,0,0,0,0.002v0.004  c0,0.191-0.046,0.377,0.06,0.545c0-0.002-0.03,0.004-0.03,0.004c0,0.004-0.03,0.004-0.03,0.004c0,0.002,0,0.002,0,0.002  l-0.045,0.004c0.03,0.047,0.036,0.09,0.068,0.133l29.049,37.359c0.002,0.004,0,0.006,0.002,0.01c0.002,0.002,0,0.004,0.002,0.008  c0.006,0.008,0.014,0.014,0.021,0.021c0.024,0.029,0.052,0.051,0.078,0.078c0.027,0.029,0.053,0.057,0.082,0.082  c0.03,0.027,0.055,0.062,0.086,0.088c0.026,0.02,0.057,0.033,0.084,0.053c0.04,0.027,0.081,0.053,0.123,0.076  c0.005,0.004,0.01,0.008,0.016,0.01c0.087,0.051,0.176,0.09,0.269,0.123c0.042,0.014,0.082,0.031,0.125,0.043  c0.021,0.006,0.041,0.018,0.062,0.021c0.123,0.027,0.249,0.043,0.375,0.043c0.099,0,0.202-0.012,0.304-0.027l45.669-8.303  c0.057-0.01,0.108-0.021,0.163-0.037C79.547,88.992,79.562,89,79.575,89c0.004,0,0.004,0,0.004,0c0.021,0,0.039-0.027,0.06-0.035  c0.041-0.014,0.08-0.034,0.12-0.052c0.021-0.01,0.044-0.019,0.064-0.03c0.017-0.01,0.026-0.015,0.033-0.017  c0.014-0.008,0.023-0.021,0.037-0.028c0.14-0.078,0.269-0.174,0.38-0.285c0.014-0.016,0.024-0.034,0.038-0.048  c0.109-0.119,0.201-0.252,0.271-0.398c0.006-0.01,0.016-0.018,0.021-0.029c0.004-0.008,0.008-0.017,0.011-0.026  c0.002-0.004,0.003-0.006,0.005-0.01C80.627,88.021,80.635,88.002,80.644,87.982z M77.611,84.461L48.805,66.453l32.407-25.202  L77.611,84.461z M46.817,63.709L35.863,23.542l43.818,14.608L46.817,63.709z M84.668,40.542l8.926,5.952l-11.902,29.75  L84.668,40.542z M89.128,39.446L84.53,36.38l-6.129-12.257L89.128,39.446z M79.876,34.645L37.807,20.622L65.854,6.599L79.876,34.645  z M33.268,19.107l-6.485-2.162l23.781-6.487L33.268,19.107z M21.92,18.895l8.67,2.891L10.357,47.798L21.92,18.895z M32.652,24.649  l10.845,39.757L7.351,57.178L32.652,24.649z M43.472,67.857L32.969,92.363L8.462,60.855L43.472,67.857z M46.631,69.09l27.826,17.393  l-38.263,6.959L46.631,69.09z" data-reactid=".0.0.0.0.0.0"></path>
-          </svg>
+    <div>
+      <label>Number of Players</label> <input class="js-players" type="number" placeholder="Number of Players" min="1" max="20" />
+    </div>
+    <div>
+      <label>Boss</label>
+      <select class="js-boss">
+        <option>None</option>
+        <option>Heavy</option>
+        <option>Light</option>
+        <option>Ranged</option>
+        <option>Arcane Caster</option>
+        <option>Divine Caster</option>
+        <option>Blighter</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="encounters"></div>
+
+  <div id="template" class="encounter">
+    <div class="name">
+      <span class="js-name"></span>
+    </div>
+    <div>
+      <div class="two-column">
+        <div><b>Level</b> <span class="js-level"></span></div>
+        <div><b>Armour Class</b> <span class="js-ac"></span></div>
+        <div><b>Hit Points</b> <span class="js-hp"></span></div>
+      </div>
+      <div class="two-column">
+        <div><b>CR</b> <span class="js-cr">4</span>
+          <div class="reroll js-reroll">
+            <svg class="dice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <path stroke="#58170D" d="M80.644,87.982l16.592-41.483c0.054-0.128,0.088-0.26,0.108-0.394c0.006-0.039,0.007-0.077,0.011-0.116  c0.007-0.087,0.008-0.174,0.002-0.26c-0.003-0.046-0.007-0.091-0.014-0.137c-0.014-0.089-0.036-0.176-0.063-0.262  c-0.012-0.034-0.019-0.069-0.031-0.103c-0.047-0.118-0.106-0.229-0.178-0.335c-0.004-0.006-0.006-0.012-0.01-0.018L67.999,3.358  c-0.01-0.013-0.003-0.026-0.013-0.04L68,3.315V4c0,0-0.033,0-0.037,0c-0.403-1-1.094-1.124-1.752-0.976  c0,0.004-0.004-0.012-0.007-0.012C66.201,3.016,66.194,3,66.194,3H66.19h-0.003h-0.003h-0.004h-0.003c0,0-0.004,0-0.007,0  s-0.003-0.151-0.007-0.151L20.495,15.227c-0.025,0.007-0.046-0.019-0.071-0.011c-0.087,0.028-0.172,0.041-0.253,0.083  c-0.054,0.027-0.102,0.053-0.152,0.085c-0.051,0.033-0.101,0.061-0.147,0.099c-0.044,0.036-0.084,0.073-0.124,0.113  c-0.048,0.048-0.093,0.098-0.136,0.152c-0.03,0.039-0.059,0.076-0.085,0.117c-0.046,0.07-0.084,0.145-0.12,0.223  c-0.011,0.023-0.027,0.042-0.036,0.066L2.911,57.664C2.891,57.715,3,57.768,3,57.82v0.002c0,0.186,0,0.375,0,0.562  c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004v0.002c0,0.074-0.002,0.15,0.012,0.223  C3.015,58.631,3,58.631,3,58.633c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004c0,0,0,0,0,0.002v0.004  c0,0.191-0.046,0.377,0.06,0.545c0-0.002-0.03,0.004-0.03,0.004c0,0.004-0.03,0.004-0.03,0.004c0,0.002,0,0.002,0,0.002  l-0.045,0.004c0.03,0.047,0.036,0.09,0.068,0.133l29.049,37.359c0.002,0.004,0,0.006,0.002,0.01c0.002,0.002,0,0.004,0.002,0.008  c0.006,0.008,0.014,0.014,0.021,0.021c0.024,0.029,0.052,0.051,0.078,0.078c0.027,0.029,0.053,0.057,0.082,0.082  c0.03,0.027,0.055,0.062,0.086,0.088c0.026,0.02,0.057,0.033,0.084,0.053c0.04,0.027,0.081,0.053,0.123,0.076  c0.005,0.004,0.01,0.008,0.016,0.01c0.087,0.051,0.176,0.09,0.269,0.123c0.042,0.014,0.082,0.031,0.125,0.043  c0.021,0.006,0.041,0.018,0.062,0.021c0.123,0.027,0.249,0.043,0.375,0.043c0.099,0,0.202-0.012,0.304-0.027l45.669-8.303  c0.057-0.01,0.108-0.021,0.163-0.037C79.547,88.992,79.562,89,79.575,89c0.004,0,0.004,0,0.004,0c0.021,0,0.039-0.027,0.06-0.035  c0.041-0.014,0.08-0.034,0.12-0.052c0.021-0.01,0.044-0.019,0.064-0.03c0.017-0.01,0.026-0.015,0.033-0.017  c0.014-0.008,0.023-0.021,0.037-0.028c0.14-0.078,0.269-0.174,0.38-0.285c0.014-0.016,0.024-0.034,0.038-0.048  c0.109-0.119,0.201-0.252,0.271-0.398c0.006-0.01,0.016-0.018,0.021-0.029c0.004-0.008,0.008-0.017,0.011-0.026  c0.002-0.004,0.003-0.006,0.005-0.01C80.627,88.021,80.635,88.002,80.644,87.982z M77.611,84.461L48.805,66.453l32.407-25.202  L77.611,84.461z M46.817,63.709L35.863,23.542l43.818,14.608L46.817,63.709z M84.668,40.542l8.926,5.952l-11.902,29.75  L84.668,40.542z M89.128,39.446L84.53,36.38l-6.129-12.257L89.128,39.446z M79.876,34.645L37.807,20.622L65.854,6.599L79.876,34.645  z M33.268,19.107l-6.485-2.162l23.781-6.487L33.268,19.107z M21.92,18.895l8.67,2.891L10.357,47.798L21.92,18.895z M32.652,24.649  l10.845,39.757L7.351,57.178L32.652,24.649z M43.472,67.857L32.969,92.363L8.462,60.855L43.472,67.857z M46.631,69.09l27.826,17.393  l-38.263,6.959L46.631,69.09z" data-reactid=".0.0.0.0.0.0"></path>
+            </svg>
+          </div>
+        </div>
+        <div><b>Speed</b> 30ft.</div>
+        <div><b>Initiative</b> <span class="js-initiative"></span></div>
+      </div>
+    </div>
+    <div class="name">Attributes</div>
+    <table>
+      <tr>
+        <th></th>
+        <th>STR</th>
+        <th>DEX</th>
+        <th>CON</th>
+        <th>INT</th>
+        <th>WIS</th>
+        <th>CHA</th>
+      </tr>
+      <tr>
+        <td><b>Base</b></td>
+        <td><span class="js-str-base"></span></td>
+        <td><span class="js-dex-base"></span></td>
+        <td><span class="js-con-base"></span></td>
+        <td><span class="js-int-base"></span></td>
+        <td><span class="js-wis-base"></span></td>
+        <td><span class="js-cha-base"></span></td>
+      </tr>
+      <tr>
+        <td><b>Mod</b></td>
+        <td>(<span class="js-str-mod"></span>)</td>
+        <td>(<span class="js-dex-mod"></span>)</td>
+        <td>(<span class="js-con-mod"></span>)</td>
+        <td>(<span class="js-int-mod"></span>)</td>
+        <td>(<span class="js-wis-mod"></span>)</td>
+        <td>(<span class="js-cha-mod"></span>)</td>
+      </tr>
+      <tr>
+        <td><b>DC</b></td>
+        <td><span class="js-str-dc"></span></td>
+        <td><span class="js-dex-dc"></span></td>
+        <td><span class="js-con-dc"></span></td>
+        <td><span class="js-int-dc"></span></td>
+        <td><span class="js-wis-dc"></span></td>
+        <td><span class="js-cha-dc"></span></td>
+      </tr>
+      <tr>
+        <td><b>Save</b></td>
+        <td><span class="js-str-save"></span></td>
+        <td><span class="js-dex-save"></span></td>
+        <td><span class="js-con-save"></span></td>
+        <td><span class="js-int-save"></span></td>
+        <td><span class="js-wis-save"></span></td>
+        <td><span class="js-cha-save"></span></td>
+      </tr>
+    </table>
+    <div class="js-skills name">Skills &#9662;</div>
+    <div class="js-skills-list skills">
+      <div class="two-column">
+        <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
+        <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
+        <div><b>Arcana</b> <span class="js-arcana"></span></div>
+        <div><b>Athletics</b> <span class="js-athletics"></span></div>
+        <div><b>Deception</b> <span class="js-deception"></span></div>
+        <div><b>History</b> <span class="js-history"></span></div>
+        <div><b>Insight</b> <span class="js-insight"></span></div>
+        <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
+        <div><b>Investigation</b> <span class="js-investigation"></span></div>
+      </div>
+      <div class="two-column">
+        <div><b>Medicine</b> <span class="js-medicine"></span></div>
+        <div><b>Nature</b> <span class="js-nature"></span></div>
+        <div><b>Perception</b> <span class="js-perception"></span></div>
+        <div><b>Performance</b> <span class="js-performance"></span></div>
+        <div><b>Persuasion</b> <span class="js-persuasion"></span></div>
+        <div><b>Religion</b> <span class="js-religion"></span></div>
+        <div><b>Sleight of Hand</b> <span class="js-sleight-of-hand"></span></div>
+        <div><b>Stealth</b> <span class="js-stealth"></span></div>
+        <div><b>Survival</b> <span class="js-survival"></span></div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="js-actions name">Actions &#9662;</div>
+      <div class="js-actions-list">
+        <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
+        <div><i>Hit:</i> <span class="js-attack-average-damage"></span> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
+        <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
+        <div><i>Hit:</i> <span class="js-multiattack-average-damage"></span> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
+        <div class="js-spellcasting">
+          <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
+          <table class="spellcasting">
+            <tr>
+              <th>Cantrips</th>
+              <th>1st</th>
+              <th>2nd</th>
+              <th>3rd</th>
+              <th>4th</th>
+              <th>5th</th>
+              <th>6th</th>
+              <th>7th</th>
+              <th>8th</th>
+              <th>9th</th>
+            </tr>
+            <tr>
+              <td>At will</td>
+              <td><span class="js-1-slot">&mdash;</span></td>
+              <td><span class="js-2-slot">&mdash;</span></td>
+              <td><span class="js-3-slot">&mdash;</span></td>
+              <td><span class="js-4-slot">&mdash;</span></td>
+              <td><span class="js-5-slot">&mdash;</span></td>
+              <td><span class="js-6-slot">&mdash;</span></td>
+              <td><span class="js-7-slot">&mdash;</span></td>
+              <td><span class="js-8-slot">&mdash;</span></td>
+              <td><span class="js-9-slot">&mdash;</span></td>
+            </tr>
+          </table>
         </div>
       </div>
-      <div><b>Speed</b> 30ft.</div>
-      <div><b>Initiative</b> <span class="js-initiative"></span></div>
     </div>
-  </div>
-  <div class="name">Attributes</div>
-  <table>
-    <tr>
-      <th></th>
-      <th>STR</th>
-      <th>DEX</th>
-      <th>CON</th>
-      <th>INT</th>
-      <th>WIS</th>
-      <th>CHA</th>
-    </tr>
-    <tr>
-      <td><b>Base</b></td>
-      <td><span class="js-str-base"></span></td>
-      <td><span class="js-dex-base"></span></td>
-      <td><span class="js-con-base"></span></td>
-      <td><span class="js-int-base"></span></td>
-      <td><span class="js-wis-base"></span></td>
-      <td><span class="js-cha-base"></span></td>
-    </tr>
-    <tr>
-      <td><b>Mod</b></td>
-      <td>(<span class="js-str-mod"></span>)</td>
-      <td>(<span class="js-dex-mod"></span>)</td>
-      <td>(<span class="js-con-mod"></span>)</td>
-      <td>(<span class="js-int-mod"></span>)</td>
-      <td>(<span class="js-wis-mod"></span>)</td>
-      <td>(<span class="js-cha-mod"></span>)</td>
-    </tr>
-    <tr>
-      <td><b>DC</b></td>
-      <td><span class="js-str-dc"></span></td>
-      <td><span class="js-dex-dc"></span></td>
-      <td><span class="js-con-dc"></span></td>
-      <td><span class="js-int-dc"></span></td>
-      <td><span class="js-wis-dc"></span></td>
-      <td><span class="js-cha-dc"></span></td>
-    </tr>
-    <tr>
-      <td><b>Save</b></td>
-      <td><span class="js-str-save"></span></td>
-      <td><span class="js-dex-save"></span></td>
-      <td><span class="js-con-save"></span></td>
-      <td><span class="js-int-save"></span></td>
-      <td><span class="js-wis-save"></span></td>
-      <td><span class="js-cha-save"></span></td>
-    </tr>
-  </table>
-  <div class="js-skills name">Skills &#9662;</div>
-  <div class="js-skills-list skills">
-    <div class="two-column">
-      <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
-      <div><b>Animal Handling</b> <span class="js-animal-handling"></span></div>
-      <div><b>Arcana</b> <span class="js-arcana"></span></div>
-      <div><b>Athletics</b> <span class="js-athletics"></span></div>
-      <div><b>Deception</b> <span class="js-deception"></span></div>
-      <div><b>History</b> <span class="js-history"></span></div>
-      <div><b>Insight</b> <span class="js-insight"></span></div>
-      <div><b>Intimidation</b> <span class="js-intimidation"></span></div>
-      <div><b>Investigation</b> <span class="js-investigation"></span></div>
+    <div class="bonus-actions">
+      <div class="js-bonus-actions name">Bonus Actions &#9662;</div>
+      <div class="js-bonus-actions-list"></div>
     </div>
-    <div class="two-column">
-      <div><b>Medicine</b> <span class="js-medicine"></span></div>
-      <div><b>Nature</b> <span class="js-nature"></span></div>
-      <div><b>Perception</b> <span class="js-perception"></span></div>
-      <div><b>Performance</b> <span class="js-performance"></span></div>
-      <div><b>Persuasion</b> <span class="js-persuasion"></span></div>
-      <div><b>Religion</b> <span class="js-religion"></span></div>
-      <div><b>Sleight of Hand</b> <span class="js-sleight-of-hand"></span></div>
-      <div><b>Stealth</b> <span class="js-stealth"></span></div>
-      <div><b>Survival</b> <span class="js-survival"></span></div>
+    <div class="reactions">
+      <div class="js-reactions name">Reactions &#9662;</div>
+      <div class="js-reactions-list"></div>
     </div>
-  </div>
-  <div class="actions">
-    <div class="js-actions name">Actions &#9662;</div>
-    <div class="js-actions-list">
-      <div><b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span class="js-attack-to-hit"></span>) to hit.</div>
-      <div><i>Hit:</i> <span class="js-attack-average-damage"></span> (<span class="js-attack-damage-die"></span> +<span class="js-attack-damage-mod"></span>) damage.</div>
-      <div><b><i>Multiattack</i></b> <span class="js-multiattack"></span></div>
-      <div><i>Hit:</i> <span class="js-multiattack-average-damage"></span> (<span class="js-multiattack-damage-die"></span> +<span class="js-multiattack-damage-mod"></span>) damage.</div>
-      <div class="js-spellcasting">
-        <div><b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span class="js-spell-to-hit"></span>) to hit.</div>
-        <table class="spellcasting">
-          <tr>
-            <th>Cantrips</th>
-            <th>1st</th>
-            <th>2nd</th>
-            <th>3rd</th>
-            <th>4th</th>
-            <th>5th</th>
-            <th>6th</th>
-            <th>7th</th>
-            <th>8th</th>
-            <th>9th</th>
-          </tr>
-          <tr>
-            <td>At will</td>
-            <td><span class="js-1-slot">&mdash;</span></td>
-            <td><span class="js-2-slot">&mdash;</span></td>
-            <td><span class="js-3-slot">&mdash;</span></td>
-            <td><span class="js-4-slot">&mdash;</span></td>
-            <td><span class="js-5-slot">&mdash;</span></td>
-            <td><span class="js-6-slot">&mdash;</span></td>
-            <td><span class="js-7-slot">&mdash;</span></td>
-            <td><span class="js-8-slot">&mdash;</span></td>
-            <td><span class="js-9-slot">&mdash;</span></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <div class="bonus-actions">
-    <div class="js-bonus-actions name">Bonus Actions &#9662;</div>
-    <div class="js-bonus-actions-list"></div>
-  </div>
-  <div class="reactions">
-    <div class="js-reactions name">Reactions &#9662;</div>
-    <div class="js-reactions-list"></div>
   </div>
 </div>
 

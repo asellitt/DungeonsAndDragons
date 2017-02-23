@@ -6,6 +6,12 @@ title: NPCS
   <div class="npc">
     <p>@"<span class="js-name campaign-logger"></span>" (<span class="js-gender"></span>, <span class="js-race"></span>)</p>
     <br>
+    <p><b>Facial features: </b><span class="js-facial-features"></span></p>
+    <p><b>Physical features: </b><span class="js-physical-features"></span></p>
+    <p><b>Accessories: </b><span class="js-accessories"></span></p>
+    <p><b>Emotions: </b><span class="js-emotions"></span></p>
+    <p><b>Faith: </b><span class="js-faith"></span></p>
+    <br/>
     <p><b>Appearance: </b><span class="js-appearance"></span></p>
     <p><b>High Ability: </b><span class="js-high-ability"></span></p>
     <p><b>Low Ability: </b><span class="js-low-ability"></span></p>
@@ -26,6 +32,11 @@ title: NPCS
     $('.js-gender').on('click', generateGender)
     $('.js-race').on('click', generateRace)
     $('.js-appearance').on('click', generateAppearance)
+    $('.js-accessories').on('click', generateAccessories)
+    $('.js-facial-features').on('click', generateFacialFeatures)
+    $('.js-physical-features').on('click', generatePhysicalFeatures)
+    $('.js-emotions').on('click', generateEmotions)
+    $('.js-faith').on('click', generateFaith)
     $('.js-high-ability').on('click', generateHighAbility)
     $('.js-low-ability').on('click', generateLowAbility)
     $('.js-talent').on('click', generateTalent)
@@ -41,6 +52,11 @@ title: NPCS
     generateGender()
     generateRace()
     generateAppearance()
+    generateAccessories()
+    generateFacialFeatures()
+    generatePhysicalFeatures()
+    generateEmotions()
+    generateFaith()
     generateHighAbility()
     generateLowAbility()
     generateTalent()
@@ -65,6 +81,61 @@ title: NPCS
 
   function generateAppearance() {
     $('.js-appearance').text(appearance())
+  }
+
+  function generateFacialFeatures() {
+    $('.js-facial-features').text(
+      [
+        'The person has ' + eyes(),
+        'The person has ' + ears(),
+        'The person has ' + mouth(),
+        'The person has ' + nose(),
+        'He/she has ' + jaw(),
+        'The person has ' + hair(),
+        'His/her face has ' + otherFacialFeature()
+      ].join(' | ')
+    )
+  }
+
+  function generatePhysicalFeatures() {
+    $('.js-physical-features').text(
+      [
+        'The person is ' + height(),
+        'The person’s body is ' + body(),
+        'The person has ' + hands(),
+        'The person has ' + scar()
+      ].join(' | ')
+    )
+  }
+
+  function generateAccessories() {
+    $('.js-accessories').text(
+      [
+        'The person has ' + tattoo(),
+        'The person wears ' + jewelry(),
+        'The jewelry is made of ' + jewelryMadeOf(),
+        'The person’s clothing is ' + clothes()
+      ].join(' | ')
+    )
+  }
+
+  function generateEmotions() {
+    $('.js-emotions').text(
+      [
+        'When calm, the person is typically ' + calm(),
+        'When stressed, the person often becomes ' + stressed(),
+        'Now, the person is ' + currentMood()
+      ].join(' | ')
+    )
+  }
+
+  function generateFaith() {
+    $('.js-faith').text(
+      [
+        'The person is a ' + faith(),
+        'The person is prejudice against ' + prejudice()
+      ].join(' | ')
+    )
   }
 
   function generateHighAbility() {
@@ -388,6 +459,406 @@ title: NPCS
       'Possession of forbidden lore',
       'Foolhardy bravery'
     ][d(16) - 1]
+  }
+
+  function eyes() {
+    return [
+      'Sleepy eyes',
+      'Shifty eyes',
+      'Watery eyes',
+      'Bright eyes',
+      'Cold eyes',
+      'Smiling eyes',
+      'Close-set eyes',
+      'Wild eyes',
+      'Distant eyes',
+      'A lazy eye',
+      'Piercing eyes',
+      'Watchful eyes',
+      'Dark eyes',
+      'Hooded eyes',
+      'Eyes of two different colors',
+      'Slightly crossed eyes',
+      'Wide eyes',
+      'Beautiful eyes',
+      'Beady eyes',
+      'Penetrating eyes'
+    ][d(20) - 1]
+  }
+
+  function ears() {
+    return [
+      'Over-sized ears',
+      'Long ear lobes',
+      'Small ears',
+      'Uneven ears',
+      'Hairy ears',
+      'Pointy ears',
+      'Short ear lobes',
+      'Ears that stick out',
+      'Jug-handle ears',
+      'Elaborately pierced ears',
+      'Cauliflower ears',
+      'Ears with improbable tufts of hair'
+    ][d(12) - 1]
+  }
+
+  function mouth() {
+    return [
+      'Full lips',
+      'Buck-teeth',
+      'Thin lips',
+      'Rotting teeth',
+      'Crooked teeth',
+      'A broken or missing tooth',
+      'Pursed lips',
+      'Dry, cracked lips',
+      'One or more false teeth',
+      'A mouth that hangs open'
+    ][d(10) - 1]
+  }
+
+  function nose() {
+    return [
+      'A crooked nose',
+      'A bulbous nose',
+      'A narrow nose',
+      'A button nose',
+      'A long nose',
+      'A broad nose',
+      'An angular nose',
+      'A round nose',
+      'A broken nose',
+      'A hawk-like nose',
+      'A wide nose',
+      'A delicate nose',
+    ][d(12) - 1]
+  }
+
+  function jaw() {
+    return [
+      'A pronounced chin',
+      'A cleft chin',
+      'A dimple on the chin',
+      'A rounded chin',
+      'A sharp jawline',
+      'A square jaw',
+      'A round jaw',
+      'An underbite'
+    ][d(8) - 1]
+  }
+
+  function hair() {
+    return [
+      'Thick hair',
+      'Wispy hair',
+      'Straight hair',
+      'Wavy hair',
+      'Curly hair',
+      'Wiry hair',
+      'Oily hair',
+      'Lush hair',
+      'Poofy hair',
+      'Long braids',
+      'Braids tight against the head',
+      'Very long hair',
+      'Greasy hair',
+      'Unruly hair',
+      'An unusual hairstyle',
+      'An outdated hairstyle',
+      'A high-maintenance hairstyle',
+      'Short-cropped hair',
+      'A shaved head',
+      'No hair at all'
+    ][d(20) - 1]
+  }
+
+  function otherFacialFeature() {
+    return [
+      'High cheekbones',
+      'Tight, drawn cheeks',
+      'Chubby cheeks',
+      'An unpleasant pustule',
+      'A large mole',
+      'A beauty mark',
+      'Freckles',
+      'Terrible scarring',
+    ][d(9) - 1]
+  }
+
+  function height() {
+    return [
+      'Unusually short',
+      'Short in stature',
+      'Average height',
+      'Slightly above average height',
+      'Well above average height',
+      'Unusually tall'
+    ][d(6) - 1]
+  }
+
+  function body() {
+    return [
+      'Thin and delicate',
+      'Of average build',
+      'Well-muscled',
+      'Slightly overweight',
+      'Grotesquely obese',
+      'Lean and lanky',
+      'Lithe and lean',
+      'Thin and wiry',
+      'Sinewy and strong',
+      'Flabby and weak',
+      'Lumpy or bent',
+      'Thin and flimsy',
+      'Soft and chubby',
+      'Thin and petite',
+      'Pudgy',
+      'Big and broad',
+      'Stocky and strong',
+      'Bony',
+      'Wide and ponderous',
+      'Covered in hair'
+    ][d(20) - 1]
+  }
+
+  function hands() {
+    return [
+      'Powerful hands',
+      'Delicate hands',
+      'Rough hands',
+      'Soft hands',
+      'A light touch',
+      'A heavy touch'
+    ][d(6) - 1]
+  }
+
+  function scar() {
+    return [
+      'A jagged scar',
+      'A dark purple scar',
+      'An angry red scar',
+      'A long, thin scar'
+    ][d(5) - 1]
+  }
+
+  function tattoo() {
+    return [
+      'A dagger tattoo',
+      'An arrow tattoo',
+      'An anchor tattoo',
+      'A skull tattoo',
+      'A pair of crossed bones tattoo',
+      'A snake tattoo',
+      'A scorpion tattoo',
+      'A spider web tattoo',
+      'A heart tattoo',
+      'A ring of thorns tattoo',
+      'A mermaid tattoo',
+      'A dragon tattoo'
+    ][d(12) - 1]
+  }
+
+  function jewelry() {
+    return [
+      'An earring',
+      'Two earrings',
+      'A small chain about the neck',
+      'A large chain about the neck',
+      'A tight choker about the neck',
+      'A brooch',
+      'A ring',
+      'Several rings',
+      'A bracelet',
+      'A nose ring',
+      'A medallion',
+      'An ornate belt'
+    ][d(12) - 1]
+  }
+
+  function jewelryMadeOf() {
+    return [
+      'Steel',
+      'Bronze',
+      'Pewter',
+      'Silver',
+      'Gold',
+      'Platinum',
+      'Copper',
+      'Amethyst',
+      'Crystal',
+      'Diamond',
+      'Emerald',
+      'Jade',
+      'Obsidian',
+      'Opal',
+      'Pearl',
+      'Ruby',
+      'Sapphire',
+      'Topaz',
+      'Turquoise'
+    ][d(19) - 1]
+  }
+
+  function clothes() {
+    return [
+      'Crisp and new',
+      'Fashionable and hip',
+      'A bit old-fashioned',
+      'Of the highest quality',
+      'Faded, but in good condition',
+      'Faded and patched',
+      'Torn in places; missing buttons',
+      'Tattered and worn'
+    ][d(8) - 1]
+  }
+
+  function calm() {
+    return [
+      'Compassionate',
+      'Cheerful',
+      'Reserved',
+      'Outspoken',
+      'Uninterested',
+      'Gruff',
+      'Eager',
+      'Deceitful',
+      'Foolish',
+      'Strict',
+      'Agreeable',
+      'Mischeivious',
+      'Angry',
+      'Fearful',
+      'Manipulative',
+      'Devout',
+      'Greedy',
+      'Funny',
+      'Dour',
+      'Fun-Loving',
+      'Lazy',
+      'Driven',
+      'Boastful',
+      'Artistic',
+      'Assertive',
+      'Carefree',
+      'Cautious',
+      'Confident',
+      'Thoughtful',
+      'Loyal',
+      'Sophisticated',
+      'Weak-Willed'
+    ][d(32) - 1]
+  }
+
+  function stressed() {
+    return [
+      'Withdrawn',
+      'Murderous',
+      'Obsessive',
+      'Authoritarian',
+      'Determined',
+      'Brave',
+      'Spiteful',
+      'Belligerent',
+      'Caustic',
+      'Reckless',
+      'Argumentative',
+      'Gluttonous',
+      'Overly Protective',
+      'Angry',
+      'Cowardly',
+      'Meticulous',
+      'Sarcastic',
+      'Stubborn',
+      'Destructive',
+      'Practical',
+      'Pushy',
+      'Fanatical',
+      'Secretive',
+      'Scornful',
+      'Courageous',
+      'Impractical',
+      'Calculating',
+      'Industrious',
+      'Manipulative',
+      'Destructive',
+      'Compulsive',
+      'Intolerant'
+    ][d(32) - 1]
+  }
+
+  function currentMood() {
+    return [
+      'Agreeable',
+      'Carefree',
+      'Curious',
+      'Eager',
+      'Friendly',
+      'Happy',
+      'Hopeful',
+      'Upbeat',
+      'Indifferent',
+      'Bored',
+      'Focused',
+      'Suspicious',
+      'Tired',
+      'Withdrawn',
+      'Disagreeable',
+      'Agitated',
+      'Angry',
+      'Despondent',
+      'Gloomy',
+      'Nervous'
+    ][d(20) - 1]
+  }
+
+  function faith() {
+    return [
+      'Quiet true believer',
+      'Casual observer',
+      'Critical student',
+      'Outspoken cynic',
+      'Open-minded seeker',
+      'Broken heretic',
+      'Cautious listener',
+      'Fanatical true believer'
+    ][d(8) - 1]
+  }
+
+  function prejudice() {
+    return [
+      "Other genders",
+      "Children",
+      "Teenagers",
+      "Elderly",
+      "Ruling class and authority figures",
+      "Powerful rich",
+      "Destitute poor",
+      "Beggars",
+      "Drunks",
+      "Drug-users",
+      "Farmers",
+      "Artists",
+      "Clergy",
+      "Soldiers",
+      "Fishers",
+      "Harlots",
+      "Miners",
+      "Merchants",
+      "Scholars",
+      "Herders",
+      "Sailors",
+      "Mage",
+      "Dwarves",
+      "Elves",
+      "Gnomes",
+      "Goblins",
+      "Half-breeds",
+      "Halflings",
+      "Humans",
+      "Orcs",
+      "Reptilians"
+    ][d(31) - 1]
   }
 
   function d(sides) {
