@@ -80,11 +80,12 @@ $transition-nav:   all 500ms linear;
    Import
    ========================================================================== */
 @import
-    "base",
-    "layout",
-    "sidebar",
-    "loader",
-    "syntax-highlighting",
-    "map",
-    "encounter"
+    "base"
+    ,"layout"
+    ,"sidebar"
+    ,"loader"
+    ,"syntax-highlighting"
+    ,"map"
+    ,"encounter"
+    ,"npcs"
 ;
