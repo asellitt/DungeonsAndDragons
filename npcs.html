@@ -6,11 +6,40 @@ title: NPCS
   <div class="npc">
     <p>@"<span class="js-name campaign-logger"></span>" (<span class="js-gender"></span>, <span class="js-race"></span>)</p>
     <br>
-    <p><b>Facial features: </b><span class="js-facial-features"></span></p>
-    <p><b>Physical features: </b><span class="js-physical-features"></span></p>
-    <p><b>Accessories: </b><span class="js-accessories"></span></p>
-    <p><b>Emotions: </b><span class="js-emotions"></span></p>
-    <p><b>Faith: </b><span class="js-faith"></span></p>
+    <p>
+      <b>Facial features:</b><br>
+      - The person has: <span class="js-facial-features-eyes"></span><br>
+      - The person has: <span class="js-facial-features-ears"></span><br>
+      - The person has: <span class="js-facial-features-mouth"></span><br>
+      - The person has: <span class="js-facial-features-nose"></span><br>
+      - The person has: <span class="js-facial-features-jaw"></span><br>
+      - The person has: <span class="js-facial-features-hair"></span><br>
+      - The persons face has: <span class="js-facial-features-other-facial-feature"></span>
+    </p>
+    <p>
+      <b>Physical features:</b><br>
+      - The person is: <span class="js-physical-features-height"></span><br>
+      - The persons body is: <span class="js-physical-features-body"></span><br>
+      - The person has: <span class="js-physical-features-hands"></span><br>
+      - The person has: <span class="js-physical-features-scar"></span>
+    </p>
+    <p>
+      <b>Accessories:</b><br>
+      - The person has <span class="js-accessories-tattoo"></span><br>
+      - The person wears <span class="js-accessories-jewelry"></span>, made of <span class="js-accessories-jewelry-made-of"></span><br>
+      - The persons clothing is <span class="js-accessories-clothes"></span>
+    </p>
+    <p>
+      <b>Emotions:</b><br>
+      - When calm, the person is typically <span class="js-emotions-calm"></span><br>
+      - When stressed, the person often becomes <span class="js-emotions-stressed"></span><br>
+      - Now, the person is <span class="js-emotions-current-mood"></span>
+    </p>
+    <p>
+      <b>Faith:</b><br>
+      - The person is a <span class="js-faith-faith"></span><br>
+      - The person is prejudice against <span class="js-faith-prejudice"></span>
+    </p>
     <br/>
     <p><b>Appearance: </b><span class="js-appearance"></span></p>
     <p><b>High Ability: </b><span class="js-high-ability"></span></p>
@@ -31,12 +60,27 @@ title: NPCS
     $('.js-name').on('click', generateName)
     $('.js-gender').on('click', generateGender)
     $('.js-race').on('click', generateRace)
+    $('.js-facial-features-eyes').on('click', generateFacialFeaturesEyes)
+    $('.js-facial-features-ears').on('click', generateFacialFeaturesEars)
+    $('.js-facial-features-mouth').on('click', generateFacialFeaturesMouth)
+    $('.js-facial-features-nose').on('click', generateFacialFeaturesNose)
+    $('.js-facial-features-jaw').on('click', generateFacialFeaturesJaw)
+    $('.js-facial-features-hair').on('click', generateFacialFeaturesHair)
+    $('.js-facial-features-other-facial-feature').on('click', generateFacialFeaturesOtherFacialFeature)
+    $('.js-physical-features-height').on('click', generatePhysicalFeaturesHeight)
+    $('.js-physical-features-body').on('click', generatePhysicalFeaturesBody)
+    $('.js-physical-features-hands').on('click', generatePhysicalFeaturesHands)
+    $('.js-physical-features-scar').on('click', generatePhysicalFeaturesScar)
+    $('.js-accessories-tattoo').on('click', generateAccessoriesTattoo)
+    $('.js-accessories-jewelry').on('click', generateAccessoriesJewelry)
+    $('.js-accessories-jewelry-made-of').on('click', generateAccessoriesJewelryMadeOf)
+    $('.js-accessories-clothes').on('click', generateAccessoriesClothes)
+    $('.js-emotions-calm').on('click', generateEmotionsCalm)
+    $('.js-emotions-stressed').on('click', generateEmotionsStressed)
+    $('.js-emotions-current-mood').on('click', generateEmotionsCurrentMood)
+    $('.js-faith-faith').on('click', generateFaithFaith)
+    $('.js-faith-prejudice').on('click', generateFaithPrejudice)
     $('.js-appearance').on('click', generateAppearance)
-    $('.js-accessories').on('click', generateAccessories)
-    $('.js-facial-features').on('click', generateFacialFeatures)
-    $('.js-physical-features').on('click', generatePhysicalFeatures)
-    $('.js-emotions').on('click', generateEmotions)
-    $('.js-faith').on('click', generateFaith)
     $('.js-high-ability').on('click', generateHighAbility)
     $('.js-low-ability').on('click', generateLowAbility)
     $('.js-talent').on('click', generateTalent)
@@ -52,11 +96,26 @@ title: NPCS
     generateGender()
     generateRace()
     generateAppearance()
-    generateAccessories()
-    generateFacialFeatures()
-    generatePhysicalFeatures()
-    generateEmotions()
-    generateFaith()
+    generateFacialFeaturesEyes()
+    generateFacialFeaturesEars()
+    generateFacialFeaturesMouth()
+    generateFacialFeaturesNose()
+    generateFacialFeaturesJaw()
+    generateFacialFeaturesHair()
+    generateFacialFeaturesOtherFacialFeature()
+    generatePhysicalFeaturesHeight()
+    generatePhysicalFeaturesBody()
+    generatePhysicalFeaturesHands()
+    generatePhysicalFeaturesScar()
+    generateAccessoriesTattoo()
+    generateAccessoriesJewelry()
+    generateAccessoriesJewelryMadeOf()
+    generateAccessoriesClothes()
+    generateEmotionsCalm()
+    generateEmotionsStressed()
+    generateEmotionsCurrentMood()
+    generateFaithFaith()
+    generateFaithPrejudice()
     generateHighAbility()
     generateLowAbility()
     generateTalent()
@@ -67,108 +126,46 @@ title: NPCS
     generateSecret()
   }
 
-  function generateName() {
-    $('.js-name').text(name() + ' ' + name())
-  }
-
-  function generateGender() {
-    $('.js-gender').text(gender())
-  }
-
-  function generateRace() {
-    $('.js-race').text(race())
-  }
-
-  function generateAppearance() {
-    $('.js-appearance').text(appearance())
-  }
-
-  function generateFacialFeatures() {
-    $('.js-facial-features').text(
-      [
-        'The person has ' + eyes(),
-        'The person has ' + ears(),
-        'The person has ' + mouth(),
-        'The person has ' + nose(),
-        'He/she has ' + jaw(),
-        'The person has ' + hair(),
-        'His/her face has ' + otherFacialFeature()
-      ].join(' | ')
-    )
-  }
-
-  function generatePhysicalFeatures() {
-    $('.js-physical-features').text(
-      [
-        'The person is ' + height(),
-        'The person’s body is ' + body(),
-        'The person has ' + hands(),
-        'The person has ' + scar()
-      ].join(' | ')
-    )
-  }
-
-  function generateAccessories() {
-    $('.js-accessories').text(
-      [
-        'The person has ' + tattoo(),
-        'The person wears ' + jewelry(),
-        'The jewelry is made of ' + jewelryMadeOf(),
-        'The person’s clothing is ' + clothes()
-      ].join(' | ')
-    )
-  }
-
-  function generateEmotions() {
-    $('.js-emotions').text(
-      [
-        'When calm, the person is typically ' + calm(),
-        'When stressed, the person often becomes ' + stressed(),
-        'Now, the person is ' + currentMood()
-      ].join(' | ')
-    )
-  }
+  function generateName() { $('.js-name').text(name() + ' ' + name()) }
+  function generateGender() { $('.js-gender').text(gender()) }
+  function generateRace() { $('.js-race').text(race()) }
+  function generateAppearance() { $('.js-appearance').text(appearance()) }
+  function generateHighAbility() { $('.js-high-ability').text(highAbility()) }
+  function generateLowAbility() { $('.js-low-ability').text(lowAbility()) }
+  function generateTalent() { $('.js-talent').text(talent()) }
+  function generateMannerism() { $('.js-mannerism').text(mannerism()) }
+  function generateTrait() { $('.js-trait').text(trait()) }
+  function generateIdeal() { $('.js-ideal').text(ideal()) }
+  function generateBond() { $('.js-bond').text(bond()) }
+  function generateSecret() { $('.js-secret').text(secret()) }
+  function generateFacialFeaturesEyes() { $('.js-facial-features-eyes').text(eyes()) }
+  function generateFacialFeaturesEars() { $('.js-facial-features-ears').text(ears()) }
+  function generateFacialFeaturesMouth() { $('.js-facial-features-mouth').text(mouth()) }
+  function generateFacialFeaturesNose() { $('.js-facial-features-nose').text(nose()) }
+  function generateFacialFeaturesJaw() { $('.js-facial-features-jaw').text(jaw()) }
+  function generateFacialFeaturesHair() { $('.js-facial-features-hair').text(hair()) }
+  function generateFacialFeaturesOtherFacialFeature() { $('.js-facial-features-other-facial-feature').text(otherFacialFeature()) }
+  function generatePhysicalFeaturesHeight() { $('.js-physical-features-height').text(height()) }
+  function generatePhysicalFeaturesBody() { $('.js-physical-features-body').text(body()) }
+  function generatePhysicalFeaturesHands() { $('.js-physical-features-hands').text(hands()) }
+  function generatePhysicalFeaturesScar() { $('.js-physical-features-scar').text(scar()) }
+  function generateAccessoriesTattoo() { $('.js-accessories-tattoo').text(tattoo()) }
+  function generateAccessoriesJewelry() { $('.js-accessories-jewelry').text(jewelry()) }
+  function generateAccessoriesJewelryMadeOf() { $('.js-accessories-jewelry-made-of').text(jewelryMadeOf()) }
+  function generateAccessoriesClothes() { $('.js-accessories-clothes').text(clothes()) }
+  function generateEmotionsCalm() { $('.js-emotions-calm').text(calm()) }
+  function generateEmotionsStressed() { $('.js-emotions-stressed').text(stressed()) }
+  function generateEmotionsCurrentMood() { $('.js-emotions-current-mood').text(currentMood()) }
+  function generateFaithFaith() { $('.js-faith-faith').text(faith()) }
+  function generateFaithPrejudice() { $('.js-faith-prejudice').text(prejudice()) }
 
   function generateFaith() {
     $('.js-faith').text(
       [
-        'The person is a ' + faith(),
-        'The person is prejudice against ' + prejudice()
       ].join(' | ')
     )
   }
 
-  function generateHighAbility() {
-    $('.js-high-ability').text(highAbility())
-  }
-
-  function generateLowAbility() {
-    $('.js-low-ability').text(lowAbility())
-  }
-
-  function generateTalent() {
-    $('.js-talent').text(talent())
-  }
-
-  function generateMannerism() {
-    $('.js-mannerism').text(mannerism())
-  }
-
-  function generateTrait() {
-    $('.js-trait').text(trait())
-  }
-
-  function generateIdeal() {
-    $('.js-ideal').text(ideal())
-  }
-
-  function generateBond() {
-    $('.js-bond').text(bond())
-  }
-
-  function generateSecret() {
-    $('.js-secret').text(secret())
-  }
 
   function name() {
     return '' +
