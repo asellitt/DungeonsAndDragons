@@ -145,3 +145,4 @@ gridcolor: 494949
 <span class="--left" style="top:1781px;left:6012px;">Zhentil Keep</span>
 <span class="--left" style="top:470px;left:3449px;">Zymorven Hall</span>
 <span class="--left" style="top:3413px;left:3430px;">Athkatla</span>
+<span class="--left giant-slayers" style="top:501px;left:3625px;">Gloreft</span>
