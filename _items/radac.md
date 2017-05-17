@@ -12,4 +12,5 @@ thumb: /assets/images/items/radac.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/137"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/138"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/175"></iframe>
-
+<iframe src="http://magic-items.herokuapp.com/item/embed/193"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/7"></iframe>
