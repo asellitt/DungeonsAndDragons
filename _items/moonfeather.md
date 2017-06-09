@@ -17,5 +17,5 @@ thumb: /assets/images/items/moonfeather.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/102"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/149"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/142"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/188"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/194"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/175"></iframe>
