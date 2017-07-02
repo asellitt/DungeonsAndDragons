@@ -18,12 +18,10 @@ button {
 }
 
 body {
-  overflow-x: visible;
+  overflow: hidden;
   font-family: Sans-Serif;
   line-height: normal;
-}
 
-.map {
   position: absolute;
   background-attachment: scroll;
   background-color: #F2F2F2;
@@ -32,7 +30,6 @@ body {
   background-size: auto;
   box-sizing: content-box;
   margin: 0;
-  overflow: hidden;
 }
 
 .point-of-interest {
@@ -157,7 +154,6 @@ body {
 .outer-circle {
   align-items: center;
   background: rgba(255, 0, 0, 0.3);
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   left: 0px;
@@ -169,7 +165,6 @@ body {
 .second-circle {
   align-items: center;
   background: rgba(255, 0, 0, 0.3);
-  border: 1px solid black;
   display: flex;
   justify-content: center;
 }
@@ -177,7 +172,6 @@ body {
 .center-cirle {
   background: rgba(255, 0, 0, 0.3);
   border-radius: 2px;
-  border: 2px solid black;
   height: 1px;
   width: 1px;
 }
