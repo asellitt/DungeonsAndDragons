@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body>
+  <body style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
     <div class="button-panel">
       <select class="points-of-interest-list"></select>
       <select class="grid-speeds">
@@ -44,7 +44,7 @@
       <button id="rawMap">Raw</button>
     </div>
 
-    <div class="map free dragscroll" style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
+    <div class="map free dragscroll">
       <div>
         {{ content }}
       </div>
@@ -191,7 +191,7 @@
           '<div ' +
             'class="outer-circle"' +
             'style="' +
-              'border-color: #{{ page.gridcolor }};' +
+              'border: 1px solid #{{ page.gridcolor }};' +
               'border-radius: '+ (4 * width) + 'px;' +
               'height: '+ (4 * width) + 'px;' +
               'width: '+ (4 * width) + 'px;' +
@@ -200,7 +200,7 @@
             '<div ' +
               'class="second-circle"' +
               'style="' +
-                'border-color: #{{ page.gridcolor }};' +
+                'border: 1px solid #{{ page.gridcolor }};' +
                 'border-radius: '+ (2 * width) + 'px;' +
                 'height: '+ (2 * width) + 'px;' +
                 'width: '+ (2 * width) + 'px;' +
@@ -208,7 +208,7 @@
             '>' +
               '<div ' +
                 'class="center-circle"' +
-                'style="border-color: #{{ page.gridcolor }}"' +
+                'style="border: 2px solid #{{ page.gridcolor }}"' +
               '>' +
               '</div>' +
             '</div>' +
