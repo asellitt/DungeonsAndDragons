@@ -14,10 +14,16 @@ html {
 }
 
 button {
-  line-height: 2;
+  line-height: 2.1;
 }
 
-body.map {
+body {
+  overflow-x: visible;
+  font-family: Sans-Serif;
+  line-height: normal;
+}
+
+.map {
   position: absolute;
   background-attachment: scroll;
   background-color: #F2F2F2;
@@ -25,9 +31,8 @@ body.map {
   background-repeat: no-repeat;
   background-size: auto;
   box-sizing: content-box;
-  font-family: Sans-Serif;
-  line-height: normal;
   margin: 0;
+  overflow: hidden;
 }
 
 .point-of-interest {
@@ -35,7 +40,7 @@ body.map {
   color: white;
   font-size: 20px;
   font-smoothing: antialiased;
-  z-index: 90
+  z-index: 90;
 }
 
 .point-of-interest__overlay {
@@ -120,6 +125,33 @@ body.map {
 
 .select2-container {
   width: 275px;
+}
+
+.circle-container {
+  display: inline-block;
+  z-index: 90;
+}
+
+.circle-radius {
+  border-radius: 4px 0px 0px 4px;
+  line-height: 2.25;
+  border: 1px solid #AAAAAA;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 0px;
+  margin-right: -4px;
+  width: 80px;
+}
+
+.circle-button {
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #AAAAAA;
+  background: #EEEEEE;
+  line-height: 1.95;
+}
+
+.circle-button:active {
+  background: #BBBBBB
 }
 
 .hidden {
