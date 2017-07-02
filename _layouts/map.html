@@ -189,55 +189,42 @@
         var width = (miles * {{ page.pixelunit }})
         var circle = $(
           '<div ' +
+            'class="outer-circle"' +
             'style="' +
-              'position: absolute;'+
-              'top: 50px;'+
-              'left: 0px;'+
-              'width: '+ (4 * width) + 'px;' +
-              'height: '+ (4 * width) + 'px;' +
-              'border: 1px solid #{{ page.gridcolor }};' +
+              'border-color: #{{ page.gridcolor }};' +
               'border-radius: '+ (4 * width) + 'px;' +
-              'display: flex;' +
-              'align-items: center;' +
-              'justify-content: center;' +
-              'background: rgba(255, 00, 00, 0.3)' +
+              'height: '+ (4 * width) + 'px;' +
+              'width: '+ (4 * width) + 'px;' +
             '"' +
           '>' +
             '<div ' +
+              'class="second-circle"' +
               'style="' +
-                'width: '+ (2 * width) + 'px;' +
-                'height: '+ (2 * width) + 'px;' +
-                'border: 1px solid #{{ page.gridcolor }};' +
+                'border-color: #{{ page.gridcolor }};' +
                 'border-radius: '+ (2 * width) + 'px;' +
-                'display: flex;' +
-                'align-items: center;' +
-                'justify-content: center;' +
-                'background: rgba(255, 00, 00, 0.3)' +
+                'height: '+ (2 * width) + 'px;' +
+                'width: '+ (2 * width) + 'px;' +
               '"' +
             '>' +
               '<div ' +
-                'style="' +
-                  'border: 2px solid #{{ page.gridcolor }};' +
-                  'border-radius: 2px;' +
-                  'width: 1px;' +
-                  'height: 1px;' +
-                  'background: rgba(255, 00, 00, 0.3)' +
-                '"' +
+                'class="center-circle"' +
+                'style="border-color: #{{ page.gridcolor }}"' +
               '>' +
               '</div>' +
             '</div>' +
           '</div>'
         )
+
         circle.draggable()
         circle.contextmenu(function(event) {
           event.preventDefault()
           circle.remove()
         })
-        $('.map').append(circle)
+        $('body').append(circle)
       }
 
       function createGrid(width, color) {
-        $('.map .grid').remove()
+        $('.grid').remove()
 
         var length = width / Math.sqrt(3)
         var height = length * 1.5
@@ -250,6 +237,7 @@
           width: $('.map').width(),
           height: $('.map').height()
         }).addClass('grid').appendTo('body')
+
 
         for (var i = 0; i < ratioH + 1 ; i++) {
           var row = $('<div />', {
