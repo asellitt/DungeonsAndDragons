@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body style="background-image: url({{ page.map }});width: {{ page.width }};height: {{ page.height }};">
+  <body style="width:{{ page.width }};height:{{ page.height }};">
     <div class="button-panel">
       <select class="points-of-interest-list"></select>
       <select class="grid-speeds">
@@ -44,7 +44,7 @@
       <button id="rawMap">Raw</button>
     </div>
 
-    <div class="map free dragscroll">
+    <div class="map free dragscroll" style="background-image:url({{ page.map }});width:{{ page.width }};height:{{ page.height }};">
       <div>
         {{ content }}
       </div>

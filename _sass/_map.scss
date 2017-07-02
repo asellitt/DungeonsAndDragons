@@ -18,10 +18,12 @@ button {
 }
 
 body {
-  overflow: hidden;
   font-family: Sans-Serif;
   line-height: normal;
+  overflow: hidden;
+}
 
+.map {
   position: absolute;
   background-attachment: scroll;
   background-color: #F2F2F2;
