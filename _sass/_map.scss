@@ -10,14 +10,20 @@ html {
   position: fixed;
   top: 20px;
   left: 20px;
-  z-index: 100;
+  z-index: 10000;
 }
 
 button {
-  line-height: 2;
+  line-height: 2.1;
 }
 
-body.map {
+body {
+  overflow-x: visible;
+  font-family: Sans-Serif;
+  line-height: normal;
+}
+
+.map {
   position: absolute;
   background-attachment: scroll;
   background-color: #F2F2F2;
@@ -25,9 +31,8 @@ body.map {
   background-repeat: no-repeat;
   background-size: auto;
   box-sizing: content-box;
-  font-family: Sans-Serif;
-  line-height: normal;
   margin: 0;
+  overflow: hidden;
 }
 
 .point-of-interest {
@@ -35,7 +40,7 @@ body.map {
   color: white;
   font-size: 20px;
   font-smoothing: antialiased;
-  z-index: 90
+  z-index: 1000;
 }
 
 .point-of-interest__overlay {
@@ -43,7 +48,7 @@ body.map {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   height: 30px;
-  z-index: 80;
+  z-index: 900;
 }
 
 .point-of-interest__pin {
@@ -68,7 +73,7 @@ body.map {
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 60;
+  z-index: 100;
 }
 
 .grid-row {
@@ -77,6 +82,7 @@ body.map {
 
 .grid-cell {
   display: inline-block;
+  margin-top: -4px;
 }
 
 .moonfeather .point-of-interest__pin {
@@ -120,6 +126,60 @@ body.map {
 
 .select2-container {
   width: 275px;
+}
+
+.circle-container {
+  display: inline-block;
+}
+
+.circle-radius {
+  border-radius: 4px 0px 0px 4px;
+  line-height: 2.25;
+  border: 1px solid #AAAAAA;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 0px;
+  margin-right: -4px;
+  width: 80px;
+}
+
+.circle-button {
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #AAAAAA;
+  background: #EEEEEE;
+  line-height: 1.95;
+}
+
+.circle-button:active {
+  background: #BBBBBB
+}
+
+.outer-circle {
+  align-items: center;
+  background: rgba(255, 0, 0, 0.3);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  left: 0px;
+  position: static;
+  top: 50px;
+  z-index: 200;
+}
+
+.second-circle {
+  align-items: center;
+  background: rgba(255, 0, 0, 0.3);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.center-cirle {
+  background: rgba(255, 0, 0, 0.3);
+  border-radius: 2px;
+  border: 2px solid black;
+  height: 1px;
+  width: 1px;
 }
 
 .hidden {

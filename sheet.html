@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @media print {
+        @page {
+          size: 210mm 297mm;
+          margin: 0mm;
+        }
+
+        input {
+          display: none !important;
+        }
+      }
+
+      body {
+        background-image: url(assets/sheet/sheet.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 210mm;
+        height: 297mm;
+      }
+
+      div {
+        border: 1px solid red;
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: 0px;
+        background: transparent;
+      }
+
+      #name {
+        position: absolute;
+        top: 22mm;
+        left: 16mm;
+        width: 81mm;
+        height: 9mm;
+      }
+
+      #class {
+        position: absolute;
+        top: 17mm;
+        left: 102mm;
+        width: 43mm;
+        height: 7mm;
+      }
+
+      #background {
+        position: absolute;
+        top: 17mm;
+        left: 146mm;
+        width: 36mm;
+        height: 7mm;
+      }
+
+      #player {
+        position: absolute;
+        top: 17mm;
+        left: 182mm;
+        width: 36mm;
+        height: 7mm;
+      }
+
+      #race {
+        position: absolute;
+        top: 27mm;
+        left: 102mm;
+        width: 43mm;
+        height: 7mm;
+      }
+
+      #alignment {
+        position: absolute;
+        top: 27mm;
+        left: 146mm;
+        width: 36mm;
+        height: 7mm;
+      }
+
+      #experience {
+        position: absolute;
+        top: 27mm;
+        left: 182mm;
+        width: 36mm;
+        height: 7mm;
+      }
+
+      #strength-modifier {
+        position: absolute;
+        top: 54mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #dexterity-modifier {
+        position: absolute;
+        top: 81mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #constitution-modifier {
+        position: absolute;
+        top: 108mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #intelligence-modifier {
+        position: absolute;
+        top: 136mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #wisdom-modifier {
+        position: absolute;
+        top: 163mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #charisma-modifier {
+        position: absolute;
+        top: 190mm;
+        left: 13mm;
+        width: 17mm;
+        height: 21mm;
+      }
+
+      #strength-score {
+        position: absolute;
+        top: 70mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #dexterity-score {
+        position: absolute;
+        top: 97mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #constitution-score {
+        position: absolute;
+        top: 124mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #intelligence-score {
+        position: absolute;
+        top: 151mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #wisdom-score {
+        position: absolute;
+        top: 178mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #charisma-score {
+        position: absolute;
+        top: 206mm;
+        left: 17mm;
+        width: 9mm;
+        height: 7mm;
+      }
+
+      #inspiration {
+        position: absolute;
+        top: 49mm;
+        left: 36mm;
+        width: 9mm;
+        height: 8mm;
+      }
+
+      #proficiency-bonus {
+        position: absolute;
+        top: 62mm;
+        left: 36mm;
+        width: 10mm;
+        height: 10mm;
+      }
+
+      #strength-saving-throw-proficiency {
+        position: absolute;
+        top: 79mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #dexterity-saving-throw-proficiency {
+        position: absolute;
+        top: 84mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #constitution-saving-throw-proficiency {
+        position: absolute;
+        top: 89mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #intelligence-saving-throw-proficiency {
+        position: absolute;
+        top: 94mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #wisdom-saving-throw-proficiency {
+        position: absolute;
+        top: 100mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #charisma-saving-throw-proficiency {
+        position: absolute;
+        top: 105mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #strength-saving-throw-modifier {
+        position: absolute;
+        top: 77mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #dexterity-saving-throw-modifier {
+        position: absolute;
+        top: 82mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #constitution-saving-throw-modifier {
+        position: absolute;
+        top: 87mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #intelligence-saving-throw-modifier {
+        position: absolute;
+        top: 92mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #wisdom-saving-throw-modifier {
+        position: absolute;
+        top: 97mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #charisma-saving-throw-modifier {
+        position: absolute;
+        top: 102mm;
+        left: 43mm;
+        width: 5mm;
+        height: 5mm;
+      }
+
+      #acrobatics-proficiency {
+        position: absolute;
+        top: 123mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #animal-handling-proficiency {
+        position: absolute;
+        top: 128mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #arcana-proficiency {
+        position: absolute;
+        top: 133mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #athletics-proficiency {
+        position: absolute;
+        top: 138mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #deception-proficiency {
+        position: absolute;
+        top: 143mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #history-proficiency {
+        position: absolute;
+        top: 148mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #insight-proficiency {
+        position: absolute;
+        top: 154mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #intimidation-proficiency {
+        position: absolute;
+        top: 159mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #investigation-proficiency {
+        position: absolute;
+        top: 164mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #medicine-proficiency {
+        position: absolute;
+        top: 169mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #nature-proficiency {
+        position: absolute;
+        top: 174mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #perception-proficiency {
+        position: absolute;
+        top: 179mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #performance-proficiency {
+        position: absolute;
+        top: 184mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #persuasion-proficiency {
+        position: absolute;
+        top: 190mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #religion-proficiency {
+        position: absolute;
+        top: 195mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #sleight-of-hand-proficiency {
+        position: absolute;
+        top: 200mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #stealth-proficiency {
+        position: absolute;
+        top: 205mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #survival-proficiency {
+        position: absolute;
+        top: 210mm;
+        left: 38mm;
+        width: 2mm;
+        height: 2mm;
+      }
+
+      #acrobatics-modifier {
+        position: absolute;
+        top: 120mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #animal-handling-modifier {
+        position: absolute;
+        top: 126mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #arcana-modifier {
+        position: absolute;
+        top: 131mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #athletics-modifier {
+        position: absolute;
+        top: 136mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #deception-modifier {
+        position: absolute;
+        top: 141mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #history-modifier {
+        position: absolute;
+        top: 146mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #insight-modifier {
+        position: absolute;
+        top: 151mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #intimidation-modifier {
+        position: absolute;
+        top: 156mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #investigation-modifier {
+        position: absolute;
+        top: 162mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #medicine-modifier {
+        position: absolute;
+        top: 167mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #nature-modifier {
+        position: absolute;
+        top: 172mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #perception-modifier {
+        position: absolute;
+        top: 177mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #performance-modifier {
+        position: absolute;
+        top: 182mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #persuasion-modifier {
+        position: absolute;
+        top: 187mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #religion-modifier {
+        position: absolute;
+        top: 192mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #sleight-of-hand-modifier {
+        position: absolute;
+        top: 197mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #stealth-modifier {
+        position: absolute;
+        top: 203mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #survival-modifier {
+        position: absolute;
+        top: 208mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #survival-modifier {
+        position: absolute;
+        top: 208mm;
+        left: 42mm;
+        width: 6mm;
+        height: 5mm;
+      }
+
+      #passive-perception {
+        position: absolute;
+        top: 223mm;
+        left: 11mm;
+        width: 10mm;
+        height: 9mm;
+      }
+
+      #proficiencies {
+        position: absolute;
+        top: 237mm;
+        left: 12mm;
+        width: 65mm;
+        height: 51mm;
+      }
+
+      #armor-class {
+        position: absolute;
+        top: 52mm;
+        left: 86mm;
+        width: 15mm;
+        height: 11mm;
+      }
+
+      #initiative {
+        position: absolute;
+        top: 52mm;
+        left: 107mm;
+        width: 16mm;
+        height: 14mm;
+      }
+
+      #speed {
+        position: absolute;
+        top: 52mm;
+        left: 129mm;
+        width: 17mm;
+        height: 14mm;
+      }
+
+      #hit-point-maximum {
+        position: absolute;
+        top: 73mm;
+        left: 110mm;
+        width: 34mm;
+        height: 6mm;
+      }
+
+      #hit-dice-total {
+        position: absolute;
+        top: 120mm;
+        left: 94mm;
+        width: 18mm;
+        height: 5mm;
+      }
+
+      #weapon-name-1 {
+        position: absolute;
+        top: 149mm;
+        left: 85mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #weapon-attack-bonus-1 {
+        position: absolute;
+        top: 149mm;
+        left: 110mm;
+        width: 12mm;
+        height: 6mm;
+      }
+
+      #weapon-damage-1 {
+        position: absolute;
+        top: 149mm;
+        left: 124mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #weapon-name-2 {
+        position: absolute;
+        top: 157mm;
+        left: 85mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #weapon-attack-bonus-2 {
+        position: absolute;
+        top: 157mm;
+        left: 110mm;
+        width: 12mm;
+        height: 6mm;
+      }
+
+      #weapon-damage-2 {
+        position: absolute;
+        top: 157mm;
+        left: 124mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #weapon-name-3 {
+        position: absolute;
+        top: 164mm;
+        left: 85mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #weapon-attack-bonus-3 {
+        position: absolute;
+        top: 164mm;
+        left: 110mm;
+        width: 12mm;
+        height: 6mm;
+      }
+
+      #weapon-damage-3 {
+        position: absolute;
+        top: 164mm;
+        left: 124mm;
+        width: 24mm;
+        height: 6mm;
+      }
+
+      #attacks {
+        position: absolute;
+        top: 172mm;
+        left: 83mm;
+        width: 66mm;
+        height: 44mm;
+      }
+
+      #cantrips {
+        position: absolute;
+        top: 227mm;
+        left: 85mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #first-level {
+        position: absolute;
+        top: 237mm;
+        left: 85mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #second-level {
+        position: absolute;
+        top: 246mm;
+        left: 85mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #third-level {
+        position: absolute;
+        top: 256mm;
+        left: 85mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #fourth-level {
+        position: absolute;
+        top: 266mm;
+        left: 85mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #fifth-level {
+        position: absolute;
+        top: 227mm;
+        left: 132mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #sixth-level {
+        position: absolute;
+        top: 237mm;
+        left: 132mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #seventh-level {
+        position: absolute;
+        top: 246mm;
+        left: 132mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #eighth-level {
+        position: absolute;
+        top: 256mm;
+        left: 132mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #ninth-level {
+        position: absolute;
+        top: 266mm;
+        left: 132mm;
+        width: 15mm;
+        height: 8mm;
+      }
+
+      #personality-traits {
+        position: absolute;
+        top: 52mm;
+        left: 158mm;
+        width: 60mm;
+        height: 20mm;
+      }
+
+      #ideals {
+        position: absolute;
+        top: 79mm;
+        left: 158mm;
+        width: 60mm;
+        height: 14mm;
+      }
+
+      #bonds {
+        position: absolute;
+        top: 100mm;
+        left: 158mm;
+        width: 60mm;
+        height: 14mm;
+      }
+
+      #flaws {
+        position: absolute;
+        top: 121mm;
+        left: 158mm;
+        width: 60mm;
+        height: 14mm;
+      }
+
+      #features {
+        position: absolute;
+        top: 145mm;
+        left: 155mm;
+        width: 66mm;
+        height: 143mm;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="name"><input type="text"/></div>
+    <div id="class"><input type="text"/></div>
+    <div id="background"><input type="text"/></div>
+    <div id="player"><input type="text"/></div>
+    <div id="race"><input type="text"/></div>
+    <div id="alignment"><input type="text"/></div>
+    <div id="experience"><input type="text"/></div>
+
+    <div id="strength-modifier"><input type="text"/></div>
+    <div id="dexterity-modifier"><input type="text"/></div>
+    <div id="constitution-modifier"><input type="text"/></div>
+    <div id="intelligence-modifier"><input type="text"/></div>
+    <div id="wisdom-modifier"><input type="text"/></div>
+    <div id="charisma-modifier"><input type="text"/></div>
+    <div id="strength-score"><input type="text"/></div>
+    <div id="dexterity-score"><input type="text"/></div>
+    <div id="constitution-score"><input type="text"/></div>
+    <div id="intelligence-score"><input type="text"/></div>
+    <div id="wisdom-score"><input type="text"/></div>
+    <div id="charisma-score"><input type="text"/></div>
+
+    <div id="inspiration"><input type="text"/></div>
+    <div id="proficiency-bonus"><input type="text"/></div>
+
+    <div id="strength-saving-throw-proficiency"><input type="text"/></div>
+    <div id="dexterity-saving-throw-proficiency"><input type="text"/></div>
+    <div id="constitution-saving-throw-proficiency"><input type="text"/></div>
+    <div id="intelligence-saving-throw-proficiency"><input type="text"/></div>
+    <div id="wisdom-saving-throw-proficiency"><input type="text"/></div>
+    <div id="charisma-saving-throw-proficiency"><input type="text"/></div>
+    <div id="strength-saving-throw-modifier"><input type="text"/></div>
+    <div id="dexterity-saving-throw-modifier"><input type="text"/></div>
+    <div id="constitution-saving-throw-modifier"><input type="text"/></div>
+    <div id="intelligence-saving-throw-modifier"><input type="text"/></div>
+    <div id="wisdom-saving-throw-modifier"><input type="text"/></div>
+    <div id="charisma-saving-throw-modifier"><input type="text"/></div>
+
+    <div id="acrobatics-proficiency"><input type="text"/></div>
+    <div id="animal-handling-proficiency"><input type="text"/></div>
+    <div id="arcana-proficiency"><input type="text"/></div>
+    <div id="athletics-proficiency"><input type="text"/></div>
+    <div id="deception-proficiency"><input type="text"/></div>
+    <div id="history-proficiency"><input type="text"/></div>
+    <div id="insight-proficiency"><input type="text"/></div>
+    <div id="intimidation-proficiency"><input type="text"/></div>
+    <div id="investigation-proficiency"><input type="text"/></div>
+    <div id="medicine-proficiency"><input type="text"/></div>
+    <div id="nature-proficiency"><input type="text"/></div>
+    <div id="perception-proficiency"><input type="text"/></div>
+    <div id="performance-proficiency"><input type="text"/></div>
+    <div id="persuasion-proficiency"><input type="text"/></div>
+    <div id="religion-proficiency"><input type="text"/></div>
+    <div id="sleight-of-hand-proficiency"><input type="text"/></div>
+    <div id="stealth-proficiency"><input type="text"/></div>
+    <div id="survival-proficiency"><input type="text"/></div>
+    <div id="acrobatics-modifier"><input type="text"/></div>
+    <div id="animal-handling-modifier"><input type="text"/></div>
+    <div id="arcana-modifier"><input type="text"/></div>
+    <div id="athletics-modifier"><input type="text"/></div>
+    <div id="deception-modifier"><input type="text"/></div>
+    <div id="history-modifier"><input type="text"/></div>
+    <div id="insight-modifier"><input type="text"/></div>
+    <div id="intimidation-modifier"><input type="text"/></div>
+    <div id="investigation-modifier"><input type="text"/></div>
+    <div id="medicine-modifier"><input type="text"/></div>
+    <div id="nature-modifier"><input type="text"/></div>
+    <div id="perception-modifier"><input type="text"/></div>
+    <div id="performance-modifier"><input type="text"/></div>
+    <div id="persuasion-modifier"><input type="text"/></div>
+    <div id="religion-modifier"><input type="text"/></div>
+    <div id="sleight-of-hand-modifier"><input type="text"/></div>
+    <div id="stealth-modifier"><input type="text"/></div>
+    <div id="survival-modifier"><input type="text"/></div>
+
+    <div id="passive-perception"><input type="text"/></div>
+    <div id="proficiencies"><input type="text"/></div>
+
+    <div id="armor-class"><input type="text"/></div>
+    <div id="initiative"><input type="text"/></div>
+    <div id="speed"><input type="text"/></div>
+
+    <div id="hit-point-maximum"><input type="text"/></div>
+    <div id="hit-dice-total"><input type="text"/></div>
+
+    <div id="weapon-name-1"><input type="text"/></div>
+    <div id="weapon-attack-bonus-1"><input type="text"/></div>
+    <div id="weapon-damage-1"><input type="text"/></div>
+    <div id="weapon-name-2"><input type="text"/></div>
+    <div id="weapon-attack-bonus-2"><input type="text"/></div>
+    <div id="weapon-damage-2"><input type="text"/></div>
+    <div id="weapon-name-3"><input type="text"/></div>
+    <div id="weapon-attack-bonus-3"><input type="text"/></div>
+    <div id="weapon-damage-3"><input type="text"/></div>
+    <div id="attacks"><input type="text"/></div>
+
+    <div id="cantrips"><input type="text"/></div>
+    <div id="first-level"><input type="text"/></div>
+    <div id="second-level"><input type="text"/></div>
+    <div id="third-level"><input type="text"/></div>
+    <div id="fourth-level"><input type="text"/></div>
+    <div id="fifth-level"><input type="text"/></div>
+    <div id="sixth-level"><input type="text"/></div>
+    <div id="seventh-level"><input type="text"/></div>
+    <div id="eighth-level"><input type="text"/></div>
+    <div id="ninth-level"><input type="text"/></div>
+
+    <div id="personality-traits"><input type="text"/></div>
+    <div id="ideals"><input type="text"/></div>
+    <div id="bonds"><input type="text"/></div>
+    <div id="flaws"><input type="text"/></div>
+
+    <div id="features"><input type="text"/></div>
+  </body>
+</html>
