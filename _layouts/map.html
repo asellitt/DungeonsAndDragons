@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body style="width:{{ page.width }};height:{{ page.height }};">
+  <body class="map" style="width:{{ page.width }};height:{{ page.height }};">
     <div class="button-panel">
       <select class="points-of-interest-list"></select>
       <select class="grid-speeds">
@@ -44,7 +44,7 @@
       <button id="rawMap">Raw</button>
     </div>
 
-    <div class="map free dragscroll" style="background-image:url({{ page.map }});width:{{ page.width }};height:{{ page.height }};">
+    <div class="map-canvas free dragscroll" style="background-image:url({{ page.map }});width:{{ page.width }};height:{{ page.height }};">
       <div>
         {{ content }}
       </div>
@@ -230,12 +230,12 @@
         var height = length * 1.5
         var angle = 30 * (Math.PI / 180)
 
-        var ratioW = Math.floor($('.map').width() / width)
-        var ratioH = Math.floor($('.map').height() / height)
+        var ratioW = Math.floor($('.map-canvas').width() / width)
+        var ratioH = Math.floor($('.map-canvas').height() / height)
 
         var grid = $('<div />', {
-          width: $('.map').width(),
-          height: $('.map').height()
+          width: $('.map-canvas').width(),
+          height: $('.map-canvas').height()
         }).addClass('grid').appendTo('body')
 
 
