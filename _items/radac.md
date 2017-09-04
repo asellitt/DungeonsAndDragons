@@ -3,13 +3,13 @@ layout: item
 title: Radac
 thumb: /assets/images/items/radac.jpg
 ---
-<iframe src="http://magic-items.herokuapp.com/item/embed/1"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/57"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/40"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/136"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/hk622bd"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/czjqcs5"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/7dlcpbn"></iframe>
 
-<iframe src="http://magic-items.herokuapp.com/item/embed/104"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/138"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/193"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/7"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/188"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/vgmyds5"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/6jcjnkz"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/sfuxop2"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/i3phz3l"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/s5x7o42"></iframe>
