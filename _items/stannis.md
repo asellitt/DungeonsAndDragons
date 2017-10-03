@@ -5,18 +5,16 @@ thumb: /assets/images/items/stannis.jpg
 ---
 <iframe src="http://magic-items.herokuapp.com/item/embed/hk622bd"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/4puswaf"></iframe>
-
 <iframe src="http://magic-items.herokuapp.com/item/embed/3tvnx2i"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/hdlqrql"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/czjqcs5"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/garodl7"></iframe>
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/h6a5yqf"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/wbdptd6"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/w6ap5ba"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/66vqsk6"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/peztozm"></iframe>
-<iframe src="http://magic-items.herokuapp.com/item/embed/hqob2vh"></iframe>
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/ibtbfdy"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/h6s2nq6"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/gumstji"></iframe>
