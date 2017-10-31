@@ -136,8 +136,7 @@
             var x = (element.offset().left - ($(window).width() / 2))
             var y = (element.offset().top - ($(window).height() / 2))
 
-            $('body').animate({scrollTop: y, scrollLeft: x})
-
+            $('html,body').animate({scrollTop: y, scrollLeft: x})
             $('.searched').removeClass('searched')
             element.addClass('searched')
           })
