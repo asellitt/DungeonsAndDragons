@@ -16,7 +16,9 @@ gridcolor: 494949
 <span class="moonfeather --right" style="top:578px;left:1067px;">Lyrune Mesa</span>
 <span class="moonfeather --left" style="top:152px;left:2659px;">Valengel</span>
 <span class="hidden moonfeather --left" style="top:256px;left:2119px;">Kovaren</span>
-<span class="hidden moonfeather --left" style="top:2591px;left:2238px;">Archemede's Tomb</span>
+<span class="hidden moonfeather --left" style="top:2594px;left:2257px;">Pyramid of Akh-Am-Ra</span>
+<span class="hidden moonfeather --right" style="top:2594px;left:2007px;">Pyramid of An-Hepsu XI</span>
+<span class="hidden moonfeather --left" style="top:2624px;left:2251px;">New Absalom</span>
 <span class="venalis --left" style="top:1251px;left:2249px;">Vohrn Valdhur</span>
 <span class="venalis --left" style="top:1059px;left:1668px;">Easthallow</span>
 <span class="venalis --left" style="top:813px;left:891px;">Dryaden</span>
