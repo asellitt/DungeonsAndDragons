@@ -90,9 +90,10 @@
         $('span').each(function() {
           $(this).addClass('point-of-interest')
 
-          var width = $(this).width() + 30
-          var top = $(this).position().top - 3
-          var left = $(this).position().left - 5
+          var leftOffset = $(this).hasClass('--left') ? 2 : -2
+          var width = $(this).width() + 20
+          var top = $(this).position().top + 2
+          var left = $(this).position().left + leftOffset
           var display = $(this).css('display')
           var uuid = guid()
 
@@ -136,8 +137,7 @@
             var x = (element.offset().left - ($(window).width() / 2))
             var y = (element.offset().top - ($(window).height() / 2))
 
-            $('body').animate({scrollTop: y, scrollLeft: x})
-
+            $('html,body').animate({scrollTop: y, scrollLeft: x})
             $('.searched').removeClass('searched')
             element.addClass('searched')
           })
