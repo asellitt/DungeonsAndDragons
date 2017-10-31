@@ -38,7 +38,7 @@ button {
   position: absolute;
   color: white;
   font-size: 20px;
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   z-index: 1000;
 }
 
