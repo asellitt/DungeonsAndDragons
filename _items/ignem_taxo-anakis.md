@@ -18,3 +18,4 @@ thumb: /assets/images/items/anakis.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/4kzsqkq"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/gqpn4zs"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/5vzurzy"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/yjifrdc"></iframe>
