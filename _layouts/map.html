@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body class="map" style="width:{{ page.width }};height:{{ page.height }};">
+  <body class="map" style="width:{{page.width}};height:{{page.height}};">
     <div class="button-panel">
       <select class="points-of-interest-list"></select>
       <select class="grid-speeds">
@@ -44,9 +44,9 @@
       <button id="rawMap">Raw</button>
     </div>
 
-    <div class="map-canvas free dragscroll" style="background-image:url({{ page.map }});width:{{ page.width }};height:{{ page.height }};">
+    <div class="map-canvas free dragscroll" style="background-image:url({{page.map}});width:{{page.width}};height:{{page.height}};">
       <div>
-        {{ content }}
+        {{content}}
       </div>
     </div>
 
@@ -152,8 +152,8 @@
             }
             else {
               createGrid(
-                (miles * {{ page.pixelunit }}),
-                '{{ page.gridcolor }}'
+                (miles * {{page.pixelunit}}),
+                '{{page.gridcolor}}'
               )
             }
           })
@@ -161,7 +161,7 @@
         $('.select2').css('width', '')
 
         $('#rawMap').click(function() {
-          window.location = '{{ page.map }}'
+          window.location = '{{page.map}}'
         })
 
         $('#drawCircle').click(function() {
@@ -186,12 +186,12 @@
       }
 
       function createCircle(miles) {
-        var width = (miles * {{ page.pixelunit }})
+        var width = (miles * {{page.pixelunit}})
         var circle = $(
           '<div ' +
             'class="outer-circle"' +
             'style="' +
-              'border: 1px solid #{{ page.gridcolor }};' +
+              'border: 1px solid #{{page.gridcolor}};' +
               'border-radius: '+ (4 * width) + 'px;' +
               'height: '+ (4 * width) + 'px;' +
               'width: '+ (4 * width) + 'px;' +
@@ -200,7 +200,7 @@
             '<div ' +
               'class="second-circle"' +
               'style="' +
-                'border: 1px solid #{{ page.gridcolor }};' +
+                'border: 1px solid #{{page.gridcolor}};' +
                 'border-radius: '+ (2 * width) + 'px;' +
                 'height: '+ (2 * width) + 'px;' +
                 'width: '+ (2 * width) + 'px;' +
@@ -208,7 +208,7 @@
             '>' +
               '<div ' +
                 'class="center-circle"' +
-                'style="border: 2px solid #{{ page.gridcolor }}"' +
+                'style="border: 2px solid #{{page.gridcolor}}"' +
               '>' +
               '</div>' +
             '</div>' +

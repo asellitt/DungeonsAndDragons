@@ -2,17 +2,17 @@
 title: Ignem Taxo
 
 baseurl: '' # the subpath of your site, e.g. /blog
-url: 'http://yourdomain.com' # the base hostname & protocol for your site
+url: 'http://pathfinder.asellitt.com' # the base hostname & protocol for your site
 
 # Build settings
-markdown:            kramdown
+markdown: kramdown
 relative_permalinks: false
-permalink:           :title/
-gems: [jekyll-paginate]
+permalink: :title/
+plugins: [jekyll-paginate]
 
-pagination:          true
-paginate:            8
-paginate_path:       page/:num/
+pagination: true
+paginate: 8
+paginate_path: page/:num/
 
 sass:
   sass_dir: _sass
