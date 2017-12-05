@@ -2,31 +2,31 @@
 layout: default
 ---
 <div class="post">
-    <header class="post-header">
-        {% if page.thumb %}
-        <img src="{{ page.thumb }}" alt="{{ page.title }}" class="post-thumb" />
-        {% endif %}
+  <header class="post-header">
+    {% if page.thumb %}
+      <img src="{{page.thumb}}" alt="{{page.title}}" class="post-thumb" />
+    {% endif %}
 
-        <h1 class="post-title">{{ page.title }}</h1>
-    </header>
+    <h1 class="post-title">{{page.title}}</h1>
+  </header>
 
-    <article class="post-content">
-        {{ content }}
-    </article>
+  <article class="post-content">
+    {{content}}
+  </article>
 
-    <footer class="post-meta">
-        {% if page.date %}
-        <div class="meta">
-            <h3 class="meta-title">Date</h3>
-            <span class="meta-content">{{ page.date | date: "%B %-d, %Y" }}</span>
-        </div>
-        {% endif %}
-        {% if page.author %}
-        <div class="meta">
-            <h3 class="meta-title">Author</h3>
-            <span class="meta-content">{{ page.author }}</span>
-        </div>
-        {% endif %}
-    </footer>
+  <footer class="post-meta">
+    {% if page.date %}
+      <div class="meta">
+        <h3 class="meta-title">Date</h3>
+        <span class="meta-content">{{page.date | date: "%B %-d, %Y"}}</span>
+      </div>
+    {% endif %}
+    {% if page.author %}
+      <div class="meta">
+        <h3 class="meta-title">Author</h3>
+        <span class="meta-content">{{page.author}}</span>
+      </div>
+    {% endif %}
+  </footer>
 
 </div>

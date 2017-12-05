@@ -5,24 +5,24 @@ exclude: true
 ---
 
 <div class="home">
-    <ul class="post-list">
-        {% if site.pagination %}
-        {% assign source = paginator.posts %}
-        {% else %}
-        {% assign source = site.posts %}
-        {% endif %}
+  <ul class="post-list">
+    {% if site.pagination %}
+      {% assign source = paginator.posts %}
+    {% else %}
+      {% assign source = site.posts %}
+    {% endif %}
 
-        {% for post in source reversed %}
-        <li>
-            <a href="{{ post.url | prepend: site.baseurl }}" class="post-list-link">
-                <div class="post-list-info">
-                    <h2 class="post-list-title">{{ post.title }}</h2>
-                    <span class="post-list-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
-                </div>
-            </a>
+    {% for post in source reversed %}
+      <li>
+        <a href="{{post.url | prepend: site.baseurl}}" class="post-list-link">
+          <div class="post-list-info">
+            <h2 class="post-list-title">{{post.title}}</h2>
+            <span class="post-list-meta">{{post.date | date: "%B %-d, %Y"}}</span>
+          </div>
+        </a>
+        <img src="{{post.thumb}}" class="post-list-thumb" />
+      </li>
+    {% endfor %}
 
-            <img src="{{ post.thumb }}" class="post-list-thumb" />
-        </li>
-        {% endfor %}
-    </ul>
+  </ul>
 </div>
