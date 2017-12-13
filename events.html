@@ -26,11 +26,11 @@ title: Events
   })
 
   /* Begin: Important Events */
-  var now = moment('5087-12-17')
+  var now = moment('5087-12-16')
   var campaignEvents = [
     {
       title: 'Campaign begins',
-      start: '5086-03-03',
+      start: '5087-03-03',
     },
     {
       title: "*Runemagic Expiration",
@@ -76,6 +76,147 @@ title: Events
       start: '5088-01-28',
       link: "https://campaign-logger.com/#/log/f109d3a5519cd49f2a4fab503e09d4b4/plot/Fomorian Incursion",
       type: 'secret'
+    },
+  ]
+
+  var sessionEvents = [
+    {
+      title: "Session 68",
+      start: '5087-12-07',
+      end: '5087-12-17',
+      type: 'session',
+    },
+    {
+      title: "Session 67",
+      start: '5087-12-07',
+      end: '5087-12-07',
+      type: 'session',
+    },
+    {
+      title: "Session 66",
+      start: '5087-12-06',
+      end: '5087-12-07',
+      type: 'session',
+    },
+    {
+      title: "Session 65",
+      start: '5087-12-05',
+      end: '5087-12-06',
+      type: 'session',
+    },
+    {
+      title: "Session 64",
+      start: '5087-12-04',
+      end: '5087-12-05',
+      type: 'session',
+    },
+    {
+      title: "Session 63",
+      start: '5087-12-02',
+      end: '5087-12-04',
+      type: 'session',
+    },
+    {
+      title: "Session 62",
+      start: '5087-12-01',
+      end: '5087-12-02',
+      type: 'session',
+    },
+    {
+      title: "Session 61",
+      start: '5087-11-28',
+      end: '5087-12-01',
+      type: 'session',
+    },
+    {
+      title: "Session 60",
+      start: '5087-11-27',
+      end: '5087-11-28',
+      type: 'session',
+    },
+    {
+      title: "Session 59",
+      start: '5087-11-19',
+      end: '5087-11-27',
+      type: 'session',
+    },
+    {
+      title: "Session 58",
+      start: '5087-11-03',
+      end: '5087-11-19',
+      type: 'session',
+    },
+    {
+      title: "Session 57 Downtime",
+      start: '5087-10-10',
+      end: '5087-11-03',
+      type: 'session',
+    },
+    {
+      title: "Session 57",
+      start: '5087-10-09',
+      end: '5087-10-10',
+      type: 'session',
+    },
+    {
+      title: "Session 56",
+      start: '5087-10-08',
+      end: '5087-10-09',
+      type: 'session',
+    },
+    {
+      title: "Session 55",
+      start: '5087-10-07',
+      end: '5087-10-08',
+      type: 'session',
+    },
+    {
+      title: "Session 54",
+      start: '5087-10-06',
+      end: '5087-10-07',
+      type: 'session',
+    },
+    {
+      title: "Session 53",
+      start: '5087-09-27',
+      end: '5087-10-06',
+      type: 'session',
+    },
+    {
+      title: "Session 52",
+      start: '5087-09-26',
+      end: '5087-09-27',
+      type: 'session',
+    },
+    {
+      title: "Session 51",
+      start: '5087-09-24',
+      end: '5087-09-26',
+      type: 'session',
+    },
+    {
+      title: "Session 50",
+      start: '5087-09-16',
+      end: '5087-09-24',
+      type: 'session',
+    },
+    {
+      title: "Session 49",
+      start: '5087-09-11',
+      end: '5087-09-16',
+      type: 'session',
+    },
+    {
+      title: "Session 48",
+      start: '5087-09-10',
+      end: '5087-09-11',
+      type: 'session',
+    },
+    {
+      title: "Session 47",
+      start: '5087-09-02',
+      end: '5087-09-10',
+      type: 'session',
     },
   ]
   /* End: Important Events */
@@ -663,6 +804,7 @@ title: Events
       now: now,
       events: recurringEvents
         .concat(campaignEvents)
+        .concat(sessionEvents)
         .concat([
           {
             title: 'Current Day',
@@ -670,12 +812,16 @@ title: Events
           },
         ]),
 
-      eventRender: function(event, element) {
+      eventRender: function(event, element, view) {
         if(!showHolidays && event.type === 'holiday') {
           return false
         }
 
         if(!showSecret && (event.type === 'secret' && event.start.isAfter(now))) {
+          return false
+        }
+
+        if(view.type === 'listYear' && event.type === 'session') {
           return false
         }
 
@@ -694,12 +840,21 @@ title: Events
             '</span>'
           )
         }
-        if(event.title === 'Current Day') { element.addClass('event-current') }
-        if(event.type === 'holiday') { element.addClass('event-holiday') }
+        if(event.title === 'Current Day') {
+          element.addClass('event-current')
+        } else if(event.type === 'holiday') {
+          element.addClass('event-holiday')
+        } else if(event.type === 'session') {
+          element.addClass('event-session')
+        } else {
+          element.addClass('event-default')
+        }
       },
 
       viewRender: function(view, element) {
-        $('.fc-center h2').text(now.format('dddd D of MMMM (MM), YYYY'))
+        if(view.type === 'listYear') {
+          $('.fc-center h2').text(now.format('dddd D of MMMM (MM), YYYY'))
+        }
       },
     })
 
@@ -745,6 +900,14 @@ title: Events
 
   .event-holiday {
     background: #E3E192;
+  }
+
+  .event-session {
+    background: #FF7F7F;
+  }
+
+  .event-default {
+    background: #7FFFBB;
   }
 
   .fc-list-item-title a {
