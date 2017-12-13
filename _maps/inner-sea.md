@@ -26,6 +26,7 @@ gridcolor: 494949
 <span class="venalis --right" style="top:1088px;left:1488px;">Blackrock Obelisk</span>
 <span class="venalis --left" style="top:813px;left:891px;">Dryaden</span>
 <span class="hidden venalis --right" style="top:837px;left:1578px;">Tizonspire</span>
+<span class="stannis --right" style="top:964px;left:1463px;">Roslar's Coffer</span>
 <span class="stannis --right" style="top:971px;left:1801px;">Vildenvale</span>
 <span class="zaradae --left" style="top:678px;left:2352px;">Mirkwood</span>
 <span class="anakis --right" style="top:1107px;left:1311px;">Ilustriram</span>
