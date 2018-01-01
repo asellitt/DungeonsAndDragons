@@ -31,3 +31,4 @@ gridcolor: F00
 <span class="--left" style="top:585px;left:1055px">The Lady's Shield-Hand</span>
 <span class="--left" style="top:447px;left:1057px">Southgate</span>
 <span class="--left" style="top:967px;left:1364px">The Strand</span>
+<span class="--left stannis" style="top:1134px;left:915px">D'Aguillon Estate</span>
