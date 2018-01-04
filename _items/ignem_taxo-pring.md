@@ -24,3 +24,4 @@ thumb: /assets/images/items/pring.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/secyphp"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/kpqtmop"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/aez7deq"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/mbhfeci"></iframe>
