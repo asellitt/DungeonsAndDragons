@@ -24,4 +24,4 @@ thumb: /assets/images/items/stannis.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/lcbsavt"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/t7dqdo6"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/etybwsi"></iframe>
-
+<iframe src="http://magic-items.herokuapp.com/item/embed/wi6z6mq"></iframe>
