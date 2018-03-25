@@ -10,3 +10,4 @@ thumb: /assets/images/items/zeki.jpg
 <iframe src="http://magic-items.herokuapp.com/item/embed/h7xtsyy"></iframe>
 
 <iframe src="http://magic-items.herokuapp.com/item/embed/t23yb3h"></iframe>
+<iframe src="http://magic-items.herokuapp.com/item/embed/af3g2vf"></iframe>
