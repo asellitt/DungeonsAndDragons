@@ -39,3 +39,4 @@ gridcolor: 494949
 <span class="hidden pring --right" style="top:2925px;left:458px;">Elvyta Isle</span>
 <span class="--right" style="top:1078px;left:481px;">Magnimar Hunting Grounds</span>
 <span class="venalis --right" style="top:845px;left:939px;">Temple of the Lycan</span>
+<span class="--left" style="top:2562px;left:2129px;">Neskme</span>
