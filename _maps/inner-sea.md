@@ -40,3 +40,6 @@ gridcolor: 494949
 <span class="--right" style="top:1078px;left:481px;">Magnimar Hunting Grounds</span>
 <span class="venalis --right" style="top:845px;left:939px;">Temple of the Lycan</span>
 <span class="--left" style="top:2562px;left:2129px;">Neskme</span>
+<span class="stannis --right" style="top:928px;left:1779px;">Keep D'Aguilon</span>
+<span class="pring --right" style="top:738px;left:1574px;">Monastery Of The Veil</span>
+<span class="--right" style="top:657px;left:1528px;">Crossroads Barrony</span>
