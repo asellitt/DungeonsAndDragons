@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Seleek
 thumb: /assets/images/items/seleek.jpg
 ---

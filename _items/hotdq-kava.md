@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Kava
 thumb: /assets/images/items/hotdq-kava.jpg
 ---

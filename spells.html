@@ -1,0 +1,462 @@
+---
+layout: card
+title: Spells
+---
+
+<html>
+  <head>
+    <title>Spell Cards</title>
+    <style>
+      .card,.card-wrapper{
+        display: inline-block
+      }
+      .card{
+        position: relative;
+        width: 63mm;
+        height: 89mm;
+        padding: 0;
+        margin: 5px;
+        border-radius: 4.7619047619%;
+        font-family: Helvetica Neue,Open Sans Condensed,sans-serif;
+        font-weight: 400;
+        font-size: 3mm;
+        color: #111;
+        text-align: center;
+        overflow: hidden
+      }
+      .name{
+        background-color: #fff;
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        width: 57mm;
+        height: 5mm;
+        border-radius: 2mm 2mm 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+      .name .content{
+        font-size: 3.5mm;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .spell-level {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+      }
+      .spell-level .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+      }
+      .casting-time, .range{
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 11mm;
+        width: 28.25mm;
+        height: 8mm
+      }
+      .casting-time{
+        left: 3mm;
+      }
+      .range{
+        left: 31.75mm
+      }
+      .components, .duration{
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 19.5mm;
+        width: 28.25mm;
+        height: 8mm;
+      }
+      .components{
+        left: 3mm;
+      }
+      .duration{
+        left: 31.75mm;
+      }
+      .concentration {
+        width: 0;
+        height: 0;
+        border: 3mm solid transparent;
+        position: relative;
+        top: -9mm;
+        left: 22mm;
+        font-weight: bold;
+        color: #FFF;
+      }
+      .concentration:after {
+        content: '';
+        position: absolute;
+        left: -3mm;
+        top: 3mm;
+        width: 0;
+        height: 0;
+        border: 3mm solid transparent;
+      }
+      .concentration div {
+        position: absolute;
+        top: 1.1mm;
+        left: -1.1mm;
+        z-index: 100;
+      }
+      .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+      }
+      .description{
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 30.5mm;
+        left: 3mm;
+        width: 53mm;
+        height: 34mm;
+        padding: 2mm;
+        text-align: justify;
+        font-size: 2mm;
+      }
+      .short-description{
+        height: 34mm;
+      }
+      .long-description {
+        height: 47.5mm;
+        border-radius: 0 0 2mm 2mm;
+      }
+      .higher-levels {
+        display: inline-block;
+        position: absolute;
+        top: 68.5mm;
+        left: 0mm;
+        height: 3mm;
+        width: 100%;
+      }
+      .higher-levels .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+      }
+      .empower-spell {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 71.5mm;
+        left: 3mm;
+        width: 53mm;
+        height: 6mm;
+        padding: 2mm;
+        border-radius: 0 0 2mm 2mm;
+        text-align: justify;
+        font-size: 2mm;
+      }
+
+      .cleric {
+        background-color: #DBA200;
+      }
+      .cleric .header {
+        color: #DBA200;
+      }
+      .cleric .concentration {
+        border-bottom-color: #DBA200;
+      }
+      .cleric .concentration:after {
+        border-top-color: #DBA200;
+      }
+
+      .warlock {
+        background-color: #BC001D;
+      }
+      .warlock .header {
+        color: #BC001D;
+      }
+      .warlock .concentration {
+        border-bottom-color: #BC001D;
+      }
+      .warlock .concentration:after {
+        border-top-color: #BC001D;
+      }
+    </style>
+  </head>
+
+  <body cz-shortcut-listen="true">
+    <div class="card-wrapper">
+      <div class="card cleric">
+        <div class="name">
+          <div class="content">Swirling Mists</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">1st-level conjuration</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">60 feet</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">Instantaneous</div>
+        </div>
+        <div class="description short-description">
+          Swirling mist forms around a creature of your choice within range, and
+          then forces itself into the creatures lungs. The target must make a
+          Constitution saving throw. The target takes 4d6 radiant damage on a
+          failed save, or half as much damage on a successful one.
+        </div>
+        <div class="higher-levels">
+          <div class="content">At Higher Levels</div>
+        </div>
+        <div class="empower-spell">
+          When you cast this spell using a spell slot of 2nd level or higher,
+          the damage increases by 1d6 for each slot level above 1st.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card cleric">
+        <div class="name">
+          <div class="content">Hand of the Guardian</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">5th-level evocation</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">60 feet</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">1 minute</div>
+          <div class="concentration"><div>C</div></div>
+        </div>
+        <div class="description short-description">
+          You create a Large hand of translucent mist. It has AC 20 and HP equal
+          to your maximum HP. If it drops to 0 HP, the spell ends. It has a STR
+          of 26 (+8) and a DEX of 10 (+0).
+          <br/><br/>
+          When you cast the spell and as a bonus action on your turns, you can
+          move the hand up to 60 feet and then cause one effect with it.
+          <br/><br/>
+          <strong>Clenched Fist.</strong> The hand strikes one creature or
+          object within 5 feet of it. Make a melee spell attack for the hand
+          using your game statistics. On a hit, the target takes 4d8 force
+          damage.
+        </div>
+        <div class="higher-levels">
+          <div class="content">At Higher Levels</div>
+        </div>
+        <div class="empower-spell">
+          When you cast this spell using a spell slot of 6th level or higher,
+          the damage from the clenched fist option increases by 2d8 for each
+          slot level above 5th.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card cleric">
+        <div class="name">
+          <div class="content">Hand of the Guardian</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">5th-level evocation</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">60 feet</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">1 minute</div>
+          <div class="concentration"><div>C</div></div>
+        </div>
+        <div class="description long-description">
+          You create a Large hand of translucent mist. It has AC 20 and HP equal
+          to your maximum HP. If it drops to 0 HP, the spell ends. It has a STR
+          of 26 (+8) and a DEX of 10 (+0).
+          <br/><br/>
+          When you cast the spell and as a bonus action on your turns, you can
+          move the hand up to 60 feet and then cause one effect with it.
+          <br/><br/>
+          <strong>Forceful Hand.</strong> The hand attempts to push a creature
+          within 5 feet of it in a direction you choose. Make a check with the
+          hand's Strength contested by the Strength (Athletics) check of the
+          target. If the target is Medium or smaller, you have advantage on the
+          check. If you succeed, the hand pushes the target up to 5 feet plus a
+          number of feet equal to five times your spellcasting ability modifier.
+          The hand moves with the target to remain within 5 feet of it.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card cleric">
+        <div class="name">
+          <div class="content">Hand of the Guardian</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">5th-level evocation</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">60 feet</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">1 minute</div>
+          <div class="concentration"><div>C</div></div>
+        </div>
+        <div class="description short-description">
+          You create a Large hand of translucent mist. It has AC 20 and HP equal
+          to your maximum HP. If it drops to 0 HP, the spell ends. It has a STR
+          of 26 (+8) and a DEX of 10 (+0).
+          <br/><br/>
+          When you cast the spell and as a bonus action on your turns, you can
+          move the hand up to 60 feet and then cause one effect with it.
+          <br/><br/>
+          <strong>Grasping Hand.</strong> The hand attempts to grapple a Huge or
+          smaller creature within 5 feet. If the target is Medium or smaller,
+          you have advantage on the check. While the hand is grappling the
+          target, you can use a bonus action to have the hand crush it. When you
+          do so, the target takes bludgeoning damage equal to 2d6 + your
+          spellcasting ability modifier.
+        </div>
+        <div class="higher-levels">
+          <div class="content">At Higher Levels</div>
+        </div>
+        <div class="empower-spell">
+          When you cast this spell using a spell slot of 6th level or higher,
+          the damage from the grasping hand increases by 2d6 for each slot level
+          above 5th.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card cleric">
+        <div class="name">
+          <div class="content">Hand of the Guardian</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">5th-level evocation</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">60 feet</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">1 minute</div>
+          <div class="concentration"><div>C</div></div>
+        </div>
+        <div class="description long-description">
+          You create a Large hand of translucent mist. It has AC 20 and HP equal
+          to your maximum HP. If it drops to 0 HP, the spell ends. It has a STR
+          of 26 (+8) and a DEX of 10 (+0).
+          <br/><br/>
+          When you cast the spell and as a bonus action on your turns, you can
+          move the hand up to 60 feet and then cause one effect with it.
+          <br/><br/>
+          <strong>Interposing Hand.</strong> The hand interposes itself between
+          you and a creature you choose until you give the hand a different
+          command. The hand moves to stay between you and the target, providing
+          you with half cover against the target. The target can't move through
+          the hand's space if its Strength score is less than or equal to the
+          hand's Strength score. If its Strength score is higher than the hand's
+          Strength score, the target can move toward you through the hand's
+          space, but that space is difficult terrain for the target.
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card warlock">
+        <div class="name">
+          <div class="content">Spray of Thorns</div>
+        </div>
+        <div class="spell-level">
+          <div class="content">3rd-level conjuration</div>
+        </div>
+        <div class="casting-time">
+          <div class="header">Casting Time</div>
+          <div class="content">1 action</div>
+        </div>
+        <div class="range">
+          <div class="header">Range</div>
+          <div class="content">Self (15 foot cone)</div>
+        </div>
+        <div class="components">
+          <div class="header">Components</div>
+          <div class="content">V, S, M</div>
+        </div>
+        <div class="duration">
+          <div class="header">Duration</div>
+          <div class="content">1 minute</div>
+        </div>
+        <div class="description short-description">
+          Material: a rose thorn
+          <br/></br/>
+          You shoot forth a burst of thorns from your hands which pierce through
+          your enemy's defenses. Each creature in a 15-foot cone must make a
+          Dexterity saving throw. On a failed save, a creature takes 2d6
+          piercing damage and then has vulnerability to bludgeoning, piercing,
+          and slashing damage until the start of their next turn. On a
+          successful save, a creature takes half damage and suffers no other
+          effect.
+        </div>
+        <div class="higher-levels">
+          <div class="content">At Higher Levels</div>
+        </div>
+        <div class="empower-spell">
+          When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

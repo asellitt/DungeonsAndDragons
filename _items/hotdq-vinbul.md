@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Vinbul
 thumb: /assets/images/items/vinbul.jpg
 ---

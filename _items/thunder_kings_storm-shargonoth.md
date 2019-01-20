@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Shargonoth
 thumb: /assets/images/items/shargonoth.jpg
 ---

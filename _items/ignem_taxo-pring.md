@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Pring
 thumb: /assets/images/items/pring.jpg
 ---

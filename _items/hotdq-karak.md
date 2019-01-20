@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Karak
 thumb: /assets/images/items/karak.jpg
 ---

@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Tanliael
 thumb: /assets/images/items/tanliael.jpg
 ---

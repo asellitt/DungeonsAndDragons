@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Moonfeather
 thumb: /assets/images/items/moonfeather.jpg
 ---
