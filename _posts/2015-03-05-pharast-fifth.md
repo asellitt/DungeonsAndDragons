@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: "Pharast 5rd"
+title: "Pharast 5th"
 date: 2015-03-05
 author: Tim Parkhill
 thumb: /assets/images/posts/venalis_pharast_fifth-thumb.jpg

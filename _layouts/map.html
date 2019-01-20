@@ -28,6 +28,10 @@
         <option value="48">Horse (6mph, 48mpd)</option>
         <option value="32">Horse - Slow (4mph, 32mpd)</option>
 
+        <option value="53">Axe Beak - Fast (6.5mph, 53mpd)</option>
+        <option value="40">Axe Beak (5mph, 40mpd)</option>
+        <option value="27">Axe Beak - Slow (3.5mph, 27mpd)</option>
+
         <option value="48">Bear - Fast (6mph, 48mpd)</option>
         <option value="32">Bear (4mph, 32mpd)</option>
         <option value="24">Bear - Slow (3mph, 24mpd)</option>
@@ -250,6 +254,7 @@
               height: height
             }).addClass('grid-cell').appendTo(row)
 
+            row.css('height', height +'px')
             if (i % 2 == 1) {
               row.css('left', (-width / 2) + 'px')
             }
