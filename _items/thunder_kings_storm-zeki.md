@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Zeki
 thumb: /assets/images/items/zeki.jpg
 ---

@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Arti
 thumb: /assets/images/items/arti.jpg
 ---

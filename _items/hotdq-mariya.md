@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Mariya
 thumb: /assets/images/items/mariya.jpg
 ---

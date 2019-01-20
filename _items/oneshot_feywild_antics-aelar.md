@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Aelar
 thumb: /assets/images/items/aelar.jpg
 ---

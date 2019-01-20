@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Tibias
 thumb: /assets/images/items/tibias.jpg
 ---

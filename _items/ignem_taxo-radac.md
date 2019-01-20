@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Radac
 thumb: /assets/images/items/radac.jpg
 ---

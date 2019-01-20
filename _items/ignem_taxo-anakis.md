@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Anakis
 thumb: /assets/images/items/anakis.jpg
 ---

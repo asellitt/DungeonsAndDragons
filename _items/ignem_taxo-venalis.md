@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Venalis
 thumb: /assets/images/items/venalis.jpg
 ---

@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Boscone
 thumb: /assets/images/items/boscone.jpg
 ---

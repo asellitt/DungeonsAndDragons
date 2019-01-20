@@ -1,5 +1,5 @@
 ---
-layout: item
+layout: card
 title: Murdock
 thumb: /assets/images/items/murdock.jpg
 ---
