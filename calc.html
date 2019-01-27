@@ -16,26 +16,25 @@
     <div id="root"></div>
 
     <script type="text/babel">
-
-      const d = (number, sides) => {
+      const d = (number, sides, isCritical) => {
         let total = 0
         console.log(`${number}d${sides}`)
         for(let i=0; i < number; i++) {
           const roll = Math.floor(Math.random() * sides) + 1
-          console.log(`d${sides}: ${roll}`)
+          console.log(`d${sides}: ${roll} ${isCritical ? '(crit)' : ''}`)
           total += roll
         }
-        return total
+        return isCritical ? total + (number*sides) : total
       }
 
-      const calculate = (equation) => {
+      const calculate = (equation, isCritical) => {
         if(typeof equation.left === "object") {
           console.log('left is an equation')
-          equation.left = calculate(equation.left)
+          equation.left = calculate(equation.left, isCritical)
         }
         if(typeof equation.right === "object") {
           console.log('right is an equation')
-          equation.right = calculate(equation.right)
+          equation.right = calculate(equation.right, isCritical)
         }
 
         equation.left = parseInt(equation.left, 10)
@@ -51,7 +50,7 @@
         }
         else if (equation.operator === 'd') {
           console.log('operator is roll')
-          return d(equation.left, equation.right)
+          return d(equation.left, equation.right, isCritical)
         }
       }
 
@@ -111,49 +110,54 @@
         return equation
       }
 
-      const { colors, createMuiTheme } = window['material-ui']
+      const { createMuiTheme } = window['material-ui']
       const theme = createMuiTheme({
-        // palette: {
-        //   primary: {
-        //     light: colors.purple[300],
-        //     main: colors.purple[500],
-        //     dark: colors.purple[700],
-        //   },
-        //   secondary: {
-        //     light: colors.green[300],
-        //     main: colors.green[500],
-        //     dark: colors.green[700],
-        //   },
-        // },
-        // typography: {
-        //   useNextVariants: true,
-        // },
+        palette: {
+          type: 'dark',
+        },
+        typography: {
+          useNextVariants: true,
+        },
       });
 
-      const styles = theme => ({
+      const styles = (theme) => ({
         root: {
           padding: theme.spacing.unit,
-          flexGrow: 1,
           height: "100%",
         },
         screen: {
+          ...theme.mixins.gutters(),
           textAlign: 'right',
-          color: theme.palette.text.secondary,
           height: "100%",
           fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"],
           fontSize: "30pt",
+          color: theme.palette.text.primary,
+        },
+        equationContainer: {
+          height: "100%",
+          padding: 0,
+          margin: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "right",
+        },
+        equationRow: {
+          width: "auto",
+        },
+        equation: {
+          textAlign: "center",
         },
         button: {
           textAlign: 'right',
           height: "100%",
           fontSize: "20pt",
         }
-      });
+      })
 
       const {
         MuiThemeProvider,
-        Grid,
         CssBaseline,
+        Grid,
         Paper,
         Button,
       } = window['material-ui']
@@ -189,9 +193,12 @@
 
         evaluate = (ev) => {
           const { equation } = this.state
+          const { value } = ev.target
+
+          const isCritical = value === 'CRIT'
 
           this.setState({
-            equation: calculate(parse(equation)),
+            equation: `${calculate(parse(equation), isCritical)}`,
             pristine: true,
             last: null
           })
@@ -215,14 +222,21 @@
         }
 
         render() {
-          const { classes } = this.props;
-          const { equation } = this.state;
+          const { classes } = this.props
+          const { equation } = this.state
+
           return (
             <MuiThemeProvider theme={theme}>
+              <CssBaseline />
               <Grid container className={classes.root} spacing={16}>
-                <CssBaseline />
                 <Grid item xs={9}>
-                  <Paper elevation={0} className={classes.screen}>{equation}</Paper>
+                  <Paper elevation={0} className={classes.screen}>
+                    <div className={classes.equationContainer}>
+                      <div className={classes.equationRow}>
+                        <div className={classes.equation}>{equation}</div>
+                      </div>
+                    </div>
+                  </Paper>
                 </Grid>
                 <Grid item xs={3}>
                   <Button
@@ -412,8 +426,8 @@
                     color="secondary"
                     className={classes.button}
                     onClick={this.evaluate}
-                    value="crit"
-                  >Crit</Button>
+                    value="CRIT"
+                  >CRIT</Button>
                 </Grid>
               </Grid>
             </MuiThemeProvider>
@@ -422,7 +436,7 @@
       }
 
       const { withStyles } = window['material-ui']
-      const App = withStyles(styles)(Index);
+      const App = withStyles(styles(theme))(Index);
       ReactDOM.render(<App />, document.getElementById('root'));
     </script>
   </body>
