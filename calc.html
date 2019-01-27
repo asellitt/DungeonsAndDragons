@@ -1,5 +1,7 @@
 <html>
   <head>
+    <title>Dice Calculator</title>
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no">
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin></script>
@@ -147,7 +149,6 @@
           padding: theme.spacing.unit * 2,
           margin: theme.spacing.unit,
           textAlign: 'right',
-          color: theme.palette.text.secondary,
           height: "100%",
           fontSize: "40pt",
         }
@@ -163,13 +164,13 @@
 
       class Index extends React.Component {
         state = {
-          dice: 0,
+          equation: 0,
           pristine: true,
           last: null,
         }
 
         buildEquation = (ev) => {
-          const { dice, pristine, last } = this.state
+          const { equation, pristine, last } = this.state
           const { value } = ev.target
 
           const currentIsOperator = (['d', '+', '-'].indexOf(value) !== -1)
@@ -184,45 +185,64 @@
           if (pristine && currentIsOperator) return
 
           this.setState({
-            dice: `${pristine ? '' : dice}${value}`,
+            equation: `${pristine ? '' : equation}${value}`,
             pristine: false,
             last: value
           })
         }
 
         evaluate = (ev) => {
-          const { dice } = this.state
-          const { value } = ev.target
+          const { equation } = this.state
 
-          if (value === 'AC') this.setState({ dice: 0, pristine: true, last: null })
-          if (value === '=') this.setState({ dice: calculate(parse(dice)), pristine: true, last: null })
+          this.setState({
+            equation: calculate(parse(equation)),
+            pristine: true,
+            last: null
+          })
+        }
+
+        clear = () => {
+          this.setState({
+            equation: 0,
+            pristine: true,
+            last: null
+          })
+        }
+
+        delete = () => {
+          const { equation } = this.state
+
+          this.setState({
+            equation: equation.slice(0, -1),
+            last: equation[equation.length - 2],
+          })
         }
 
         render() {
           const { classes } = this.props;
-          const { dice } = this.state;
+          const { equation } = this.state;
           return (
             <MuiThemeProvider theme={theme}>
               <Grid container className={classes.root} spacing={16}>
                 <CssBaseline />
                 <Grid item xs={9}>
-                  <Paper elevation={0} className={classes.screen}>{dice}</Paper>
+                  <Paper elevation={0} className={classes.screen}>{equation}</Paper>
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="secondary"
                     className={classes.button}
-                    onClick={this.evaluate}
-                    value="AC"
-                  >AC</Button>
+                    onClick={this.delete}
+                    value="DEL"
+                  >DEL</Button>
                 </Grid>
 
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
@@ -233,7 +253,7 @@
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
@@ -244,7 +264,7 @@
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
@@ -255,7 +275,52 @@
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.clear}
+                    value="AC"
+                  >AC</Button>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="4"
+                  >4</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="5"
+                  >5</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="6"
+                  >6</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="secondary"
@@ -267,40 +332,40 @@
 
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
                     className={classes.button}
                     onClick={this.buildEquation}
-                    value="4"
-                  >4</Button>
+                    value="1"
+                  >1</Button>
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
                     className={classes.button}
                     onClick={this.buildEquation}
-                    value="5"
-                  >5</Button>
+                    value="2"
+                  >2</Button>
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
                     className={classes.button}
                     onClick={this.buildEquation}
-                    value="6"
-                  >6</Button>
+                    value="3"
+                  >3</Button>
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="secondary"
@@ -312,52 +377,7 @@
 
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
-                    fullWidth
-                    size="large"
-                    color="primary"
-                    className={classes.button}
-                    onClick={this.buildEquation}
-                    value="1"
-                  >1</Button>
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    size="large"
-                    color="primary"
-                    className={classes.button}
-                    onClick={this.buildEquation}
-                    value="2"
-                  >2</Button>
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    size="large"
-                    color="primary"
-                    className={classes.button}
-                    onClick={this.buildEquation}
-                    value="3"
-                  >3</Button>
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    size="large"
-                    color="secondary"
-                    className={classes.button}
-                    onClick={this.evaluate}
-                    value="crit"
-                  >Crit</Button>
-                </Grid>
-
-                <Grid item xs={3}>
-                  <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="primary"
@@ -366,9 +386,9 @@
                     value="0"
                   >0</Button>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="secondary"
@@ -379,7 +399,7 @@
                 </Grid>
                 <Grid item xs={3}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     fullWidth
                     size="large"
                     color="secondary"
@@ -387,6 +407,17 @@
                     onClick={this.evaluate}
                     value="="
                   >=</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.evaluate}
+                    value="crit"
+                  >Crit</Button>
                 </Grid>
               </Grid>
             </MuiThemeProvider>
