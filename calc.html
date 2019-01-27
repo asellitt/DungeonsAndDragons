@@ -1,0 +1,395 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@material-ui/core/umd/material-ui.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+      const d = (number, sides) => {
+        let total = 0
+        console.log(`${number}d${sides}`)
+        for(let i=0; i < number; i++) {
+          const roll = Math.floor(Math.random() * sides) + 1
+          console.log(`d${sides}: ${roll}`)
+          total += roll
+        }
+        return total
+      }
+
+      const calculate = (equation) => {
+        if(typeof equation.left === "object") {
+          console.log('left is an equation')
+          equation.left = calculate(equation.left)
+        }
+        if(typeof equation.right === "object") {
+          console.log('right is an equation')
+          equation.right = calculate(equation.right)
+        }
+
+        equation.left = parseInt(equation.left, 10)
+        equation.right = parseInt(equation.right, 10)
+
+        if(equation.operator === '+') {
+          console.log('operator is addition')
+          return equation.left + equation.right
+        }
+        else if (equation.operator === '-') {
+          console.log('operator is subtraction')
+          return equation.left - equation.right
+        }
+        else if (equation.operator === 'd') {
+          console.log('operator is roll')
+          return d(equation.left, equation.right)
+        }
+      }
+
+      const parse = (equation) => {
+        if(typeof equation === "string") {
+          return parse({
+            left: equation,
+            right: "0",
+            operator: "+",
+          })
+        }
+
+        if(equation.left.indexOf('+') !== -1) {
+          equation.left = parse({
+            left: equation.left.split(/\+(.+)/)[0],
+            right: equation.left.split(/\+(.+)/)[1],
+            operator: '+',
+          })
+        }
+        else if(equation.left.indexOf('-') !== -1) {
+          equation.left = parse({
+            left: equation.left.split(/\-(.+)/)[0],
+            right: equation.left.split(/\-(.+)/)[1],
+            operator: '-',
+          })
+        }
+        else if(equation.left.indexOf('d') !== -1) {
+          equation.left = parse({
+            left: equation.left.split(/d(.+)/)[0],
+            right: equation.left.split(/d(.+)/)[1],
+            operator: 'd',
+          })
+        }
+
+        if(equation.right.indexOf('+') !== -1) {
+          equation.right = parse({
+            left: equation.right.split(/\+(.+)/)[0],
+            right: equation.right.split(/\+(.+)/)[1],
+            operator: '+',
+          })
+        }
+        else if(equation.right.indexOf('-') !== -1) {
+          equation.right = parse({
+            left: equation.right.split(/\-(.+)/)[0],
+            right: equation.right.split(/\-(.+)/)[1],
+            operator: '-',
+          })
+        }
+        else if(equation.right.indexOf('d') !== -1) {
+          equation.right = parse({
+            left: equation.right.split(/d(.+)/)[0],
+            right: equation.right.split(/d(.+)/)[1],
+            operator: 'd',
+          })
+        }
+
+        return equation
+      }
+
+      const { colors, createMuiTheme } = window['material-ui']
+      const theme = createMuiTheme({
+        palette: {
+          primary: {
+            light: colors.purple[300],
+            main: colors.purple[500],
+            dark: colors.purple[700],
+          },
+          secondary: {
+            light: colors.green[300],
+            main: colors.green[500],
+            dark: colors.green[700],
+          },
+        },
+        typography: {
+          useNextVariants: true,
+        },
+      });
+
+      const styles = theme => ({
+        root: {
+          textAlign: 'center',
+          padding: theme.spacing.unit * 2,
+          flexGrow: 1,
+        },
+        screen: {
+          padding: theme.spacing.unit * 3,
+          textAlign: 'right',
+          color: theme.palette.text.secondary,
+        },
+        button: {
+          padding: theme.spacing.unit * 2,
+          margin: theme.spacing.unit,
+          textAlign: 'right',
+          color: theme.palette.text.secondary,
+        }
+      });
+
+      const {
+        MuiThemeProvider,
+        Grid,
+        CssBaseline,
+        Paper,
+        Button,
+      } = window['material-ui']
+
+      class Index extends React.Component {
+        state = {
+          dice: 0,
+          pristine: true,
+          last: null,
+        }
+
+        buildEquation = (ev) => {
+          const { dice, pristine, last } = this.state
+          const { value } = ev.target
+
+          const currentIsOperator = (['d', '+', '-'].indexOf(value) !== -1)
+          const currentIsOperand = (['1', '2', '3', '4', '5', '6', '7', '8', '9'].indexOf(value) !== -1)
+          const previousIsOperator = (['d', '+', '-'].indexOf(last) !== -1)
+          const previousIsOperand = (['1', '2', '3', '4', '5', '6', '7', '8', '9'].indexOf(last) !== -1)
+
+          // cant have 2 operators in a row
+          if (previousIsOperator && currentIsOperator) return
+
+          // cant have an operator before a value
+          if (pristine && currentIsOperator) return
+
+          this.setState({
+            dice: `${pristine ? '' : dice}${value}`,
+            pristine: false,
+            last: value
+          })
+        }
+
+        evaluate = (ev) => {
+          const { dice } = this.state
+          const { value } = ev.target
+
+          if (value === 'AC') this.setState({ dice: 0, pristine: true, last: null })
+          if (value === '=') this.setState({ dice: calculate(parse(dice)), pristine: true, last: null })
+        }
+
+        parse = (equation) => {
+          return 'McNuggets'
+        }
+
+        render() {
+          const { classes } = this.props;
+          const { dice } = this.state;
+          return (
+            <MuiThemeProvider theme={theme}>
+              <Grid container className={classes.root} spacing={16}>
+                <CssBaseline />
+                <Grid item xs={9}>
+                  <Paper elevation={0} className={classes.screen}>{dice}</Paper>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.evaluate}
+                    value="AC"
+                  >AC</Button>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="7"
+                  >7</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="8"
+                  >8</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="9"
+                  >9</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="+"
+                  >+</Button>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="4"
+                  >4</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="5"
+                  >5</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="6"
+                  >6</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="-"
+                  >-</Button>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="1"
+                  >1</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="2"
+                  >2</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="3"
+                  >3</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.evaluate}
+                    value="crit"
+                  >Crit</Button>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="0"
+                  >0</Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.buildEquation}
+                    value="d"
+                  >d</Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    size="large"
+                    color="secondary"
+                    className={classes.button}
+                    onClick={this.evaluate}
+                    value="="
+                  >=</Button>
+                </Grid>
+              </Grid>
+            </MuiThemeProvider>
+          );
+        }
+      }
+
+      const { withStyles } = window['material-ui']
+      const App = withStyles(styles)(Index);
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
