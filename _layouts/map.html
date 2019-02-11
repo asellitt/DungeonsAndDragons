@@ -254,8 +254,8 @@
         const angle = 30 * (Math.PI / 180)
         const sideLength = hexWidth / Math.sqrt(3)
         const hexHeight = sideLength + sideLength * Math.sin(angle)
-        const columnCount = Math.ceil(canvas.width / hexWidth)
-        const rowCount = Math.ceil(canvas.height / hexHeight)
+        const columnCount = Math.ceil(canvas.width / hexWidth) + 1
+        const rowCount = Math.ceil(canvas.height / hexHeight) + 1
 
         context.strokeStyle = '#'+color
         context.lineWidth = 3
