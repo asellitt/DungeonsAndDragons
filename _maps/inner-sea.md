@@ -43,3 +43,9 @@ gridcolor: 494949
 <span class="stannis --right" style="top:928px;left:1779px;">Keep D'Aguilon</span>
 <span class="pring --right" style="top:738px;left:1574px;">Monastery Of The Veil</span>
 <span class="--right" style="top:657px;left:1528px;">Crossroads Barrony</span>
+<span class="venalis --right" style="top:53px;left:935px;">Winterfall Enclave</span>
+<span class="venalis --left" style="top:1584px;left:2537px;">Stormsage Enclave</span>
+<span class="venalis --right" style="top:1546px;left:584px;">Tidespray Enclave</span>
+<span class="venalis --right" style="top:2448px;left:1472px;">Sandshifter Enclave</span>
+<span class="venalis --left" style="top:3257px;left:1471px;">Tanglebriar Enclave</span>
+<span class="venalis --right" style="top:3196px;left:1695px;">Erthengardt Enclave</span>
