@@ -49,3 +49,4 @@ gridcolor: 494949
 <span class="venalis --right" style="top:2448px;left:1472px;">Sandshifter Enclave</span>
 <span class="venalis --left" style="top:3257px;left:1471px;">Tanglebriar Enclave</span>
 <span class="venalis --right" style="top:3196px;left:1695px;">Erthengardt Enclave</span>
+<span class="anakis --left" style="top:346px;left:2048px;">Algadath</span>
