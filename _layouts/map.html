@@ -171,16 +171,10 @@
         $('.grid-speeds').select2()
           .on('change', function(event) {
             var miles = $(this).val()
-
-            if(miles === '') {
-              $('.grid').remove()
-            }
-            else {
-              createGrid(
-                (miles * {{page.pixelunit}}),
-                '{{page.gridcolor}}'
-              )
-            }
+            createGrid(
+              (miles * {{page.pixelunit}}),
+              '{{page.gridcolor}}'
+            )
           })
 
         $('.select2').css('width', '')
@@ -248,50 +242,60 @@
         $('body').append(circle)
       }
 
-      function createGrid(hexHeight, color) {
+      function createGrid(hexWidth, color) {
         const canvas = document.getElementById("grid")
         const context = canvas.getContext("2d")
         context.clearRect(0, 0, canvas.width, canvas.height)
 
-        if(hexHeight === '' || hexHeight === 0) {
+        if(hexWidth === '' || hexWidth === 0) {
           return
         }
 
-        const sideLength = hexHeight / Math.sqrt(3)
-        const columnCount = Math.ceil(canvas.width / hexHeight + 1)
-        const rowCount = Math.ceil(canvas.height / hexHeight + 1)
         const angle = 30 * (Math.PI / 180)
+        const sideLength = hexWidth / Math.sqrt(3)
+        const hexHeight = sideLength + sideLength * Math.sin(angle)
+        const columnCount = Math.ceil(canvas.width / hexWidth)
+        const rowCount = Math.ceil(canvas.height / hexHeight)
 
         context.strokeStyle = '#'+color
         context.lineWidth = 3
 
-        for(let i = 0; i < columnCount; i++) {
+        for(let i = 0; i < rowCount; i++) {
           context.save()
           if(i % 2 == 0) {
-            context.translate(-1/2*hexHeight, 0)
+            context.translate(-1 / 2 * hexWidth, 0)
           }
 
-          for(let j = 0; j < rowCount; j++) {
-            const xOffset = j*hexHeight
-            const yOffset = i*sideLength*3/2
+          for(let j = 0; j < columnCount; j++) {
+            const xOffset = j * hexWidth
+            const yOffset = i * sideLength * 3 / 2
+
+            const sideLine = {
+              x: xOffset,
+              y: yOffset + sideLength,
+            }
+
+            const bottomLeftLine = {
+              x: sideLine.x + sideLength * Math.cos(angle),
+              y: sideLine.y + sideLength * Math.sin(angle),
+            }
+
+            const bottomRightLine = {
+              x: bottomLeftLine.x + sideLength * Math.cos(angle),
+              y: sideLine.y,
+            }
 
             context.beginPath()
 
             // draw |
-            context.moveTo(0+xOffset, 0+yOffset)
-            context.lineTo(0+xOffset, sideLength+yOffset)
+            context.moveTo(xOffset, yOffset)
+            context.lineTo(sideLine.x, sideLine.y)
 
             // draw \
-            context.lineTo(
-              0+xOffset + sideLength*Math.cos(angle),
-              sideLength+yOffset + sideLength*Math.sin(angle)
-            )
+            context.lineTo(bottomLeftLine.x, bottomLeftLine.y)
 
             // draw /
-            context.lineTo(
-              0+xOffset+sideLength*Math.cos(angle) + sideLength*Math.cos(-angle),
-              sideLength+yOffset+sideLength*Math.sin(angle)  + sideLength*Math.sin(-angle)
-            )
+            context.lineTo(bottomRightLine.x, bottomRightLine.y)
 
             context.stroke()
           }
