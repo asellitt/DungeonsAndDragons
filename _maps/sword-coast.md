@@ -150,3 +150,4 @@ gridcolor: 494949
 <span class="--left" style="top:3079px;left:3360px;">Beregost</span>
 <span class="--left" style="top:2340px;left:4570px;">Well Of Dragons</span>
 <span class="--left" style="top:1647px;left:4254px;">Forgotten Forest</span>
+<span class="--left party-position" style="top:1797px;left:3252px;">Draconis Tyrannidem</span>
