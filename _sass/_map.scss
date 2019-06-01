@@ -50,6 +50,10 @@ button {
   z-index: 900;
 }
 
+.party-position+.point-of-interest__overlay {
+  background-color: rgba(139, 0, 0, 0.5);
+}
+
 .point-of-interest__pin {
   width: 10px;
   height: 10px;
