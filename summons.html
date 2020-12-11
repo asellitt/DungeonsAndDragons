@@ -533,18 +533,18 @@ body {
 
 <div class="controls">
   <div>
-    Spell
+    Spirit
     <select id="spell">
       <option value="all">All</option>
-      <option value="aberrant">Aberrant</option>
-      <option value="beast">Beast</option>
-      <option value="celestial">Celestial</option>
-      <option value="construct">Construct</option>
-      <option value="elemental">Elemental</option>
-      <option value="fey">Fey</option>
-      <option value="fiendish">Fiendish</option>
-      <option value="shadow">Shadow</option>
-      <option value="undead">Undead</option>
+      <option value="aberrant">Aberrant (4th)</option>
+      <option value="beast">Beast (2nd)</option>
+      <option value="celestial">Celestial (5th)</option>
+      <option value="construct">Construct (3rd)</option>
+      <option value="elemental">Elemental (4th)</option>
+      <option value="fey">Fey (3rd)</option>
+      <option value="fiendish">Fiendish (6th)</option>
+      <option value="shadow">Shadow (3rd)</option>
+      <option value="undead">Undead (3rd)</option>
     </select>
   </div>
   <div>
@@ -1093,19 +1093,28 @@ body {
 
   window.addEventListener("load", function() {
     const url = new URL(window.location)
-    const summonParam = url.searchParams.get("summon")
+    const spiritParam = url.searchParams.get("spirit")
     const spellParam = url.searchParams.get("spell")
     const statParam = url.searchParams.get("stat")
     const levelParam = url.searchParams.get("level")
 
-    document.getElementById("spell").value = summonParam
-    document.getElementById("spell").dispatchEvent(new Event("change"))
-    document.getElementById("spell-level").value = spellParam
-    document.getElementById("spell-level").dispatchEvent(new Event("change"))
-    document.getElementById("stat-score").value = statParam
-    document.getElementById("stat-score").dispatchEvent(new Event("change"))
-    document.getElementById("character-level").value = levelParam
-    document.getElementById("character-level").dispatchEvent(new Event("change"))
+    // only if its set, do this, else it breaks the form
+    if(typeof(spiritParam) === "string") {
+      document.getElementById("spell").value = spiritParam
+      document.getElementById("spell").dispatchEvent(new Event("change"))
+    }
+    if(typeof(spellParam) === "string") {
+      document.getElementById("spell-level").value = parseInt(spellParam)
+      document.getElementById("spell-level").dispatchEvent(new Event("change"))
+    }
+    if(typeof(statParam) === "string") {
+      document.getElementById("stat-score").value = parseInt(statParam)
+      document.getElementById("stat-score").dispatchEvent(new Event("change"))
+    }
+    if(typeof(levelParam) === "string") {
+      document.getElementById("character-level").value = parseInt(levelParam)
+      document.getElementById("character-level").dispatchEvent(new Event("change"))
+    }
   })
 
   document.getElementById("spell").addEventListener("change", function(e) {
