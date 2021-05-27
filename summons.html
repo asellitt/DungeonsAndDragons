@@ -531,7 +531,7 @@ body {
 }
 </style>
 
-<div class="controls">
+<div class="controls" id="controls">
   <div>
     Spirit
     <select id="spell">
@@ -1098,20 +1098,29 @@ body {
     const statParam = url.searchParams.get("stat")
     const levelParam = url.searchParams.get("level")
 
+    const spiritParamProvided = typeof(spiritParam) === "string"
+    const spellParamProvided = typeof(spellParam) === "string"
+    const statParamProvided = typeof(statParam) === "string"
+    const levelParamProvided = typeof(levelParam) === "string"
+
     // only if its set, do this, else it breaks the form
-    if(typeof(spiritParam) === "string") {
+    if(spiritParamProvided || spellParamProvided || statParamProvided || levelParamProvided){
+      document.getElementById("controls").style.display="none";
+    }
+
+    if(spiritParamProvided) {
       document.getElementById("spell").value = spiritParam
       document.getElementById("spell").dispatchEvent(new Event("change"))
     }
-    if(typeof(spellParam) === "string") {
+    if(spellParamProvided) {
       document.getElementById("spell-level").value = parseInt(spellParam)
       document.getElementById("spell-level").dispatchEvent(new Event("change"))
     }
-    if(typeof(statParam) === "string") {
+    if(statParamProvided) {
       document.getElementById("stat-score").value = parseInt(statParam)
       document.getElementById("stat-score").dispatchEvent(new Event("change"))
     }
-    if(typeof(levelParam) === "string") {
+    if(levelParamProvided) {
       document.getElementById("character-level").value = parseInt(levelParam)
       document.getElementById("character-level").dispatchEvent(new Event("change"))
     }
