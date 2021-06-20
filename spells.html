@@ -7,10 +7,20 @@ title: Spells
   <head>
     <title>Spell Cards</title>
     <style>
-      .card,.card-wrapper{
-        display: inline-block
+      @media print {
+        .class-picker {
+          display: none !important;
+        }
       }
-      .card{
+      .class-picker {
+        display: flex;
+        justify-content: center;
+      }
+
+      .card,.card-wrapper {
+        display: inline-block;
+      }
+      .card {
         position: relative;
         width: 63mm;
         height: 89mm;
@@ -22,9 +32,10 @@ title: Spells
         font-size: 3mm;
         color: #111;
         text-align: center;
-        overflow: hidden
+        overflow: hidden;
+        background-color: #000;
       }
-      .name{
+      .name {
         background-color: #fff;
         position: absolute;
         top: 3mm;
@@ -36,7 +47,7 @@ title: Spells
         align-items: center;
         justify-content: center
       }
-      .name .content{
+      .name .content {
         font-size: 3.5mm;
         text-transform: uppercase;
         font-weight: bold;
@@ -52,7 +63,7 @@ title: Spells
         font-size: 2mm;
         line-height: 3mm;
       }
-      .casting-time, .range{
+      .casting-time, .range {
         background-color: #fff;
         display: inline-block;
         position: absolute;
@@ -60,13 +71,13 @@ title: Spells
         width: 28.25mm;
         height: 8mm
       }
-      .casting-time{
+      .casting-time {
         left: 3mm;
       }
-      .range{
+      .range {
         left: 31.75mm
       }
-      .components, .duration{
+      .components, .duration {
         background-color: #fff;
         display: inline-block;
         position: absolute;
@@ -74,10 +85,10 @@ title: Spells
         width: 28.25mm;
         height: 8mm;
       }
-      .components{
+      .components {
         left: 3mm;
       }
-      .duration{
+      .duration {
         left: 31.75mm;
       }
       .concentration {
@@ -89,6 +100,7 @@ title: Spells
         left: 22mm;
         font-weight: bold;
         color: #FFF;
+        border-bottom-color: #000;
       }
       .concentration:after {
         content: '';
@@ -98,6 +110,7 @@ title: Spells
         width: 0;
         height: 0;
         border: 3mm solid transparent;
+        border-top-color: #000;
       }
       .concentration div {
         position: absolute;
@@ -109,8 +122,9 @@ title: Spells
         font-weight: bold;
         text-transform: uppercase;
         font-size: 3mm;
+        color: #000;
       }
-      .description{
+      .description {
         background-color: #fff;
         display: inline-block;
         position: absolute;
@@ -134,7 +148,7 @@ title: Spells
         border: 0;
         padding-bottom: 1mm;
       }
-      .short-description{
+      .short-description {
         height: 34mm;
       }
       .long-description {
@@ -168,50 +182,316 @@ title: Spells
         font-size: 2mm;
       }
 
-      .cleric {
-        background-color: #DBA200;
+      .class-artificer {
+        background-color: #D59139;
       }
-      .cleric .header {
-        color: #DBA200;
+      .class-artificer .header {
+        color: #D59139;
       }
-      .cleric .concentration {
-        border-bottom-color: #DBA200;
+      .class-artificer .concentration {
+        border-bottom-color: #D59139;
       }
-      .cleric .concentration:after {
-        border-top-color: #DBA200;
-      }
-
-      .warlock {
-        background-color: #BC001D;
-      }
-      .warlock .header {
-        color: #BC001D;
-      }
-      .warlock .concentration {
-        border-bottom-color: #BC001D;
-      }
-      .warlock .concentration:after {
-        border-top-color: #BC001D;
+      .class-artificer .concentration:after {
+        border-top-color: #D59139;
       }
 
-      .sorcerer {
+      .class-barbarian {
+        background-color: #e5623e;
+      }
+      .class-barbarian .header {
+        color: #e5623e;
+      }
+      .class-barbarian .concentration {
+        border-bottom-color: #e5623e;
+      }
+      .class-barbarian .concentration:after {
+        border-top-color: #e5623e;
+      }
+
+      .class-bard {
+        background-color: #aa6dab;
+      }
+      .class-bard .header {
+        color: #aa6dab;
+      }
+      .class-bard .concentration {
+        border-bottom-color: #aa6dab;
+      }
+      .class-bard .concentration:after {
+        border-top-color: #aa6dab;
+      }
+
+      .class-cleric {
+        background-color: #92a2b3;
+      }
+      .class-cleric .header {
+        color: #92a2b3;
+      }
+      .class-cleric .concentration {
+        border-bottom-color: #92a2b3;
+      }
+      .class-cleric .concentration:after {
+        border-top-color: #92a2b3;
+      }
+
+      .class-druid {
+        background-color: #79853c;
+      }
+      .class-druid .header {
+        color: #79853c;
+      }
+      .class-druid .concentration {
+        border-bottom-color: #79853c;
+      }
+      .class-druid .concentration:after {
+        border-top-color: #79853c;
+      }
+
+      .class-fighter {
+        background-color: #7e4f3d;
+      }
+      .class-fighter .header {
+        color: #7e4f3d;
+      }
+      .class-fighter .concentration {
+        border-bottom-color: #7e4f3d;
+      }
+      .class-fighter .concentration:after {
+        border-top-color: #7e4f3d;
+      }
+
+      .class-fighter {
+        background-color: #7e4f3d;
+      }
+      .class-fighter .header {
+        color: #7e4f3d;
+      }
+      .class-fighter .concentration {
+        border-bottom-color: #7e4f3d;
+      }
+      .class-fighter .concentration:after {
+        border-top-color: #7e4f3d;
+      }
+
+      .class-monk {
+        background-color: #53a5c5;
+      }
+      .class-monk .header {
+        color: #53a5c5;
+      }
+      .class-monk .concentration {
+        border-bottom-color: #53a5c5;
+      }
+      .class-monk .concentration:after {
+        border-top-color: #53a5c5;
+      }
+
+      .class-paladin {
+        background-color: #b59e54;
+      }
+      .class-paladin .header {
+        color: #b59e54;
+      }
+      .class-paladin .concentration {
+        border-bottom-color: #b59e54;
+      }
+      .class-paladin .concentration:after {
+        border-top-color: #b59e54;
+      }
+
+      .class-ranger {
+        background-color: #4f7e61;
+      }
+      .class-ranger .header {
+        color: #4f7e61;
+      }
+      .class-ranger .concentration {
+        border-bottom-color: #4f7e61;
+      }
+      .class-ranger .concentration:after {
+        border-top-color: #4f7e61;
+      }
+
+      .class-rogue {
+        background-color: #555752;
+      }
+      .class-rogue .header {
+        color: #555752;
+      }
+      .class-rogue .concentration {
+        border-bottom-color: #555752;
+      }
+      .class-rogue .concentration:after {
+        border-top-color: #555752;
+      }
+
+      .class-sorcerer {
+        background-color: #972e2e;
+      }
+      .class-sorcerer .header {
+        color: #972e2e;
+      }
+      .class-sorcerer .concentration {
+        border-bottom-color: #972e2e;
+      }
+      .class-sorcerer .concentration:after {
+        border-top-color: #972e2e;
+      }
+
+      .class-warlock {
+        background-color: #8137af;
+      }
+      .class-warlock .header {
+        color: #8137af;
+      }
+      .class-warlock .concentration {
+        border-bottom-color: #8137af;
+      }
+      .class-warlock .concentration:after {
+        border-top-color: #8137af;
+      }
+
+      .class-wizard {
+        background-color: #0045b7;
+      }
+      .class-wizard .header {
+        color: #0045b7;
+      }
+      .class-wizard .concentration {
+        border-bottom-color: #0045b7;
+      }
+      .class-wizard .concentration:after {
+        border-top-color: #0045b7;
+      }
+
+      .gf9-arcane {
+        background-color: #cd503f;
+      }
+      .gf9-arcane .header {
+        color: #cd503f;
+      }
+      .gf9-arcane .concentration {
+        border-bottom-color: #cd503f;
+      }
+      .gf9-arcane .concentration:after {
+        border-top-color: #cd503f;
+      }
+
+      .gf9-bard {
+        background-color: #923674;
+      }
+      .gf9-bard .header {
+        color: #923674;
+      }
+      .gf9-bard .concentration {
+        border-bottom-color: #923674;
+      }
+      .gf9-bard .concentration:after {
+        border-top-color: #923674;
+      }
+
+      .gf9-cleric {
+        background-color: #e2af18;
+      }
+      .gf9-cleric .header {
+        color: #e2af18;
+      }
+      .gf9-cleric .concentration {
+        border-bottom-color: #e2af18;
+      }
+      .gf9-cleric .concentration:after {
+        border-top-color: #e2af18;
+      }
+
+      .gf9-druid {
+        background-color: #77aa58;
+      }
+      .gf9-druid .header {
+        color: #77aa58;
+      }
+      .gf9-druid .concentration {
+        border-bottom-color: #77aa58;
+      }
+      .gf9-druid .concentration:after {
+        border-top-color: #77aa58;
+      }
+
+      .gf9-paladin {
+        background-color: #41b3d1;
+      }
+      .gf9-paladin .header {
+        color: #41b3d1;
+      }
+      .gf9-paladin .concentration {
+        border-bottom-color: #41b3d1;
+      }
+      .gf9-paladin .concentration:after {
+        border-top-color: #41b3d1;
+      }
+
+      .gf9-ranger {
+        background-color: #745e2a;
+      }
+      .gf9-ranger .header {
+        color: #745e2a;
+      }
+      .gf9-ranger .concentration {
+        border-bottom-color: #745e2a;
+      }
+      .gf9-ranger .concentration:after {
+        border-top-color: #745e2a;
+      }
+
+      .char-rulke {
         background-color: #BC001D;
       }
-      .sorcerer .header {
+      .char-rulke .header {
         color: #BC001D;
       }
-      .sorcerer .concentration {
+      .char-rulke .concentration {
         border-bottom-color: #BC001D;
       }
-      .sorcerer .concentration:after {
+      .char-rulke .concentration:after {
         border-top-color: #BC001D;
       }
     </style>
   </head>
 
   <body cz-shortcut-listen="true">
+    <div class="class-picker">
+      <select id="class-picker">
+        <option value="">Default</option>
+        <optgroup label="Class">
+          <option value="class-artificer">Artificer</option>
+          <option value="class-barbarian">Barbarian</option>
+          <option value="class-bard">Bard</option>
+          <option value="class-cleric">Cleric</option>
+          <option value="class-druid">Druid</option>
+          <option value="class-fighter">Fighter</option>
+          <option value="class-monk">Monk</option>
+          <option value="class-paladin">Paladin</option>
+          <option value="class-ranger">Ranger</option>
+          <option value="class-rogue">Rogue</option>
+          <option value="class-sorcerer">Sorcerer</option>
+          <option value="class-warlock">Warlock</option>
+          <option value="class-wizard">Wizard</option>
+        </optgroup>
+        <optgroup label="Gale Force Nine">
+          <option value="gf9-arcane">Arcane</option>
+          <option value="gf9-bard">Bard</option>
+          <option value="gf9-cleric">Cleric</option>
+          <option value="gf9-druid">Druid</option>
+          <option value="gf9-paladin">Paladin</option>
+          <option value="gf9-ranger">Ranger</option>
+        </optgroup>
+        <optgroup label="Character">
+          <option value="char-rulke">Rulke</option>
+        </optgroup>
+      </select>
+    </div>
+
     <div class="card-wrapper">
-      <div class="card cleric">
+      <div class="card">
         <div class="name">
           <div class="content">Swirling Mists</div>
         </div>
@@ -253,7 +533,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card cleric">
+      <div class="card">
         <div class="name">
           <div class="content">Hand of the Guardian</div>
         </div>
@@ -306,7 +586,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card cleric">
+      <div class="card">
         <div class="name">
           <div class="content">Hand of the Guardian</div>
         </div>
@@ -355,7 +635,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card cleric">
+      <div class="card">
         <div class="name">
           <div class="content">Hand of the Guardian</div>
         </div>
@@ -410,7 +690,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card cleric">
+      <div class="card">
         <div class="name">
           <div class="content">Hand of the Guardian</div>
         </div>
@@ -460,7 +740,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card warlock">
+      <div class="card">
         <div class="name">
           <div class="content">Spray of Thorns</div>
         </div>
@@ -508,7 +788,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card warlock">
+      <div class="card">
         <div class="name">
           <div class="content">Summon Construct</div>
         </div>
@@ -562,7 +842,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Fire Bolt</div>
         </div>
@@ -600,7 +880,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Mind Sliver</div>
         </div>
@@ -638,7 +918,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Guidance</div>
         </div>
@@ -671,7 +951,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Mage Hand</div>
         </div>
@@ -709,7 +989,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Prestidigitation</div>
         </div>
@@ -752,7 +1032,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Thaumaturgy</div>
         </div>
@@ -795,7 +1075,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Cure Wounds</div>
         </div>
@@ -833,7 +1113,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Guiding Bolt</div>
         </div>
@@ -871,7 +1151,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Shield</div>
         </div>
@@ -903,7 +1183,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Aid</div>
         </div>
@@ -944,7 +1224,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Spiritual Weapon</div>
         </div>
@@ -988,7 +1268,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Word of Radiance</div>
         </div>
@@ -1029,7 +1309,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Bless</div>
         </div>
@@ -1071,7 +1351,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Comprehend Languages</div>
         </div>
@@ -1109,7 +1389,7 @@ title: Spells
     </div>
 
     <div class="card-wrapper">
-      <div class="card sorcerer">
+      <div class="card">
         <div class="name">
           <div class="content">Misty Step</div>
         </div>
@@ -1140,5 +1420,13 @@ title: Spells
       </div>
     </div>
 
+    <script>
+      document.getElementById("class-picker").addEventListener("change", function(e) {
+        const classname = e.target.value
+        Array.from(document.getElementsByClassName("card")).forEach(function(element) {
+          element.className = "card "+ classname
+        })
+      })
+    </script>
   </body>
 </html>
