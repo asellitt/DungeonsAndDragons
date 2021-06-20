@@ -529,6 +529,16 @@ body {
   margin-left:20px;
   margin-right:20px;
 }
+
+.stat-separator {
+  width: 1px;
+}
+
+@media print {
+  .controls {
+    display: none !important;
+  }
+}
 </style>
 
 <div class="controls" id="controls">
@@ -568,10 +578,11 @@ body {
     Character Level <input id="character-level" type="number" min=1 max=20 placeholder="1-20"/>
   </div>
 </div>
-<div class="phb">
+
+<div class="phb" id="summons">
+  <hr class="stat-separator">
 
   <section id="aberrant">
-    <hr>
     <section>
       <blockquote>
         <section>
@@ -627,7 +638,7 @@ body {
     </section>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="beast">
     <blockquote>
@@ -682,7 +693,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="celestial">
     <blockquote>
@@ -737,7 +748,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="construct">
     <blockquote>
@@ -796,7 +807,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="elemental">
     <blockquote>
@@ -851,7 +862,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="fey">
     <blockquote>
@@ -910,7 +921,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="fiendish">
     <blockquote>
@@ -969,7 +980,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="shadow">
     <blockquote>
@@ -1029,7 +1040,7 @@ body {
     </blockquote>
   </section>
 
-  <hr>
+  <hr class="stat-separator">
 
   <section id="undead">
     <blockquote>
@@ -1103,11 +1114,14 @@ body {
     const statParamProvided = typeof(statParam) === "string"
     const levelParamProvided = typeof(levelParam) === "string"
 
-    // only if its set, do this, else it breaks the form
-    if(spiritParamProvided || spellParamProvided || statParamProvided || levelParamProvided){
-      document.getElementById("controls").style.display="none";
+    if(spiritParamProvided || spellParamProvided || statParamProvided || levelParamProvided) {
+      document.getElementById("controls").style.display = "none"
+      document.getElementById("summons").style.display = "initial"
+      document.querySelector("body").style.margin = "0"
+      document.querySelector("#" + spiritParam + " blockquote").style.margin = "initial"
     }
 
+    // only if its set, do this, else it breaks the form
     if(spiritParamProvided) {
       document.getElementById("spell").value = spiritParam
       document.getElementById("spell").dispatchEvent(new Event("change"))
