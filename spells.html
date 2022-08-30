@@ -11,7 +11,16 @@ title: Spells
                 .class-picker {
                     display: none !important;
                 }
+
+                .no-print {
+                    display: none !important;
+                }
             }
+
+            .no-print {
+                filter: grayscale(0.8);
+            }
+
             .class-picker {
                 display: flex;
                 justify-content: center;
@@ -4906,7 +4915,7 @@ title: Spells
         <script>
             document
                 .getElementById("class-picker")
-                .addEventListener("change", function (e) {
+                .addEventListener("change", (e) => {
                     const classname = e.target.value;
                     Array.from(document.getElementsByClassName("card")).forEach(
                         function (element) {
@@ -4914,6 +4923,16 @@ title: Spells
                         }
                     );
                 });
+            document.querySelectorAll(".card-wrapper").forEach((element) =>
+                element.addEventListener("click", (e) => {
+                    const element = e.target;
+                    if (element.classList.contains("no-print")) {
+                        element.classList.remove("no-print");
+                    } else {
+                        element.classList.add("no-print");
+                    }
+                })
+            );
         </script>
     </body>
 </html>
