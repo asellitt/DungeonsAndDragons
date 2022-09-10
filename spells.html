@@ -4994,7 +4994,7 @@ title: Spells
                 .getElementById("select-all")
                 .addEventListener("click", (e) => {
                     document
-                        .querySelectorAll(".card-wrapper")
+                        .querySelectorAll(".card")
                         .forEach((element) =>
                             element.classList.remove("no-print")
                         );
@@ -5003,12 +5003,10 @@ title: Spells
                 .getElementById("deselect-all")
                 .addEventListener("click", (e) => {
                     document
-                        .querySelectorAll(".card-wrapper")
-                        .forEach((element) => {
-                            if (!element.classList.contains("no-print")) {
-                                element.classList.add("no-print");
-                            }
-                        });
+                        .querySelectorAll(".card")
+                        .forEach((element) =>
+                            element.classList.add("no-print")
+                        );
                 });
         </script>
     </body>
