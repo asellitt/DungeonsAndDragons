@@ -500,6 +500,9 @@ title: Spells
                     <option value="char-rulke">Rulke</option>
                 </optgroup>
             </select>
+
+            <button id="select-all">Select All</button>
+            <button id="deselect-all">Deselect All</button>
         </div>
 
         <div class="card-wrapper">
@@ -4931,6 +4934,26 @@ title: Spells
                     }
                 })
             );
+            document
+                .getElementById("select-all")
+                .addEventListener("click", (e) => {
+                    document
+                        .querySelectorAll(".card-wrapper")
+                        .forEach((element) =>
+                            element.classList.remove("no-print")
+                        );
+                });
+            document
+                .getElementById("deselect-all")
+                .addEventListener("click", (e) => {
+                    document
+                        .querySelectorAll(".card-wrapper")
+                        .forEach((element) => {
+                            if (!element.classList.contains("no-print")) {
+                                element.classList.add("no-print");
+                            }
+                        });
+                });
         </script>
     </body>
 </html>
