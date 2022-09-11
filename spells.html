@@ -5127,8 +5127,7 @@ title: Spells
                     );
                 });
             document.querySelectorAll(".card-wrapper").forEach((element) =>
-                element.addEventListener("click", (e) => {
-                    const element = e.target;
+                element.addEventListener("click", (_) => {
                     if (element.classList.contains("no-print")) {
                         element.classList.remove("no-print");
                     } else {
@@ -5138,18 +5137,18 @@ title: Spells
             );
             document
                 .getElementById("select-all")
-                .addEventListener("click", (e) => {
+                .addEventListener("click", (_) => {
                     document
-                        .querySelectorAll(".card")
+                        .querySelectorAll(".card-wrapper")
                         .forEach((element) =>
                             element.classList.remove("no-print")
                         );
                 });
             document
                 .getElementById("deselect-all")
-                .addEventListener("click", (e) => {
+                .addEventListener("click", (_) => {
                     document
-                        .querySelectorAll(".card")
+                        .querySelectorAll(".card-wrapper")
                         .forEach((element) =>
                             element.classList.add("no-print")
                         );
