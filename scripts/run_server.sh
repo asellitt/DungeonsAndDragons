@@ -1,4 +1,4 @@
-#? /bin/bash
+#! /bin/bash
 
 brew bundle &&
 bundle install &&
