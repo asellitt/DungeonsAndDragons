@@ -1,0 +1,304 @@
+---
+layout: card
+title: Card Generator (Pathfinder)
+---
+
+<html>
+    <head>
+        <style>
+            @media print {
+                .class-picker {
+                    display: none !important;
+                }
+
+                .no-print {
+                    display: none !important;
+                }
+            }
+
+            @font-face {
+                font-family: "Pathfinder-Icons";
+                src: url("../assets/fonts/Pathfinder-Icons.ttf");
+            }
+
+            @font-face {
+                font-family: "ActionIcons";
+                src: url("../assets/fonts/action_icons.eot");
+                src: url("../assets/fonts/action_icons.woff2") format("woff2"),
+                    url("../assets/fonts/action_icons.woff") format("woff"),
+                    url("../assets/fonts/action_icons.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            .no-print {
+                filter: grayscale(0.8);
+            }
+
+            .class-picker {
+                display: flex;
+                justify-content: center;
+            }
+
+            .card-wrapper {
+                display: inline-block;
+            }
+            .feat-card {
+                display: inline-block;
+                position: relative;
+                width: 63mm;
+                height: 89mm;
+                padding: 0;
+                margin: 5px;
+                border-radius: 4.7619047619%;
+                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+                font-weight: 400;
+                font-size: 3mm;
+                color: #111;
+                text-align: center;
+                overflow: hidden;
+                background-color: #000;
+            }
+            .feat-card .action {
+                font-family: "ActionIcons";
+                font-weight: initial;
+                text-transform: none;
+            }
+            .feat-card .action-action1:before {
+                content: "\00E1";
+            }
+            .feat-card .action-action2:before {
+                content: "\00E2";
+            }
+            .feat-card .action-action3:before {
+                content: "\00E3";
+            }
+            .feat-card .action-free:before {
+                content: "\00E0";
+            }
+            .feat-card .action-reaction:before {
+                content: "\00E4";
+            }
+            .feat-card .name {
+                background-color: #fff;
+                position: absolute;
+                top: 3mm;
+                left: 3mm;
+                width: 57mm;
+                height: 5mm;
+                border-radius: 2mm 2mm 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .feat-card .name .content {
+                font-size: 3.5mm;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            .feat-card .skill {
+                position: absolute;
+                top: 8mm;
+                width: 100%;
+                height: 3mm;
+            }
+            .feat-card .skill .content {
+                color: #fff;
+                font-size: 2mm;
+                line-height: 3mm;
+            }
+            .feat-card .trait {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 11mm;
+                width: 28.25mm;
+                height: 10mm;
+                left: 31.75mm;
+                left: 3mm;
+                width: 57mm;
+            }
+            .feat-card .trait .content {
+                font-size: 2.5mm;
+            }
+            .feat-card .header {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 3mm;
+                color: #000;
+            }
+            .feat-card .description {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 21.5mm;
+                left: 3mm;
+                width: 55mm;
+                height: 34mm;
+                padding: 1mm;
+                text-align: justify;
+                font-size: 2mm;
+                height: 62mm;
+                border-radius: 0 0 2mm 2mm;
+            }
+            .feat-card .description p {
+                margin: 0;
+                padding-left: 0;
+                border: 0;
+                padding-bottom: 0.5mm;
+            }
+            .feat-card .description ul {
+                margin: 0;
+                padding-left: 3mm;
+                border: 0;
+                padding-bottom: 0.5mm;
+            }
+            .feat-card hr {
+                border: 0;
+                position: relative;
+                left: -1mm;
+                width: 57mm;
+                border-bottom: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="class-picker">
+            <input
+                type="text"
+                id="character-id"
+                placeholder="Pathbuilder2e character id"
+            />
+            <input
+                type="text"
+                id="api-key"
+                placeholder="Pathfinder2.fr api key"
+            />
+            <button id="fetch-data">Fetch</button>
+        </div>
+        <div id="cards"></div>
+        <script>
+            function append(str) {
+                var consoleElement = document.getElementById("console");
+                var existingContent = consoleElement.innerHTML;
+                var newContent = existingContent + "\n" + str;
+
+                consoleElement.innerHTML = newContent;
+            }
+
+            function saveFormValues() {
+                var characterId = document.getElementById("character-id").value;
+                if (characterId) {
+                    localStorage.setItem("character-id", characterId);
+                }
+
+                var apiKey = document.getElementById("api-key").value;
+                if (apiKey) {
+                    localStorage.setItem("api-key", apiKey);
+                }
+            }
+
+            async function getCharacterData(characterId) {
+                var req = new Request(
+                    `https://pathbuilder2e.com/json.php?id=${characterId}`,
+                    { method: "GET" }
+                );
+                var response = await fetch(req);
+                return response.json();
+            }
+
+            async function getFeatData(featName, apiKey) {
+                var headers = new Headers();
+                headers.append("Authorization", apiKey);
+
+                var req = new Request(
+                    `https://api.pathfinder2.fr/v1/pf2/feat?name=${featName}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                return response.json();
+            }
+
+            function generateFeatCard(featName, featData) {
+                var feat = featData.results.find(
+                    (feat) => feat.name === featName
+                );
+                var actionClass = `action-${feat.system.actionType.value}${
+                    feat.system.actions.value ? feat.system.actions.value : ""
+                }`;
+                var traits = `${
+                    feat.system.traits.rarity
+                }, ${feat.system.traits.value.join(", ")}`;
+                var description = `${feat.system.description.value.replace(
+                    /@UUID\[.*\]\{(.*)\}/,
+                    "$1"
+                )}`;
+
+                var card = `<div class="card-wrapper">
+                                <div class="feat-card">
+                                    <div class="name">
+                                        <div class="content">
+                                            ${feat.name}
+                                            <span class="action"><span class="${actionClass}" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <div class="content">${feat.type} (${feat.system.category})</div>
+                                    </div>
+                                    <div class="trait">
+                                        <div class="header">Trait</div>
+                                        <div class="content">${traits}</div>
+                                    </div>
+                                    <div class="description">${description}</div>
+                                </div>
+                            </div>`;
+
+                document.getElementById("cards").innerHTML += card;
+            }
+
+            document
+                .getElementById("fetch-data")
+                .addEventListener("click", async (_) => {
+                    saveFormValues();
+                    var characterId =
+                        document.getElementById("character-id").value;
+                    var apiKey = document.getElementById("api-key").value;
+                    console.log("Fetching character data");
+
+                    var character = await getCharacterData(characterId);
+                    console.log(
+                        "Character fetched",
+                        JSON.stringify(character, null, 2)
+                    );
+
+                    var featNames = character.build.feats.map(
+                        (feat) => feat[0]
+                    );
+                    featNames.forEach(async (featName) => {
+                        console.log("Fetching feat data", featName);
+                        var featData = await getFeatData(featName, apiKey);
+                        console.log(
+                            "Feat fetched",
+                            JSON.stringify(featData, null, 2)
+                        );
+
+                        generateFeatCard(featName, featData);
+                    });
+
+                    console.log("Data fetched");
+                });
+
+            (() => {
+                var characterId = localStorage.getItem("character-id");
+                if (characterId) {
+                    document.getElementById("character-id").value = characterId;
+                }
+                var apiKey = localStorage.getItem("api-key");
+                if (apiKey) {
+                    document.getElementById("api-key").value = apiKey;
+                }
+            })();
+        </script>
+    </body>
+</html>
