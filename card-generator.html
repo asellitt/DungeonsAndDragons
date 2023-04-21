@@ -101,6 +101,7 @@ title: Card Generator (Pathfinder)
                 top: 8mm;
                 width: 100%;
                 height: 3mm;
+                text-transform: capitalize;
             }
             .feat-card .skill .content {
                 color: #fff;
@@ -109,17 +110,7 @@ title: Card Generator (Pathfinder)
             }
             .feat-card .trait {
                 background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 11mm;
-                width: 28.25mm;
-                height: 10mm;
-                left: 31.75mm;
-                left: 3mm;
-                width: 57mm;
-            }
-            .feat-card .trait .content {
-                font-size: 2.5mm;
+                text-align: center;
             }
             .feat-card .header {
                 font-weight: bold;
@@ -131,14 +122,13 @@ title: Card Generator (Pathfinder)
                 background-color: #fff;
                 display: inline-block;
                 position: absolute;
-                top: 21.5mm;
+                top: 11mm;
                 left: 3mm;
                 width: 55mm;
-                height: 34mm;
                 padding: 1mm;
                 text-align: justify;
                 font-size: 2mm;
-                height: 62mm;
+                height: 72mm;
                 border-radius: 0 0 2mm 2mm;
             }
             .feat-card .description p {
@@ -246,11 +236,14 @@ title: Card Generator (Pathfinder)
                                     <div class="skill">
                                         <div class="content">${feat.type} (${feat.system.category})</div>
                                     </div>
-                                    <div class="trait">
-                                        <div class="header">Trait</div>
-                                        <div class="content">${traits}</div>
+                                    <div class="description">
+                                        <div class="trait">
+                                            <div class="header">Trait</div>
+                                            <div class="content">${traits}</div>
+                                        </div>
+                                        <hr/>
+                                        ${description}
                                     </div>
-                                    <div class="description">${description}</div>
                                 </div>
                             </div>`;
 
