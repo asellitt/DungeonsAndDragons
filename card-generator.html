@@ -43,6 +43,7 @@ title: Card Generator (Pathfinder)
             .card-wrapper {
                 display: inline-block;
             }
+
             .feat-card {
                 display: inline-block;
                 position: relative;
@@ -328,17 +329,47 @@ title: Card Generator (Pathfinder)
                 return response.json();
             }
 
-            async function getFeatData(featName, apiKey) {
+            async function getFeatData(featName, featType, apiKey) {
                 var headers = new Headers();
                 headers.append("Authorization", apiKey);
+                var endpoint = featType === "Heritage" ? "heritage" : "feat";
 
                 var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/feat?name=${featName}`,
+                    `https://api.pathfinder2.fr/v1/pf2/${endpoint}?name=${featName}`,
                     { method: "GET", headers }
                 );
 
                 var response = await fetch(req);
                 return response.json();
+            }
+
+            async function getSpecialData(specialName, apiKey) {
+                var headers = new Headers();
+                headers.append("Authorization", apiKey);
+                var featData;
+
+                var req = new Request(
+                    `https://api.pathfinder2.fr/v1/pf2/classFeature?name=${specialName}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                var specialData = await response.json();
+                var specialDataResponse = specialData.results.find(
+                    (special) => special.name === specialName
+                );
+                if (specialDataResponse) {
+                    return specialDataResponse;
+                }
+
+                var req = new Request(
+                    `https://api.pathfinder2.fr/v1/pf2/ancestryFeature?name=${specialName}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                var specialData = response.json();
+                return specialData;
             }
 
             async function getSpellData(spellName, apiKey) {
@@ -368,16 +399,21 @@ title: Card Generator (Pathfinder)
                     JSON.stringify(feat, null, 2)
                 );
 
-                var actionClass = `action-${feat.system.actionType.value}${
-                    feat.system.actions.value ? feat.system.actions.value : ""
-                }`;
-                var traits = `${
-                    feat.system.traits.rarity
-                }, ${feat.system.traits.value.join(", ")}`;
-                var description = `${feat.system.description.value.replace(
-                    /@UUID\[.*\]\{(.*)\}/,
-                    "$1"
-                )}`;
+                var actionClass = generateActionType(
+                    feat.system.actionType,
+                    feat.system.actions
+                );
+                var traits = [
+                    feat.system.traits.rarity,
+                    ...feat.system.traits.value,
+                ].join(", ");
+
+                var description = generateDescription(
+                    feat.system.description.value
+                );
+                var category = feat.system.category
+                    ? feat.system.category
+                    : "Special";
 
                 var card = `<div class="card-wrapper">
                                 <div class="feat-card">
@@ -388,7 +424,7 @@ title: Card Generator (Pathfinder)
                                         </div>
                                     </div>
                                     <div class="skill">
-                                        <div class="content">${feat.type} (${feat.system.category})</div>
+                                        <div class="content">${feat.type} (${category})</div>
                                     </div>
                                     <div class="description">
                                         <div class="trait">
@@ -421,7 +457,6 @@ title: Card Generator (Pathfinder)
                 var actionClass = `action-action${
                     spell.system.time.value ? spell.system.time.value : ""
                 }`;
-                console.log(spellName, actionClass);
                 var spellLevel = generateSpellLevel(
                     spell.system.level.value,
                     spell.system.school.value,
@@ -430,10 +465,9 @@ title: Card Generator (Pathfinder)
                 var components = generateSpellComponents(
                     spell.system.components
                 );
-                var description = `${spell.system.description.value.replace(
-                    /@UUID\[.*\]\{(.*)\}/,
-                    "$1"
-                )}`;
+                var description = generateDescription(
+                    spell.system.description.value
+                );
 
                 var card = `<div class="card-wrapper">
                                 <div class="spell-card">
@@ -477,6 +511,77 @@ title: Card Generator (Pathfinder)
                 document.getElementById("cards").innerHTML += card;
             }
 
+            function generateSpecialCard(specialName, specialData) {
+                console.log(
+                    `Generating special card: ${specialName}`,
+                    JSON.stringify(specialData, null, 2)
+                );
+
+                var special = specialData;
+                if (specialData.results) {
+                    if (specialData.count === 0) {
+                        console.log(`No data found for ${specialName} card`);
+                        return;
+                    }
+                    special = specialData.results.find(
+                        (special) => special.name === specialName
+                    );
+                }
+
+                var actionClass = generateActionType(
+                    special.system.actionType,
+                    special.system.actions
+                );
+                var traits = [
+                    special.system.traits.rarity,
+                    ...special.system.traits.value,
+                ].join(", ");
+
+                var description = generateDescription(
+                    special.system.description.value
+                );
+                var category = special.system.category
+                    ? special.system.category.replace("feature", "")
+                    : "Special";
+
+                var card = `<div class="card-wrapper">
+                                <div class="feat-card">
+                                    <div class="name">
+                                        <div class="content">
+                                            ${special.name}
+                                            <span class="action"><span class="${actionClass}" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="skill">
+                                        <div class="content">${special.type} (${category})</div>
+                                    </div>
+                                    <div class="description">
+                                        <div class="trait">
+                                            <div class="header">Trait</div>
+                                            <div class="content">${traits}</div>
+                                        </div>
+                                        <hr/>
+                                        ${description}
+                                    </div>
+                                </div>
+                            </div>`;
+
+                document.getElementById("cards").innerHTML += card;
+            }
+
+            function generateActionType(actionType, actions) {
+                if (actionType) {
+                    return `action-${actionType.value}${
+                        actions.value ? actions.value : ""
+                    }`;
+                }
+            }
+            function generateDescription(description) {
+                return `${description
+                    .replace(/@UUID\[.*\]\{(.*)\}/, "$1")
+                    .replace(/\[\[\/r.(.*)\[(.*)\]\]\]/, "$1 $2")}`;
+            }
+
             function generateSpellLevel(level, school, traits) {
                 if (traits.includes("cantrip")) {
                     return `${school} Cantrip`;
@@ -515,10 +620,15 @@ title: Card Generator (Pathfinder)
                     JSON.stringify(character, null, 2)
                 );
 
-                var featNames = character.build.feats.map((feat) => feat[0]);
-                featNames.forEach(async (featName) => {
+                var featNames = character.build.feats.forEach(async (feat) => {
+                    var featName = feat[0];
+                    var featType = feat[2];
                     console.log(`Fetching feat data for ${featName}`);
-                    var featData = await getFeatData(featName, apiKey);
+                    var featData = await getFeatData(
+                        featName,
+                        featType,
+                        apiKey
+                    );
                     generateFeatCard(featName, featData);
                 });
 
@@ -532,6 +642,12 @@ title: Card Generator (Pathfinder)
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
                     generateSpellCard(spellName, spellData);
+                });
+
+                character.build.specials.forEach(async (specialName) => {
+                    console.log(`Fetching special data for ${specialName}`);
+                    var specialData = await getSpecialData(specialName, apiKey);
+                    generateSpecialCard(specialName, specialData);
                 });
             }
 
