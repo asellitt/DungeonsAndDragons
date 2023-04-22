@@ -101,6 +101,7 @@ title: Card Generator (Pathfinder)
                 top: 8mm;
                 width: 100%;
                 height: 3mm;
+                text-transform: capitalize;
             }
             .feat-card .skill .content {
                 color: #fff;
@@ -109,17 +110,7 @@ title: Card Generator (Pathfinder)
             }
             .feat-card .trait {
                 background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 11mm;
-                width: 28.25mm;
-                height: 10mm;
-                left: 31.75mm;
-                left: 3mm;
-                width: 57mm;
-            }
-            .feat-card .trait .content {
-                font-size: 2.5mm;
+                text-align: center;
             }
             .feat-card .header {
                 font-weight: bold;
@@ -131,14 +122,13 @@ title: Card Generator (Pathfinder)
                 background-color: #fff;
                 display: inline-block;
                 position: absolute;
-                top: 21.5mm;
+                top: 11mm;
                 left: 3mm;
                 width: 55mm;
-                height: 34mm;
                 padding: 1mm;
                 text-align: justify;
                 font-size: 2mm;
-                height: 62mm;
+                height: 72mm;
                 border-radius: 0 0 2mm 2mm;
             }
             .feat-card .description p {
@@ -154,9 +144,148 @@ title: Card Generator (Pathfinder)
                 padding-bottom: 0.5mm;
             }
             .feat-card hr {
+                margin: 0;
                 border: 0;
                 position: relative;
                 left: -1mm;
+                width: 57mm;
+                border-bottom: 1px solid black;
+            }
+
+            .spell-card {
+                position: relative;
+                width: 63mm;
+                height: 89mm;
+                padding: 0;
+                margin: 5px;
+                border-radius: 4.7619047619%;
+                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+                font-weight: 400;
+                font-size: 3mm;
+                color: #111;
+                text-align: center;
+                overflow: hidden;
+                background-color: #000;
+            }
+            .spell-card .action {
+                font-family: "ActionIcons";
+                font-weight: initial;
+                text-transform: none;
+            }
+            .spell-card .action-action1:before {
+                content: "\00E1";
+            }
+            .spell-card .action-action2:before {
+                content: "\00E2";
+            }
+            .spell-card .action-action3:before {
+                content: "\00E3";
+            }
+            .spell-card .action-free:before {
+                content: "\00E0";
+            }
+            .spell-card .action-reaction:before {
+                content: "\00E4";
+            }
+            .spell-card .name {
+                background-color: #fff;
+                position: absolute;
+                top: 3mm;
+                left: 3mm;
+                width: 57mm;
+                height: 5mm;
+                border-radius: 2mm 2mm 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .spell-card .name .content {
+                font-size: 3.5mm;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            .spell-card .spell-level {
+                position: absolute;
+                top: 8mm;
+                width: 100%;
+                height: 3mm;
+            }
+            .spell-card .spell-level .content {
+                color: #fff;
+                font-size: 2mm;
+                line-height: 3mm;
+                text-transform: capitalize;
+            }
+            .spell-card .saving-throw,
+            .spell-card .range {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 11mm;
+                width: 28.25mm;
+                height: 8mm;
+                text-transform: capitalize;
+            }
+            .spell-card .saving-throw {
+                left: 3mm;
+                text-transform: capitalize;
+            }
+            .spell-card .range {
+                left: 31.75mm;
+                text-transform: capitalize;
+            }
+            .spell-card .components,
+            .spell-card .duration {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 19.5mm;
+                width: 28.25mm;
+                height: 8mm;
+                text-transform: capitalize;
+            }
+            .spell-card .components {
+                left: 3mm;
+            }
+            .spell-card .duration {
+                left: 31.75mm;
+            }
+            .spell-card .header {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 3mm;
+                color: #000;
+            }
+            .spell-card .description {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 30.5mm;
+                left: 3mm;
+                width: 53mm;
+                padding: 2mm;
+                text-align: justify;
+                font-size: 2mm;
+                height: 50mm;
+                border-radius: 0 0 2mm 2mm;
+            }
+            .spell-card .description p {
+                margin: 0;
+                padding-left: 0;
+                border: 0;
+                padding-bottom: 1mm;
+            }
+            .spell-card .description ul {
+                margin: 0;
+                padding-left: 3mm;
+                border: 0;
+                padding-bottom: 1mm;
+            }
+            .spell-card hr {
+                margin: 0;
+                border: 0;
+                position: relative;
+                left: -2mm;
                 width: 57mm;
                 border-bottom: 1px solid black;
             }
@@ -178,14 +307,6 @@ title: Card Generator (Pathfinder)
         </div>
         <div id="cards"></div>
         <script>
-            function append(str) {
-                var consoleElement = document.getElementById("console");
-                var existingContent = consoleElement.innerHTML;
-                var newContent = existingContent + "\n" + str;
-
-                consoleElement.innerHTML = newContent;
-            }
-
             function saveFormValues() {
                 var characterId = document.getElementById("character-id").value;
                 if (characterId) {
@@ -220,10 +341,33 @@ title: Card Generator (Pathfinder)
                 return response.json();
             }
 
+            async function getSpellData(spellName, apiKey) {
+                var headers = new Headers();
+                headers.append("Authorization", apiKey);
+
+                var req = new Request(
+                    `https://api.pathfinder2.fr/v1/pf2/spell?name=${spellName}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                return response.json();
+            }
+
             function generateFeatCard(featName, featData) {
+                if (featData.count === 0) {
+                    console.log(`No data found for ${featName} card`);
+                    return;
+                }
+
                 var feat = featData.results.find(
                     (feat) => feat.name === featName
                 );
+                console.log(
+                    `Generating feat card: ${featName}`,
+                    JSON.stringify(feat, null, 2)
+                );
+
                 var actionClass = `action-${feat.system.actionType.value}${
                     feat.system.actions.value ? feat.system.actions.value : ""
                 }`;
@@ -246,15 +390,149 @@ title: Card Generator (Pathfinder)
                                     <div class="skill">
                                         <div class="content">${feat.type} (${feat.system.category})</div>
                                     </div>
-                                    <div class="trait">
-                                        <div class="header">Trait</div>
-                                        <div class="content">${traits}</div>
+                                    <div class="description">
+                                        <div class="trait">
+                                            <div class="header">Trait</div>
+                                            <div class="content">${traits}</div>
+                                        </div>
+                                        <hr/>
+                                        ${description}
+                                    </div>
+                                </div>
+                            </div>`;
+
+                document.getElementById("cards").innerHTML += card;
+            }
+
+            function generateSpellCard(spellName, spellData) {
+                if (spellData.count === 0) {
+                    console.log(`No data found for ${spellName} card`);
+                    return;
+                }
+
+                var spell = spellData.results.find(
+                    (spell) => spell.name === spellName
+                );
+                console.log(
+                    `Generating spell card: ${spellName}`,
+                    JSON.stringify(spell, null, 2)
+                );
+
+                var actionClass = `action-action${
+                    spell.system.time.value ? spell.system.time.value : ""
+                }`;
+                console.log(spellName, actionClass);
+                var spellLevel = generateSpellLevel(
+                    spell.system.level.value,
+                    spell.system.school.value,
+                    spell.system.traits.value
+                );
+                var components = generateSpellComponents(
+                    spell.system.components
+                );
+                var description = `${spell.system.description.value.replace(
+                    /@UUID\[.*\]\{(.*)\}/,
+                    "$1"
+                )}`;
+
+                var card = `<div class="card-wrapper">
+                                <div class="spell-card">
+                                    <div class="name">
+                                        <div class="content">
+                                            ${spell.name}
+                                            <span class="action"><span class="${actionClass}" /></span>
+                                        </div>
+                                    </div>
+                                    <div class="spell-level">
+                                        <div class="content">${spellLevel}</div>
+                                    </div>
+                                    <div class="saving-throw">
+                                        <div class="header">Saving Throw</div>
+                                        <div class="content">${orDash(
+                                            spell.system.save.value
+                                        )}</div>
+                                    </div>
+                                    <div class="range">
+                                        <div class="header">Range</div>
+                                        <div class="content">${orDash(
+                                            spell.system.range.value
+                                        )}</div>
+                                    </div>
+                                    <div class="components">
+                                        <div class="header">Components</div>
+                                        <div class="content">${orDash(
+                                            components
+                                        )}</div>
+                                    </div>
+                                    <div class="duration">
+                                        <div class="header">Duration</div>
+                                        <div class="content">${orDash(
+                                            spell.system.duration.value
+                                        )}</div>
                                     </div>
                                     <div class="description">${description}</div>
                                 </div>
                             </div>`;
 
                 document.getElementById("cards").innerHTML += card;
+            }
+
+            function generateSpellLevel(level, school, traits) {
+                if (traits.includes("cantrip")) {
+                    return `${school} Cantrip`;
+                }
+                switch (level) {
+                    case 1:
+                        return `${level}st-level ${school}`;
+                    case 2:
+                        return `${level}nd-level ${school}`;
+                    case 3:
+                        return `${level}rd-level ${school}`;
+                    default:
+                        return `${level}th-level ${school}`;
+                }
+            }
+
+            function generateSpellComponents(components) {
+                return [
+                    ...(components.verbal ? ["V"] : []),
+                    ...(components.somatic ? ["S"] : []),
+                    ...(components.material ? ["M"] : []),
+                    ...(components.focus ? ["focus"] : []),
+                ].join(", ");
+            }
+
+            function orDash(val) {
+                return val ? val : `&mdash;`;
+            }
+
+            async function createCards(characterId, apiKey) {
+                console.log("Fetching character data");
+
+                var character = await getCharacterData(characterId);
+                console.log(
+                    "Character fetched",
+                    JSON.stringify(character, null, 2)
+                );
+
+                var featNames = character.build.feats.map((feat) => feat[0]);
+                featNames.forEach(async (featName) => {
+                    console.log(`Fetching feat data for ${featName}`);
+                    var featData = await getFeatData(featName, apiKey);
+                    generateFeatCard(featName, featData);
+                });
+
+                var spellNames = character.build.spellCasters
+                    .map((spellCasters) =>
+                        spellCasters.spells.map((spells) => spells.list).flat()
+                    )
+                    .flat();
+
+                spellNames.forEach(async (spellName) => {
+                    console.log(`Fetching spell data for ${spellName}`);
+                    var spellData = await getSpellData(spellName, apiKey);
+                    generateSpellCard(spellName, spellData);
+                });
             }
 
             document
@@ -264,29 +542,7 @@ title: Card Generator (Pathfinder)
                     var characterId =
                         document.getElementById("character-id").value;
                     var apiKey = document.getElementById("api-key").value;
-                    console.log("Fetching character data");
-
-                    var character = await getCharacterData(characterId);
-                    console.log(
-                        "Character fetched",
-                        JSON.stringify(character, null, 2)
-                    );
-
-                    var featNames = character.build.feats.map(
-                        (feat) => feat[0]
-                    );
-                    featNames.forEach(async (featName) => {
-                        console.log("Fetching feat data", featName);
-                        var featData = await getFeatData(featName, apiKey);
-                        console.log(
-                            "Feat fetched",
-                            JSON.stringify(featData, null, 2)
-                        );
-
-                        generateFeatCard(featName, featData);
-                    });
-
-                    console.log("Data fetched");
+                    createCards(characterId, apiKey);
                 });
 
             (() => {
