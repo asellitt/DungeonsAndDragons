@@ -928,16 +928,18 @@ title: Card Generator (Pathfinder)
                     JSON.stringify(character, null, 2)
                 );
 
-                var featNames = character.build.feats.forEach(async (feat) => {
-                    var featName = feat[0];
-                    var featType = feat[2];
-                    console.log(`Fetching feat data for ${featName}`);
+                var feats = character.build.feats.map((feat) => {
+                    return { name: feat[0], type: feat[2] };
+                });
+
+                new Set(feats).forEach(async (feat) => {
+                    console.log(`Fetching feat data for ${feat.name}`);
                     var featData = await getFeatData(
-                        featName,
-                        featType,
+                        feat.name,
+                        feat.type,
                         apiKey
                     );
-                    generateFeatCard(featName, featData);
+                    generateFeatCard(feat.name, featData);
                 });
 
                 var spellNames = character.build.spellCasters
@@ -946,17 +948,22 @@ title: Card Generator (Pathfinder)
                     )
                     .flat();
 
-                spellNames.forEach(async (spellName) => {
+                new Set(spellNames).forEach(async (spellName) => {
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
                     generateSpellCard(spellName, spellData);
                 });
 
-                character.build.specials.forEach(async (specialName) => {
-                    console.log(`Fetching special data for ${specialName}`);
-                    var specialData = await getSpecialData(specialName, apiKey);
-                    generateSpecialCard(specialName, specialData);
-                });
+                new Set(character.build.specials).forEach(
+                    async (specialName) => {
+                        console.log(`Fetching special data for ${specialName}`);
+                        var specialData = await getSpecialData(
+                            specialName,
+                            apiKey
+                        );
+                        generateSpecialCard(specialName, specialData);
+                    }
+                );
             }
 
             document
