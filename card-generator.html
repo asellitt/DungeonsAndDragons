@@ -31,6 +31,11 @@ title: Card Generator (Pathfinder)
                 font-style: normal;
             }
 
+            strong p {
+                /* api has some fucked data... */
+                font-weight: initial;
+            }
+
             .no-print {
                 filter: opacity(0.2);
             }
@@ -329,6 +334,7 @@ title: Card Generator (Pathfinder)
                 padding: 1mm;
                 padding-top: 0;
                 text-align: justify;
+                overflow: clip;
                 font-size: 2.2mm;
                 height: 74mm;
                 border-radius: 0 0 2mm 2mm;
@@ -352,6 +358,25 @@ title: Card Generator (Pathfinder)
                 left: -1mm;
                 width: 57mm;
                 border-bottom: 1.5px solid black;
+            }
+            .feat-card table {
+                border-collapse: collapse;
+                white-space: initial !important;
+                text-align: left;
+                vertical-align: top;
+            }
+            .feat-card table,
+            .feat-card tr,
+            .feat-card td,
+            .feat-card th {
+                vertical-align: top;
+                padding: 0;
+                margin: 0;
+                border: 0;
+            }
+            .feat-card th:first-child,
+            .feat-card td:first-child {
+                padding-right: 1mm;
             }
 
             .spell-card {
@@ -468,6 +493,7 @@ title: Card Generator (Pathfinder)
                 padding: 1mm;
                 padding-top: 0;
                 text-align: justify;
+                overflow: hidden;
                 font-size: 2.2mm;
                 height: 58mm;
                 border-radius: 0 0 2mm 2mm;
@@ -491,6 +517,25 @@ title: Card Generator (Pathfinder)
                 left: -1mm;
                 width: 57mm;
                 border-bottom: 1.5px solid black;
+            }
+            .feat-card table {
+                border-collapse: collapse;
+                white-space: initial !important;
+                text-align: left;
+                vertical-align: top;
+            }
+            .spell-card table,
+            .spell-card tr,
+            .spell-card td,
+            .spell-card th {
+                vertical-align: top;
+                padding: 0;
+                margin: 0;
+                border: 0;
+            }
+            .spell-card th:first-child,
+            .spell-card td:first-child {
+                padding-right: 1mm;
             }
         </style>
     </head>
@@ -827,8 +872,9 @@ title: Card Generator (Pathfinder)
             }
             function generateDescription(description) {
                 return `${description
-                    .replace(/@UUID\[.*\]\{(.*)\}/, "$1")
-                    .replace(/\[\[\/r.(.*)\[(.*)\]\]\]/, "$1 $2")}`;
+                    .replaceAll(/@UUID\[.*\]\{(.*)\}/g, "$1")
+                    .replaceAll(/\[\[\/r \(\(.*\).*\).*\[.*\]\]\]\{.*\}/g, "")
+                    .replaceAll(/\[\[\/r (.*)\[(.*)\]\]\]/g, "$1 $2")}`;
             }
 
             function generateSpellLevel(level, school, traits) {
@@ -872,6 +918,33 @@ title: Card Generator (Pathfinder)
                     }
                 });
                 document.getElementById("cards").appendChild(element);
+
+                reorderCards();
+            }
+
+            function reorderCards() {
+                var deck = document.getElementById("cards");
+                var cards = [...deck.children];
+
+                cards.sort((a, b) => {
+                    a = a.querySelectorAll(".name .content")[0].innerHTML;
+                    b = b.querySelectorAll(".name .content")[0].innerHTML;
+                    return a > b;
+                });
+
+                var addedCardNames = [];
+                cards.forEach((card) => {
+                    var thisCard =
+                        card.querySelector(".name .content").innerHTML;
+
+                    if (addedCardNames.indexOf(thisCard) !== -1) {
+                        console.log(`Duplicate card ${thisCard.trim()} found`);
+                        deck.removeChild(card);
+                    } else {
+                        addedCardNames.push(thisCard);
+                        deck.appendChild(card);
+                    }
+                });
             }
 
             async function createCards(characterId, apiKey) {
@@ -883,16 +956,18 @@ title: Card Generator (Pathfinder)
                     JSON.stringify(character, null, 2)
                 );
 
-                var featNames = character.build.feats.forEach(async (feat) => {
-                    var featName = feat[0];
-                    var featType = feat[2];
-                    console.log(`Fetching feat data for ${featName}`);
+                var feats = character.build.feats.map((feat) => {
+                    return { name: feat[0], type: feat[2] };
+                });
+
+                new Set(feats).forEach(async (feat) => {
+                    console.log(`Fetching feat data for ${feat.name}`);
                     var featData = await getFeatData(
-                        featName,
-                        featType,
+                        feat.name,
+                        feat.type,
                         apiKey
                     );
-                    generateFeatCard(featName, featData);
+                    generateFeatCard(feat.name, featData);
                 });
 
                 var spellNames = character.build.spellCasters
@@ -901,17 +976,22 @@ title: Card Generator (Pathfinder)
                     )
                     .flat();
 
-                spellNames.forEach(async (spellName) => {
+                new Set(spellNames).forEach(async (spellName) => {
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
                     generateSpellCard(spellName, spellData);
                 });
 
-                character.build.specials.forEach(async (specialName) => {
-                    console.log(`Fetching special data for ${specialName}`);
-                    var specialData = await getSpecialData(specialName, apiKey);
-                    generateSpecialCard(specialName, specialData);
-                });
+                new Set(character.build.specials).forEach(
+                    async (specialName) => {
+                        console.log(`Fetching special data for ${specialName}`);
+                        var specialData = await getSpecialData(
+                            specialName,
+                            apiKey
+                        );
+                        generateSpecialCard(specialName, specialData);
+                    }
+                );
             }
 
             document
