@@ -867,7 +867,8 @@ title: Card Generator (Pathfinder)
             function generateDescription(description) {
                 return `${description
                     .replaceAll(/@UUID\[.*\]\{(.*)\}/g, "$1")
-                    .replaceAll(/\[\[\/r.(.*)\[(.*)\]\]\]/g, "$1 $2")}`;
+                    .replaceAll(/\[\[\/r \(\(.*\).*\).*\[.*\]\]\]\{.*\}/g, "")
+                    .replaceAll(/\[\[\/r (.*)\[(.*)\]\]\]/g, "$1 $2")}`;
             }
 
             function generateSpellLevel(level, school, traits) {
