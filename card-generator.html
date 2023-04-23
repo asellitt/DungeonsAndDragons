@@ -334,6 +334,7 @@ title: Card Generator (Pathfinder)
                 padding: 1mm;
                 padding-top: 0;
                 text-align: justify;
+                overflow: clip;
                 font-size: 2.2mm;
                 height: 74mm;
                 border-radius: 0 0 2mm 2mm;
@@ -917,6 +918,33 @@ title: Card Generator (Pathfinder)
                     }
                 });
                 document.getElementById("cards").appendChild(element);
+
+                reorderCards();
+            }
+
+            function reorderCards() {
+                var deck = document.getElementById("cards");
+                var cards = [...deck.children];
+
+                cards.sort((a, b) => {
+                    a = a.querySelectorAll(".name .content")[0].innerHTML;
+                    b = b.querySelectorAll(".name .content")[0].innerHTML;
+                    return a > b;
+                });
+
+                var addedCardNames = [];
+                cards.forEach((card) => {
+                    var thisCard =
+                        card.querySelector(".name .content").innerHTML;
+
+                    if (addedCardNames.indexOf(thisCard) !== -1) {
+                        console.log(`Duplicate card ${thisCard.trim()} found`);
+                        deck.removeChild(card);
+                    } else {
+                        addedCardNames.push(thisCard);
+                        deck.appendChild(card);
+                    }
+                });
             }
 
             async function createCards(characterId, apiKey) {
