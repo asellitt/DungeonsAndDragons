@@ -5,7 +5,7 @@ title: Card Generator (Pathfinder)
 
 <html>
     <head>
-        <style>
+        <style data="global">
             @media print {
                 .class-picker {
                     display: none !important;
@@ -248,7 +248,8 @@ title: Card Generator (Pathfinder)
             .card-wrapper .gf9-ranger .header {
                 color: #745e2a;
             }
-
+        </style>
+        <style data="feat-card">
             .feat-card {
                 display: inline-block;
                 position: relative;
@@ -378,7 +379,8 @@ title: Card Generator (Pathfinder)
             .feat-card td:first-child {
                 padding-right: 1mm;
             }
-
+        </style>
+        <style data="spell-card">
             .spell-card {
                 position: relative;
                 width: 63mm;
@@ -413,6 +415,18 @@ title: Card Generator (Pathfinder)
             }
             .spell-card .action-reaction:before {
                 content: "\00E4";
+            }
+            .spell-card .focus {
+                background: black;
+                color: white;
+                padding: 0;
+                margin: 0;
+                border: 1px;
+                display: inline-block;
+                width: 4mm;
+                border-radius: 3mm;
+                position: absolute;
+                left: 1mm;
             }
             .spell-card .name {
                 background-color: #fff;
@@ -518,7 +532,7 @@ title: Card Generator (Pathfinder)
                 width: 57mm;
                 border-bottom: 1.5px solid black;
             }
-            .feat-card table {
+            .spell-card table {
                 border-collapse: collapse;
                 white-space: initial !important;
                 text-align: left;
@@ -538,6 +552,242 @@ title: Card Generator (Pathfinder)
                 padding-right: 1mm;
             }
         </style>
+        <style data="character-card">
+            .character-card {
+                position: relative;
+                width: 63mm;
+                height: 89mm;
+                padding: 0;
+                margin: 5px;
+                border-radius: 4.7619047619%;
+                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+                font-weight: 400;
+                font-size: 3mm;
+                color: #111;
+                text-align: center;
+                overflow: hidden;
+                background-color: #000;
+            }
+            .character-card .name {
+                background-color: #fff;
+                position: absolute;
+                top: 3mm;
+                left: 3mm;
+                width: 57mm;
+                height: 5mm;
+                border-radius: 2mm 2mm 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .character-card .name .content {
+                font-size: 3.5mm;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            .character-card .character-level {
+                position: absolute;
+                top: 8mm;
+                width: 100%;
+                height: 3mm;
+            }
+            .character-card .character-level .content {
+                color: #fff;
+                font-size: 2mm;
+                line-height: 3mm;
+                text-transform: capitalize;
+            }
+            .character-card .hp,
+            .character-card .ac,
+            .character-card .perception,
+            .character-card .fortitude,
+            .character-card .reflex,
+            .character-card .will {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                width: 18.8333333333mm;
+                height: 7.5mm;
+                text-transform: capitalize;
+            }
+            .character-card .hp,
+            .character-card .ac,
+            .character-card .perception {
+                top: 11mm;
+            }
+            .character-card .fortitude,
+            .character-card .reflex,
+            .character-card .will {
+                top: 18.75mm;
+            }
+            .character-card .hp,
+            .character-card .fortitude {
+                left: 3mm;
+            }
+            .character-card .ac,
+            .character-card .reflex {
+                left: 22.08333333333mm;
+            }
+            .character-card .perception,
+            .character-card .will {
+                right: 3mm;
+            }
+            .character-card .hp .header,
+            .character-card .ac .header,
+            .character-card .perception .header,
+            .character-card .fortitude .header,
+            .character-card .reflex .header,
+            .character-card .will .header {
+                text-transform: uppercase;
+                font-size: 2.75mm;
+                line-height: 2.25mm;
+            }
+            .character-card .hp .content,
+            .character-card .ac .content,
+            .character-card .perception .content,
+            .character-card .fortitude .content,
+            .character-card .reflex .content,
+            .character-card .will .content {
+                font-size: 6mm;
+                line-height: 5mm;
+                text-transform: capitalize;
+            }
+            .character-card .acrobatics,
+            .character-card .arcana,
+            .character-card .athletics,
+            .character-card .crafting,
+            .character-card .deception,
+            .character-card .diplomacy,
+            .character-card .intimidation,
+            .character-card .lore-1,
+            .character-card .lore-2,
+            .character-card .medicine,
+            .character-card .nature,
+            .character-card .occultism,
+            .character-card .performance,
+            .character-card .religion,
+            .character-card .society,
+            .character-card .stealth,
+            .character-card .survival,
+            .character-card .thievery {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                width: 28.375mm;
+                height: 6mm;
+                text-transform: capitalize;
+            }
+            .character-card .acrobatics,
+            .character-card .arcana,
+            .character-card .athletics,
+            .character-card .crafting,
+            .character-card .deception,
+            .character-card .diplomacy,
+            .character-card .intimidation,
+            .character-card .lore-1,
+            .character-card .lore-2 {
+                left: 3mm;
+            }
+            .character-card .medicine,
+            .character-card .nature,
+            .character-card .occultism,
+            .character-card .performance,
+            .character-card .religion,
+            .character-card .society,
+            .character-card .stealth,
+            .character-card .survival,
+            .character-card .thievery {
+                right: 3mm;
+            }
+            .character-card .acrobatics,
+            .character-card .medicine {
+                top: 29.25mm;
+            }
+            .character-card .arcana,
+            .character-card .nature {
+                top: calc(29.25mm + 1 * 6.25mm);
+            }
+            .character-card .athletics,
+            .character-card .occultism {
+                top: calc(29.25mm + 2 * 6.25mm);
+            }
+            .character-card .crafting,
+            .character-card .performance {
+                top: calc(29.25mm + 3 * 6.25mm);
+            }
+            .character-card .deception,
+            .character-card .religion {
+                top: calc(29.25mm + 4 * 6.25mm);
+            }
+            .character-card .diplomacy,
+            .character-card .society {
+                top: calc(29.25mm + 5 * 6.25mm);
+            }
+            .character-card .intimidation,
+            .character-card .stealth {
+                top: calc(29.25mm + 6 * 6.25mm);
+            }
+            .character-card .lore-1,
+            .character-card .survival {
+                top: calc(29.25mm + 7 * 6.25mm);
+            }
+            .character-card .lore-2,
+            .character-card .thievery {
+                top: calc(29.25mm + 8 * 6.25mm);
+            }
+            .character-card .acrobatics .content,
+            .character-card .arcana .content,
+            .character-card .athletics .content,
+            .character-card .crafting .content,
+            .character-card .deception .content,
+            .character-card .diplomacy .content,
+            .character-card .intimidation .content,
+            .character-card .lore-1 .content,
+            .character-card .lore-2 .content,
+            .character-card .medicine .content,
+            .character-card .nature .content,
+            .character-card .occultism .content,
+            .character-card .performance .content,
+            .character-card .religion .content,
+            .character-card .society .content,
+            .character-card .stealth .content,
+            .character-card .survival .content,
+            .character-card .thievery .content {
+                position: absolute;
+                left: 0;
+                text-align: center;
+                font-size: 4mm;
+                line-height: 6mm;
+            }
+            .character-card .acrobatics .header,
+            .character-card .arcana .header,
+            .character-card .athletics .header,
+            .character-card .crafting .header,
+            .character-card .deception .header,
+            .character-card .diplomacy .header,
+            .character-card .intimidation .header,
+            .character-card .lore-1 .header,
+            .character-card .lore-2 .header,
+            .character-card .medicine .header,
+            .character-card .nature .header,
+            .character-card .occultism .header,
+            .character-card .performance .header,
+            .character-card .religion .header,
+            .character-card .society .header,
+            .character-card .stealth .header,
+            .character-card .survival .header,
+            .character-card .thievery .header {
+                display: table-cell;
+                height: 6mm;
+                width: 21.25mm;
+                position: relative;
+                left: 7.1mm;
+                text-align: left;
+                text-transform: capitalize;
+                line-height: 2.5mm;
+                vertical-align: middle;
+            }
+        </style>
     </head>
     <body>
         <div class="class-picker">
@@ -554,6 +804,8 @@ title: Card Generator (Pathfinder)
                         placeholder="Pathfinder2.fr api key"
                     />
                     <button id="fetch-data">Fetch</button>
+                    <input type="checkbox" id="characters-only" />
+                    <label>Characters Only</label>
                 </div>
                 <div>
                     <select id="feat-picker">
@@ -611,6 +863,7 @@ title: Card Generator (Pathfinder)
 
                     <button id="select-all">Select All</button>
                     <button id="deselect-all">Deselect All</button>
+                    <button id="clear-cards">Delete All</button>
                 </div>
             </div>
         </div>
@@ -693,6 +946,256 @@ title: Card Generator (Pathfinder)
                 return response.json();
             }
 
+            function generateCharacterCard(characterBuild) {
+                var characterLevel = generateLevel(
+                    characterBuild.level,
+                    `${characterBuild.heritage} ${characterBuild.class}`,
+                    []
+                );
+                var hp = generateHp(
+                    characterBuild.level,
+                    characterBuild.attributes.ancestryhp,
+                    characterBuild.attributes.bonushp,
+                    characterBuild.attributes.classhp,
+                    characterBuild.abilities.con,
+                    characterBuild.attributes.bonushpPerLevel
+                );
+                var dc =
+                    10 +
+                    generateProficiency(
+                        characterBuild.level,
+                        characterBuild.proficiencies.classDC,
+                        characterBuild.abilities[characterBuild.keyability]
+                    );
+                var perception = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.perception,
+                    characterBuild.abilities.wis
+                );
+                var fortitude = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.fortitude,
+                    characterBuild.abilities.con
+                );
+                var reflex = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.reflex,
+                    characterBuild.abilities.dex
+                );
+                var will = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.will,
+                    characterBuild.abilities.wis
+                );
+                var acrobatics = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.acrobatics,
+                    characterBuild.abilities.dex
+                );
+                var arcana = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.arcana,
+                    characterBuild.abilities.int
+                );
+                var athletics = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.athletics,
+                    characterBuild.abilities.str
+                );
+                var crafting = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.crafting,
+                    characterBuild.abilities.int
+                );
+                var deception = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.deception,
+                    characterBuild.abilities.cha
+                );
+                var diplomacy = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.diplomacy,
+                    characterBuild.abilities.cha
+                );
+                var intimidation = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.intimidation,
+                    characterBuild.abilities.cha
+                );
+                var medicine = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.medicine,
+                    characterBuild.abilities.wis
+                );
+                var nature = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.nature,
+                    characterBuild.abilities.wis
+                );
+                var occultism = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.occultism,
+                    characterBuild.abilities.int
+                );
+                var performance = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.performance,
+                    characterBuild.abilities.cha
+                );
+                var religion = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.religion,
+                    characterBuild.abilities.wis
+                );
+                var society = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.society,
+                    characterBuild.abilities.int
+                );
+                var stealth = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.stealth,
+                    characterBuild.abilities.dex
+                );
+                var survival = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.survival,
+                    characterBuild.abilities.wis
+                );
+                var thievery = generateProficiency(
+                    characterBuild.level,
+                    characterBuild.proficiencies.thievery,
+                    characterBuild.abilities.dex
+                );
+                var lore1Bonus = 0;
+                var lore1Name = orDash(null);
+                if (characterBuild.lores[0]) {
+                    lore1Name = characterBuild.lores[0][0];
+                    lore1Bonus = generateProficiency(
+                        characterBuild.level,
+                        characterBuild.lores[0][1],
+                        characterBuild.abilities.int
+                    );
+                }
+                var lore2Bonus = 0;
+                var lore2Name = orDash(null);
+                if (characterBuild.lores[1]) {
+                    lore2Name = characterBuild.lores[1][0];
+                    lore2Bonus = generateProficiency(
+                        characterBuild.level,
+                        characterBuild.lores[1][1],
+                        characterBuild.abilities.int
+                    );
+                }
+                appendCard(`<div class="card-wrapper" data-order="AAA-${characterBuild.name}">
+                                <div class="character-card">
+                                    <div class="name">
+                                        <div class="content">${characterBuild.name} (HP: ${hp})</div>
+                                    </div>
+
+                                    <div class="character-level">
+                                        <div class="content">${characterLevel}</div>
+                                    </div>
+                                    <div class="hp">
+                                        <div class="header">DC</div>
+                                        <div class="content">${dc}</div>
+                                    </div>
+                                    <div class="ac">
+                                        <div class="header">AC</div>
+                                        <div class="content">${characterBuild.acTotal.acTotal}</div>
+                                    </div>
+                                    <div class="perception">
+                                        <div class="header">Perception</div>
+                                        <div class="content">+${perception}</div>
+                                    </div>
+                                    <div class="fortitude">
+                                        <div class="header">Fortitude</div>
+                                        <div class="content">+${fortitude}</div>
+                                    </div>
+                                    <div class="reflex">
+                                        <div class="header">Reflex</div>
+                                        <div class="content">+${reflex}</div>
+                                    </div>
+                                    <div class="will">
+                                        <div class="header">Will</div>
+                                        <div class="content">+${will}</div>
+                                    </div>
+                                    <div class="acrobatics">
+                                        <div class="content">+${acrobatics}</div>
+                                        <div class="header">Acrobatics</div>
+                                    </div>
+                                    <div class="arcana">
+                                        <div class="content">+${arcana}</div>
+                                        <div class="header">Arcana</div>
+                                    </div>
+                                    <div class="athletics">
+                                        <div class="content">+${athletics}</div>
+                                        <div class="header">Athletics</div>
+                                    </div>
+                                    <div class="crafting">
+                                        <div class="content">+${crafting}</div>
+                                        <div class="header">Crafting</div>
+                                    </div>
+                                    <div class="deception">
+                                        <div class="content">+${deception}</div>
+                                        <div class="header">Deception</div>
+                                    </div>
+                                    <div class="diplomacy">
+                                        <div class="content">+${diplomacy}</div>
+                                        <div class="header">Diplomacy</div>
+                                    </div>
+                                    <div class="intimidation">
+                                        <div class="content">+${intimidation}</div>
+                                        <div class="header">Intimidation</div>
+                                    </div>
+                                    <div class="lore-1">
+                                        <div class="content">+${lore1Bonus}</div>
+                                        <div class="header">Lore: ${lore1Name}</div>
+                                    </div>
+                                    <div class="lore-2">
+                                        <div class="content">+${lore2Bonus}</div>
+                                        <div class="header">Lore: ${lore2Name}</div>
+                                    </div>
+                                    <div class="medicine">
+                                        <div class="content">+${medicine}</div>
+                                        <div class="header">Medicine</div>
+                                    </div>
+                                    <div class="nature">
+                                        <div class="content">+${nature}</div>
+                                        <div class="header">Nature</div>
+                                    </div>
+                                    <div class="occultism">
+                                        <div class="content">+${occultism}</div>
+                                        <div class="header">Occultism</div>
+                                    </div>
+                                    <div class="performance">
+                                        <div class="content">+${performance}</div>
+                                        <div class="header">Performance</div>
+                                    </div>
+                                    <div class="religion">
+                                        <div class="content">+${religion}</div>
+                                        <div class="header">Religion</div>
+                                    </div>
+                                    <div class="society">
+                                        <div class="content">+${society}</div>
+                                        <div class="header">Society</div>
+                                    </div>
+                                    <div class="stealth">
+                                        <div class="content">+${stealth}</div>
+                                        <div class="header">Stealth</div>
+                                    </div>
+                                    <div class="survival">
+                                        <div class="content">+${survival}</div>
+                                        <div class="header">Survival</div>
+                                    </div>
+                                    <div class="thievery">
+                                        <div class="content">+${thievery}</div>
+                                        <div class="header">Thievery</div>
+                                    </div>
+                                </div>
+                            </div>`);
+            }
+
             function generateFeatCard(featName, featData) {
                 if (featData.count === 0) {
                     console.log(`No data found for ${featName} card`);
@@ -723,25 +1226,25 @@ title: Card Generator (Pathfinder)
                     ? feat.system.category
                     : "Special";
 
-                var card = appendCard(`<div class="feat-card">
-                    <div class="name">
-                        <div class="content">
-                            ${feat.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="content">${feat.type} (${category})</div>
-                    </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                </div>`);
+                appendCard(`<div class="feat-card" data-order="${feat.name}">
+                                <div class="name">
+                                    <div class="content">
+                                        ${feat.name}
+                                        <span class="action"><span class="${actionClass}" /></span>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <div class="content">${feat.type} (${category})</div>
+                                </div>
+                                <div class="description">
+                                    <div class="trait">
+                                        <div class="header">Trait</div>
+                                        <div class="content">${traits}</div>
+                                    </div>
+                                    <hr/>
+                                    ${description}
+                                </div>
+                            </div>`);
             }
 
             function generateSpellCard(spellName, spellData) {
@@ -761,11 +1264,16 @@ title: Card Generator (Pathfinder)
                 var actionClass = `action-action${
                     spell.system.time.value ? spell.system.time.value : ""
                 }`;
-                var spellLevel = generateSpellLevel(
+                var spellLevel = generateLevel(
                     spell.system.level.value,
                     spell.system.school.value,
                     spell.system.traits.value
                 );
+                var focusMark = "";
+                if (spell.system.category.value == "focus") {
+                    spellLevel += ` (Focus)`;
+                    focusMark = `<span class="focus">F</span>`;
+                }
                 var components = generateSpellComponents(
                     spell.system.components
                 );
@@ -773,40 +1281,43 @@ title: Card Generator (Pathfinder)
                     spell.system.description.value
                 );
 
-                var card = appendCard(`<div class="spell-card">
-                    <div class="name">
-                        <div class="content">
-                            ${spell.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="spell-level">
-                        <div class="content">${spellLevel}</div>
-                    </div>
-                    <div class="saving-throw">
-                        <div class="header">Saving Throw</div>
-                        <div class="content">${orDash(
-                            spell.system.save.value
-                        )}</div>
-                    </div>
-                    <div class="range">
-                        <div class="header">Range</div>
-                        <div class="content">${orDash(
-                            spell.system.range.value
-                        )}</div>
-                    </div>
-                    <div class="components">
-                        <div class="header">Components</div>
-                        <div class="content">${orDash(components)}</div>
-                    </div>
-                    <div class="duration">
-                        <div class="header">Duration</div>
-                        <div class="content">${orDash(
-                            spell.system.duration.value
-                        )}</div>
-                    </div>
-                    <div class="description">${description}</div>
-                </div>`);
+                appendCard(`<div class="spell-card" data-order="${spell.name}">
+                                <div class="name">
+                                    <div class="content">
+                                        ${focusMark}
+                                        ${spell.name}
+                                        <span class="action"><span class="${actionClass}" /></span>
+                                    </div>
+                                </div>
+                                <div class="spell-level">
+                                    <div class="content">${spellLevel}</div>
+                                </div>
+                                <div class="saving-throw">
+                                    <div class="header">Saving Throw</div>
+                                    <div class="content">${orDash(
+                                        spell.system.save.value
+                                    )}</div>
+                                </div>
+                                <div class="range">
+                                    <div class="header">Range</div>
+                                    <div class="content">${orDash(
+                                        spell.system.range.value
+                                    )}</div>
+                                </div>
+                                <div class="components">
+                                    <div class="header">Components</div>
+                                    <div class="content">${orDash(
+                                        components
+                                    )}</div>
+                                </div>
+                                <div class="duration">
+                                    <div class="header">Duration</div>
+                                    <div class="content">${orDash(
+                                        spell.system.duration.value
+                                    )}</div>
+                                </div>
+                                <div class="description">${description}</div>
+                            </div>`);
             }
 
             function generateSpecialCard(specialName, specialData) {
@@ -842,25 +1353,25 @@ title: Card Generator (Pathfinder)
                     ? special.system.category.replace("feature", "")
                     : "Special";
 
-                var card = appendCard(`<div class="feat-card">
-                    <div class="name">
-                        <div class="content">
-                            ${special.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="content">${special.type} (${category})</div>
-                    </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                </div>`);
+                appendCard(`<div class="feat-card" data-order="${special.name}">
+                                <div class="name">
+                                    <div class="content">
+                                        ${special.name}
+                                        <span class="action"><span class="${actionClass}" /></span>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <div class="content">${special.type} (${category})</div>
+                                </div>
+                                <div class="description">
+                                    <div class="trait">
+                                        <div class="header">Trait</div>
+                                        <div class="content">${traits}</div>
+                                    </div>
+                                    <hr/>
+                                    ${description}
+                                </div>
+                            </div>`);
             }
 
             function generateActionType(actionType, actions) {
@@ -870,6 +1381,7 @@ title: Card Generator (Pathfinder)
                     }`;
                 }
             }
+
             function generateDescription(description) {
                 return `${description
                     .replaceAll(/@UUID\[.*\]\{(.*)\}/g, "$1")
@@ -877,19 +1389,19 @@ title: Card Generator (Pathfinder)
                     .replaceAll(/\[\[\/r (.*)\[(.*)\]\]\]/g, "$1 $2")}`;
             }
 
-            function generateSpellLevel(level, school, traits) {
+            function generateLevel(level, schoolOrClass, traits) {
                 if (traits.includes("cantrip")) {
-                    return `${school} Cantrip`;
+                    return `${schoolOrClass} Cantrip`;
                 }
                 switch (level) {
                     case 1:
-                        return `${level}st-level ${school}`;
+                        return `${level}st-level ${schoolOrClass}`;
                     case 2:
-                        return `${level}nd-level ${school}`;
+                        return `${level}nd-level ${schoolOrClass}`;
                     case 3:
-                        return `${level}rd-level ${school}`;
+                        return `${level}rd-level ${schoolOrClass}`;
                     default:
-                        return `${level}th-level ${school}`;
+                        return `${level}th-level ${schoolOrClass}`;
                 }
             }
 
@@ -900,6 +1412,34 @@ title: Card Generator (Pathfinder)
                     ...(components.material ? ["M"] : []),
                     ...(components.focus ? ["focus"] : []),
                 ].join(", ");
+            }
+
+            function generateHp(
+                level,
+                ancestryHp,
+                bonusHp,
+                classHp,
+                constitution,
+                bonusHpPerLevel
+            ) {
+                return (
+                    ancestryHp +
+                    bonusHp +
+                    level *
+                        generateProficiency(
+                            classHp,
+                            bonusHpPerLevel,
+                            constitution
+                        )
+                );
+            }
+
+            function generateProficiency(level, skill, stat) {
+                var statMod = Math.floor((stat - 10) / 2);
+                if (skill === 0) {
+                    return statMod;
+                }
+                return statMod + level + skill;
             }
 
             function orDash(val) {
@@ -927,15 +1467,15 @@ title: Card Generator (Pathfinder)
                 var cards = [...deck.children];
 
                 cards.sort((a, b) => {
-                    a = a.querySelectorAll(".name .content")[0].innerHTML;
-                    b = b.querySelectorAll(".name .content")[0].innerHTML;
+                    a = a.firstChild.getAttribute("data-order");
+                    b = b.firstChild.getAttribute("data-order");
+                    console.log(`Sorting cards: "${a}" and "${b}"`);
                     return a > b;
                 });
 
                 var addedCardNames = [];
                 cards.forEach((card) => {
-                    var thisCard =
-                        card.querySelector(".name .content").innerHTML;
+                    var thisCard = card.firstChild.getAttribute("data-order");
 
                     if (addedCardNames.indexOf(thisCard) !== -1) {
                         console.log(`Duplicate card ${thisCard.trim()} found`);
@@ -947,14 +1487,18 @@ title: Card Generator (Pathfinder)
                 });
             }
 
-            async function createCards(characterId, apiKey) {
+            async function createCards(characterId, charactersOnly, apiKey) {
                 console.log("Fetching character data");
-
                 var character = await getCharacterData(characterId);
                 console.log(
                     "Character fetched",
                     JSON.stringify(character, null, 2)
                 );
+                generateCharacterCard(character.build);
+
+                if (charactersOnly) {
+                    return;
+                }
 
                 var feats = character.build.feats.map((feat) => {
                     return { name: feat[0], type: feat[2] };
@@ -975,7 +1519,16 @@ title: Card Generator (Pathfinder)
                         spellCasters.spells.map((spells) => spells.list).flat()
                     )
                     .flat();
-
+                [
+                    character.build.focus.arcane?.int.focusSpells,
+                    character.build.focus.divine?.wis.focusSpells,
+                    character.build.focus.occult?.int.focusSpells,
+                    character.build.focus.primal?.wis.focusSpells,
+                ].forEach((list) => {
+                    if (list) {
+                        spellNames.push(...list);
+                    }
+                });
                 new Set(spellNames).forEach(async (spellName) => {
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
@@ -993,15 +1546,22 @@ title: Card Generator (Pathfinder)
                     }
                 );
             }
-
+        </script>
+        <script data="on-load">
             document
                 .getElementById("fetch-data")
                 .addEventListener("click", async (_) => {
                     saveFormValues();
-                    var characterId =
+                    var characterIds =
                         document.getElementById("character-id").value;
                     var apiKey = document.getElementById("api-key").value;
-                    createCards(characterId, apiKey);
+                    var charactersOnly =
+                        document.getElementById("characters-only").checked;
+                    characterIds
+                        .split(",")
+                        .forEach((characterId) =>
+                            createCards(characterId, charactersOnly, apiKey)
+                        );
                 });
 
             document
@@ -1044,6 +1604,12 @@ title: Card Generator (Pathfinder)
                         .forEach((element) =>
                             element.classList.add("no-print")
                         );
+                });
+
+            document
+                .getElementById("clear-cards")
+                .addEventListener("click", (_) => {
+                    document.getElementById("cards").innerHTML = "";
                 });
 
             (() => {
