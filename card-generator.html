@@ -1262,39 +1262,42 @@ title: Card Generator (Pathfinder)
                 );
 
                 appendCard(`<div class="spell-card">
-                    <div class="name">
-                        <div class="content">
-                            ${spell.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="spell-level">
-                        <div class="content">${spellLevel}</div>
-                    </div>
-                    <div class="saving-throw">
-                        <div class="header">Saving Throw</div>
-                        <div class="content">${orDash(
-                            spell.system.save.value
-                        )}</div>
-                    </div>
-                    <div class="range">
-                        <div class="header">Range</div>
-                        <div class="content">${orDash(
-                            spell.system.range.value
-                        )}</div>
-                    </div>
-                    <div class="components">
-                        <div class="header">Components</div>
-                        <div class="content">${orDash(components)}</div>
-                    </div>
-                    <div class="duration">
-                        <div class="header">Duration</div>
-                        <div class="content">${orDash(
-                            spell.system.duration.value
-                        )}</div>
-                    </div>
-                    <div class="description">${description}</div>
-                </div>`);
+                                <div class="name">
+                                    <div class="content">
+                                        ${focusMark}
+                                        ${spell.name}
+                                        <span class="action"><span class="${actionClass}" /></span>
+                                    </div>
+                                </div>
+                                <div class="spell-level">
+                                    <div class="content">${spellLevel}</div>
+                                </div>
+                                <div class="saving-throw">
+                                    <div class="header">Saving Throw</div>
+                                    <div class="content">${orDash(
+                                        spell.system.save.value
+                                    )}</div>
+                                </div>
+                                <div class="range">
+                                    <div class="header">Range</div>
+                                    <div class="content">${orDash(
+                                        spell.system.range.value
+                                    )}</div>
+                                </div>
+                                <div class="components">
+                                    <div class="header">Components</div>
+                                    <div class="content">${orDash(
+                                        components
+                                    )}</div>
+                                </div>
+                                <div class="duration">
+                                    <div class="header">Duration</div>
+                                    <div class="content">${orDash(
+                                        spell.system.duration.value
+                                    )}</div>
+                                </div>
+                                <div class="description">${description}</div>
+                            </div>`);
             }
 
             function generateSpecialCard(specialName, specialData) {
@@ -1493,7 +1496,16 @@ title: Card Generator (Pathfinder)
                         spellCasters.spells.map((spells) => spells.list).flat()
                     )
                     .flat();
-
+                [
+                    character.build.focus.arcane?.int.focusSpells,
+                    character.build.focus.divine?.wis.focusSpells,
+                    character.build.focus.occult?.int.focusSpells,
+                    character.build.focus.primal?.wis.focusSpells,
+                ].forEach((list) => {
+                    if (list) {
+                        spellNames.push(...list);
+                    }
+                });
                 new Set(spellNames).forEach(async (spellName) => {
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
