@@ -5,7 +5,7 @@ title: Card Generator (Pathfinder)
 
 <html>
     <head>
-        <style>
+        <style data="global">
             @media print {
                 .class-picker {
                     display: none !important;
@@ -248,7 +248,8 @@ title: Card Generator (Pathfinder)
             .card-wrapper .gf9-ranger .header {
                 color: #745e2a;
             }
-
+        </style>
+        <style data="feat-card">
             .feat-card {
                 display: inline-block;
                 position: relative;
@@ -378,7 +379,8 @@ title: Card Generator (Pathfinder)
             .feat-card td:first-child {
                 padding-right: 1mm;
             }
-
+        </style>
+        <style data="spell-card">
             .spell-card {
                 position: relative;
                 width: 63mm;
@@ -537,7 +539,8 @@ title: Card Generator (Pathfinder)
             .spell-card td:first-child {
                 padding-right: 1mm;
             }
-
+        </style>
+        <style data="character-card">
             .character-card {
                 position: relative;
                 width: 63mm;
@@ -1509,6 +1512,8 @@ title: Card Generator (Pathfinder)
                 );
             }
 
+        </script>
+        <script data="on-load">
             document
                 .getElementById("fetch-data")
                 .addEventListener("click", async (_) => {
