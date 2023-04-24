@@ -400,6 +400,7 @@ title: Card Generator (Pathfinder)
                 font-family: "ActionIcons";
                 font-weight: initial;
                 text-transform: none;
+                padding-left: 1mm;
             }
             .spell-card .action-action1:before {
                 content: "\00E1";
@@ -444,6 +445,14 @@ title: Card Generator (Pathfinder)
                 font-size: 3.5mm;
                 text-transform: uppercase;
                 font-weight: bold;
+                display: flex;
+            }
+            .spell-card .name .content .spell-name {
+                display: inline-block;
+                max-width: 48mm;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
             .spell-card .spell-level {
                 position: absolute;
@@ -1400,6 +1409,29 @@ title: Card Generator (Pathfinder)
                     default:
                         return `${level}th-level ${schoolOrClass}`;
                 }
+            }
+
+            function generateDuration(duration) {
+                return orDash(
+                    duration
+                        .replaceAll(
+                            /sustained [for ]*up to (.*) minute/g,
+                            "Sustained ($1 min)"
+                        )
+                        .replaceAll(
+                            /(.*) minute or until dismissed/g,
+                            "Dismissed ($1 min)"
+                        )
+                        .replaceAll(
+                            "until your next daily preparations",
+                            "Next long rest"
+                        )
+                        .replaceAll("until the end of your turn", "End of turn")
+                        .replaceAll(
+                            "until the start of your next turn",
+                            "Start of next turn"
+                        )
+                );
             }
 
             function generateSpellComponents(components) {
