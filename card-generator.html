@@ -804,6 +804,8 @@ title: Card Generator (Pathfinder)
                         placeholder="Pathfinder2.fr api key"
                     />
                     <button id="fetch-data">Fetch</button>
+                    <input type="checkbox" id="characters-only" />
+                    <label>Characters Only</label>
                 </div>
                 <div>
                     <select id="feat-picker">
@@ -861,6 +863,7 @@ title: Card Generator (Pathfinder)
 
                     <button id="select-all">Select All</button>
                     <button id="deselect-all">Deselect All</button>
+                    <button id="clear-cards">Delete All</button>
                 </div>
             </div>
         </div>
@@ -1484,7 +1487,7 @@ title: Card Generator (Pathfinder)
                 });
             }
 
-            async function createCards(characterId, apiKey) {
+            async function createCards(characterId, charactersOnly, apiKey) {
                 console.log("Fetching character data");
                 var character = await getCharacterData(characterId);
                 console.log(
@@ -1492,6 +1495,10 @@ title: Card Generator (Pathfinder)
                     JSON.stringify(character, null, 2)
                 );
                 generateCharacterCard(character.build);
+
+                if (charactersOnly) {
+                    return;
+                }
 
                 var feats = character.build.feats.map((feat) => {
                     return { name: feat[0], type: feat[2] };
@@ -1548,10 +1555,12 @@ title: Card Generator (Pathfinder)
                     var characterIds =
                         document.getElementById("character-id").value;
                     var apiKey = document.getElementById("api-key").value;
+                    var charactersOnly =
+                        document.getElementById("characters-only").checked;
                     characterIds
                         .split(",")
                         .forEach((characterId) =>
-                            createCards(characterId, apiKey)
+                            createCards(characterId, charactersOnly, apiKey)
                         );
                 });
 
@@ -1595,6 +1604,12 @@ title: Card Generator (Pathfinder)
                         .forEach((element) =>
                             element.classList.add("no-print")
                         );
+                });
+
+            document
+                .getElementById("clear-cards")
+                .addEventListener("click", (_) => {
+                    document.getElementById("cards").innerHTML = "";
                 });
 
             (() => {
