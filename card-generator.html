@@ -1426,11 +1426,9 @@ title: Card Generator (Pathfinder)
                     ancestryHp +
                     bonusHp +
                     level *
-                        generateProficiency(
-                            classHp,
-                            bonusHpPerLevel,
-                            constitution
-                        )
+                        (Math.floor(constitution - 10) / 2 +
+                            classHp +
+                            bonusHpPerLevel)
                 );
             }
 
