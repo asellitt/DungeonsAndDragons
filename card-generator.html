@@ -416,6 +416,18 @@ title: Card Generator (Pathfinder)
             .spell-card .action-reaction:before {
                 content: "\00E4";
             }
+            .spell-card .focus {
+                background: black;
+                color: white;
+                padding: 0;
+                margin: 0;
+                border: 1px;
+                display: inline-block;
+                width: 4mm;
+                border-radius: 3mm;
+                position: absolute;
+                left: 1mm;
+            }
             .spell-card .name {
                 background-color: #fff;
                 position: absolute;
@@ -1254,6 +1266,11 @@ title: Card Generator (Pathfinder)
                     spell.system.school.value,
                     spell.system.traits.value
                 );
+                var focusMark = "";
+                if (spell.system.category.value == "focus") {
+                    spellLevel += ` (Focus)`;
+                    focusMark = `<span class="focus">F</span>`;
+                }
                 var components = generateSpellComponents(
                     spell.system.components
                 );
@@ -1469,7 +1486,6 @@ title: Card Generator (Pathfinder)
 
             async function createCards(characterId, apiKey) {
                 console.log("Fetching character data");
-
                 var character = await getCharacterData(characterId);
                 console.log(
                     "Character fetched",
