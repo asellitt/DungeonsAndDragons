@@ -400,6 +400,7 @@ title: Card Generator (Pathfinder)
                 font-family: "ActionIcons";
                 font-weight: initial;
                 text-transform: none;
+                padding-left: 1mm;
             }
             .spell-card .action-action1:before {
                 content: "\00E1";
@@ -444,6 +445,14 @@ title: Card Generator (Pathfinder)
                 font-size: 3.5mm;
                 text-transform: uppercase;
                 font-weight: bold;
+                display: flex;
+            }
+            .spell-card .name .content .spell-name {
+                display: inline-block;
+                max-width: 48mm;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
             .spell-card .spell-level {
                 position: absolute;
@@ -808,6 +817,29 @@ title: Card Generator (Pathfinder)
                     <label>Characters Only</label>
                 </div>
                 <div>
+                    <select id="spell-list-picker">
+                        <option value="">Spell List</option>
+                        <option value="arcane">Arcane</option>
+                        <option value="divine">Divine</option>
+                        <option value="occult">Occult</option>
+                        <option value="primal">Primal</option>
+                    </select>
+                    <select id="spell-level-picker">
+                        <option value="">Spell Level</option>
+                        <option value="0">Cantrip</option>
+                        <option value="1">1st</option>
+                        <option value="2">2nd</option>
+                        <option value="3">3rd</option>
+                        <option value="4">4th</option>
+                        <option value="5">5th</option>
+                        <option value="6">6th</option>
+                        <option value="7">7th</option>
+                        <option value="8">8th</option>
+                        <option value="9">9th</option>
+                        <option value="10">10th</option>
+                    </select>
+                </div>
+                <div>
                     <select id="feat-picker">
                         <option value="">Feat card colour</option>
                         <optgroup label="Class">
@@ -1088,112 +1120,112 @@ title: Card Generator (Pathfinder)
                     );
                 }
                 appendCard(`<div class="card-wrapper" data-order="AAA-${characterBuild.name}">
-                                <div class="character-card">
-                                    <div class="name">
-                                        <div class="content">${characterBuild.name} (HP: ${hp})</div>
-                                    </div>
+                    <div class="character-card">
+                        <div class="name">
+                            <div class="content">${characterBuild.name} (HP: ${hp})</div>
+                        </div>
 
-                                    <div class="character-level">
-                                        <div class="content">${characterLevel}</div>
-                                    </div>
-                                    <div class="hp">
-                                        <div class="header">DC</div>
-                                        <div class="content">${dc}</div>
-                                    </div>
-                                    <div class="ac">
-                                        <div class="header">AC</div>
-                                        <div class="content">${characterBuild.acTotal.acTotal}</div>
-                                    </div>
-                                    <div class="perception">
-                                        <div class="header">Perception</div>
-                                        <div class="content">+${perception}</div>
-                                    </div>
-                                    <div class="fortitude">
-                                        <div class="header">Fortitude</div>
-                                        <div class="content">+${fortitude}</div>
-                                    </div>
-                                    <div class="reflex">
-                                        <div class="header">Reflex</div>
-                                        <div class="content">+${reflex}</div>
-                                    </div>
-                                    <div class="will">
-                                        <div class="header">Will</div>
-                                        <div class="content">+${will}</div>
-                                    </div>
-                                    <div class="acrobatics">
-                                        <div class="content">+${acrobatics}</div>
-                                        <div class="header">Acrobatics</div>
-                                    </div>
-                                    <div class="arcana">
-                                        <div class="content">+${arcana}</div>
-                                        <div class="header">Arcana</div>
-                                    </div>
-                                    <div class="athletics">
-                                        <div class="content">+${athletics}</div>
-                                        <div class="header">Athletics</div>
-                                    </div>
-                                    <div class="crafting">
-                                        <div class="content">+${crafting}</div>
-                                        <div class="header">Crafting</div>
-                                    </div>
-                                    <div class="deception">
-                                        <div class="content">+${deception}</div>
-                                        <div class="header">Deception</div>
-                                    </div>
-                                    <div class="diplomacy">
-                                        <div class="content">+${diplomacy}</div>
-                                        <div class="header">Diplomacy</div>
-                                    </div>
-                                    <div class="intimidation">
-                                        <div class="content">+${intimidation}</div>
-                                        <div class="header">Intimidation</div>
-                                    </div>
-                                    <div class="lore-1">
-                                        <div class="content">+${lore1Bonus}</div>
-                                        <div class="header">Lore: ${lore1Name}</div>
-                                    </div>
-                                    <div class="lore-2">
-                                        <div class="content">+${lore2Bonus}</div>
-                                        <div class="header">Lore: ${lore2Name}</div>
-                                    </div>
-                                    <div class="medicine">
-                                        <div class="content">+${medicine}</div>
-                                        <div class="header">Medicine</div>
-                                    </div>
-                                    <div class="nature">
-                                        <div class="content">+${nature}</div>
-                                        <div class="header">Nature</div>
-                                    </div>
-                                    <div class="occultism">
-                                        <div class="content">+${occultism}</div>
-                                        <div class="header">Occultism</div>
-                                    </div>
-                                    <div class="performance">
-                                        <div class="content">+${performance}</div>
-                                        <div class="header">Performance</div>
-                                    </div>
-                                    <div class="religion">
-                                        <div class="content">+${religion}</div>
-                                        <div class="header">Religion</div>
-                                    </div>
-                                    <div class="society">
-                                        <div class="content">+${society}</div>
-                                        <div class="header">Society</div>
-                                    </div>
-                                    <div class="stealth">
-                                        <div class="content">+${stealth}</div>
-                                        <div class="header">Stealth</div>
-                                    </div>
-                                    <div class="survival">
-                                        <div class="content">+${survival}</div>
-                                        <div class="header">Survival</div>
-                                    </div>
-                                    <div class="thievery">
-                                        <div class="content">+${thievery}</div>
-                                        <div class="header">Thievery</div>
-                                    </div>
-                                </div>
-                            </div>`);
+                        <div class="character-level">
+                            <div class="content">${characterLevel}</div>
+                        </div>
+                        <div class="hp">
+                            <div class="header">DC</div>
+                            <div class="content">${dc}</div>
+                        </div>
+                        <div class="ac">
+                            <div class="header">AC</div>
+                            <div class="content">${characterBuild.acTotal.acTotal}</div>
+                        </div>
+                        <div class="perception">
+                            <div class="header">Perception</div>
+                            <div class="content">+${perception}</div>
+                        </div>
+                        <div class="fortitude">
+                            <div class="header">Fortitude</div>
+                            <div class="content">+${fortitude}</div>
+                        </div>
+                        <div class="reflex">
+                            <div class="header">Reflex</div>
+                            <div class="content">+${reflex}</div>
+                        </div>
+                        <div class="will">
+                            <div class="header">Will</div>
+                            <div class="content">+${will}</div>
+                        </div>
+                        <div class="acrobatics">
+                            <div class="content">+${acrobatics}</div>
+                            <div class="header">Acrobatics</div>
+                        </div>
+                        <div class="arcana">
+                            <div class="content">+${arcana}</div>
+                            <div class="header">Arcana</div>
+                        </div>
+                        <div class="athletics">
+                            <div class="content">+${athletics}</div>
+                            <div class="header">Athletics</div>
+                        </div>
+                        <div class="crafting">
+                            <div class="content">+${crafting}</div>
+                            <div class="header">Crafting</div>
+                        </div>
+                        <div class="deception">
+                            <div class="content">+${deception}</div>
+                            <div class="header">Deception</div>
+                        </div>
+                        <div class="diplomacy">
+                            <div class="content">+${diplomacy}</div>
+                            <div class="header">Diplomacy</div>
+                        </div>
+                        <div class="intimidation">
+                            <div class="content">+${intimidation}</div>
+                            <div class="header">Intimidation</div>
+                        </div>
+                        <div class="lore-1">
+                            <div class="content">+${lore1Bonus}</div>
+                            <div class="header">Lore: ${lore1Name}</div>
+                        </div>
+                        <div class="lore-2">
+                            <div class="content">+${lore2Bonus}</div>
+                            <div class="header">Lore: ${lore2Name}</div>
+                        </div>
+                        <div class="medicine">
+                            <div class="content">+${medicine}</div>
+                            <div class="header">Medicine</div>
+                        </div>
+                        <div class="nature">
+                            <div class="content">+${nature}</div>
+                            <div class="header">Nature</div>
+                        </div>
+                        <div class="occultism">
+                            <div class="content">+${occultism}</div>
+                            <div class="header">Occultism</div>
+                        </div>
+                        <div class="performance">
+                            <div class="content">+${performance}</div>
+                            <div class="header">Performance</div>
+                        </div>
+                        <div class="religion">
+                            <div class="content">+${religion}</div>
+                            <div class="header">Religion</div>
+                        </div>
+                        <div class="society">
+                            <div class="content">+${society}</div>
+                            <div class="header">Society</div>
+                        </div>
+                        <div class="stealth">
+                            <div class="content">+${stealth}</div>
+                            <div class="header">Stealth</div>
+                        </div>
+                        <div class="survival">
+                            <div class="content">+${survival}</div>
+                            <div class="header">Survival</div>
+                        </div>
+                        <div class="thievery">
+                            <div class="content">+${thievery}</div>
+                            <div class="header">Thievery</div>
+                        </div>
+                    </div>
+                </div>`);
             }
 
             function generateFeatCard(featName, featData) {
@@ -1227,24 +1259,24 @@ title: Card Generator (Pathfinder)
                     : "Special";
 
                 appendCard(`<div class="feat-card" data-order="${feat.name}">
-                                <div class="name">
-                                    <div class="content">
-                                        ${feat.name}
-                                        <span class="action"><span class="${actionClass}" /></span>
-                                    </div>
-                                </div>
-                                <div class="skill">
-                                    <div class="content">${feat.type} (${category})</div>
-                                </div>
-                                <div class="description">
-                                    <div class="trait">
-                                        <div class="header">Trait</div>
-                                        <div class="content">${traits}</div>
-                                    </div>
-                                    <hr/>
-                                    ${description}
-                                </div>
-                            </div>`);
+                    <div class="name">
+                        <div class="content">
+                            ${feat.name}
+                            <span class="action"><span class="${actionClass}" /></span>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="content">${feat.type} (${category})</div>
+                    </div>
+                    <div class="description">
+                        <div class="trait">
+                            <div class="header">Trait</div>
+                            <div class="content">${traits}</div>
+                        </div>
+                        <hr/>
+                        ${description}
+                    </div>
+                </div>`);
             }
 
             function generateSpellCard(spellName, spellData) {
@@ -1277,47 +1309,44 @@ title: Card Generator (Pathfinder)
                 var components = generateSpellComponents(
                     spell.system.components
                 );
+                var duration = generateDuration(spell.system.duration.value);
                 var description = generateDescription(
                     spell.system.description.value
                 );
 
                 appendCard(`<div class="spell-card" data-order="${spell.name}">
-                                <div class="name">
-                                    <div class="content">
-                                        ${focusMark}
-                                        ${spell.name}
-                                        <span class="action"><span class="${actionClass}" /></span>
-                                    </div>
-                                </div>
-                                <div class="spell-level">
-                                    <div class="content">${spellLevel}</div>
-                                </div>
-                                <div class="saving-throw">
-                                    <div class="header">Saving Throw</div>
-                                    <div class="content">${orDash(
-                                        spell.system.save.value
-                                    )}</div>
-                                </div>
-                                <div class="range">
-                                    <div class="header">Range</div>
-                                    <div class="content">${orDash(
-                                        spell.system.range.value
-                                    )}</div>
-                                </div>
-                                <div class="components">
-                                    <div class="header">Components</div>
-                                    <div class="content">${orDash(
-                                        components
-                                    )}</div>
-                                </div>
-                                <div class="duration">
-                                    <div class="header">Duration</div>
-                                    <div class="content">${orDash(
-                                        spell.system.duration.value
-                                    )}</div>
-                                </div>
-                                <div class="description">${description}</div>
-                            </div>`);
+                    <div class="name">
+                        <div class="content">
+                            ${focusMark}
+                            <span class="spell-name">${spell.name}</span>
+                            <span class="action"><span class="${actionClass}" /></span>
+                        </div>
+                    </div>
+                    <div class="spell-level">
+                        <div class="content">${spellLevel}</div>
+                    </div>
+                    <div class="saving-throw">
+                        <div class="header">Saving Throw</div>
+                        <div class="content">${orDash(
+                            spell.system.save.value
+                        )}</div>
+                    </div>
+                    <div class="range">
+                        <div class="header">Range</div>
+                        <div class="content">${orDash(
+                            spell.system.range.value
+                        )}</div>
+                    </div>
+                    <div class="components">
+                        <div class="header">Components</div>
+                        <div class="content">${orDash(components)}</div>
+                    </div>
+                    <div class="duration">
+                        <div class="header">Duration</div>
+                        <div class="content">${duration}</div>
+                    </div>
+                    <div class="description">${description}</div>
+                </div>`);
             }
 
             function generateSpecialCard(specialName, specialData) {
@@ -1354,24 +1383,24 @@ title: Card Generator (Pathfinder)
                     : "Special";
 
                 appendCard(`<div class="feat-card" data-order="${special.name}">
-                                <div class="name">
-                                    <div class="content">
-                                        ${special.name}
-                                        <span class="action"><span class="${actionClass}" /></span>
-                                    </div>
-                                </div>
-                                <div class="skill">
-                                    <div class="content">${special.type} (${category})</div>
-                                </div>
-                                <div class="description">
-                                    <div class="trait">
-                                        <div class="header">Trait</div>
-                                        <div class="content">${traits}</div>
-                                    </div>
-                                    <hr/>
-                                    ${description}
-                                </div>
-                            </div>`);
+                    <div class="name">
+                        <div class="content">
+                            ${special.name}
+                            <span class="action"><span class="${actionClass}" /></span>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="content">${special.type} (${category})</div>
+                    </div>
+                    <div class="description">
+                        <div class="trait">
+                            <div class="header">Trait</div>
+                            <div class="content">${traits}</div>
+                        </div>
+                        <hr/>
+                        ${description}
+                    </div>
+                </div>`);
             }
 
             function generateActionType(actionType, actions) {
@@ -1403,6 +1432,29 @@ title: Card Generator (Pathfinder)
                     default:
                         return `${level}th-level ${schoolOrClass}`;
                 }
+            }
+
+            function generateDuration(duration) {
+                return orDash(
+                    duration
+                        .replaceAll(
+                            /sustained [for ]*up to (.*) minute/g,
+                            "Sustained ($1 min)"
+                        )
+                        .replaceAll(
+                            /(.*) minute or until dismissed/g,
+                            "Dismissed ($1 min)"
+                        )
+                        .replaceAll(
+                            "until your next daily preparations",
+                            "Next long rest"
+                        )
+                        .replaceAll("until the end of your turn", "End of turn")
+                        .replaceAll(
+                            "until the start of your next turn",
+                            "Start of next turn"
+                        )
+                );
             }
 
             function generateSpellComponents(components) {
@@ -1485,7 +1537,13 @@ title: Card Generator (Pathfinder)
                 });
             }
 
-            async function createCards(characterId, charactersOnly, apiKey) {
+            async function createCards(
+                characterId,
+                charactersOnly,
+                spellList,
+                spellLevel,
+                apiKey
+            ) {
                 console.log("Fetching character data");
                 var character = await getCharacterData(characterId);
                 console.log(
@@ -1527,6 +1585,9 @@ title: Card Generator (Pathfinder)
                         spellNames.push(...list);
                     }
                 });
+
+                spellNames.push(...getSpells(spellList, spellLevel));
+
                 new Set(spellNames).forEach(async (spellName) => {
                     console.log(`Fetching spell data for ${spellName}`);
                     var spellData = await getSpellData(spellName, apiKey);
@@ -1555,10 +1616,20 @@ title: Card Generator (Pathfinder)
                     var apiKey = document.getElementById("api-key").value;
                     var charactersOnly =
                         document.getElementById("characters-only").checked;
+                    var spellList =
+                        document.getElementById("spell-list-picker").value;
+                    var spellLevel =
+                        document.getElementById("spell-level-picker").value;
                     characterIds
                         .split(",")
                         .forEach((characterId) =>
-                            createCards(characterId, charactersOnly, apiKey)
+                            createCards(
+                                characterId,
+                                charactersOnly,
+                                spellList,
+                                spellLevel,
+                                apiKey
+                            )
                         );
                 });
 
@@ -1620,6 +1691,56 @@ title: Card Generator (Pathfinder)
                     document.getElementById("api-key").value = apiKey;
                 }
             })();
+        </script>
+        <script data="class-spell-lists">
+            function getSpells(spellList, spellLevel) {
+                var spells = {
+                    primal: [
+                        // First Level Primal Spells
+                        [
+                            "Air Bubble",
+                            "Alarm",
+                            "Ant Haul",
+                            "Burning Hands",
+                            "Charm",
+                            "Create Water",
+                            "Detect Poison",
+                            "Fear",
+                            "Feather Fall",
+                            "Fleet Step",
+                            "Goblin Pox",
+                            "Grease",
+                            "Gust of Wind",
+                            "Heal",
+                            "Hydraulic Push",
+                            "Jump",
+                            "Longstrider",
+                            "Magic Fang",
+                            "Mending",
+                            "Negate Aroma",
+                            "Pass Without Trace",
+                            "Pest Form",
+                            "Purify Food and Drink",
+                            "Shillelagh",
+                            "Shocking Grasp",
+                            "Spider Sting",
+                            "Summon Animal",
+                            "Summon Fey",
+                            "Summon Plant or Fungus",
+                            "Ventriloquism",
+                        ],
+                    ],
+                };
+
+                if (
+                    spellList === "" ||
+                    spellLevel === "" ||
+                    spells[spellList] === undefined
+                ) {
+                    return [];
+                }
+                return spells[spellList][spellLevel - 1];
+            }
         </script>
     </body>
 </html>
