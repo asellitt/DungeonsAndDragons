@@ -1523,17 +1523,20 @@ title: Card Generator (Pathfinder)
                     }
                 );
             }
-
         </script>
         <script data="on-load">
             document
                 .getElementById("fetch-data")
                 .addEventListener("click", async (_) => {
                     saveFormValues();
-                    var characterId =
+                    var characterIds =
                         document.getElementById("character-id").value;
                     var apiKey = document.getElementById("api-key").value;
-                    createCards(characterId, apiKey);
+                    characterIds
+                        .split(",")
+                        .forEach((characterId) =>
+                            createCards(characterId, apiKey)
+                        );
                 });
 
             document
