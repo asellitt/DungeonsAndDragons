@@ -1088,6 +1088,26 @@ title: Card Generator (Pathfinder)
                 return response.json();
             }
 
+            async function getSpellListData(spellList, spellLevel, apiKey) {
+                var headers = new Headers();
+                headers.append("Authorization", apiKey);
+
+                var cantripFilter = "";
+                var levelFilter = `&system.level.value=${spellLevel}`;
+                if (spellLevel === "0") {
+                    cantripFilter = "&system.traits.value=cantrip";
+                    levelFilter = `&system.level.value=1`;
+                }
+
+                var req = new Request(
+                    `https://api.pathfinder2.fr/v1/pf2/spell?system.traditions.value=${spellList}${levelFilter}${cantripFilter}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                return response.json();
+            }
+
             function generateCharacterCard(characterBuild) {
                 var characterLevel = generateLevel(
                     characterBuild.level,
@@ -1647,13 +1667,7 @@ title: Card Generator (Pathfinder)
                 });
             }
 
-            async function createCards(
-                characterId,
-                spellList,
-                spellLevel,
-                cardsToGenerate,
-                apiKey
-            ) {
+            async function createCards(characterId, cardsToGenerate, apiKey) {
                 console.log("Fetching character data");
                 var character = await getCharacterData(characterId);
                 console.log(
@@ -1713,11 +1727,47 @@ title: Card Generator (Pathfinder)
                         }
                     });
 
-                    spellNames.push(...getSpells(spellList, spellLevel));
-
                     new Set(spellNames).forEach(async (spellName) => {
                         console.log(`Fetching spell data for ${spellName}`);
                         var spellData = await getSpellData(spellName, apiKey);
+                        generateSpellCard(spellName, spellData);
+                    });
+                }
+            }
+
+            async function createSpellListCards(
+                spellList,
+                spellLevel,
+                cardsToGenerate,
+                apiKey
+            ) {
+                if (
+                    cardsToGenerate.spells === false ||
+                    spellList === "" ||
+                    spellLevel === ""
+                ) {
+                    return;
+                }
+                console.log(
+                    `Generating spell cards for level ${spellLevel} ${spellList}`
+                );
+                var spellListData = await getSpellListData(
+                    spellList,
+                    spellLevel,
+                    apiKey
+                );
+                if (spellListData.count !== 0) {
+                    spellListData.results.forEach((spell) => {
+                        var spellName = spell.name;
+                        var spellData = { results: [spell] };
+
+                        // api doesnt let you select 1st level spells only. it also mixes in cantrips.
+                        var isCantrip =
+                            spell.system.traits.value.includes("cantrip");
+                        if (spellLevel === "1" && isCantrip) {
+                            return;
+                        }
+                        console.log(`Generating card for ${spellName}`);
                         generateSpellCard(spellName, spellData);
                     });
                 }
@@ -1748,17 +1798,19 @@ title: Card Generator (Pathfinder)
                         document.getElementById("spell-list-picker").value;
                     var spellLevel =
                         document.getElementById("spell-level-picker").value;
-                    characterIds
-                        .split(",")
-                        .forEach((characterId) =>
-                            createCards(
-                                characterId,
-                                spellList,
-                                spellLevel,
-                                cardsToGenerate,
-                                apiKey
-                            )
-                        );
+                    if (characterIds !== "") {
+                        characterIds
+                            .split(",")
+                            .forEach((characterId) =>
+                                createCards(
+                                    characterId,
+                                    cardsToGenerate,
+                                    apiKey
+                                )
+                            );
+                    }
+
+                    createSpellListCards(spellList, spellLevel, cards, apiKey);
                 });
 
             document
