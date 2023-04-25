@@ -1249,7 +1249,7 @@ title: Card Generator (Pathfinder)
                         characterBuild.abilities.int
                     );
                 }
-                appendCard(`<div class="card-wrapper" data-order="AAA-${characterBuild.name}">
+                appendCard(`<div class="card-wrapper" data-order="AAA--${characterBuild.name}--character">
                     <div class="character-card">
                         <div class="name">
                             <div class="content">${characterBuild.name} (HP: ${hp})</div>
@@ -1388,7 +1388,7 @@ title: Card Generator (Pathfinder)
                     ? feat.system.category
                     : "Special";
 
-                appendCard(`<div class="feat-card" data-order="${feat.name}">
+                appendCard(`<div class="feat-card" data-order="${feat.name}--feat">
                     <div class="name">
                         <div class="content">
                             ${feat.name}
@@ -1444,7 +1444,9 @@ title: Card Generator (Pathfinder)
                     spell.system.description.value
                 );
 
-                appendCard(`<div class="spell-card" data-order="${spell.name}">
+                appendCard(`<div class="spell-card" data-order="${
+                    spell.name
+                }--spell">
                     <div class="name">
                         <div class="content">
                             ${focusMark}
@@ -1512,7 +1514,7 @@ title: Card Generator (Pathfinder)
                     ? special.system.category.replace("feature", "")
                     : "Special";
 
-                appendCard(`<div class="feat-card" data-order="${special.name}">
+                appendCard(`<div class="feat-card" data-order="${special.name}--special">
                     <div class="name">
                         <div class="content">
                             ${special.name}
@@ -1717,10 +1719,18 @@ title: Card Generator (Pathfinder)
                         )
                         .flat();
                     [
-                        character.build.focus.arcane?.int.focusSpells,
-                        character.build.focus.divine?.wis.focusSpells,
-                        character.build.focus.occult?.int.focusSpells,
-                        character.build.focus.primal?.wis.focusSpells,
+                        character.build.focus.arcane?.cha?.focusSpells,
+                        character.build.focus.arcane?.int?.focusSpells,
+                        character.build.focus.arcane?.wis?.focusSpells,
+                        character.build.focus.divine?.cha?.focusSpells,
+                        character.build.focus.divine?.int?.focusSpells,
+                        character.build.focus.divine?.wis?.focusSpells,
+                        character.build.focus.occult?.cha?.focusSpells,
+                        character.build.focus.occult?.int?.focusSpells,
+                        character.build.focus.occult?.wis?.focusSpells,
+                        character.build.focus.primal?.cha?.focusSpells,
+                        character.build.focus.primal?.int?.focusSpells,
+                        character.build.focus.primal?.wis?.focusSpells,
                     ].forEach((list) => {
                         if (list) {
                             spellNames.push(...list);
