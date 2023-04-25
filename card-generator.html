@@ -493,12 +493,15 @@ title: Card Generator (Pathfinder)
                 font-weight: bold;
                 display: flex;
             }
-            .spell-card .name .content .spell-name {
+            .spell-card .spell-name {
                 display: inline-block;
                 max-width: 48mm;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+            }
+            .spell-card .focus-spell .spell-name {
+                max-width: 40mm;
             }
             .spell-card .spell-level {
                 position: absolute;
@@ -1432,9 +1435,11 @@ title: Card Generator (Pathfinder)
                     spell.system.traits.value
                 );
                 var focusMark = "";
+                var focusClass = "";
                 if (spell.system.category.value == "focus") {
                     spellLevel += ` (Focus)`;
                     focusMark = `<span class="focus">F</span>`;
+                    focusClass = "focus-spell";
                 }
                 var components = generateSpellComponents(
                     spell.system.components
@@ -1448,7 +1453,7 @@ title: Card Generator (Pathfinder)
                     spell.name
                 }--spell">
                     <div class="name">
-                        <div class="content">
+                        <div class="content ${focusClass}">
                             ${focusMark}
                             <span class="spell-name">${spell.name}</span>
                             <span class="action"><span class="${actionClass}" /></span>
