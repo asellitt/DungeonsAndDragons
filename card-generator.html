@@ -77,8 +77,6 @@ title: Card Generator (Pathfinder)
             #character-id {
                 width: 250px;
             }
-            #feat-picker,
-            #spell-picker,
             #spell-list-picker,
             #spell-level-picker {
                 width: 49%;
@@ -846,6 +844,141 @@ title: Card Generator (Pathfinder)
                 vertical-align: middle;
             }
         </style>
+        <style data="action-card">
+            .action-card {
+                display: inline-block;
+                position: relative;
+                width: 63mm;
+                height: 89mm;
+                padding: 0;
+                margin: 5px;
+                border-radius: 4.7619047619%;
+                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+                font-weight: 400;
+                font-size: 3mm;
+                color: #111;
+                text-align: center;
+                overflow: hidden;
+                background-color: #000;
+            }
+            .action-card .action {
+                font-family: "ActionIcons";
+                font-weight: initial;
+                text-transform: none;
+            }
+            .action-card .action-action1:before {
+                content: "\00E1";
+            }
+            .action-card .action-action2:before {
+                content: "\00E2";
+            }
+            .action-card .action-action3:before {
+                content: "\00E3";
+            }
+            .action-card .action-free:before {
+                content: "\00E0";
+            }
+            .action-card .action-reaction:before {
+                content: "\00E4";
+            }
+            .action-card .name {
+                background-color: #fff;
+                position: absolute;
+                top: 3mm;
+                left: 3mm;
+                width: 57mm;
+                height: 5mm;
+                border-radius: 2mm 2mm 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .action-card .name .content {
+                font-size: 3.5mm;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            .action-card .skill {
+                position: absolute;
+                top: 8mm;
+                width: 100%;
+                height: 3mm;
+                text-transform: capitalize;
+            }
+            .action-card .skill .content {
+                color: #fff;
+                font-size: 2mm;
+                line-height: 3mm;
+            }
+            .action-card .trait {
+                background-color: #fff;
+                text-align: center;
+            }
+            .action-card .header {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 3mm;
+                color: #000;
+            }
+            .action-card .description {
+                background-color: #fff;
+                display: inline-block;
+                position: absolute;
+                top: 11mm;
+                left: 3mm;
+                width: 55mm;
+                padding: 1mm;
+                padding-top: 0;
+                text-align: justify;
+                overflow: clip;
+                font-size: 2.2mm;
+                height: 74mm;
+                border-radius: 0 0 2mm 2mm;
+            }
+            .action-card .description p {
+                margin: 0;
+                padding-left: 0;
+                border: 0;
+                padding-bottom: 0.5mm;
+            }
+            .action-card .description ul {
+                margin: 0;
+                padding-left: 2mm;
+                border: 0;
+                padding-bottom: 0.5mm;
+            }
+            .action-card hr {
+                margin: 0;
+                border: 0;
+                position: relative;
+                left: -1mm;
+                width: 57mm;
+                border-bottom: 1.5px solid black;
+            }
+            .action-card table {
+                border-collapse: collapse;
+                white-space: initial !important;
+                text-align: left;
+                vertical-align: top;
+            }
+            .action-card table,
+            .action-card tr,
+            .action-card td,
+            .action-card th {
+                vertical-align: top;
+                padding: 0;
+                margin: 0;
+                border: 0;
+            }
+            .action-card th:first-child,
+            .action-card td:first-child {
+                padding-right: 1mm;
+            }
+            .action-card h2 {
+                margin: 0;
+                font-size: 2.2mm;
+            }
+        </style>
     </head>
     <body>
         <div class="form-controls">
@@ -994,6 +1127,36 @@ title: Card Generator (Pathfinder)
                                 <option value="gf9-ranger">Ranger</option>
                             </optgroup>
                         </select>
+                        <select id="action-picker">
+                            <option value="">Action card colour</option>
+                            <optgroup label="Class">
+                                <option value="class-artificer">
+                                    Artificer
+                                </option>
+                                <option value="class-barbarian">
+                                    Barbarian
+                                </option>
+                                <option value="class-bard">Bard</option>
+                                <option value="class-cleric">Cleric</option>
+                                <option value="class-druid">Druid</option>
+                                <option value="class-fighter">Fighter</option>
+                                <option value="class-monk">Monk</option>
+                                <option value="class-paladin">Paladin</option>
+                                <option value="class-ranger">Ranger</option>
+                                <option value="class-rogue">Rogue</option>
+                                <option value="class-sorcerer">Sorcerer</option>
+                                <option value="class-warlock">Warlock</option>
+                                <option value="class-wizard">Wizard</option>
+                            </optgroup>
+                            <optgroup label="Gale Force Nine">
+                                <option value="gf9-arcane">Arcane</option>
+                                <option value="gf9-bard">Bard</option>
+                                <option value="gf9-cleric">Cleric</option>
+                                <option value="gf9-druid">Druid</option>
+                                <option value="gf9-paladin">Paladin</option>
+                                <option value="gf9-ranger">Ranger</option>
+                            </optgroup>
+                        </select>
                     </div>
                     <div>
                         <select id="card-group-picker">
@@ -1104,6 +1267,19 @@ title: Card Generator (Pathfinder)
 
                 var req = new Request(
                     `https://api.pathfinder2.fr/v1/pf2/spell?system.traditions.value=${spellList}${levelFilter}${cantripFilter}`,
+                    { method: "GET", headers }
+                );
+
+                var response = await fetch(req);
+                return response.json();
+            }
+
+            async function getActionData(apiKey) {
+                var headers = new Headers();
+                headers.append("Authorization", apiKey);
+
+                var req = new Request(
+                    "https://api.pathfinder2.fr/v1/pf2/action?system.source.value=Pathfinder Core Rulebook",
                     { method: "GET", headers }
                 );
 
@@ -1540,6 +1716,49 @@ title: Card Generator (Pathfinder)
                 </div>`);
             }
 
+            function generateActionCard(actionName, actionData) {
+                console.log(
+                    `Generating action card: ${actionName}`,
+                    JSON.stringify(actionData, null, 2)
+                );
+
+                var actionClass = generateActionType(
+                    actionData.system.actionType,
+                    actionData.system.actions
+                );
+                var traits = [
+                    actionData.system.traits.rarity,
+                    ...actionData.system.traits.value,
+                ].join(", ");
+
+                var description = generateDescription(
+                    actionData.system.description.value
+                );
+                var category = actionData.system.actionCategory.value
+                    ? `(${actionData.system.actionCategory.value})`
+                    : "";
+
+                appendCard(`<div class="action-card" data-order="${actionData.name}--action">
+                    <div class="name">
+                        <div class="content">
+                            ${actionData.name}
+                            <span class="action"><span class="${actionClass}" /></span>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="content">${actionData.type} ${category}</div>
+                    </div>
+                    <div class="description">
+                        <div class="trait">
+                            <div class="header">Trait</div>
+                            <div class="content">${traits}</div>
+                        </div>
+                        <hr/>
+                        ${description}
+                    </div>
+                </div>`);
+            }
+
             function generateActionType(actionType, actions) {
                 if (actionType) {
                     return `action-${actionType.value}${
@@ -1787,6 +2006,19 @@ title: Card Generator (Pathfinder)
                     });
                 }
             }
+
+            async function createActionCards(cardsToGenerate, apiKey) {
+                if (cardsToGenerate.actions === false) {
+                    return;
+                }
+
+                var actionData = await getActionData(apiKey);
+                if (actionData.count !== 0) {
+                    actionData.results.forEach((action) =>
+                        generateActionCard(action.name, action)
+                    );
+                }
+            }
         </script>
         <script data="on-load">
             document
@@ -1831,6 +2063,7 @@ title: Card Generator (Pathfinder)
                         cardsToGenerate,
                         apiKey
                     );
+                    createActionCards(cardsToGenerate, apiKey);
                 });
 
             document
@@ -1852,6 +2085,17 @@ title: Card Generator (Pathfinder)
                         .querySelectorAll(".spell-card")
                         .forEach(function (element) {
                             element.className = "spell-card " + className;
+                        });
+                });
+
+            document
+                .getElementById("action-picker")
+                .addEventListener("change", (e) => {
+                    var className = e.target.value;
+                    document
+                        .querySelectorAll(".action-card")
+                        .forEach(function (element) {
+                            element.className = "action-card " + className;
                         });
                 });
 
