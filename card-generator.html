@@ -665,9 +665,10 @@ title: Card Generator (Pathfinder)
             }
             .character-card .character-level .content {
                 color: #fff;
-                font-size: 2mm;
-                line-height: 3mm;
+                font-size: 2.5mm;
+                line-height: 2.75mm;
                 text-transform: capitalize;
+                font-weight: bold;
             }
             .character-card .hp,
             .character-card .ac,
@@ -679,7 +680,7 @@ title: Card Generator (Pathfinder)
                 display: inline-block;
                 position: absolute;
                 width: 18.8333333333mm;
-                height: 7.5mm;
+                height: 9mm;
                 text-transform: capitalize;
             }
             .character-card .hp,
@@ -690,7 +691,7 @@ title: Card Generator (Pathfinder)
             .character-card .fortitude,
             .character-card .reflex,
             .character-card .will {
-                top: 18.75mm;
+                top: 20.25mm;
             }
             .character-card .hp,
             .character-card .fortitude {
@@ -712,7 +713,7 @@ title: Card Generator (Pathfinder)
             .character-card .will .header {
                 text-transform: uppercase;
                 font-size: 2.75mm;
-                line-height: 2.25mm;
+                line-height: 3mm;
             }
             .character-card .hp .content,
             .character-card .ac .content,
@@ -720,8 +721,8 @@ title: Card Generator (Pathfinder)
             .character-card .fortitude .content,
             .character-card .reflex .content,
             .character-card .will .content {
-                font-size: 6mm;
-                line-height: 5mm;
+                font-size: 8mm;
+                line-height: 5.5mm;
                 text-transform: capitalize;
             }
             .character-card .acrobatics,
@@ -772,40 +773,62 @@ title: Card Generator (Pathfinder)
                 right: 3mm;
             }
             .character-card .acrobatics,
+            .character-card .arcana,
+            .character-card .athletics,
+            .character-card .crafting,
+            .character-card .medicine,
+            .character-card .nature,
+            .character-card .occultism,
+            .character-card .performance {
+                width: 28.375mm;
+            }
+            .character-card .deception,
+            .character-card .diplomacy,
+            .character-card .intimidation,
+            .character-card .lore-1,
+            .character-card .lore-2,
+            .character-card .religion,
+            .character-card .society,
+            .character-card .stealth,
+            .character-card .survival,
+            .character-card .thievery {
+                width: 23.375mm;
+            }
+            .character-card .acrobatics,
             .character-card .medicine {
-                top: 29.25mm;
+                top: 30mm;
             }
             .character-card .arcana,
             .character-card .nature {
-                top: calc(29.25mm + 1 * 6.25mm);
+                top: calc(30mm + 1 * 6.25mm);
             }
             .character-card .athletics,
             .character-card .occultism {
-                top: calc(29.25mm + 2 * 6.25mm);
+                top: calc(30mm + 2 * 6.25mm);
             }
             .character-card .crafting,
             .character-card .performance {
-                top: calc(29.25mm + 3 * 6.25mm);
+                top: calc(30mm + 3 * 6.25mm);
             }
             .character-card .deception,
             .character-card .religion {
-                top: calc(29.25mm + 4 * 6.25mm);
+                top: calc(30mm + 4 * 6.25mm);
             }
             .character-card .diplomacy,
             .character-card .society {
-                top: calc(29.25mm + 5 * 6.25mm);
+                top: calc(30mm + 5 * 6.25mm);
             }
             .character-card .intimidation,
             .character-card .stealth {
-                top: calc(29.25mm + 6 * 6.25mm);
+                top: calc(30mm + 6 * 6.25mm);
             }
             .character-card .lore-1,
             .character-card .survival {
-                top: calc(29.25mm + 7 * 6.25mm);
+                top: calc(30mm + 7 * 6.25mm);
             }
             .character-card .lore-2,
             .character-card .thievery {
-                top: calc(29.25mm + 8 * 6.25mm);
+                top: calc(30mm + 8 * 6.25mm);
             }
             .character-card .acrobatics .content,
             .character-card .arcana .content,
@@ -851,13 +874,42 @@ title: Card Generator (Pathfinder)
             .character-card .thievery .header {
                 display: table-cell;
                 height: 6mm;
-                width: 21.25mm;
                 position: relative;
                 left: 7.1mm;
                 text-align: left;
                 text-transform: capitalize;
                 line-height: 2.5mm;
                 vertical-align: middle;
+            }
+            .character-card .acrobatics .header,
+            .character-card .arcana .header,
+            .character-card .athletics .header,
+            .character-card .crafting .header,
+            .character-card .medicine .header,
+            .character-card .nature .header,
+            .character-card .occultism .header,
+            .character-card .performance .header {
+                width: 21.25mm;
+            }
+            .character-card .deception .header,
+            .character-card .diplomacy .header,
+            .character-card .intimidation .header,
+            .character-card .lore-1 .header,
+            .character-card .lore-2 .header,
+            .character-card .religion .header,
+            .character-card .society .header,
+            .character-card .stealth .header,
+            .character-card .survival .header,
+            .character-card .thievery .header {
+                width: 16.25mm;
+            }
+            .character-card .peg {
+                position: relative;
+                top: 55mm;
+                left: 26.625mm;
+                width: 9.75mm;
+                height: 33.75mm;
+                background: #fff;
             }
         </style>
         <style data="action-card">
@@ -1435,7 +1487,7 @@ title: Card Generator (Pathfinder)
                 var lore1Bonus = 0;
                 var lore1Name = orDash(null);
                 if (characterBuild.lores[0]) {
-                    lore1Name = characterBuild.lores[0][0];
+                    lore1Name = `${characterBuild.lores[0][0]} (Lore)`;
                     lore1Bonus = generateProficiency(
                         characterBuild.level,
                         characterBuild.lores[0][1],
@@ -1445,7 +1497,7 @@ title: Card Generator (Pathfinder)
                 var lore2Bonus = 0;
                 var lore2Name = orDash(null);
                 if (characterBuild.lores[1]) {
-                    lore2Name = characterBuild.lores[1][0];
+                    lore2Name = `${characterBuild.lores[1][0]} (Lore)`;
                     lore2Bonus = generateProficiency(
                         characterBuild.level,
                         characterBuild.lores[1][1],
@@ -1515,11 +1567,11 @@ title: Card Generator (Pathfinder)
                         </div>
                         <div class="lore-1">
                             <div class="content">+${lore1Bonus}</div>
-                            <div class="header">Lore: ${lore1Name}</div>
+                            <div class="header">${lore1Name}</div>
                         </div>
                         <div class="lore-2">
                             <div class="content">+${lore2Bonus}</div>
-                            <div class="header">Lore: ${lore2Name}</div>
+                            <div class="header">${lore2Name}</div>
                         </div>
                         <div class="medicine">
                             <div class="content">+${medicine}</div>
@@ -1557,6 +1609,7 @@ title: Card Generator (Pathfinder)
                             <div class="content">+${thievery}</div>
                             <div class="header">Thievery</div>
                         </div>
+                        <div class="peg"></div>
                     </div>
                 </div>`);
             }
