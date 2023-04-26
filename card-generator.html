@@ -396,6 +396,14 @@ title: Card Generator (Pathfinder)
                 border: 0;
                 padding-bottom: 0.5mm;
             }
+            .feat-card .source {
+                color: #fff;
+                font-size: 2mm;
+                font-weight: bold;
+                position: absolute;
+                right: 5mm;
+                bottom: 0.25mm;
+            }
             .feat-card hr {
                 margin: 0;
                 border: 0;
@@ -579,6 +587,14 @@ title: Card Generator (Pathfinder)
                 padding-left: 2mm;
                 border: 0;
                 padding-bottom: 0.5mm;
+            }
+            .spell-card .source {
+                color: #fff;
+                font-size: 2mm;
+                font-weight: bold;
+                position: absolute;
+                right: 5mm;
+                bottom: 0.25mm;
             }
             .spell-card hr {
                 margin: 0;
@@ -947,13 +963,21 @@ title: Card Generator (Pathfinder)
                 border: 0;
                 padding-bottom: 0.5mm;
             }
+            .action-card .source {
+                color: #fff;
+                font-size: 2mm;
+                font-weight: bold;
+                position: absolute;
+                right: 5mm;
+                bottom: 0.25mm;
+            }
             .action-card hr {
                 margin: 0;
                 border: 0;
                 position: relative;
                 left: -1mm;
                 width: 57mm;
-                border-bottom: 1.5px solid black;
+                border-bottom: 1.5px solid #000;
             }
             .action-card table {
                 border-collapse: collapse;
@@ -1585,6 +1609,7 @@ title: Card Generator (Pathfinder)
                         <hr/>
                         ${description}
                     </div>
+                    <div class="source">${feat.system.source.value}</div>
                 </div>`);
             }
 
@@ -1659,6 +1684,7 @@ title: Card Generator (Pathfinder)
                         <div class="content">${duration}</div>
                     </div>
                     <div class="description">${description}</div>
+                    <div class="source">${spell.system.source.value}</div>
                 </div>`);
             }
 
@@ -1713,6 +1739,7 @@ title: Card Generator (Pathfinder)
                         <hr/>
                         ${description}
                     </div>
+                    <div class="source">${special.system.source.value}</div>
                 </div>`);
             }
 
@@ -1756,6 +1783,7 @@ title: Card Generator (Pathfinder)
                         <hr/>
                         ${description}
                     </div>
+                    <div class="source">${actionData.system.source.value}</div>
                 </div>`);
             }
 
