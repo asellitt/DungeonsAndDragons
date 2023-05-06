@@ -987,75 +987,58 @@ title: PF 2e Card Generator
         }
     }
 
-    async function getCharacterData(characterId) {
-        var req = new Request(
-            `https://pathbuilder2e.com/json.php?id=${characterId}`,
-            { method: "GET" }
-        );
+    async function fetchData(url, apiKey) {
+        var headers;
+        if (apiKey) {
+            headers = new Headers();
+            headers.append("Authorization", apiKey);
+        }
+
+        var req = new Request(url, { method: "GET", headers });
+
         var response = await fetch(req);
         return response.json();
+    }
+
+    async function getCharacterData(characterId) {
+        return fetchData(
+            `https://pathbuilder2e.com/json.php?id=${characterId}`
+        );
     }
 
     async function getFeatData(featName, featType, apiKey) {
-        var headers = new Headers();
-        headers.append("Authorization", apiKey);
         var endpoint = featType === "Heritage" ? "heritage" : "feat";
-
-        var req = new Request(
+        return fetchData(
             `https://api.pathfinder2.fr/v1/pf2/${endpoint}?name=${featName}`,
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        return response.json();
     }
 
     async function getSpecialData(specialName, apiKey) {
-        var headers = new Headers();
-        headers.append("Authorization", apiKey);
-        var featData;
-
-        var req = new Request(
+        var specialData = await fetchData(
             `https://api.pathfinder2.fr/v1/pf2/classFeature?name=${specialName}`,
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        var specialData = await response.json();
         var specialDataResponse = specialData.results.find(
             (special) => special.name === specialName
         );
         if (specialDataResponse) {
             return specialDataResponse;
         }
-
-        var req = new Request(
+        return fetchData(
             `https://api.pathfinder2.fr/v1/pf2/ancestryFeature?name=${specialName}`,
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        var specialData = response.json();
-        return specialData;
     }
 
     async function getSpellData(spellName, apiKey) {
-        var headers = new Headers();
-        headers.append("Authorization", apiKey);
-
-        var req = new Request(
+        return fetchData(
             `https://api.pathfinder2.fr/v1/pf2/spell?name=${spellName}`,
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        return response.json();
     }
 
     async function getSpellListData(spellList, spellLevel, apiKey) {
-        var headers = new Headers();
-        headers.append("Authorization", apiKey);
-
         var cantripFilter = "";
         var levelFilter = `&system.level.value=${spellLevel}`;
         if (spellLevel === "0") {
@@ -1063,26 +1046,17 @@ title: PF 2e Card Generator
             levelFilter = `&system.level.value=1`;
         }
 
-        var req = new Request(
+        return fetchData(
             `https://api.pathfinder2.fr/v1/pf2/spell?system.traditions.value=${spellList}${levelFilter}${cantripFilter}`,
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        return response.json();
     }
 
     async function getActionData(apiKey) {
-        var headers = new Headers();
-        headers.append("Authorization", apiKey);
-
-        var req = new Request(
+        return fetchData(
             "https://api.pathfinder2.fr/v1/pf2/action?system.source.value=Pathfinder Core Rulebook",
-            { method: "GET", headers }
+            apiKey
         );
-
-        var response = await fetch(req);
-        return response.json();
     }
 
     function generateCharacterCard(characterBuild) {
