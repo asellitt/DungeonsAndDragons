@@ -1660,7 +1660,7 @@ title: PF 2e Card Generator
         var description = generateDescription(spell.system.description.value);
 
         appendCard(`
-            <div class="spell-card" data-order="${spell.name}--spell">
+            <div class="card spell-card" data-order="${spell.name}--spell">
                 <div class="name">
                     <div class="content ${focusClass}">
                         ${focusMark}
@@ -1729,7 +1729,7 @@ title: PF 2e Card Generator
             : "Special";
 
         appendCard(`
-            <div class="feat-card" data-order="${special.name}--special">
+            <div class="card feat-card" data-order="${special.name}--special">
                 <div class="name">
                     <div class="content">
                         ${special.name}
@@ -1775,7 +1775,7 @@ title: PF 2e Card Generator
             : "";
 
         appendCard(`
-            <div class="action-card" data-order="${actionData.name}--action">
+            <div class="card action-card" data-order="${actionData.name}--action">
                 <div class="name">
                     <div class="content">
                         ${actionData.name}
