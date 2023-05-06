@@ -1469,114 +1469,114 @@ title: PF 2e Card Generator
                 characterBuild.abilities.int
             );
         }
-        appendCard(`<div class="card-wrapper" data-order="AAA--${characterBuild.name}--character">
-                    <div class="character-card">
-                        <div class="name">
-                            <div class="content">${characterBuild.name} (HP: ${hp})</div>
-                        </div>
+        appendCard(`
+            <div class="card character-card" data-order="AAA--${characterBuild.name}--character">
+                <div class="name">
+                    <div class="content">${characterBuild.name} (HP: ${hp})</div>
+                </div>
 
-                        <div class="character-level">
-                            <div class="content">${characterLevel}</div>
-                        </div>
-                        <div class="hp">
-                            <div class="header">DC</div>
-                            <div class="content">${dc}</div>
-                        </div>
-                        <div class="ac">
-                            <div class="header">AC</div>
-                            <div class="content">${characterBuild.acTotal.acTotal}</div>
-                        </div>
-                        <div class="perception">
-                            <div class="header">Perception</div>
-                            <div class="content">+${perception}</div>
-                        </div>
-                        <div class="fortitude">
-                            <div class="header">Fortitude</div>
-                            <div class="content">+${fortitude}</div>
-                        </div>
-                        <div class="reflex">
-                            <div class="header">Reflex</div>
-                            <div class="content">+${reflex}</div>
-                        </div>
-                        <div class="will">
-                            <div class="header">Will</div>
-                            <div class="content">+${will}</div>
-                        </div>
-                        <div class="acrobatics">
-                            <div class="content">+${acrobatics}</div>
-                            <div class="header">Acrobatics</div>
-                        </div>
-                        <div class="arcana">
-                            <div class="content">+${arcana}</div>
-                            <div class="header">Arcana</div>
-                        </div>
-                        <div class="athletics">
-                            <div class="content">+${athletics}</div>
-                            <div class="header">Athletics</div>
-                        </div>
-                        <div class="crafting">
-                            <div class="content">+${crafting}</div>
-                            <div class="header">Crafting</div>
-                        </div>
-                        <div class="deception">
-                            <div class="content">+${deception}</div>
-                            <div class="header">Deception</div>
-                        </div>
-                        <div class="diplomacy">
-                            <div class="content">+${diplomacy}</div>
-                            <div class="header">Diplomacy</div>
-                        </div>
-                        <div class="intimidation">
-                            <div class="content">+${intimidation}</div>
-                            <div class="header">Intimidation</div>
-                        </div>
-                        <div class="lore-1">
-                            <div class="content">+${lore1Bonus}</div>
-                            <div class="header">${lore1Name}</div>
-                        </div>
-                        <div class="lore-2">
-                            <div class="content">+${lore2Bonus}</div>
-                            <div class="header">${lore2Name}</div>
-                        </div>
-                        <div class="medicine">
-                            <div class="content">+${medicine}</div>
-                            <div class="header">Medicine</div>
-                        </div>
-                        <div class="nature">
-                            <div class="content">+${nature}</div>
-                            <div class="header">Nature</div>
-                        </div>
-                        <div class="occultism">
-                            <div class="content">+${occultism}</div>
-                            <div class="header">Occultism</div>
-                        </div>
-                        <div class="performance">
-                            <div class="content">+${performance}</div>
-                            <div class="header">Performance</div>
-                        </div>
-                        <div class="religion">
-                            <div class="content">+${religion}</div>
-                            <div class="header">Religion</div>
-                        </div>
-                        <div class="society">
-                            <div class="content">+${society}</div>
-                            <div class="header">Society</div>
-                        </div>
-                        <div class="stealth">
-                            <div class="content">+${stealth}</div>
-                            <div class="header">Stealth</div>
-                        </div>
-                        <div class="survival">
-                            <div class="content">+${survival}</div>
-                            <div class="header">Survival</div>
-                        </div>
-                        <div class="thievery">
-                            <div class="content">+${thievery}</div>
-                            <div class="header">Thievery</div>
-                        </div>
-                        <div class="peg"></div>
-                    </div>
-                </div>`);
+                <div class="character-level">
+                    <div class="content">${characterLevel}</div>
+                </div>
+                <div class="hp">
+                    <div class="header">DC</div>
+                    <div class="content">${dc}</div>
+                </div>
+                <div class="ac">
+                    <div class="header">AC</div>
+                    <div class="content">${characterBuild.acTotal.acTotal}</div>
+                </div>
+                <div class="perception">
+                    <div class="header">Perception</div>
+                    <div class="content">+${perception}</div>
+                </div>
+                <div class="fortitude">
+                    <div class="header">Fortitude</div>
+                    <div class="content">+${fortitude}</div>
+                </div>
+                <div class="reflex">
+                    <div class="header">Reflex</div>
+                    <div class="content">+${reflex}</div>
+                </div>
+                <div class="will">
+                    <div class="header">Will</div>
+                    <div class="content">+${will}</div>
+                </div>
+                <div class="acrobatics">
+                    <div class="content">+${acrobatics}</div>
+                    <div class="header">Acrobatics</div>
+                </div>
+                <div class="arcana">
+                    <div class="content">+${arcana}</div>
+                    <div class="header">Arcana</div>
+                </div>
+                <div class="athletics">
+                    <div class="content">+${athletics}</div>
+                    <div class="header">Athletics</div>
+                </div>
+                <div class="crafting">
+                    <div class="content">+${crafting}</div>
+                    <div class="header">Crafting</div>
+                </div>
+                <div class="deception">
+                    <div class="content">+${deception}</div>
+                    <div class="header">Deception</div>
+                </div>
+                <div class="diplomacy">
+                    <div class="content">+${diplomacy}</div>
+                    <div class="header">Diplomacy</div>
+                </div>
+                <div class="intimidation">
+                    <div class="content">+${intimidation}</div>
+                    <div class="header">Intimidation</div>
+                </div>
+                <div class="lore-1">
+                    <div class="content">+${lore1Bonus}</div>
+                    <div class="header">${lore1Name}</div>
+                </div>
+                <div class="lore-2">
+                    <div class="content">+${lore2Bonus}</div>
+                    <div class="header">${lore2Name}</div>
+                </div>
+                <div class="medicine">
+                    <div class="content">+${medicine}</div>
+                    <div class="header">Medicine</div>
+                </div>
+                <div class="nature">
+                    <div class="content">+${nature}</div>
+                    <div class="header">Nature</div>
+                </div>
+                <div class="occultism">
+                    <div class="content">+${occultism}</div>
+                    <div class="header">Occultism</div>
+                </div>
+                <div class="performance">
+                    <div class="content">+${performance}</div>
+                    <div class="header">Performance</div>
+                </div>
+                <div class="religion">
+                    <div class="content">+${religion}</div>
+                    <div class="header">Religion</div>
+                </div>
+                <div class="society">
+                    <div class="content">+${society}</div>
+                    <div class="header">Society</div>
+                </div>
+                <div class="stealth">
+                    <div class="content">+${stealth}</div>
+                    <div class="header">Stealth</div>
+                </div>
+                <div class="survival">
+                    <div class="content">+${survival}</div>
+                    <div class="header">Survival</div>
+                </div>
+                <div class="thievery">
+                    <div class="content">+${thievery}</div>
+                    <div class="header">Thievery</div>
+                </div>
+                <div class="peg"></div>
+            </div>
+        `);
     }
 
     function generateFeatCard(featName, featData) {
@@ -1603,27 +1603,29 @@ title: PF 2e Card Generator
         var description = generateDescription(feat.system.description.value);
         var category = feat.system.category ? feat.system.category : "Special";
 
-        appendCard(`<div class="feat-card" data-order="${feat.name}--feat">
-                    <div class="name">
-                        <div class="content">
-                            ${feat.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
+        appendCard(`
+            <div class="card feat-card" data-order="${feat.name}--feat">
+                <div class="name">
+                    <div class="content">
+                        ${feat.name}
+                        <span class="action"><span class="${actionClass}" /></span>
                     </div>
-                    <div class="skill">
-                        <div class="content">${feat.type} (${category})</div>
+                </div>
+                <div class="skill">
+                    <div class="content">${feat.type} (${category})</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
                     </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        ${prerequisites}
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${feat.system.source.value}</div>
-                </div>`);
+                    ${prerequisites}
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${feat.system.source.value}</div>
+            </div>
+        `);
     }
 
     function generateSpellCard(spellName, spellData) {
@@ -1657,40 +1659,42 @@ title: PF 2e Card Generator
         var duration = generateDuration(spell.system.duration.value);
         var description = generateDescription(spell.system.description.value);
 
-        appendCard(`<div class="spell-card" data-order="${spell.name}--spell">
-                    <div class="name">
-                        <div class="content ${focusClass}">
-                            ${focusMark}
-                            <span class="spell-name">${spell.name}</span>
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
+        appendCard(`
+            <div class="spell-card" data-order="${spell.name}--spell">
+                <div class="name">
+                    <div class="content ${focusClass}">
+                        ${focusMark}
+                        <span class="spell-name">${spell.name}</span>
+                        <span class="action"><span class="${actionClass}" /></span>
                     </div>
-                    <div class="spell-level">
-                        <div class="content">${spellLevel}</div>
-                    </div>
-                    <div class="saving-throw">
-                        <div class="header">Saving Throw</div>
-                        <div class="content">${orDash(
-                            spell.system.save.value
-                        )}</div>
-                    </div>
-                    <div class="range">
-                        <div class="header">Range</div>
-                        <div class="content">${orDash(
-                            spell.system.range.value
-                        )}</div>
-                    </div>
-                    <div class="components">
-                        <div class="header">Components</div>
-                        <div class="content">${orDash(components)}</div>
-                    </div>
-                    <div class="duration">
-                        <div class="header">Duration</div>
-                        <div class="content">${duration}</div>
-                    </div>
-                    <div class="description">${description}</div>
-                    <div class="source">${spell.system.source.value}</div>
-                </div>`);
+                </div>
+                <div class="spell-level">
+                    <div class="content">${spellLevel}</div>
+                </div>
+                <div class="saving-throw">
+                    <div class="header">Saving Throw</div>
+                    <div class="content">${orDash(
+                        spell.system.save.value
+                    )}</div>
+                </div>
+                <div class="range">
+                    <div class="header">Range</div>
+                    <div class="content">${orDash(
+                        spell.system.range.value
+                    )}</div>
+                </div>
+                <div class="components">
+                    <div class="header">Components</div>
+                    <div class="content">${orDash(components)}</div>
+                </div>
+                <div class="duration">
+                    <div class="header">Duration</div>
+                    <div class="content">${duration}</div>
+                </div>
+                <div class="description">${description}</div>
+                <div class="source">${spell.system.source.value}</div>
+            </div>
+        `);
     }
 
     function generateSpecialCard(specialName, specialData) {
@@ -1724,26 +1728,28 @@ title: PF 2e Card Generator
             ? special.system.category.replace("feature", "")
             : "Special";
 
-        appendCard(`<div class="feat-card" data-order="${special.name}--special">
-                    <div class="name">
-                        <div class="content">
-                            ${special.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
+        appendCard(`
+            <div class="feat-card" data-order="${special.name}--special">
+                <div class="name">
+                    <div class="content">
+                        ${special.name}
+                        <span class="action"><span class="${actionClass}" /></span>
                     </div>
-                    <div class="skill">
-                        <div class="content">${special.type} (${category})</div>
+                </div>
+                <div class="skill">
+                    <div class="content">${special.type} (${category})</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
                     </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${special.system.source.value}</div>
-                </div>`);
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${special.system.source.value}</div>
+            </div>
+        `);
     }
 
     function generateActionCard(actionName, actionData) {
@@ -1768,26 +1774,28 @@ title: PF 2e Card Generator
             ? `(${actionData.system.actionCategory.value})`
             : "";
 
-        appendCard(`<div class="action-card" data-order="${actionData.name}--action">
-                    <div class="name">
-                        <div class="content">
-                            ${actionData.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
+        appendCard(`
+            <div class="action-card" data-order="${actionData.name}--action">
+                <div class="name">
+                    <div class="content">
+                        ${actionData.name}
+                        <span class="action"><span class="${actionClass}" /></span>
                     </div>
-                    <div class="skill">
-                        <div class="content">${actionData.type} ${category}</div>
+                </div>
+                <div class="skill">
+                    <div class="content">${actionData.type} ${category}</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
                     </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${actionData.system.source.value}</div>
-                </div>`);
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${actionData.system.source.value}</div>
+            </div>
+        `);
     }
 
     function generateActionType(actionType, actions) {
