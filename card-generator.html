@@ -1599,7 +1599,7 @@ title: PF 2e Card Generator
             feat.system.traits.rarity,
             ...feat.system.traits.value,
         ].join(", ");
-
+        var prerequisites = generatePrerequisites(feat.system.prerequisites);
         var description = generateDescription(feat.system.description.value);
         var category = feat.system.category ? feat.system.category : "Special";
 
@@ -1618,6 +1618,7 @@ title: PF 2e Card Generator
                             <div class="header">Trait</div>
                             <div class="content">${traits}</div>
                         </div>
+                        ${prerequisites}
                         <hr/>
                         ${description}
                     </div>
@@ -1841,6 +1842,19 @@ title: PF 2e Card Generator
                     "Start of next turn"
                 )
         );
+    }
+
+    function generatePrerequisites(prerequisites) {
+        if (prerequisites) {
+            var prereqs = prerequisites.value
+                .map((prereq) => prereq.value)
+                .join(", ");
+            if (prereqs) {
+                return `<hr/><strong>Requirements</strong> ${prereqs}`;
+            }
+            return "";
+        }
+        return "";
     }
 
     function generateSpellComponents(components) {
