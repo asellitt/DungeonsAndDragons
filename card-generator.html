@@ -71,7 +71,138 @@ title: PF 2e Card Generator
         text-align: center;
     }
 </style>
-<style data="card-colors">
+<style data="card-common">
+    .card {
+        display: inline-block;
+        position: relative;
+        width: 63mm;
+        height: 89mm;
+        padding: 0;
+        margin: 5px;
+        border-radius: 4.7619047619%;
+        font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+        font-weight: 400;
+        font-size: 3mm;
+        color: #111;
+        text-align: center;
+        overflow: hidden;
+        background-color: #000;
+    }
+
+    .card .action {
+        font-family: "ActionIcons";
+        font-weight: initial;
+        text-transform: none;
+        padding-left: 1mm;
+    }
+    .card .action-action1:before {
+        content: "\00E1";
+    }
+    .card .action-action2:before {
+        content: "\00E2";
+    }
+    .card .action-action3:before {
+        content: "\00E3";
+    }
+    .card .action-free:before {
+        content: "\00E0";
+    }
+    .card .action-reaction:before {
+        content: "\00E4";
+    }
+
+    .card .name {
+        background-color: #fff;
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        width: 57mm;
+        height: 5mm;
+        border-radius: 2mm 2mm 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card .name .content {
+        display: flex;
+        font-size: 3.5mm;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .card .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
+
+    .card .description {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        left: 3mm;
+        width: 55mm;
+        padding: 1mm;
+        padding-top: 0;
+        text-align: justify;
+        overflow: clip;
+        font-size: 2.2mm;
+        border-radius: 0 0 2mm 2mm;
+    }
+    .card .description p {
+        margin: 0;
+        padding-left: 0;
+        border: 0;
+        padding-bottom: 0.5mm;
+    }
+    .card .description ul {
+        margin: 0;
+        padding-left: 2mm;
+        border: 0;
+        padding-bottom: 0.5mm;
+    }
+    .card hr {
+        margin: 0;
+        border: 0;
+        position: relative;
+        left: -1mm;
+        width: 57mm;
+        border-bottom: 1.5px solid black;
+    }
+    .card table {
+        border-collapse: collapse;
+        white-space: initial !important;
+        text-align: left;
+        vertical-align: top;
+    }
+    .card table,
+    .card tr,
+    .card td,
+    .card th {
+        vertical-align: top;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+    .card th:first-child,
+    .card td:first-child {
+        padding-right: 1mm;
+    }
+    .card h2 {
+        margin: 0;
+        font-size: 2.2mm;
+    }
+
+    .card .source {
+        color: #fff;
+        font-size: 2mm;
+        font-weight: bold;
+        position: absolute;
+        right: 5mm;
+        bottom: 0.25mm;
+    }
+
     .card-wrapper {
         display: inline-block;
     }
@@ -276,138 +407,6 @@ title: PF 2e Card Generator
         color: #745e2a;
     }
 </style>
-<style data="card-common">
-    .card {
-        display: inline-block;
-        position: relative;
-        width: 63mm;
-        height: 89mm;
-        padding: 0;
-        margin: 5px;
-        border-radius: 4.7619047619%;
-        font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
-        font-weight: 400;
-        font-size: 3mm;
-        color: #111;
-        text-align: center;
-        overflow: hidden;
-        background-color: #000;
-    }
-
-    .card .action {
-        font-family: "ActionIcons";
-        font-weight: initial;
-        text-transform: none;
-        padding-left: 1mm;
-    }
-    .card .action-action1:before {
-        content: "\00E1";
-    }
-    .card .action-action2:before {
-        content: "\00E2";
-    }
-    .card .action-action3:before {
-        content: "\00E3";
-    }
-    .card .action-free:before {
-        content: "\00E0";
-    }
-    .card .action-reaction:before {
-        content: "\00E4";
-    }
-
-    .card .name {
-        background-color: #fff;
-        position: absolute;
-        top: 3mm;
-        left: 3mm;
-        width: 57mm;
-        height: 5mm;
-        border-radius: 2mm 2mm 0 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .card .name .content {
-        display: flex;
-        font-size: 3.5mm;
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-
-    .card .header {
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 3mm;
-        color: #000;
-    }
-
-    .card .description {
-        background-color: #fff;
-        display: inline-block;
-        position: absolute;
-        left: 3mm;
-        width: 55mm;
-        padding: 1mm;
-        padding-top: 0;
-        text-align: justify;
-        overflow: clip;
-        font-size: 2.2mm;
-        border-radius: 0 0 2mm 2mm;
-    }
-    .card .description p {
-        margin: 0;
-        padding-left: 0;
-        border: 0;
-        padding-bottom: 0.5mm;
-    }
-    .card .description ul {
-        margin: 0;
-        padding-left: 2mm;
-        border: 0;
-        padding-bottom: 0.5mm;
-    }
-    .card hr {
-        margin: 0;
-        border: 0;
-        position: relative;
-        left: -1mm;
-        width: 57mm;
-        border-bottom: 1.5px solid black;
-    }
-    .card table {
-        border-collapse: collapse;
-        white-space: initial !important;
-        text-align: left;
-        vertical-align: top;
-    }
-    .card table,
-    .card tr,
-    .card td,
-    .card th {
-        vertical-align: top;
-        padding: 0;
-        margin: 0;
-        border: 0;
-    }
-    .card th:first-child,
-    .card td:first-child {
-        padding-right: 1mm;
-    }
-    .card h2 {
-        margin: 0;
-        font-size: 2.2mm;
-    }
-
-    .card .source {
-        color: #fff;
-        font-size: 2mm;
-        font-weight: bold;
-        position: absolute;
-        right: 5mm;
-        bottom: 0.25mm;
-    }
-</style>
 <style data="feat-card">
     .feat-card .skill {
         position: absolute;
@@ -426,6 +425,34 @@ title: PF 2e Card Generator
         text-align: center;
     }
     .feat-card .description {
+        top: 11mm;
+        height: 74mm;
+    }
+</style>
+<style data="action-card">
+    .action-card .skill {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+        text-transform: capitalize;
+    }
+    .action-card .skill .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+    }
+    .action-card .trait {
+        background-color: #fff;
+        text-align: center;
+    }
+    .action-card .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
+    .action-card .description {
         top: 11mm;
         height: 74mm;
     }
@@ -766,34 +793,6 @@ title: PF 2e Card Generator
         width: 9.75mm;
         height: 33.75mm;
         background: #fff;
-    }
-</style>
-<style data="action-card">
-    .action-card .skill {
-        position: absolute;
-        top: 8mm;
-        width: 100%;
-        height: 3mm;
-        text-transform: capitalize;
-    }
-    .action-card .skill .content {
-        color: #fff;
-        font-size: 2mm;
-        line-height: 3mm;
-    }
-    .action-card .trait {
-        background-color: #fff;
-        text-align: center;
-    }
-    .action-card .header {
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 3mm;
-        color: #000;
-    }
-    .action-card .description {
-        top: 11mm;
-        height: 74mm;
     }
 </style>
 
