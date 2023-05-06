@@ -1905,7 +1905,7 @@ title: PF 2e Card Generator
     function appendCard(card) {
         var element = document.createElement("div");
         element.classList.add("card-wrapper");
-        element.innerHTML = card;
+        element.innerHTML = card.trim();
         element.addEventListener("click", (_) => {
             if (element.classList.contains("no-print")) {
                 element.classList.remove("no-print");
