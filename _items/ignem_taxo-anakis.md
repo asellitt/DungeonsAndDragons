@@ -1,8 +1,9 @@
 ---
-layout: card
+layout: tool
 title: Anakis
 thumb: /assets/images/items/anakis.jpg
 ---
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/hk622bd"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/oy4xh2q"></iframe>

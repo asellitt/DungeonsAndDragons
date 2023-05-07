@@ -1,8 +1,9 @@
 ---
-layout: card
+layout: tool
 title: Seleek
 thumb: /assets/images/items/seleek.jpg
 ---
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/rkut6nu"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/bd7udp7"></iframe>
