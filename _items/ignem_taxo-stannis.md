@@ -1,8 +1,9 @@
 ---
-layout: card
+layout: tool
 title: Stannis
 thumb: /assets/images/items/stannis.jpg
 ---
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/hk622bd"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/wi6z6mq"></iframe>

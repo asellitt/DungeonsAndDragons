@@ -1,94 +1,108 @@
 #encounter {
-  #template {
-    display: none;
-  }
+    .edition-switcher {
+        display: flex;
+        justify-content: center;
+    }
+    .edition-switcher button {
+        width: 100px;
+    }
 
-  input, select {
-    width: 200px;
-    display: inline-block;
-    padding: 10px;
-    margin: 5px;
-  }
+    #template {
+        display: none;
+    }
 
-  table {
-    width:100%;
-    color: #58170D;
-    border: 0px;
-    border-collapse: collapse;
-  }
+    input,
+    select {
+        width: 200px;
+        display: inline-block;
+        padding: 10px;
+        margin: 5px;
+    }
 
-  td {
-    text-align: center;
-  }
+    table {
+        width: 100%;
+        color: #58170d;
+        border: 0px;
+        border-collapse: collapse;
+    }
 
-  tr:nth-child(even) {
-    background: #bdffcc;
-  }
+    td {
+        text-align: center;
+    }
 
-  label {
-    display: inline-block;
-    width: 175px;
-  }
+    tr:nth-child(even) {
+        background: #bdffcc;
+    }
 
-  b {
-    line-height: 1.5;
-  }
+    label {
+        display: inline-block;
+        width: 175px;
+    }
 
-  .inputs {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    text-align: center;
-  }
+    b {
+        line-height: 1.5;
+    }
 
-  .encounter {
-    width: 400px;
-    color: #58170D;
-    font-family: 'Helvetica Neue', 'Open Sans Condensed', sans-serif;
-    display: inline-block;
-    padding: 20px;
-    vertical-align: top;
-  }
+    .inputs {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        text-align: center;
+    }
 
-  .name {
-    margin-top: 10px;
-    border-bottom: 1px solid red;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    color: #58170D;
-    font-variant: small-caps;
-    font-size: 1.5em;
-    clear: both;
-  }
+    .encounter {
+        width: 400px;
+        color: #58170d;
+        font-family: "Helvetica Neue", "Open Sans Condensed", sans-serif;
+        display: inline-block;
+        padding: 20px;
+        vertical-align: top;
+    }
 
-  .two-column {
-    width: 49%;
-    display: inline-block;
-  }
+    .name {
+        color: #58170d;
+        font-variant: small-caps;
+        font-size: 1.4em;
+        clear: both;
+    }
 
-  .reroll {
-    height: 24px;
-    display: inline;
-  }
+    .level {
+        float: right;
+    }
 
-  .dice {
-    float: right;
-    height: 24px;
-  }
+    .action-icon {
+        font-family: "ActionIcons";
+    }
 
-  .skills {
-    display: none;
-  }
+    .two-column {
+        width: 49%;
+        display: inline-block;
+    }
 
-  .actions {
-    color: black;
-  }
+    .reroll {
+        height: 24px;
+        display: inline;
+    }
 
-  .reactions, .bonus-actions {
-    color: black;
-    display: none;
-  }
+    .dice {
+        float: right;
+        height: 24px;
+    }
 
-  .spellcasting {
-    color: black;
-  }
+    .skills {
+        display: none;
+    }
+
+    .actions {
+        color: black;
+    }
+
+    .reactions,
+    .bonus-actions {
+        color: black;
+        display: none;
+    }
+
+    .spellcasting {
+        color: black;
+    }
 }

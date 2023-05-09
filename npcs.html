@@ -1,870 +1,1012 @@
 ---
 layout: default
-title: NPCS
+title: NPC Generator
 ---
+
 <div id="npcs">
-  <div class="npc">
-    <div class="reroll js-reroll">
-      <svg class="dice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <path stroke="#58170D" d="M80.644,87.982l16.592-41.483c0.054-0.128,0.088-0.26,0.108-0.394c0.006-0.039,0.007-0.077,0.011-0.116  c0.007-0.087,0.008-0.174,0.002-0.26c-0.003-0.046-0.007-0.091-0.014-0.137c-0.014-0.089-0.036-0.176-0.063-0.262  c-0.012-0.034-0.019-0.069-0.031-0.103c-0.047-0.118-0.106-0.229-0.178-0.335c-0.004-0.006-0.006-0.012-0.01-0.018L67.999,3.358  c-0.01-0.013-0.003-0.026-0.013-0.04L68,3.315V4c0,0-0.033,0-0.037,0c-0.403-1-1.094-1.124-1.752-0.976  c0,0.004-0.004-0.012-0.007-0.012C66.201,3.016,66.194,3,66.194,3H66.19h-0.003h-0.003h-0.004h-0.003c0,0-0.004,0-0.007,0  s-0.003-0.151-0.007-0.151L20.495,15.227c-0.025,0.007-0.046-0.019-0.071-0.011c-0.087,0.028-0.172,0.041-0.253,0.083  c-0.054,0.027-0.102,0.053-0.152,0.085c-0.051,0.033-0.101,0.061-0.147,0.099c-0.044,0.036-0.084,0.073-0.124,0.113  c-0.048,0.048-0.093,0.098-0.136,0.152c-0.03,0.039-0.059,0.076-0.085,0.117c-0.046,0.07-0.084,0.145-0.12,0.223  c-0.011,0.023-0.027,0.042-0.036,0.066L2.911,57.664C2.891,57.715,3,57.768,3,57.82v0.002c0,0.186,0,0.375,0,0.562  c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004v0.002c0,0.074-0.002,0.15,0.012,0.223  C3.015,58.631,3,58.631,3,58.633c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004c0,0,0,0,0,0.002v0.004  c0,0.191-0.046,0.377,0.06,0.545c0-0.002-0.03,0.004-0.03,0.004c0,0.004-0.03,0.004-0.03,0.004c0,0.002,0,0.002,0,0.002  l-0.045,0.004c0.03,0.047,0.036,0.09,0.068,0.133l29.049,37.359c0.002,0.004,0,0.006,0.002,0.01c0.002,0.002,0,0.004,0.002,0.008  c0.006,0.008,0.014,0.014,0.021,0.021c0.024,0.029,0.052,0.051,0.078,0.078c0.027,0.029,0.053,0.057,0.082,0.082  c0.03,0.027,0.055,0.062,0.086,0.088c0.026,0.02,0.057,0.033,0.084,0.053c0.04,0.027,0.081,0.053,0.123,0.076  c0.005,0.004,0.01,0.008,0.016,0.01c0.087,0.051,0.176,0.09,0.269,0.123c0.042,0.014,0.082,0.031,0.125,0.043  c0.021,0.006,0.041,0.018,0.062,0.021c0.123,0.027,0.249,0.043,0.375,0.043c0.099,0,0.202-0.012,0.304-0.027l45.669-8.303  c0.057-0.01,0.108-0.021,0.163-0.037C79.547,88.992,79.562,89,79.575,89c0.004,0,0.004,0,0.004,0c0.021,0,0.039-0.027,0.06-0.035  c0.041-0.014,0.08-0.034,0.12-0.052c0.021-0.01,0.044-0.019,0.064-0.03c0.017-0.01,0.026-0.015,0.033-0.017  c0.014-0.008,0.023-0.021,0.037-0.028c0.14-0.078,0.269-0.174,0.38-0.285c0.014-0.016,0.024-0.034,0.038-0.048  c0.109-0.119,0.201-0.252,0.271-0.398c0.006-0.01,0.016-0.018,0.021-0.029c0.004-0.008,0.008-0.017,0.011-0.026  c0.002-0.004,0.003-0.006,0.005-0.01C80.627,88.021,80.635,88.002,80.644,87.982z M77.611,84.461L48.805,66.453l32.407-25.202  L77.611,84.461z M46.817,63.709L35.863,23.542l43.818,14.608L46.817,63.709z M84.668,40.542l8.926,5.952l-11.902,29.75  L84.668,40.542z M89.128,39.446L84.53,36.38l-6.129-12.257L89.128,39.446z M79.876,34.645L37.807,20.622L65.854,6.599L79.876,34.645  z M33.268,19.107l-6.485-2.162l23.781-6.487L33.268,19.107z M21.92,18.895l8.67,2.891L10.357,47.798L21.92,18.895z M32.652,24.649  l10.845,39.757L7.351,57.178L32.652,24.649z M43.472,67.857L32.969,92.363L8.462,60.855L43.472,67.857z M46.631,69.09l27.826,17.393  l-38.263,6.959L46.631,69.09z" data-reactid=".0.0.0.0.0.0"></path>
-      </svg>
+    <div class="npc">
+        <div class="reroll js-reroll">
+            <svg
+                class="dice"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 100 100"
+            >
+                <path
+                    stroke="#58170D"
+                    d="M80.644,87.982l16.592-41.483c0.054-0.128,0.088-0.26,0.108-0.394c0.006-0.039,0.007-0.077,0.011-0.116  c0.007-0.087,0.008-0.174,0.002-0.26c-0.003-0.046-0.007-0.091-0.014-0.137c-0.014-0.089-0.036-0.176-0.063-0.262  c-0.012-0.034-0.019-0.069-0.031-0.103c-0.047-0.118-0.106-0.229-0.178-0.335c-0.004-0.006-0.006-0.012-0.01-0.018L67.999,3.358  c-0.01-0.013-0.003-0.026-0.013-0.04L68,3.315V4c0,0-0.033,0-0.037,0c-0.403-1-1.094-1.124-1.752-0.976  c0,0.004-0.004-0.012-0.007-0.012C66.201,3.016,66.194,3,66.194,3H66.19h-0.003h-0.003h-0.004h-0.003c0,0-0.004,0-0.007,0  s-0.003-0.151-0.007-0.151L20.495,15.227c-0.025,0.007-0.046-0.019-0.071-0.011c-0.087,0.028-0.172,0.041-0.253,0.083  c-0.054,0.027-0.102,0.053-0.152,0.085c-0.051,0.033-0.101,0.061-0.147,0.099c-0.044,0.036-0.084,0.073-0.124,0.113  c-0.048,0.048-0.093,0.098-0.136,0.152c-0.03,0.039-0.059,0.076-0.085,0.117c-0.046,0.07-0.084,0.145-0.12,0.223  c-0.011,0.023-0.027,0.042-0.036,0.066L2.911,57.664C2.891,57.715,3,57.768,3,57.82v0.002c0,0.186,0,0.375,0,0.562  c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004v0.002c0,0.074-0.002,0.15,0.012,0.223  C3.015,58.631,3,58.631,3,58.633c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004c0,0,0,0,0,0.002v0.004  c0,0.191-0.046,0.377,0.06,0.545c0-0.002-0.03,0.004-0.03,0.004c0,0.004-0.03,0.004-0.03,0.004c0,0.002,0,0.002,0,0.002  l-0.045,0.004c0.03,0.047,0.036,0.09,0.068,0.133l29.049,37.359c0.002,0.004,0,0.006,0.002,0.01c0.002,0.002,0,0.004,0.002,0.008  c0.006,0.008,0.014,0.014,0.021,0.021c0.024,0.029,0.052,0.051,0.078,0.078c0.027,0.029,0.053,0.057,0.082,0.082  c0.03,0.027,0.055,0.062,0.086,0.088c0.026,0.02,0.057,0.033,0.084,0.053c0.04,0.027,0.081,0.053,0.123,0.076  c0.005,0.004,0.01,0.008,0.016,0.01c0.087,0.051,0.176,0.09,0.269,0.123c0.042,0.014,0.082,0.031,0.125,0.043  c0.021,0.006,0.041,0.018,0.062,0.021c0.123,0.027,0.249,0.043,0.375,0.043c0.099,0,0.202-0.012,0.304-0.027l45.669-8.303  c0.057-0.01,0.108-0.021,0.163-0.037C79.547,88.992,79.562,89,79.575,89c0.004,0,0.004,0,0.004,0c0.021,0,0.039-0.027,0.06-0.035  c0.041-0.014,0.08-0.034,0.12-0.052c0.021-0.01,0.044-0.019,0.064-0.03c0.017-0.01,0.026-0.015,0.033-0.017  c0.014-0.008,0.023-0.021,0.037-0.028c0.14-0.078,0.269-0.174,0.38-0.285c0.014-0.016,0.024-0.034,0.038-0.048  c0.109-0.119,0.201-0.252,0.271-0.398c0.006-0.01,0.016-0.018,0.021-0.029c0.004-0.008,0.008-0.017,0.011-0.026  c0.002-0.004,0.003-0.006,0.005-0.01C80.627,88.021,80.635,88.002,80.644,87.982z M77.611,84.461L48.805,66.453l32.407-25.202  L77.611,84.461z M46.817,63.709L35.863,23.542l43.818,14.608L46.817,63.709z M84.668,40.542l8.926,5.952l-11.902,29.75  L84.668,40.542z M89.128,39.446L84.53,36.38l-6.129-12.257L89.128,39.446z M79.876,34.645L37.807,20.622L65.854,6.599L79.876,34.645  z M33.268,19.107l-6.485-2.162l23.781-6.487L33.268,19.107z M21.92,18.895l8.67,2.891L10.357,47.798L21.92,18.895z M32.652,24.649  l10.845,39.757L7.351,57.178L32.652,24.649z M43.472,67.857L32.969,92.363L8.462,60.855L43.472,67.857z M46.631,69.09l27.826,17.393  l-38.263,6.959L46.631,69.09z"
+                    data-reactid=".0.0.0.0.0.0"
+                ></path>
+            </svg>
+        </div>
+        <p>
+            @"<span class="js-name campaign-logger"></span>" (<span
+                class="js-gender"
+            ></span
+            >, <span class="js-race"></span>)
+        </p>
+        <br />
+        <p>
+            <b>Facial features:</b><br />
+            - The person has: <span class="js-facial-features-eyes"></span
+            ><br />
+            - The person has: <span class="js-facial-features-ears"></span
+            ><br />
+            - The person has: <span class="js-facial-features-mouth"></span
+            ><br />
+            - The person has: <span class="js-facial-features-nose"></span
+            ><br />
+            - The person has: <span class="js-facial-features-jaw"></span><br />
+            - The person has: <span class="js-facial-features-hair"></span
+            ><br />
+            - The persons face has:
+            <span class="js-facial-features-other-facial-feature"></span>
+        </p>
+        <p>
+            <b>Physical features:</b><br />
+            - The person is: <span class="js-physical-features-height"></span
+            ><br />
+            - The persons body is:
+            <span class="js-physical-features-body"></span><br />
+            - The person has: <span class="js-physical-features-hands"></span
+            ><br />
+            - The person has: <span class="js-physical-features-scar"></span>
+        </p>
+        <p>
+            <b>Accessories:</b><br />
+            - The person has <span class="js-accessories-tattoo"></span><br />
+            - The person wears <span class="js-accessories-jewelry"></span>,
+            made of <span class="js-accessories-jewelry-made-of"></span><br />
+            - The persons clothing is
+            <span class="js-accessories-clothes"></span>
+        </p>
+        <p>
+            <b>Emotions:</b><br />
+            - When calm, the person is typically
+            <span class="js-emotions-calm"></span><br />
+            - When stressed, the person often becomes
+            <span class="js-emotions-stressed"></span><br />
+            - Now, the person is <span class="js-emotions-current-mood"></span>
+        </p>
+        <p>
+            <b>Faith:</b><br />
+            - The person is a <span class="js-faith-faith"></span><br />
+            - The person is prejudice against
+            <span class="js-faith-prejudice"></span>
+        </p>
+        <br />
+        <p><b>Appearance: </b><span class="js-appearance"></span></p>
+        <p><b>High Ability: </b><span class="js-high-ability"></span></p>
+        <p><b>Low Ability: </b><span class="js-low-ability"></span></p>
+        <p><b>Talent: </b><span class="js-talent"></span></p>
+        <p><b>Mannerism: </b><span class="js-mannerism"></span></p>
+        <p><b>Trait: </b><span class="js-trait"></span></p>
+        <p><b>Ideal: </b><span class="js-ideal"></span></p>
+        <p><b>Bond: </b><span class="js-bond"></span></p>
+        <p><b>Secret: </b><span class="js-secret"></span></p>
     </div>
-    <p>@"<span class="js-name campaign-logger"></span>" (<span class="js-gender"></span>, <span class="js-race"></span>)</p>
-    <br>
-    <p>
-      <b>Facial features:</b><br>
-      - The person has: <span class="js-facial-features-eyes"></span><br>
-      - The person has: <span class="js-facial-features-ears"></span><br>
-      - The person has: <span class="js-facial-features-mouth"></span><br>
-      - The person has: <span class="js-facial-features-nose"></span><br>
-      - The person has: <span class="js-facial-features-jaw"></span><br>
-      - The person has: <span class="js-facial-features-hair"></span><br>
-      - The persons face has: <span class="js-facial-features-other-facial-feature"></span>
-    </p>
-    <p>
-      <b>Physical features:</b><br>
-      - The person is: <span class="js-physical-features-height"></span><br>
-      - The persons body is: <span class="js-physical-features-body"></span><br>
-      - The person has: <span class="js-physical-features-hands"></span><br>
-      - The person has: <span class="js-physical-features-scar"></span>
-    </p>
-    <p>
-      <b>Accessories:</b><br>
-      - The person has <span class="js-accessories-tattoo"></span><br>
-      - The person wears <span class="js-accessories-jewelry"></span>, made of <span class="js-accessories-jewelry-made-of"></span><br>
-      - The persons clothing is <span class="js-accessories-clothes"></span>
-    </p>
-    <p>
-      <b>Emotions:</b><br>
-      - When calm, the person is typically <span class="js-emotions-calm"></span><br>
-      - When stressed, the person often becomes <span class="js-emotions-stressed"></span><br>
-      - Now, the person is <span class="js-emotions-current-mood"></span>
-    </p>
-    <p>
-      <b>Faith:</b><br>
-      - The person is a <span class="js-faith-faith"></span><br>
-      - The person is prejudice against <span class="js-faith-prejudice"></span>
-    </p>
-    <br/>
-    <p><b>Appearance: </b><span class="js-appearance"></span></p>
-    <p><b>High Ability: </b><span class="js-high-ability"></span></p>
-    <p><b>Low Ability: </b><span class="js-low-ability"></span></p>
-    <p><b>Talent: </b><span class="js-talent"></span></p>
-    <p><b>Mannerism: </b><span class="js-mannerism"></span></p>
-    <p><b>Trait: </b><span class="js-trait"></span></p>
-    <p><b>Ideal: </b><span class="js-ideal"></span></p>
-    <p><b>Bond: </b><span class="js-bond"></span></p>
-    <p><b>Secret: </b><span class="js-secret"></span></p>
-  </div>
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    generateNpc()
-    $('.js-reroll').on('click', generateNpc)
+    $(document).ready(function () {
+        generateNpc();
+        $(".js-reroll").on("click", generateNpc);
 
-    $('.js-name').on('click', generateName)
-    $('.js-gender').on('click', generateGender)
-    $('.js-race').on('click', generateRace)
-    $('.js-facial-features-eyes').on('click', generateFacialFeaturesEyes)
-    $('.js-facial-features-ears').on('click', generateFacialFeaturesEars)
-    $('.js-facial-features-mouth').on('click', generateFacialFeaturesMouth)
-    $('.js-facial-features-nose').on('click', generateFacialFeaturesNose)
-    $('.js-facial-features-jaw').on('click', generateFacialFeaturesJaw)
-    $('.js-facial-features-hair').on('click', generateFacialFeaturesHair)
-    $('.js-facial-features-other-facial-feature').on('click', generateFacialFeaturesOtherFacialFeature)
-    $('.js-physical-features-height').on('click', generatePhysicalFeaturesHeight)
-    $('.js-physical-features-body').on('click', generatePhysicalFeaturesBody)
-    $('.js-physical-features-hands').on('click', generatePhysicalFeaturesHands)
-    $('.js-physical-features-scar').on('click', generatePhysicalFeaturesScar)
-    $('.js-accessories-tattoo').on('click', generateAccessoriesTattoo)
-    $('.js-accessories-jewelry').on('click', generateAccessoriesJewelry)
-    $('.js-accessories-jewelry-made-of').on('click', generateAccessoriesJewelryMadeOf)
-    $('.js-accessories-clothes').on('click', generateAccessoriesClothes)
-    $('.js-emotions-calm').on('click', generateEmotionsCalm)
-    $('.js-emotions-stressed').on('click', generateEmotionsStressed)
-    $('.js-emotions-current-mood').on('click', generateEmotionsCurrentMood)
-    $('.js-faith-faith').on('click', generateFaithFaith)
-    $('.js-faith-prejudice').on('click', generateFaithPrejudice)
-    $('.js-appearance').on('click', generateAppearance)
-    $('.js-high-ability').on('click', generateHighAbility)
-    $('.js-low-ability').on('click', generateLowAbility)
-    $('.js-talent').on('click', generateTalent)
-    $('.js-mannerism').on('click', generateMannerism)
-    $('.js-trait').on('click', generateTrait)
-    $('.js-ideal').on('click', generateIdeal)
-    $('.js-bond').on('click', generateBond)
-    $('.js-secret').on('click', generateSecret)
-  })
+        $(".js-name").on("click", generateName);
+        $(".js-gender").on("click", generateGender);
+        $(".js-race").on("click", generateRace);
+        $(".js-facial-features-eyes").on("click", generateFacialFeaturesEyes);
+        $(".js-facial-features-ears").on("click", generateFacialFeaturesEars);
+        $(".js-facial-features-mouth").on("click", generateFacialFeaturesMouth);
+        $(".js-facial-features-nose").on("click", generateFacialFeaturesNose);
+        $(".js-facial-features-jaw").on("click", generateFacialFeaturesJaw);
+        $(".js-facial-features-hair").on("click", generateFacialFeaturesHair);
+        $(".js-facial-features-other-facial-feature").on(
+            "click",
+            generateFacialFeaturesOtherFacialFeature
+        );
+        $(".js-physical-features-height").on(
+            "click",
+            generatePhysicalFeaturesHeight
+        );
+        $(".js-physical-features-body").on(
+            "click",
+            generatePhysicalFeaturesBody
+        );
+        $(".js-physical-features-hands").on(
+            "click",
+            generatePhysicalFeaturesHands
+        );
+        $(".js-physical-features-scar").on(
+            "click",
+            generatePhysicalFeaturesScar
+        );
+        $(".js-accessories-tattoo").on("click", generateAccessoriesTattoo);
+        $(".js-accessories-jewelry").on("click", generateAccessoriesJewelry);
+        $(".js-accessories-jewelry-made-of").on(
+            "click",
+            generateAccessoriesJewelryMadeOf
+        );
+        $(".js-accessories-clothes").on("click", generateAccessoriesClothes);
+        $(".js-emotions-calm").on("click", generateEmotionsCalm);
+        $(".js-emotions-stressed").on("click", generateEmotionsStressed);
+        $(".js-emotions-current-mood").on("click", generateEmotionsCurrentMood);
+        $(".js-faith-faith").on("click", generateFaithFaith);
+        $(".js-faith-prejudice").on("click", generateFaithPrejudice);
+        $(".js-appearance").on("click", generateAppearance);
+        $(".js-high-ability").on("click", generateHighAbility);
+        $(".js-low-ability").on("click", generateLowAbility);
+        $(".js-talent").on("click", generateTalent);
+        $(".js-mannerism").on("click", generateMannerism);
+        $(".js-trait").on("click", generateTrait);
+        $(".js-ideal").on("click", generateIdeal);
+        $(".js-bond").on("click", generateBond);
+        $(".js-secret").on("click", generateSecret);
+    });
 
-  function generateNpc() {
-    generateName()
-    generateGender()
-    generateRace()
-    generateAppearance()
-    generateFacialFeaturesEyes()
-    generateFacialFeaturesEars()
-    generateFacialFeaturesMouth()
-    generateFacialFeaturesNose()
-    generateFacialFeaturesJaw()
-    generateFacialFeaturesHair()
-    generateFacialFeaturesOtherFacialFeature()
-    generatePhysicalFeaturesHeight()
-    generatePhysicalFeaturesBody()
-    generatePhysicalFeaturesHands()
-    generatePhysicalFeaturesScar()
-    generateAccessoriesTattoo()
-    generateAccessoriesJewelry()
-    generateAccessoriesJewelryMadeOf()
-    generateAccessoriesClothes()
-    generateEmotionsCalm()
-    generateEmotionsStressed()
-    generateEmotionsCurrentMood()
-    generateFaithFaith()
-    generateFaithPrejudice()
-    generateHighAbility()
-    generateLowAbility()
-    generateTalent()
-    generateMannerism()
-    generateTrait()
-    generateIdeal()
-    generateBond()
-    generateSecret()
-  }
+    function generateNpc() {
+        generateName();
+        generateGender();
+        generateRace();
+        generateAppearance();
+        generateFacialFeaturesEyes();
+        generateFacialFeaturesEars();
+        generateFacialFeaturesMouth();
+        generateFacialFeaturesNose();
+        generateFacialFeaturesJaw();
+        generateFacialFeaturesHair();
+        generateFacialFeaturesOtherFacialFeature();
+        generatePhysicalFeaturesHeight();
+        generatePhysicalFeaturesBody();
+        generatePhysicalFeaturesHands();
+        generatePhysicalFeaturesScar();
+        generateAccessoriesTattoo();
+        generateAccessoriesJewelry();
+        generateAccessoriesJewelryMadeOf();
+        generateAccessoriesClothes();
+        generateEmotionsCalm();
+        generateEmotionsStressed();
+        generateEmotionsCurrentMood();
+        generateFaithFaith();
+        generateFaithPrejudice();
+        generateHighAbility();
+        generateLowAbility();
+        generateTalent();
+        generateMannerism();
+        generateTrait();
+        generateIdeal();
+        generateBond();
+        generateSecret();
+    }
 
-  function generateName() { $('.js-name').text(name() + ' ' + name()) }
-  function generateGender() { $('.js-gender').text(gender()) }
-  function generateRace() { $('.js-race').text(race()) }
-  function generateAppearance() { $('.js-appearance').text(appearance()) }
-  function generateHighAbility() { $('.js-high-ability').text(highAbility()) }
-  function generateLowAbility() { $('.js-low-ability').text(lowAbility()) }
-  function generateTalent() { $('.js-talent').text(talent()) }
-  function generateMannerism() { $('.js-mannerism').text(mannerism()) }
-  function generateTrait() { $('.js-trait').text(trait()) }
-  function generateIdeal() { $('.js-ideal').text(ideal()) }
-  function generateBond() { $('.js-bond').text(bond()) }
-  function generateSecret() { $('.js-secret').text(secret()) }
-  function generateFacialFeaturesEyes() { $('.js-facial-features-eyes').text(eyes()) }
-  function generateFacialFeaturesEars() { $('.js-facial-features-ears').text(ears()) }
-  function generateFacialFeaturesMouth() { $('.js-facial-features-mouth').text(mouth()) }
-  function generateFacialFeaturesNose() { $('.js-facial-features-nose').text(nose()) }
-  function generateFacialFeaturesJaw() { $('.js-facial-features-jaw').text(jaw()) }
-  function generateFacialFeaturesHair() { $('.js-facial-features-hair').text(hair()) }
-  function generateFacialFeaturesOtherFacialFeature() { $('.js-facial-features-other-facial-feature').text(otherFacialFeature()) }
-  function generatePhysicalFeaturesHeight() { $('.js-physical-features-height').text(height()) }
-  function generatePhysicalFeaturesBody() { $('.js-physical-features-body').text(body()) }
-  function generatePhysicalFeaturesHands() { $('.js-physical-features-hands').text(hands()) }
-  function generatePhysicalFeaturesScar() { $('.js-physical-features-scar').text(scar()) }
-  function generateAccessoriesTattoo() { $('.js-accessories-tattoo').text(tattoo()) }
-  function generateAccessoriesJewelry() { $('.js-accessories-jewelry').text(jewelry()) }
-  function generateAccessoriesJewelryMadeOf() { $('.js-accessories-jewelry-made-of').text(jewelryMadeOf()) }
-  function generateAccessoriesClothes() { $('.js-accessories-clothes').text(clothes()) }
-  function generateEmotionsCalm() { $('.js-emotions-calm').text(calm()) }
-  function generateEmotionsStressed() { $('.js-emotions-stressed').text(stressed()) }
-  function generateEmotionsCurrentMood() { $('.js-emotions-current-mood').text(currentMood()) }
-  function generateFaithFaith() { $('.js-faith-faith').text(faith()) }
-  function generateFaithPrejudice() { $('.js-faith-prejudice').text(prejudice()) }
+    function generateName() {
+        $(".js-name").text(name() + " " + name());
+    }
+    function generateGender() {
+        $(".js-gender").text(gender());
+    }
+    function generateRace() {
+        $(".js-race").text(race());
+    }
+    function generateAppearance() {
+        $(".js-appearance").text(appearance());
+    }
+    function generateHighAbility() {
+        $(".js-high-ability").text(highAbility());
+    }
+    function generateLowAbility() {
+        $(".js-low-ability").text(lowAbility());
+    }
+    function generateTalent() {
+        $(".js-talent").text(talent());
+    }
+    function generateMannerism() {
+        $(".js-mannerism").text(mannerism());
+    }
+    function generateTrait() {
+        $(".js-trait").text(trait());
+    }
+    function generateIdeal() {
+        $(".js-ideal").text(ideal());
+    }
+    function generateBond() {
+        $(".js-bond").text(bond());
+    }
+    function generateSecret() {
+        $(".js-secret").text(secret());
+    }
+    function generateFacialFeaturesEyes() {
+        $(".js-facial-features-eyes").text(eyes());
+    }
+    function generateFacialFeaturesEars() {
+        $(".js-facial-features-ears").text(ears());
+    }
+    function generateFacialFeaturesMouth() {
+        $(".js-facial-features-mouth").text(mouth());
+    }
+    function generateFacialFeaturesNose() {
+        $(".js-facial-features-nose").text(nose());
+    }
+    function generateFacialFeaturesJaw() {
+        $(".js-facial-features-jaw").text(jaw());
+    }
+    function generateFacialFeaturesHair() {
+        $(".js-facial-features-hair").text(hair());
+    }
+    function generateFacialFeaturesOtherFacialFeature() {
+        $(".js-facial-features-other-facial-feature").text(
+            otherFacialFeature()
+        );
+    }
+    function generatePhysicalFeaturesHeight() {
+        $(".js-physical-features-height").text(height());
+    }
+    function generatePhysicalFeaturesBody() {
+        $(".js-physical-features-body").text(body());
+    }
+    function generatePhysicalFeaturesHands() {
+        $(".js-physical-features-hands").text(hands());
+    }
+    function generatePhysicalFeaturesScar() {
+        $(".js-physical-features-scar").text(scar());
+    }
+    function generateAccessoriesTattoo() {
+        $(".js-accessories-tattoo").text(tattoo());
+    }
+    function generateAccessoriesJewelry() {
+        $(".js-accessories-jewelry").text(jewelry());
+    }
+    function generateAccessoriesJewelryMadeOf() {
+        $(".js-accessories-jewelry-made-of").text(jewelryMadeOf());
+    }
+    function generateAccessoriesClothes() {
+        $(".js-accessories-clothes").text(clothes());
+    }
+    function generateEmotionsCalm() {
+        $(".js-emotions-calm").text(calm());
+    }
+    function generateEmotionsStressed() {
+        $(".js-emotions-stressed").text(stressed());
+    }
+    function generateEmotionsCurrentMood() {
+        $(".js-emotions-current-mood").text(currentMood());
+    }
+    function generateFaithFaith() {
+        $(".js-faith-faith").text(faith());
+    }
+    function generateFaithPrejudice() {
+        $(".js-faith-prejudice").text(prejudice());
+    }
 
-  function generateFaith() {
-    $('.js-faith').text(
-      [
-      ].join(' | ')
-    )
-  }
+    function generateFaith() {
+        $(".js-faith").text([].join(" | "));
+    }
 
+    function name() {
+        return (
+            "" +
+            [
+                "A",
+                "Be",
+                "De",
+                "Ef",
+                "Fa",
+                "Jo",
+                "Ki",
+                "La",
+                "Ma",
+                "Na",
+                "O",
+                "Pa",
+                "Re",
+                "Si",
+                "Ta",
+                "Va",
+            ][d(16) - 1] +
+            [
+                "bar",
+                "ched",
+                "dell",
+                "far",
+                "gran",
+                "hal",
+                "jen",
+                "kel",
+                "lim",
+                "mor",
+                "ner",
+                "penn",
+                "quil",
+                "rond",
+                "sark",
+                "shen",
+                "tur",
+                "vash",
+                "yor",
+                "zen",
+            ][d(20) - 1] +
+            [
+                "a",
+                "ac",
+                "ai",
+                "al",
+                "am",
+                "an",
+                "ar",
+                "ea",
+                "el",
+                "er",
+                "ess",
+                "ett",
+                "ic",
+                "id",
+                "il",
+                "in",
+                "is",
+                "or",
+                "us",
+            ][d(19) - 1]
+        );
+    }
 
-  function name() {
-    return '' +
-      [
-        'A', 'Be', 'De',
-        'Ef', 'Fa', 'Jo',
-        'Ki', 'La', 'Ma',
-        'Na', 'O', 'Pa',
-        'Re', 'Si', 'Ta',
-        'Va'
-      ][d(16) - 1] +
-      [
-        'bar', 'ched', 'dell',
-        'far', 'gran', 'hal',
-        'jen', 'kel', 'lim',
-        'mor', 'ner', 'penn',
-        'quil', 'rond', 'sark',
-        'shen', 'tur', 'vash',
-        'yor', 'zen'
-      ][d(20) - 1] +
-      [
-        'a', 'ac', 'ai',
-        'al', 'am', 'an',
-        'ar', 'ea', 'el',
-        'er', 'ess', 'ett',
-        'ic', 'id', 'il',
-        'in', 'is', 'or',
-        'us'
-      ][d(19) - 1]
-  }
+    function gender() {
+        return ["Male", "Female"][d(2) - 1];
+    }
 
-  function gender() {
-    return [
-      'Male',
-      'Female'
-    ][d(2) - 1]
-  }
+    function race() {
+        return [
+            "Hill Dwarf",
+            "Mountain Dwarf",
+            "Shield Dwarf",
+            "Gold Dwarf",
+            "Gray Dwarf",
+            "High Elf",
+            "Wood Elf",
+            "Moon Elf",
+            "Sun Elf",
+            "Dark Elf",
+            "Lightfoot Halfling",
+            "Stout Halfling",
+            "Strongheart Halfling",
+            "Human",
+            "Dragonborn",
+            "Forest Gnome",
+            "Rock Gnome",
+            "Deep Gnome",
+            "Half-Elf",
+            "Half-Orc",
+            "Half-Dwarf",
+            "Tiefling",
+        ][d(22) - 1];
+    }
 
-  function race() {
-    return [
-      'Hill Dwarf',
-      'Mountain Dwarf',
-      'Shield Dwarf',
-      'Gold Dwarf',
-      'Gray Dwarf',
-      'High Elf',
-      'Wood Elf',
-      'Moon Elf',
-      'Sun Elf',
-      'Dark Elf',
-      'Lightfoot Halfling',
-      'Stout Halfling',
-      'Strongheart Halfling',
-      'Human',
-      'Dragonborn',
-      'Forest Gnome',
-      'Rock Gnome',
-      'Deep Gnome',
-      'Half-Elf',
-      'Half-Orc',
-      'Half-Dwarf',
-      'Tiefling'
-    ][d(22) - 1]
-  }
+    function appearance() {
+        return [
+            "Distinctive earrings",
+            "Distinctive necklace",
+            "Distinctive circlet",
+            "Distinctive bracelets",
+            "Piercings",
+            "Flamboyant clothes",
+            "Outlandish clothes",
+            "Formal, clean clothes",
+            "Ragged, dirty clothes",
+            "Pronounced scar",
+            "Missing teeth",
+            "Missing fingers",
+            "Unusual eye color",
+            "Two different eye colors",
+            "Tattoos",
+            "Birthmark",
+            "Unusual skin color",
+            "Bald",
+            "Braided beard",
+            "Braided hair",
+            "Unusual hair color",
+            "Nervous eye twitch",
+            "Distinctive nose",
+            "Distinctive crooked posture",
+            "Distinctive rigid posture",
+            "Exceptionally beautiful",
+            "Exceptionally ugly",
+        ][d(27) - 1];
+    }
 
-  function appearance() {
-    return [
-      'Distinctive earrings',
-      'Distinctive necklace',
-      'Distinctive circlet',
-      'Distinctive bracelets',
-      'Piercings',
-      'Flamboyant clothes',
-      'Outlandish clothes',
-      'Formal, clean clothes',
-      'Ragged, dirty clothes',
-      'Pronounced scar',
-      'Missing teeth',
-      'Missing fingers',
-      'Unusual eye color',
-      'Two different eye colors',
-      'Tattoos',
-      'Birthmark',
-      'Unusual skin color',
-      'Bald',
-      'Braided beard',
-      'Braided hair',
-      'Unusual hair color',
-      'Nervous eye twitch',
-      'Distinctive nose',
-      'Distinctive crooked posture',
-      'Distinctive rigid posture',
-      'Exceptionally beautiful',
-      'Exceptionally ugly'
-    ][d(27) - 1]
-  }
+    function highAbility() {
+        return [
+            "Powerful (Strength)",
+            "Brawny (Strength)",
+            "Strong as an ox (Strength)",
+            "Lithe (Dexterity)",
+            "Agile (Dexterity)",
+            "Graceful (Dexterity)",
+            "Hardy (Constitution)",
+            "Hale (Constitution)",
+            "Healthy (Constitution)",
+            "Studious (Intelligence)",
+            "Learned (Intelligence)",
+            "Inquisitive (Intelligence)",
+            "Perceptive (Wisdom)",
+            "Spiritual (Wisdom)",
+            "Insightful (Wisdom)",
+            "Persuasive (Charisma)",
+            "Forceful (Charisma)",
+            "Born leader (Charisma))",
+        ][d(18) - 1];
+    }
 
-  function highAbility() {
-    return [
-      'Powerful (Strength)',
-      'Brawny (Strength)',
-      'Strong as an ox (Strength)',
-      'Lithe (Dexterity)',
-      'Agile (Dexterity)',
-      'Graceful (Dexterity)',
-      'Hardy (Constitution)',
-      'Hale (Constitution)',
-      'Healthy (Constitution)',
-      'Studious (Intelligence)',
-      'Learned (Intelligence)',
-      'Inquisitive (Intelligence)',
-      'Perceptive (Wisdom)',
-      'Spiritual (Wisdom)',
-      'Insightful (Wisdom)',
-      'Persuasive (Charisma)',
-      'Forceful (Charisma)',
-      'Born leader (Charisma))'
-    ][d(18) - 1]
-  }
+    function lowAbility() {
+        return [
+            "Feeble (Strength)",
+            "Scrawny (Strength)",
+            "Clumsy (Dexterity)",
+            "Fumbling (Dexterity)",
+            "Sickly (Constitution)",
+            "Pale (Constitution)",
+            "Dimwitted (Intelligence)",
+            "Slow (Intelligence)",
+            "Oblivious (Wisdom)",
+            "Absentminded (Wisdom)",
+            "Dull (Charisma)",
+            "Boring (Charisma)",
+        ][d(12) - 1];
+    }
 
-  function lowAbility() {
-    return [
-      'Feeble (Strength)',
-      'Scrawny (Strength)',
-      'Clumsy (Dexterity)',
-      'Fumbling (Dexterity)',
-      'Sickly (Constitution)',
-      'Pale (Constitution)',
-      'Dimwitted (Intelligence)',
-      'Slow (Intelligence)',
-      'Oblivious (Wisdom)',
-      'Absentminded (Wisdom)',
-      'Dull (Charisma)',
-      'Boring (Charisma)'
-    ][d(12) - 1]
-  }
+    function talent() {
+        return [
+            "Plays a musical instrument",
+            "Speaks several languages fluently",
+            "Unbelievably lucky",
+            "Perfect memory",
+            "Great with animals",
+            "Great with children",
+            "Great at solving puzzles",
+            "Great at one game",
+            "Great at impersonations",
+            "Draws beautifully",
+            "Paints beautifully",
+            "Sings beautifully",
+            "Drinks everyone under the table",
+            "Expert carpenter",
+            "Expert cook",
+            "Expert dart thrower and rock skipper",
+            "Expert juggler",
+            "Skilled actor and master of disguise",
+            "Skilled dancer",
+            "Knows thieves cant",
+        ][d(20) - 1];
+    }
 
-  function talent() {
-    return [
-      'Plays a musical instrument',
-      'Speaks several languages fluently',
-      'Unbelievably lucky',
-      'Perfect memory',
-      'Great with animals',
-      'Great with children',
-      'Great at solving puzzles',
-      'Great at one game',
-      'Great at impersonations',
-      'Draws beautifully',
-      'Paints beautifully',
-      'Sings beautifully',
-      'Drinks everyone under the table',
-      'Expert carpenter',
-      'Expert cook',
-      'Expert dart thrower and rock skipper',
-      'Expert juggler',
-      'Skilled actor and master of disguise',
-      'Skilled dancer',
-      'Knows thieves cant'
-    ][d(20) - 1]
-  }
+    function mannerism() {
+        return [
+            "Prone to singing",
+            "Prone to whistling",
+            "Prone to humming quietly",
+            "Speaks in rhyme",
+            "Speaks in some peculiar way",
+            "Particularly low voice",
+            "Particularly high voice",
+            "Slurs words",
+            "Has a lisp",
+            "Has a stutter",
+            "Enunciates overly clearly",
+            "Speaks loudly",
+            "Whispers",
+            "Uses flowery speech",
+            "Uses long words",
+            "Frequently uses the wrong word",
+            "Uses colorful oaths and exclamations",
+            "Makes constant jokes",
+            "Makes constant puns",
+            "Prone to predictions of doom",
+            "Fidgets",
+            "Squints",
+            "Stares into the distance",
+            "Chews something",
+            "Paces",
+            "Taps fingers",
+            "Bites fingernails",
+            "Twirls hair",
+            "Tugs beard",
+        ][d(29) - 1];
+    }
 
-  function mannerism() {
-    return [
-      'Prone to singing',
-      'Prone to whistling',
-      'Prone to humming quietly',
-      'Speaks in rhyme',
-      'Speaks in some peculiar way',
-      'Particularly low voice',
-      'Particularly high voice',
-      'Slurs words',
-      'Has a lisp',
-      'Has a stutter',
-      'Enunciates overly clearly',
-      'Speaks loudly',
-      'Whispers',
-      'Uses flowery speech',
-      'Uses long words',
-      'Frequently uses the wrong word',
-      'Uses colorful oaths and exclamations',
-      'Makes constant jokes',
-      'Makes constant puns',
-      'Prone to predictions of doom',
-      'Fidgets',
-      'Squints',
-      'Stares into the distance',
-      'Chews something',
-      'Paces',
-      'Taps fingers',
-      'Bites fingernails',
-      'Twirls hair',
-      'Tugs beard'
-    ][d(29) - 1]
-  }
+    function trait() {
+        return [
+            "Argumentative",
+            "Arrogant",
+            "Blustering",
+            "Rude",
+            "Curious",
+            "Friendly",
+            "Honest",
+            "Hot tempered",
+            "Irritable",
+            "Ponderous",
+            "Quiet",
+            "Suspicious",
+        ][d(12) - 1];
+    }
 
-  function trait() {
-    return [
-      'Argumentative',
-      'Arrogant',
-      'Blustering',
-      'Rude',
-      'Curious',
-      'Friendly',
-      'Honest',
-      'Hot tempered',
-      'Irritable',
-      'Ponderous',
-      'Quiet',
-      'Suspicious'
-    ][d(12) - 1]
-  }
+    function ideal() {
+        return [
+            "Beauty (Good)",
+            "Charity (Good)",
+            "Greater good (Good)",
+            "Life (Good)",
+            "Respect (Good)",
+            "Self-sacrifice (Good)",
+            "Domination (Evil)",
+            "Greed (Evil)",
+            "Might (Evil)",
+            "Pain (Evil)",
+            "Retribution (Evil)",
+            "Slaughter (Evil)",
+            "Community (Lawful)",
+            "Fairness (Lawful)",
+            "Honor (Lawful)",
+            "Logic (Lawful)",
+            "Responsibility (Lawful)",
+            "Tradition (Lawful)",
+            "Change (Chaotic)",
+            "Creativity (Chaotic)",
+            "Freedom (Chaotic)",
+            "Independence (Chaotic)",
+            "No limits (Chaotic)",
+            "Whimsy (Chaotic)",
+            "Balance (Neutral)",
+            "Knowledge (Neutral)",
+            "Live and let live (Neutral)",
+            "Moderation (Neutral)",
+            "Neutrality (Neutral)",
+            "People (Neutral)",
+            "Aspiration (Other)",
+            "Discovery (Other)",
+            "Glory (Other)",
+            "Nation (Other)",
+            "Redemption (Other)",
+            "Self-knowledge (Other)",
+        ][d(36) - 1];
+    }
 
-  function ideal() {
-    return [
-      'Beauty (Good)',
-      'Charity (Good)',
-      'Greater good (Good)',
-      'Life (Good)',
-      'Respect (Good)',
-      'Self-sacrifice (Good)',
-      'Domination (Evil)',
-      'Greed (Evil)',
-      'Might (Evil)',
-      'Pain (Evil)',
-      'Retribution (Evil)',
-      'Slaughter (Evil)',
-      'Community (Lawful)',
-      'Fairness (Lawful)',
-      'Honor (Lawful)',
-      'Logic (Lawful)',
-      'Responsibility (Lawful)',
-      'Tradition (Lawful)',
-      'Change (Chaotic)',
-      'Creativity (Chaotic)',
-      'Freedom (Chaotic)',
-      'Independence (Chaotic)',
-      'No limits (Chaotic)',
-      'Whimsy (Chaotic)',
-      'Balance (Neutral)',
-      'Knowledge (Neutral)',
-      'Live and let live (Neutral)',
-      'Moderation (Neutral)',
-      'Neutrality (Neutral)',
-      'People (Neutral)',
-      'Aspiration (Other)',
-      'Discovery (Other)',
-      'Glory (Other)',
-      'Nation (Other)',
-      'Redemption (Other)',
-      'Self-knowledge (Other)'
-    ][d(36) - 1]
-  }
+    function bond() {
+        return [
+            "Dedicated to fulfilling a personal life goal",
+            "Protective of close family members",
+            "Protective of colleagues",
+            "Protective of compatriots",
+            "Loyal to a benefactor",
+            "Loyal to a patron",
+            "Loyal to a employer",
+            "Captivated by a romantic interest",
+            "Drawn to a special place",
+            "Protective of a sentimental keepsake",
+            "Protective of a valuable possession",
+            "Out for revenge",
+        ][d(12) - 1];
+    }
 
-  function bond() {
-    return [
-      'Dedicated to fulfilling a personal life goal',
-      'Protective of close family members',
-      'Protective of colleagues',
-      'Protective of compatriots',
-      'Loyal to a benefactor',
-      'Loyal to a patron',
-      'Loyal to a employer',
-      'Captivated by a romantic interest',
-      'Drawn to a special place',
-      'Protective of a sentimental keepsake',
-      'Protective of a valuable possession',
-      'Out for revenge'
-    ][d(12) - 1]
-  }
+    function secret() {
+        return [
+            "Forbidden love",
+            "Susceptibility to romance",
+            "Enjoys decadent pleasures",
+            "Arrogance",
+            "Envies another creatures possessions",
+            "Envies another creatures station",
+            "Overpowering greed",
+            "Prone to rage",
+            "Has a powerful enemy",
+            "Specific phobia",
+            "Shameful history",
+            "Scandalous history",
+            "Secret crime",
+            "Secret misdeed",
+            "Possession of forbidden lore",
+            "Foolhardy bravery",
+        ][d(16) - 1];
+    }
 
-  function secret() {
-    return [
-      'Forbidden love',
-      'Susceptibility to romance',
-      'Enjoys decadent pleasures',
-      'Arrogance',
-      'Envies another creatures possessions',
-      'Envies another creatures station',
-      'Overpowering greed',
-      'Prone to rage',
-      'Has a powerful enemy',
-      'Specific phobia',
-      'Shameful history',
-      'Scandalous history',
-      'Secret crime',
-      'Secret misdeed',
-      'Possession of forbidden lore',
-      'Foolhardy bravery'
-    ][d(16) - 1]
-  }
+    function eyes() {
+        return [
+            "Sleepy eyes",
+            "Shifty eyes",
+            "Watery eyes",
+            "Bright eyes",
+            "Cold eyes",
+            "Smiling eyes",
+            "Close-set eyes",
+            "Wild eyes",
+            "Distant eyes",
+            "A lazy eye",
+            "Piercing eyes",
+            "Watchful eyes",
+            "Dark eyes",
+            "Hooded eyes",
+            "Eyes of two different colors",
+            "Slightly crossed eyes",
+            "Wide eyes",
+            "Beautiful eyes",
+            "Beady eyes",
+            "Penetrating eyes",
+        ][d(20) - 1];
+    }
 
-  function eyes() {
-    return [
-      'Sleepy eyes',
-      'Shifty eyes',
-      'Watery eyes',
-      'Bright eyes',
-      'Cold eyes',
-      'Smiling eyes',
-      'Close-set eyes',
-      'Wild eyes',
-      'Distant eyes',
-      'A lazy eye',
-      'Piercing eyes',
-      'Watchful eyes',
-      'Dark eyes',
-      'Hooded eyes',
-      'Eyes of two different colors',
-      'Slightly crossed eyes',
-      'Wide eyes',
-      'Beautiful eyes',
-      'Beady eyes',
-      'Penetrating eyes'
-    ][d(20) - 1]
-  }
+    function ears() {
+        return [
+            "Over-sized ears",
+            "Long ear lobes",
+            "Small ears",
+            "Uneven ears",
+            "Hairy ears",
+            "Pointy ears",
+            "Short ear lobes",
+            "Ears that stick out",
+            "Jug-handle ears",
+            "Elaborately pierced ears",
+            "Cauliflower ears",
+            "Ears with improbable tufts of hair",
+        ][d(12) - 1];
+    }
 
-  function ears() {
-    return [
-      'Over-sized ears',
-      'Long ear lobes',
-      'Small ears',
-      'Uneven ears',
-      'Hairy ears',
-      'Pointy ears',
-      'Short ear lobes',
-      'Ears that stick out',
-      'Jug-handle ears',
-      'Elaborately pierced ears',
-      'Cauliflower ears',
-      'Ears with improbable tufts of hair'
-    ][d(12) - 1]
-  }
+    function mouth() {
+        return [
+            "Full lips",
+            "Buck-teeth",
+            "Thin lips",
+            "Rotting teeth",
+            "Crooked teeth",
+            "A broken or missing tooth",
+            "Pursed lips",
+            "Dry, cracked lips",
+            "One or more false teeth",
+            "A mouth that hangs open",
+        ][d(10) - 1];
+    }
 
-  function mouth() {
-    return [
-      'Full lips',
-      'Buck-teeth',
-      'Thin lips',
-      'Rotting teeth',
-      'Crooked teeth',
-      'A broken or missing tooth',
-      'Pursed lips',
-      'Dry, cracked lips',
-      'One or more false teeth',
-      'A mouth that hangs open'
-    ][d(10) - 1]
-  }
+    function nose() {
+        return [
+            "A crooked nose",
+            "A bulbous nose",
+            "A narrow nose",
+            "A button nose",
+            "A long nose",
+            "A broad nose",
+            "An angular nose",
+            "A round nose",
+            "A broken nose",
+            "A hawk-like nose",
+            "A wide nose",
+            "A delicate nose",
+        ][d(12) - 1];
+    }
 
-  function nose() {
-    return [
-      'A crooked nose',
-      'A bulbous nose',
-      'A narrow nose',
-      'A button nose',
-      'A long nose',
-      'A broad nose',
-      'An angular nose',
-      'A round nose',
-      'A broken nose',
-      'A hawk-like nose',
-      'A wide nose',
-      'A delicate nose',
-    ][d(12) - 1]
-  }
+    function jaw() {
+        return [
+            "A pronounced chin",
+            "A cleft chin",
+            "A dimple on the chin",
+            "A rounded chin",
+            "A sharp jawline",
+            "A square jaw",
+            "A round jaw",
+            "An underbite",
+        ][d(8) - 1];
+    }
 
-  function jaw() {
-    return [
-      'A pronounced chin',
-      'A cleft chin',
-      'A dimple on the chin',
-      'A rounded chin',
-      'A sharp jawline',
-      'A square jaw',
-      'A round jaw',
-      'An underbite'
-    ][d(8) - 1]
-  }
+    function hair() {
+        return [
+            "Thick hair",
+            "Wispy hair",
+            "Straight hair",
+            "Wavy hair",
+            "Curly hair",
+            "Wiry hair",
+            "Oily hair",
+            "Lush hair",
+            "Poofy hair",
+            "Long braids",
+            "Braids tight against the head",
+            "Very long hair",
+            "Greasy hair",
+            "Unruly hair",
+            "An unusual hairstyle",
+            "An outdated hairstyle",
+            "A high-maintenance hairstyle",
+            "Short-cropped hair",
+            "A shaved head",
+            "No hair at all",
+        ][d(20) - 1];
+    }
 
-  function hair() {
-    return [
-      'Thick hair',
-      'Wispy hair',
-      'Straight hair',
-      'Wavy hair',
-      'Curly hair',
-      'Wiry hair',
-      'Oily hair',
-      'Lush hair',
-      'Poofy hair',
-      'Long braids',
-      'Braids tight against the head',
-      'Very long hair',
-      'Greasy hair',
-      'Unruly hair',
-      'An unusual hairstyle',
-      'An outdated hairstyle',
-      'A high-maintenance hairstyle',
-      'Short-cropped hair',
-      'A shaved head',
-      'No hair at all'
-    ][d(20) - 1]
-  }
+    function otherFacialFeature() {
+        return [
+            "High cheekbones",
+            "Tight, drawn cheeks",
+            "Chubby cheeks",
+            "An unpleasant pustule",
+            "A large mole",
+            "A beauty mark",
+            "Freckles",
+            "Terrible scarring",
+        ][d(9) - 1];
+    }
 
-  function otherFacialFeature() {
-    return [
-      'High cheekbones',
-      'Tight, drawn cheeks',
-      'Chubby cheeks',
-      'An unpleasant pustule',
-      'A large mole',
-      'A beauty mark',
-      'Freckles',
-      'Terrible scarring',
-    ][d(9) - 1]
-  }
+    function height() {
+        return [
+            "Unusually short",
+            "Short in stature",
+            "Average height",
+            "Slightly above average height",
+            "Well above average height",
+            "Unusually tall",
+        ][d(6) - 1];
+    }
 
-  function height() {
-    return [
-      'Unusually short',
-      'Short in stature',
-      'Average height',
-      'Slightly above average height',
-      'Well above average height',
-      'Unusually tall'
-    ][d(6) - 1]
-  }
+    function body() {
+        return [
+            "Thin and delicate",
+            "Of average build",
+            "Well-muscled",
+            "Slightly overweight",
+            "Grotesquely obese",
+            "Lean and lanky",
+            "Lithe and lean",
+            "Thin and wiry",
+            "Sinewy and strong",
+            "Flabby and weak",
+            "Lumpy or bent",
+            "Thin and flimsy",
+            "Soft and chubby",
+            "Thin and petite",
+            "Pudgy",
+            "Big and broad",
+            "Stocky and strong",
+            "Bony",
+            "Wide and ponderous",
+            "Covered in hair",
+        ][d(20) - 1];
+    }
 
-  function body() {
-    return [
-      'Thin and delicate',
-      'Of average build',
-      'Well-muscled',
-      'Slightly overweight',
-      'Grotesquely obese',
-      'Lean and lanky',
-      'Lithe and lean',
-      'Thin and wiry',
-      'Sinewy and strong',
-      'Flabby and weak',
-      'Lumpy or bent',
-      'Thin and flimsy',
-      'Soft and chubby',
-      'Thin and petite',
-      'Pudgy',
-      'Big and broad',
-      'Stocky and strong',
-      'Bony',
-      'Wide and ponderous',
-      'Covered in hair'
-    ][d(20) - 1]
-  }
+    function hands() {
+        return [
+            "Powerful hands",
+            "Delicate hands",
+            "Rough hands",
+            "Soft hands",
+            "A light touch",
+            "A heavy touch",
+        ][d(6) - 1];
+    }
 
-  function hands() {
-    return [
-      'Powerful hands',
-      'Delicate hands',
-      'Rough hands',
-      'Soft hands',
-      'A light touch',
-      'A heavy touch'
-    ][d(6) - 1]
-  }
+    function scar() {
+        return [
+            "A jagged scar",
+            "A dark purple scar",
+            "An angry red scar",
+            "A long, thin scar",
+        ][d(5) - 1];
+    }
 
-  function scar() {
-    return [
-      'A jagged scar',
-      'A dark purple scar',
-      'An angry red scar',
-      'A long, thin scar'
-    ][d(5) - 1]
-  }
+    function tattoo() {
+        return [
+            "A dagger tattoo",
+            "An arrow tattoo",
+            "An anchor tattoo",
+            "A skull tattoo",
+            "A pair of crossed bones tattoo",
+            "A snake tattoo",
+            "A scorpion tattoo",
+            "A spider web tattoo",
+            "A heart tattoo",
+            "A ring of thorns tattoo",
+            "A mermaid tattoo",
+            "A dragon tattoo",
+        ][d(12) - 1];
+    }
 
-  function tattoo() {
-    return [
-      'A dagger tattoo',
-      'An arrow tattoo',
-      'An anchor tattoo',
-      'A skull tattoo',
-      'A pair of crossed bones tattoo',
-      'A snake tattoo',
-      'A scorpion tattoo',
-      'A spider web tattoo',
-      'A heart tattoo',
-      'A ring of thorns tattoo',
-      'A mermaid tattoo',
-      'A dragon tattoo'
-    ][d(12) - 1]
-  }
+    function jewelry() {
+        return [
+            "An earring",
+            "Two earrings",
+            "A small chain about the neck",
+            "A large chain about the neck",
+            "A tight choker about the neck",
+            "A brooch",
+            "A ring",
+            "Several rings",
+            "A bracelet",
+            "A nose ring",
+            "A medallion",
+            "An ornate belt",
+        ][d(12) - 1];
+    }
 
-  function jewelry() {
-    return [
-      'An earring',
-      'Two earrings',
-      'A small chain about the neck',
-      'A large chain about the neck',
-      'A tight choker about the neck',
-      'A brooch',
-      'A ring',
-      'Several rings',
-      'A bracelet',
-      'A nose ring',
-      'A medallion',
-      'An ornate belt'
-    ][d(12) - 1]
-  }
+    function jewelryMadeOf() {
+        return [
+            "Steel",
+            "Bronze",
+            "Pewter",
+            "Silver",
+            "Gold",
+            "Platinum",
+            "Copper",
+            "Amethyst",
+            "Crystal",
+            "Diamond",
+            "Emerald",
+            "Jade",
+            "Obsidian",
+            "Opal",
+            "Pearl",
+            "Ruby",
+            "Sapphire",
+            "Topaz",
+            "Turquoise",
+        ][d(19) - 1];
+    }
 
-  function jewelryMadeOf() {
-    return [
-      'Steel',
-      'Bronze',
-      'Pewter',
-      'Silver',
-      'Gold',
-      'Platinum',
-      'Copper',
-      'Amethyst',
-      'Crystal',
-      'Diamond',
-      'Emerald',
-      'Jade',
-      'Obsidian',
-      'Opal',
-      'Pearl',
-      'Ruby',
-      'Sapphire',
-      'Topaz',
-      'Turquoise'
-    ][d(19) - 1]
-  }
+    function clothes() {
+        return [
+            "Crisp and new",
+            "Fashionable and hip",
+            "A bit old-fashioned",
+            "Of the highest quality",
+            "Faded, but in good condition",
+            "Faded and patched",
+            "Torn in places; missing buttons",
+            "Tattered and worn",
+        ][d(8) - 1];
+    }
 
-  function clothes() {
-    return [
-      'Crisp and new',
-      'Fashionable and hip',
-      'A bit old-fashioned',
-      'Of the highest quality',
-      'Faded, but in good condition',
-      'Faded and patched',
-      'Torn in places; missing buttons',
-      'Tattered and worn'
-    ][d(8) - 1]
-  }
+    function calm() {
+        return [
+            "Compassionate",
+            "Cheerful",
+            "Reserved",
+            "Outspoken",
+            "Uninterested",
+            "Gruff",
+            "Eager",
+            "Deceitful",
+            "Foolish",
+            "Strict",
+            "Agreeable",
+            "Mischeivious",
+            "Angry",
+            "Fearful",
+            "Manipulative",
+            "Devout",
+            "Greedy",
+            "Funny",
+            "Dour",
+            "Fun-Loving",
+            "Lazy",
+            "Driven",
+            "Boastful",
+            "Artistic",
+            "Assertive",
+            "Carefree",
+            "Cautious",
+            "Confident",
+            "Thoughtful",
+            "Loyal",
+            "Sophisticated",
+            "Weak-Willed",
+        ][d(32) - 1];
+    }
 
-  function calm() {
-    return [
-      'Compassionate',
-      'Cheerful',
-      'Reserved',
-      'Outspoken',
-      'Uninterested',
-      'Gruff',
-      'Eager',
-      'Deceitful',
-      'Foolish',
-      'Strict',
-      'Agreeable',
-      'Mischeivious',
-      'Angry',
-      'Fearful',
-      'Manipulative',
-      'Devout',
-      'Greedy',
-      'Funny',
-      'Dour',
-      'Fun-Loving',
-      'Lazy',
-      'Driven',
-      'Boastful',
-      'Artistic',
-      'Assertive',
-      'Carefree',
-      'Cautious',
-      'Confident',
-      'Thoughtful',
-      'Loyal',
-      'Sophisticated',
-      'Weak-Willed'
-    ][d(32) - 1]
-  }
+    function stressed() {
+        return [
+            "Withdrawn",
+            "Murderous",
+            "Obsessive",
+            "Authoritarian",
+            "Determined",
+            "Brave",
+            "Spiteful",
+            "Belligerent",
+            "Caustic",
+            "Reckless",
+            "Argumentative",
+            "Gluttonous",
+            "Overly Protective",
+            "Angry",
+            "Cowardly",
+            "Meticulous",
+            "Sarcastic",
+            "Stubborn",
+            "Destructive",
+            "Practical",
+            "Pushy",
+            "Fanatical",
+            "Secretive",
+            "Scornful",
+            "Courageous",
+            "Impractical",
+            "Calculating",
+            "Industrious",
+            "Manipulative",
+            "Destructive",
+            "Compulsive",
+            "Intolerant",
+        ][d(32) - 1];
+    }
 
-  function stressed() {
-    return [
-      'Withdrawn',
-      'Murderous',
-      'Obsessive',
-      'Authoritarian',
-      'Determined',
-      'Brave',
-      'Spiteful',
-      'Belligerent',
-      'Caustic',
-      'Reckless',
-      'Argumentative',
-      'Gluttonous',
-      'Overly Protective',
-      'Angry',
-      'Cowardly',
-      'Meticulous',
-      'Sarcastic',
-      'Stubborn',
-      'Destructive',
-      'Practical',
-      'Pushy',
-      'Fanatical',
-      'Secretive',
-      'Scornful',
-      'Courageous',
-      'Impractical',
-      'Calculating',
-      'Industrious',
-      'Manipulative',
-      'Destructive',
-      'Compulsive',
-      'Intolerant'
-    ][d(32) - 1]
-  }
+    function currentMood() {
+        return [
+            "Agreeable",
+            "Carefree",
+            "Curious",
+            "Eager",
+            "Friendly",
+            "Happy",
+            "Hopeful",
+            "Upbeat",
+            "Indifferent",
+            "Bored",
+            "Focused",
+            "Suspicious",
+            "Tired",
+            "Withdrawn",
+            "Disagreeable",
+            "Agitated",
+            "Angry",
+            "Despondent",
+            "Gloomy",
+            "Nervous",
+        ][d(20) - 1];
+    }
 
-  function currentMood() {
-    return [
-      'Agreeable',
-      'Carefree',
-      'Curious',
-      'Eager',
-      'Friendly',
-      'Happy',
-      'Hopeful',
-      'Upbeat',
-      'Indifferent',
-      'Bored',
-      'Focused',
-      'Suspicious',
-      'Tired',
-      'Withdrawn',
-      'Disagreeable',
-      'Agitated',
-      'Angry',
-      'Despondent',
-      'Gloomy',
-      'Nervous'
-    ][d(20) - 1]
-  }
+    function faith() {
+        return [
+            "Quiet true believer",
+            "Casual observer",
+            "Critical student",
+            "Outspoken cynic",
+            "Open-minded seeker",
+            "Broken heretic",
+            "Cautious listener",
+            "Fanatical true believer",
+        ][d(8) - 1];
+    }
 
-  function faith() {
-    return [
-      'Quiet true believer',
-      'Casual observer',
-      'Critical student',
-      'Outspoken cynic',
-      'Open-minded seeker',
-      'Broken heretic',
-      'Cautious listener',
-      'Fanatical true believer'
-    ][d(8) - 1]
-  }
+    function prejudice() {
+        return [
+            "Other genders",
+            "Children",
+            "Teenagers",
+            "Elderly",
+            "Ruling class and authority figures",
+            "Powerful rich",
+            "Destitute poor",
+            "Beggars",
+            "Drunks",
+            "Drug-users",
+            "Farmers",
+            "Artists",
+            "Clergy",
+            "Soldiers",
+            "Fishers",
+            "Harlots",
+            "Miners",
+            "Merchants",
+            "Scholars",
+            "Herders",
+            "Sailors",
+            "Mage",
+            "Dwarves",
+            "Elves",
+            "Gnomes",
+            "Goblins",
+            "Half-breeds",
+            "Halflings",
+            "Humans",
+            "Orcs",
+            "Reptilians",
+        ][d(31) - 1];
+    }
 
-  function prejudice() {
-    return [
-      "Other genders",
-      "Children",
-      "Teenagers",
-      "Elderly",
-      "Ruling class and authority figures",
-      "Powerful rich",
-      "Destitute poor",
-      "Beggars",
-      "Drunks",
-      "Drug-users",
-      "Farmers",
-      "Artists",
-      "Clergy",
-      "Soldiers",
-      "Fishers",
-      "Harlots",
-      "Miners",
-      "Merchants",
-      "Scholars",
-      "Herders",
-      "Sailors",
-      "Mage",
-      "Dwarves",
-      "Elves",
-      "Gnomes",
-      "Goblins",
-      "Half-breeds",
-      "Halflings",
-      "Humans",
-      "Orcs",
-      "Reptilians"
-    ][d(31) - 1]
-  }
-
-  function d(sides) {
-    return Math.floor(Math.random() * sides) + 1
-  }
+    function d(sides) {
+        return Math.floor(Math.random() * sides) + 1;
+    }
 </script>

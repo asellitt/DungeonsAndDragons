@@ -1,2295 +1,1890 @@
 ---
-layout: card
-title: Card Generator (Pathfinder)
+layout: tool
+title: Card Generator
 ---
 
-<html>
-    <head>
-        <style data="global">
-            @media print {
-                .form-controls {
-                    display: none !important;
-                }
+<style data="global">
+    @media print {
+        .form-controls {
+            display: none !important;
+        }
 
-                .no-print {
-                    display: none !important;
-                }
-                #cards {
-                    position: initial !important;
-                }
-            }
+        .no-print {
+            display: none !important;
+        }
+        #cards {
+            position: initial !important;
+        }
+    }
 
-            @font-face {
-                font-family: "Pathfinder-Icons";
-                src: url("../assets/fonts/Pathfinder-Icons.ttf");
-            }
+    strong p {
+        /* api has some fucked data... */
+        font-weight: initial;
+    }
 
-            @font-face {
-                font-family: "ActionIcons";
-                src: url("../assets/fonts/action_icons.eot");
-                src: url("../assets/fonts/action_icons.woff2") format("woff2"),
-                    url("../assets/fonts/action_icons.woff") format("woff"),
-                    url("../assets/fonts/action_icons.ttf") format("truetype");
-                font-weight: normal;
-                font-style: normal;
-            }
+    .no-print {
+        filter: opacity(0.2);
+    }
 
-            strong p {
-                /* api has some fucked data... */
-                font-weight: initial;
-            }
+    .form-controls {
+        display: flex;
+        justify-content: center;
+        height: 100px;
+        width: 100%;
+        background: white;
+        column-gap: 20px;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
 
-            .no-print {
-                filter: opacity(0.2);
-            }
+    .fetch-controls {
+        display: flex;
+        flex-direction: row;
+    }
 
-            .form-controls {
-                display: flex;
-                justify-content: center;
-                height: 100px;
-                width: 100%;
-                background: white;
-                column-gap: 20px;
-                position: fixed;
-                top: 0;
-                z-index: 100;
-            }
+    .print-controls {
+        display: flex;
+        flex-direction: row;
+    }
 
-            .fetch-controls {
-                display: flex;
-                flex-direction: row;
-            }
+    .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 
-            .print-controls {
-                display: flex;
-                flex-direction: row;
-            }
+    #character-id {
+        width: 250px;
+    }
+    #spell-list-picker,
+    #spell-level-picker {
+        width: 49%;
+    }
 
-            .control-group {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                justify-content: center;
-                padding-left: 5px;
-                padding-right: 5px;
-            }
+    #cards {
+        position: relative;
+        top: 100px;
+        text-align: center;
+    }
+</style>
+<style data="card-common">
+    .card {
+        display: inline-block;
+        position: relative;
+        width: 63mm;
+        height: 89mm;
+        padding: 0;
+        margin: 5px;
+        border-radius: 4.7619047619%;
+        font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+        font-weight: 400;
+        font-size: 3mm;
+        color: #111;
+        text-align: center;
+        overflow: hidden;
+        background-color: #000;
+    }
 
-            #character-id {
-                width: 250px;
-            }
-            #spell-list-picker,
-            #spell-level-picker {
-                width: 49%;
-            }
+    .card .action {
+        font-family: "ActionIcons";
+        font-weight: initial;
+        text-transform: none;
+        padding-left: 1mm;
+    }
+    .card .action-action1:before {
+        content: "\00E1";
+    }
+    .card .action-action2:before {
+        content: "\00E2";
+    }
+    .card .action-action3:before {
+        content: "\00E3";
+    }
+    .card .action-free:before {
+        content: "\00E0";
+    }
+    .card .action-reaction:before {
+        content: "\00E4";
+    }
 
-            #cards {
-                position: relative;
-                top: 100px;
-                text-align: center;
-            }
-        </style>
-        <style data="card-colors">
-            .card-wrapper {
-                display: inline-block;
-            }
+    .card .name {
+        background-color: #fff;
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        width: 57mm;
+        height: 5mm;
+        border-radius: 2mm 2mm 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card .name .content {
+        display: flex;
+        font-size: 3.5mm;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
 
-            .card-wrapper .class-artificer {
-                background-color: #d59139;
-            }
-            .card-wrapper .class-artificer hr {
-                border-bottom: 1.5px solid #d59139;
-            }
-            .card-wrapper .class-artificer .header {
-                color: #d59139;
-            }
+    .card .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
 
-            .card-wrapper .class-barbarian {
-                background-color: #e5623e;
-            }
-            .card-wrapper .class-barbarian hr {
-                border-bottom: 1.5px solid #e5623e;
-            }
-            .card-wrapper .class-barbarian .header {
-                color: #e5623e;
-            }
+    .card .description {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        left: 3mm;
+        width: 55mm;
+        padding: 1mm;
+        padding-top: 0;
+        text-align: justify;
+        overflow: clip;
+        font-size: 2.2mm;
+        border-radius: 0 0 2mm 2mm;
+    }
+    .card .description p {
+        margin: 0;
+        padding-left: 0;
+        border: 0;
+        padding-bottom: 0.5mm;
+    }
+    .card .description ul {
+        margin: 0;
+        padding-left: 2mm;
+        border: 0;
+        padding-bottom: 0.5mm;
+    }
+    .card hr {
+        margin: 0;
+        border: 0;
+        position: relative;
+        left: -1mm;
+        width: 57mm;
+        border-bottom: 1.5px solid black;
+    }
+    .card table {
+        border-collapse: collapse;
+        white-space: initial !important;
+        text-align: left;
+        vertical-align: top;
+    }
+    .card table,
+    .card tr,
+    .card td,
+    .card th {
+        vertical-align: top;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+    .card th:first-child,
+    .card td:first-child {
+        padding-right: 1mm;
+    }
+    .card h2 {
+        margin: 0;
+        font-size: 2.2mm;
+    }
 
-            .card-wrapper .class-bard {
-                background-color: #aa6dab;
-            }
-            .card-wrapper .class-bard hr {
-                border-bottom: 1.5px solid #aa6dab;
-            }
-            .card-wrapper .class-bard .header {
-                color: #aa6dab;
-            }
+    .card .source {
+        color: #fff;
+        font-size: 2mm;
+        font-weight: bold;
+        position: absolute;
+        right: 5mm;
+        bottom: 0.25mm;
+    }
 
-            .card-wrapper .class-cleric {
-                background-color: #92a2b3;
-            }
-            .card-wrapper .class-cleric hr {
-                border-bottom: 1.5px solid #92a2b3;
-            }
-            .card-wrapper .class-cleric .header {
-                color: #92a2b3;
-            }
+    .card-wrapper {
+        display: inline-block;
+    }
 
-            .card-wrapper .class-druid {
-                background-color: #79853c;
-            }
-            .card-wrapper .class-druid hr {
-                border-bottom: 1.5px solid #79853c;
-            }
-            .card-wrapper .class-druid .header {
-                color: #79853c;
-            }
+    .card-wrapper .class-artificer {
+        background-color: #d59139;
+    }
+    .card-wrapper .class-artificer hr {
+        border-bottom: 1.5px solid #d59139;
+    }
+    .card-wrapper .class-artificer .header {
+        color: #d59139;
+    }
 
-            .card-wrapper .class-fighter {
-                background-color: #7e4f3d;
-            }
-            .card-wrapper .class-fighter hr {
-                border-bottom: 1.5px solid #7e4f3d;
-            }
-            .card-wrapper .class-fighter .header {
-                color: #7e4f3d;
-            }
+    .card-wrapper .class-barbarian {
+        background-color: #e5623e;
+    }
+    .card-wrapper .class-barbarian hr {
+        border-bottom: 1.5px solid #e5623e;
+    }
+    .card-wrapper .class-barbarian .header {
+        color: #e5623e;
+    }
 
-            .card-wrapper .class-fighter {
-                background-color: #7e4f3d;
-            }
-            .card-wrapper .class-fighter hr {
-                border-bottom: 1.5px solid #7e4f3d;
-            }
-            .card-wrapper .class-fighter .header {
-                color: #7e4f3d;
-            }
+    .card-wrapper .class-bard {
+        background-color: #aa6dab;
+    }
+    .card-wrapper .class-bard hr {
+        border-bottom: 1.5px solid #aa6dab;
+    }
+    .card-wrapper .class-bard .header {
+        color: #aa6dab;
+    }
 
-            .card-wrapper .class-monk {
-                background-color: #53a5c5;
-            }
-            .card-wrapper .class-monk hr {
-                border-bottom: 1.5px solid #53a5c5;
-            }
-            .card-wrapper .class-monk .header {
-                color: #53a5c5;
-            }
+    .card-wrapper .class-cleric {
+        background-color: #92a2b3;
+    }
+    .card-wrapper .class-cleric hr {
+        border-bottom: 1.5px solid #92a2b3;
+    }
+    .card-wrapper .class-cleric .header {
+        color: #92a2b3;
+    }
 
-            .card-wrapper .class-paladin {
-                background-color: #b59e54;
-            }
-            .card-wrapper .class-paladin hr {
-                border-bottom: 1.5px solid #b59e54;
-            }
-            .card-wrapper .class-paladin .header {
-                color: #b59e54;
-            }
+    .card-wrapper .class-druid {
+        background-color: #79853c;
+    }
+    .card-wrapper .class-druid hr {
+        border-bottom: 1.5px solid #79853c;
+    }
+    .card-wrapper .class-druid .header {
+        color: #79853c;
+    }
 
-            .card-wrapper .class-ranger {
-                background-color: #4f7e61;
-            }
-            .card-wrapper .class-ranger hr {
-                border-bottom: 1.5px solid #4f7e61;
-            }
-            .card-wrapper .class-ranger .header {
-                color: #4f7e61;
-            }
+    .card-wrapper .class-fighter {
+        background-color: #7e4f3d;
+    }
+    .card-wrapper .class-fighter hr {
+        border-bottom: 1.5px solid #7e4f3d;
+    }
+    .card-wrapper .class-fighter .header {
+        color: #7e4f3d;
+    }
 
-            .card-wrapper .class-rogue {
-                background-color: #555752;
-            }
-            .card-wrapper .class-rogue hr {
-                border-bottom: 1.5px solid #555752;
-            }
-            .card-wrapper .class-rogue .header {
-                color: #555752;
-            }
+    .card-wrapper .class-fighter {
+        background-color: #7e4f3d;
+    }
+    .card-wrapper .class-fighter hr {
+        border-bottom: 1.5px solid #7e4f3d;
+    }
+    .card-wrapper .class-fighter .header {
+        color: #7e4f3d;
+    }
 
-            .card-wrapper .class-sorcerer {
-                background-color: #972e2e;
-            }
-            .card-wrapper .class-sorcerer hr {
-                border-bottom: 1.5px solid #972e2e;
-            }
-            .card-wrapper .class-sorcerer .header {
-                color: #972e2e;
-            }
+    .card-wrapper .class-monk {
+        background-color: #53a5c5;
+    }
+    .card-wrapper .class-monk hr {
+        border-bottom: 1.5px solid #53a5c5;
+    }
+    .card-wrapper .class-monk .header {
+        color: #53a5c5;
+    }
 
-            .card-wrapper .class-warlock {
-                background-color: #8137af;
-            }
-            .card-wrapper .class-warlock hr {
-                border-bottom: 1.5px solid #8137af;
-            }
-            .card-wrapper .class-warlock .header {
-                color: #8137af;
-            }
+    .card-wrapper .class-paladin {
+        background-color: #b59e54;
+    }
+    .card-wrapper .class-paladin hr {
+        border-bottom: 1.5px solid #b59e54;
+    }
+    .card-wrapper .class-paladin .header {
+        color: #b59e54;
+    }
 
-            .card-wrapper .class-wizard {
-                background-color: #0045b7;
-            }
-            .card-wrapper .class-wizard hr {
-                border-bottom: 1.5px solid #0045b7;
-            }
-            .card-wrapper .class-wizard .header {
-                color: #0045b7;
-            }
+    .card-wrapper .class-ranger {
+        background-color: #4f7e61;
+    }
+    .card-wrapper .class-ranger hr {
+        border-bottom: 1.5px solid #4f7e61;
+    }
+    .card-wrapper .class-ranger .header {
+        color: #4f7e61;
+    }
 
-            .card-wrapper .gf9-arcane {
-                background-color: #cd503f;
-            }
-            .card-wrapper .gf9-arcane hr {
-                border-bottom: 1.5px solid #cd503f;
-            }
-            .card-wrapper .gf9-arcane .header {
-                color: #cd503f;
-            }
+    .card-wrapper .class-rogue {
+        background-color: #555752;
+    }
+    .card-wrapper .class-rogue hr {
+        border-bottom: 1.5px solid #555752;
+    }
+    .card-wrapper .class-rogue .header {
+        color: #555752;
+    }
 
-            .card-wrapper .gf9-bard {
-                background-color: #923674;
-            }
-            .card-wrapper .gf9-bard hr {
-                border-bottom: 1.5px solid #923674;
-            }
-            .card-wrapper .gf9-bard .header {
-                color: #923674;
-            }
+    .card-wrapper .class-sorcerer {
+        background-color: #972e2e;
+    }
+    .card-wrapper .class-sorcerer hr {
+        border-bottom: 1.5px solid #972e2e;
+    }
+    .card-wrapper .class-sorcerer .header {
+        color: #972e2e;
+    }
 
-            .card-wrapper .gf9-cleric {
-                background-color: #e2af18;
-            }
-            .card-wrapper .gf9-cleric hr {
-                border-bottom: 1.5px solid #e2af18;
-            }
-            .card-wrapper .gf9-cleric .header {
-                color: #e2af18;
-            }
+    .card-wrapper .class-warlock {
+        background-color: #8137af;
+    }
+    .card-wrapper .class-warlock hr {
+        border-bottom: 1.5px solid #8137af;
+    }
+    .card-wrapper .class-warlock .header {
+        color: #8137af;
+    }
 
-            .card-wrapper .gf9-druid {
-                background-color: #77aa58;
-            }
-            .card-wrapper .gf9-druid hr {
-                border-bottom: 1.5px solid #77aa58;
-            }
-            .card-wrapper .gf9-druid .header {
-                color: #77aa58;
-            }
+    .card-wrapper .class-wizard {
+        background-color: #0045b7;
+    }
+    .card-wrapper .class-wizard hr {
+        border-bottom: 1.5px solid #0045b7;
+    }
+    .card-wrapper .class-wizard .header {
+        color: #0045b7;
+    }
 
-            .card-wrapper .gf9-paladin {
-                background-color: #41b3d1;
-            }
-            .card-wrapper .gf9-paladin hr {
-                border-bottom: 1.5px solid #41b3d1;
-            }
-            .card-wrapper .gf9-paladin .header {
-                color: #41b3d1;
-            }
+    .card-wrapper .gf9-arcane {
+        background-color: #cd503f;
+    }
+    .card-wrapper .gf9-arcane hr {
+        border-bottom: 1.5px solid #cd503f;
+    }
+    .card-wrapper .gf9-arcane .header {
+        color: #cd503f;
+    }
 
-            .card-wrapper .gf9-ranger {
-                background-color: #745e2a;
-            }
-            .card-wrapper .gf9-ranger hr {
-                border-bottom: 1.5px solid #745e2a;
-            }
-            .card-wrapper .gf9-ranger .header {
-                color: #745e2a;
-            }
-        </style>
-        <style data="feat-card">
-            .feat-card {
-                display: inline-block;
-                position: relative;
-                width: 63mm;
-                height: 89mm;
-                padding: 0;
-                margin: 5px;
-                border-radius: 4.7619047619%;
-                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
-                font-weight: 400;
-                font-size: 3mm;
-                color: #111;
-                text-align: center;
-                overflow: hidden;
-                background-color: #000;
-            }
-            .feat-card .action {
-                font-family: "ActionIcons";
-                font-weight: initial;
-                text-transform: none;
-            }
-            .feat-card .action-action1:before {
-                content: "\00E1";
-            }
-            .feat-card .action-action2:before {
-                content: "\00E2";
-            }
-            .feat-card .action-action3:before {
-                content: "\00E3";
-            }
-            .feat-card .action-free:before {
-                content: "\00E0";
-            }
-            .feat-card .action-reaction:before {
-                content: "\00E4";
-            }
-            .feat-card .name {
-                background-color: #fff;
-                position: absolute;
-                top: 3mm;
-                left: 3mm;
-                width: 57mm;
-                height: 5mm;
-                border-radius: 2mm 2mm 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .feat-card .name .content {
-                font-size: 3.5mm;
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-            .feat-card .skill {
-                position: absolute;
-                top: 8mm;
-                width: 100%;
-                height: 3mm;
-                text-transform: capitalize;
-            }
-            .feat-card .skill .content {
-                color: #fff;
-                font-size: 2mm;
-                line-height: 3mm;
-            }
-            .feat-card .trait {
-                background-color: #fff;
-                text-align: center;
-            }
-            .feat-card .header {
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 3mm;
-                color: #000;
-            }
-            .feat-card .description {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 11mm;
-                left: 3mm;
-                width: 55mm;
-                padding: 1mm;
-                padding-top: 0;
-                text-align: justify;
-                overflow: clip;
-                font-size: 2.2mm;
-                height: 74mm;
-                border-radius: 0 0 2mm 2mm;
-            }
-            .feat-card .description p {
-                margin: 0;
-                padding-left: 0;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .feat-card .description ul {
-                margin: 0;
-                padding-left: 2mm;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .feat-card .source {
-                color: #fff;
-                font-size: 2mm;
-                font-weight: bold;
-                position: absolute;
-                right: 5mm;
-                bottom: 0.25mm;
-            }
-            .feat-card hr {
-                margin: 0;
-                border: 0;
-                position: relative;
-                left: -1mm;
-                width: 57mm;
-                border-bottom: 1.5px solid black;
-            }
-            .feat-card table {
-                border-collapse: collapse;
-                white-space: initial !important;
-                text-align: left;
-                vertical-align: top;
-            }
-            .feat-card table,
-            .feat-card tr,
-            .feat-card td,
-            .feat-card th {
-                vertical-align: top;
-                padding: 0;
-                margin: 0;
-                border: 0;
-            }
-            .feat-card th:first-child,
-            .feat-card td:first-child {
-                padding-right: 1mm;
-            }
-        </style>
-        <style data="spell-card">
-            .spell-card {
-                position: relative;
-                width: 63mm;
-                height: 89mm;
-                padding: 0;
-                margin: 5px;
-                border-radius: 4.7619047619%;
-                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
-                font-weight: 400;
-                font-size: 3mm;
-                color: #111;
-                text-align: center;
-                overflow: hidden;
-                background-color: #000;
-            }
-            .spell-card .action {
-                font-family: "ActionIcons";
-                font-weight: initial;
-                text-transform: none;
-                padding-left: 1mm;
-            }
-            .spell-card .action-action1:before {
-                content: "\00E1";
-            }
-            .spell-card .action-action2:before {
-                content: "\00E2";
-            }
-            .spell-card .action-action3:before {
-                content: "\00E3";
-            }
-            .spell-card .action-free:before {
-                content: "\00E0";
-            }
-            .spell-card .action-reaction:before {
-                content: "\00E4";
-            }
-            .spell-card .focus {
-                background: black;
-                color: white;
-                padding: 0;
-                margin: 0;
-                border: 1px;
-                display: inline-block;
-                width: 4mm;
-                border-radius: 3mm;
-                position: absolute;
-                left: 1mm;
-            }
-            .spell-card .name {
-                background-color: #fff;
-                position: absolute;
-                top: 3mm;
-                left: 3mm;
-                width: 57mm;
-                height: 5mm;
-                border-radius: 2mm 2mm 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .spell-card .name .content {
-                font-size: 3.5mm;
-                text-transform: uppercase;
-                font-weight: bold;
-                display: flex;
-            }
-            .spell-card .spell-name {
-                display: inline-block;
-                max-width: 48mm;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-            .spell-card .focus-spell .spell-name {
-                max-width: 40mm;
-            }
-            .spell-card .spell-level {
-                position: absolute;
-                top: 8mm;
-                width: 100%;
-                height: 3mm;
-            }
-            .spell-card .spell-level .content {
-                color: #fff;
-                font-size: 2mm;
-                line-height: 3mm;
-                text-transform: capitalize;
-            }
-            .spell-card .saving-throw,
-            .spell-card .range {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 11mm;
-                width: 28.25mm;
-                height: 7.5mm;
-                text-transform: capitalize;
-            }
-            .spell-card .saving-throw {
-                left: 3mm;
-                text-transform: capitalize;
-            }
-            .spell-card .range {
-                left: 31.75mm;
-                text-transform: capitalize;
-            }
-            .spell-card .components,
-            .spell-card .duration {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 19mm;
-                width: 28.25mm;
-                height: 7.5mm;
-                text-transform: capitalize;
-            }
-            .spell-card .components {
-                left: 3mm;
-            }
-            .spell-card .duration {
-                left: 31.75mm;
-            }
-            .spell-card .header {
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 3mm;
-                color: #000;
-            }
-            .spell-card .description {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 27mm;
-                left: 3mm;
-                width: 55mm;
-                padding: 1mm;
-                padding-top: 0;
-                text-align: justify;
-                overflow: hidden;
-                font-size: 2.2mm;
-                height: 58mm;
-                border-radius: 0 0 2mm 2mm;
-            }
-            .spell-card .description p {
-                margin: 0;
-                padding-left: 0;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .spell-card .description ul {
-                margin: 0;
-                padding-left: 2mm;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .spell-card .source {
-                color: #fff;
-                font-size: 2mm;
-                font-weight: bold;
-                position: absolute;
-                right: 5mm;
-                bottom: 0.25mm;
-            }
-            .spell-card hr {
-                margin: 0;
-                border: 0;
-                position: relative;
-                left: -1mm;
-                width: 57mm;
-                border-bottom: 1.5px solid black;
-            }
-            .spell-card table {
-                border-collapse: collapse;
-                white-space: initial !important;
-                text-align: left;
-                vertical-align: top;
-            }
-            .spell-card table,
-            .spell-card tr,
-            .spell-card td,
-            .spell-card th {
-                vertical-align: top;
-                padding: 0;
-                margin: 0;
-                border: 0;
-            }
-            .spell-card th:first-child,
-            .spell-card td:first-child {
-                padding-right: 1mm;
-            }
-        </style>
-        <style data="character-card">
-            .character-card {
-                position: relative;
-                width: 63mm;
-                height: 89mm;
-                padding: 0;
-                margin: 5px;
-                border-radius: 4.7619047619%;
-                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
-                font-weight: 400;
-                font-size: 3mm;
-                color: #111;
-                text-align: center;
-                overflow: hidden;
-                background-color: #000;
-            }
-            .character-card .name {
-                background-color: #fff;
-                position: absolute;
-                top: 3mm;
-                left: 3mm;
-                width: 57mm;
-                height: 5mm;
-                border-radius: 2mm 2mm 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .character-card .name .content {
-                font-size: 3.5mm;
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-            .character-card .character-level {
-                position: absolute;
-                top: 8mm;
-                width: 100%;
-                height: 3mm;
-            }
-            .character-card .character-level .content {
-                color: #fff;
-                font-size: 2.5mm;
-                line-height: 2.75mm;
-                text-transform: capitalize;
-                font-weight: bold;
-            }
-            .character-card .hp,
-            .character-card .ac,
-            .character-card .perception,
-            .character-card .fortitude,
-            .character-card .reflex,
-            .character-card .will {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                width: 18.8333333333mm;
-                height: 9mm;
-                text-transform: capitalize;
-            }
-            .character-card .hp,
-            .character-card .ac,
-            .character-card .perception {
-                top: 11mm;
-            }
-            .character-card .fortitude,
-            .character-card .reflex,
-            .character-card .will {
-                top: 20.25mm;
-            }
-            .character-card .hp,
-            .character-card .fortitude {
-                left: 3mm;
-            }
-            .character-card .ac,
-            .character-card .reflex {
-                left: 22.08333333333mm;
-            }
-            .character-card .perception,
-            .character-card .will {
-                right: 3mm;
-            }
-            .character-card .hp .header,
-            .character-card .ac .header,
-            .character-card .perception .header,
-            .character-card .fortitude .header,
-            .character-card .reflex .header,
-            .character-card .will .header {
-                text-transform: uppercase;
-                font-size: 2.75mm;
-                line-height: 3mm;
-            }
-            .character-card .hp .content,
-            .character-card .ac .content,
-            .character-card .perception .content,
-            .character-card .fortitude .content,
-            .character-card .reflex .content,
-            .character-card .will .content {
-                font-size: 8mm;
-                line-height: 5.5mm;
-                text-transform: capitalize;
-            }
-            .character-card .acrobatics,
-            .character-card .arcana,
-            .character-card .athletics,
-            .character-card .crafting,
-            .character-card .deception,
-            .character-card .diplomacy,
-            .character-card .intimidation,
-            .character-card .lore-1,
-            .character-card .lore-2,
-            .character-card .medicine,
-            .character-card .nature,
-            .character-card .occultism,
-            .character-card .performance,
-            .character-card .religion,
-            .character-card .society,
-            .character-card .stealth,
-            .character-card .survival,
-            .character-card .thievery {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                width: 28.375mm;
-                height: 6mm;
-                text-transform: capitalize;
-            }
-            .character-card .acrobatics,
-            .character-card .arcana,
-            .character-card .athletics,
-            .character-card .crafting,
-            .character-card .deception,
-            .character-card .diplomacy,
-            .character-card .intimidation,
-            .character-card .lore-1,
-            .character-card .lore-2 {
-                left: 3mm;
-            }
-            .character-card .medicine,
-            .character-card .nature,
-            .character-card .occultism,
-            .character-card .performance,
-            .character-card .religion,
-            .character-card .society,
-            .character-card .stealth,
-            .character-card .survival,
-            .character-card .thievery {
-                right: 3mm;
-            }
-            .character-card .acrobatics,
-            .character-card .arcana,
-            .character-card .athletics,
-            .character-card .crafting,
-            .character-card .medicine,
-            .character-card .nature,
-            .character-card .occultism,
-            .character-card .performance {
-                width: 28.375mm;
-            }
-            .character-card .deception,
-            .character-card .diplomacy,
-            .character-card .intimidation,
-            .character-card .lore-1,
-            .character-card .lore-2,
-            .character-card .religion,
-            .character-card .society,
-            .character-card .stealth,
-            .character-card .survival,
-            .character-card .thievery {
-                width: 23.375mm;
-            }
-            .character-card .acrobatics,
-            .character-card .medicine {
-                top: 30mm;
-            }
-            .character-card .arcana,
-            .character-card .nature {
-                top: calc(30mm + 1 * 6.25mm);
-            }
-            .character-card .athletics,
-            .character-card .occultism {
-                top: calc(30mm + 2 * 6.25mm);
-            }
-            .character-card .crafting,
-            .character-card .performance {
-                top: calc(30mm + 3 * 6.25mm);
-            }
-            .character-card .deception,
-            .character-card .religion {
-                top: calc(30mm + 4 * 6.25mm);
-            }
-            .character-card .diplomacy,
-            .character-card .society {
-                top: calc(30mm + 5 * 6.25mm);
-            }
-            .character-card .intimidation,
-            .character-card .stealth {
-                top: calc(30mm + 6 * 6.25mm);
-            }
-            .character-card .lore-1,
-            .character-card .survival {
-                top: calc(30mm + 7 * 6.25mm);
-            }
-            .character-card .lore-2,
-            .character-card .thievery {
-                top: calc(30mm + 8 * 6.25mm);
-            }
-            .character-card .acrobatics .content,
-            .character-card .arcana .content,
-            .character-card .athletics .content,
-            .character-card .crafting .content,
-            .character-card .deception .content,
-            .character-card .diplomacy .content,
-            .character-card .intimidation .content,
-            .character-card .lore-1 .content,
-            .character-card .lore-2 .content,
-            .character-card .medicine .content,
-            .character-card .nature .content,
-            .character-card .occultism .content,
-            .character-card .performance .content,
-            .character-card .religion .content,
-            .character-card .society .content,
-            .character-card .stealth .content,
-            .character-card .survival .content,
-            .character-card .thievery .content {
-                position: absolute;
-                left: 0;
-                text-align: center;
-                font-size: 4mm;
-                line-height: 6mm;
-            }
-            .character-card .acrobatics .header,
-            .character-card .arcana .header,
-            .character-card .athletics .header,
-            .character-card .crafting .header,
-            .character-card .deception .header,
-            .character-card .diplomacy .header,
-            .character-card .intimidation .header,
-            .character-card .lore-1 .header,
-            .character-card .lore-2 .header,
-            .character-card .medicine .header,
-            .character-card .nature .header,
-            .character-card .occultism .header,
-            .character-card .performance .header,
-            .character-card .religion .header,
-            .character-card .society .header,
-            .character-card .stealth .header,
-            .character-card .survival .header,
-            .character-card .thievery .header {
-                display: table-cell;
-                height: 6mm;
-                position: relative;
-                left: 7.1mm;
-                text-align: left;
-                text-transform: capitalize;
-                line-height: 2.5mm;
-                vertical-align: middle;
-            }
-            .character-card .acrobatics .header,
-            .character-card .arcana .header,
-            .character-card .athletics .header,
-            .character-card .crafting .header,
-            .character-card .medicine .header,
-            .character-card .nature .header,
-            .character-card .occultism .header,
-            .character-card .performance .header {
-                width: 21.25mm;
-            }
-            .character-card .deception .header,
-            .character-card .diplomacy .header,
-            .character-card .intimidation .header,
-            .character-card .lore-1 .header,
-            .character-card .lore-2 .header,
-            .character-card .religion .header,
-            .character-card .society .header,
-            .character-card .stealth .header,
-            .character-card .survival .header,
-            .character-card .thievery .header {
-                width: 16.25mm;
-            }
-            .character-card .peg {
-                position: relative;
-                top: 55mm;
-                left: 26.625mm;
-                width: 9.75mm;
-                height: 33.75mm;
-                background: #fff;
-            }
-        </style>
-        <style data="action-card">
-            .action-card {
-                display: inline-block;
-                position: relative;
-                width: 63mm;
-                height: 89mm;
-                padding: 0;
-                margin: 5px;
-                border-radius: 4.7619047619%;
-                font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
-                font-weight: 400;
-                font-size: 3mm;
-                color: #111;
-                text-align: center;
-                overflow: hidden;
-                background-color: #000;
-            }
-            .action-card .action {
-                font-family: "ActionIcons";
-                font-weight: initial;
-                text-transform: none;
-            }
-            .action-card .action-action1:before {
-                content: "\00E1";
-            }
-            .action-card .action-action2:before {
-                content: "\00E2";
-            }
-            .action-card .action-action3:before {
-                content: "\00E3";
-            }
-            .action-card .action-free:before {
-                content: "\00E0";
-            }
-            .action-card .action-reaction:before {
-                content: "\00E4";
-            }
-            .action-card .name {
-                background-color: #fff;
-                position: absolute;
-                top: 3mm;
-                left: 3mm;
-                width: 57mm;
-                height: 5mm;
-                border-radius: 2mm 2mm 0 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .action-card .name .content {
-                font-size: 3.5mm;
-                text-transform: uppercase;
-                font-weight: bold;
-            }
-            .action-card .skill {
-                position: absolute;
-                top: 8mm;
-                width: 100%;
-                height: 3mm;
-                text-transform: capitalize;
-            }
-            .action-card .skill .content {
-                color: #fff;
-                font-size: 2mm;
-                line-height: 3mm;
-            }
-            .action-card .trait {
-                background-color: #fff;
-                text-align: center;
-            }
-            .action-card .header {
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 3mm;
-                color: #000;
-            }
-            .action-card .description {
-                background-color: #fff;
-                display: inline-block;
-                position: absolute;
-                top: 11mm;
-                left: 3mm;
-                width: 55mm;
-                padding: 1mm;
-                padding-top: 0;
-                text-align: justify;
-                overflow: clip;
-                font-size: 2.2mm;
-                height: 74mm;
-                border-radius: 0 0 2mm 2mm;
-            }
-            .action-card .description p {
-                margin: 0;
-                padding-left: 0;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .action-card .description ul {
-                margin: 0;
-                padding-left: 2mm;
-                border: 0;
-                padding-bottom: 0.5mm;
-            }
-            .action-card .source {
-                color: #fff;
-                font-size: 2mm;
-                font-weight: bold;
-                position: absolute;
-                right: 5mm;
-                bottom: 0.25mm;
-            }
-            .action-card hr {
-                margin: 0;
-                border: 0;
-                position: relative;
-                left: -1mm;
-                width: 57mm;
-                border-bottom: 1.5px solid #000;
-            }
-            .action-card table {
-                border-collapse: collapse;
-                white-space: initial !important;
-                text-align: left;
-                vertical-align: top;
-            }
-            .action-card table,
-            .action-card tr,
-            .action-card td,
-            .action-card th {
-                vertical-align: top;
-                padding: 0;
-                margin: 0;
-                border: 0;
-            }
-            .action-card th:first-child,
-            .action-card td:first-child {
-                padding-right: 1mm;
-            }
-            .action-card h2 {
-                margin: 0;
-                font-size: 2.2mm;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="form-controls">
-            <div class="fetch-controls">
-                <div class="control-group">
-                    <input
-                        type="text"
-                        id="character-id"
-                        placeholder="Pathbuilder2e character id"
-                    />
-                    <input
-                        type="text"
-                        id="api-key"
-                        placeholder="Pathfinder2.fr api key"
-                    />
-                    <div>
-                        <select id="spell-list-picker">
-                            <option value="">Spell List</option>
-                            <option value="arcane">Arcane</option>
-                            <option value="divine">Divine</option>
-                            <option value="occult">Occult</option>
-                            <option value="primal">Primal</option>
-                        </select>
-                        <select id="spell-level-picker">
-                            <option value="">Spell Level</option>
-                            <option value="0">Cantrip</option>
-                            <option value="1">1st</option>
-                            <option value="2">2nd</option>
-                            <option value="3">3rd</option>
-                            <option value="4">4th</option>
-                            <option value="5">5th</option>
-                            <option value="6">6th</option>
-                            <option value="7">7th</option>
-                            <option value="8">8th</option>
-                            <option value="9">9th</option>
-                            <option value="10">10th</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div>
-                        <input
-                            type="checkbox"
-                            checked="true"
-                            id="generate-character-cards"
-                        />
-                        <label for="generate-character-cards"
-                            >Generate Character cards</label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            checked="true"
-                            id="generate-spell-cards"
-                        />
-                        <label for="generate-spell-cards"
-                            >Generate Spell cards</label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            checked="true"
-                            id="generate-feat-cards"
-                        />
-                        <label for="generate-feat-cards"
-                            >Generate Feat cards</label
-                        >
-                    </div>
-                    <div>
-                        <input
-                            type="checkbox"
-                            checked="true"
-                            id="generate-action-cards"
-                        />
-                        <label for="generate-action-cards"
-                            >Generate Action cards</label
-                        >
-                    </div>
-                </div>
-                <div class="control-group">
-                    <button id="fetch-data">Fetch</button>
-                </div>
-            </div>
-            <div class="print-controls">
-                <div class="control-group">
-                    <div>
-                        <select id="feat-picker">
-                            <option value="">Feat card colour</option>
-                            <optgroup label="Class">
-                                <option value="class-artificer">
-                                    Artificer
-                                </option>
-                                <option value="class-barbarian">
-                                    Barbarian
-                                </option>
-                                <option value="class-bard">Bard</option>
-                                <option value="class-cleric">Cleric</option>
-                                <option value="class-druid">Druid</option>
-                                <option value="class-fighter">Fighter</option>
-                                <option value="class-monk">Monk</option>
-                                <option value="class-paladin">Paladin</option>
-                                <option value="class-ranger">Ranger</option>
-                                <option value="class-rogue">Rogue</option>
-                                <option value="class-sorcerer">Sorcerer</option>
-                                <option value="class-warlock">Warlock</option>
-                                <option value="class-wizard">Wizard</option>
-                            </optgroup>
-                            <optgroup label="Gale Force Nine">
-                                <option value="gf9-arcane">Arcane</option>
-                                <option value="gf9-bard">Bard</option>
-                                <option value="gf9-cleric">Cleric</option>
-                                <option value="gf9-druid">Druid</option>
-                                <option value="gf9-paladin">Paladin</option>
-                                <option value="gf9-ranger">Ranger</option>
-                            </optgroup>
-                        </select>
-                        <select id="spell-picker">
-                            <option value="">Spell card colour</option>
-                            <optgroup label="Class">
-                                <option value="class-artificer">
-                                    Artificer
-                                </option>
-                                <option value="class-barbarian">
-                                    Barbarian
-                                </option>
-                                <option value="class-bard">Bard</option>
-                                <option value="class-cleric">Cleric</option>
-                                <option value="class-druid">Druid</option>
-                                <option value="class-fighter">Fighter</option>
-                                <option value="class-monk">Monk</option>
-                                <option value="class-paladin">Paladin</option>
-                                <option value="class-ranger">Ranger</option>
-                                <option value="class-rogue">Rogue</option>
-                                <option value="class-sorcerer">Sorcerer</option>
-                                <option value="class-warlock">Warlock</option>
-                                <option value="class-wizard">Wizard</option>
-                            </optgroup>
-                            <optgroup label="Gale Force Nine">
-                                <option value="gf9-arcane">Arcane</option>
-                                <option value="gf9-bard">Bard</option>
-                                <option value="gf9-cleric">Cleric</option>
-                                <option value="gf9-druid">Druid</option>
-                                <option value="gf9-paladin">Paladin</option>
-                                <option value="gf9-ranger">Ranger</option>
-                            </optgroup>
-                        </select>
-                        <select id="action-picker">
-                            <option value="">Action card colour</option>
-                            <optgroup label="Class">
-                                <option value="class-artificer">
-                                    Artificer
-                                </option>
-                                <option value="class-barbarian">
-                                    Barbarian
-                                </option>
-                                <option value="class-bard">Bard</option>
-                                <option value="class-cleric">Cleric</option>
-                                <option value="class-druid">Druid</option>
-                                <option value="class-fighter">Fighter</option>
-                                <option value="class-monk">Monk</option>
-                                <option value="class-paladin">Paladin</option>
-                                <option value="class-ranger">Ranger</option>
-                                <option value="class-rogue">Rogue</option>
-                                <option value="class-sorcerer">Sorcerer</option>
-                                <option value="class-warlock">Warlock</option>
-                                <option value="class-wizard">Wizard</option>
-                            </optgroup>
-                            <optgroup label="Gale Force Nine">
-                                <option value="gf9-arcane">Arcane</option>
-                                <option value="gf9-bard">Bard</option>
-                                <option value="gf9-cleric">Cleric</option>
-                                <option value="gf9-druid">Druid</option>
-                                <option value="gf9-paladin">Paladin</option>
-                                <option value="gf9-ranger">Ranger</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div>
-                        <select id="card-group-picker">
-                            <option value="">Card Group</option>
-                            <option value="character">Character</option>
-                            <option value="spell">Spell</option>
-                            <option value="feat">Feat</option>
-                            <option value="action">Action</option>
-                        </select>
-                        <button id="select-group">Select Group</button>
-                        <button id="deselect-group">Deselect Group</button>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <button id="clear-cards">Delete All</button>
-                </div>
+    .card-wrapper .gf9-bard {
+        background-color: #923674;
+    }
+    .card-wrapper .gf9-bard hr {
+        border-bottom: 1.5px solid #923674;
+    }
+    .card-wrapper .gf9-bard .header {
+        color: #923674;
+    }
+
+    .card-wrapper .gf9-cleric {
+        background-color: #e2af18;
+    }
+    .card-wrapper .gf9-cleric hr {
+        border-bottom: 1.5px solid #e2af18;
+    }
+    .card-wrapper .gf9-cleric .header {
+        color: #e2af18;
+    }
+
+    .card-wrapper .gf9-druid {
+        background-color: #77aa58;
+    }
+    .card-wrapper .gf9-druid hr {
+        border-bottom: 1.5px solid #77aa58;
+    }
+    .card-wrapper .gf9-druid .header {
+        color: #77aa58;
+    }
+
+    .card-wrapper .gf9-paladin {
+        background-color: #41b3d1;
+    }
+    .card-wrapper .gf9-paladin hr {
+        border-bottom: 1.5px solid #41b3d1;
+    }
+    .card-wrapper .gf9-paladin .header {
+        color: #41b3d1;
+    }
+
+    .card-wrapper .gf9-ranger {
+        background-color: #745e2a;
+    }
+    .card-wrapper .gf9-ranger hr {
+        border-bottom: 1.5px solid #745e2a;
+    }
+    .card-wrapper .gf9-ranger .header {
+        color: #745e2a;
+    }
+</style>
+<style data="feat-card">
+    .feat-card .skill {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+        text-transform: capitalize;
+    }
+    .feat-card .skill .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+    }
+    .feat-card .trait {
+        background-color: #fff;
+        text-align: center;
+    }
+    .feat-card .description {
+        top: 11mm;
+        height: 74mm;
+    }
+</style>
+<style data="action-card">
+    .action-card .skill {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+        text-transform: capitalize;
+    }
+    .action-card .skill .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+    }
+    .action-card .trait {
+        background-color: #fff;
+        text-align: center;
+    }
+    .action-card .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
+    .action-card .description {
+        top: 11mm;
+        height: 74mm;
+    }
+</style>
+<style data="spell-card">
+    .spell-card .focus {
+        background: black;
+        color: white;
+        padding: 0;
+        margin: 0;
+        border: 1px;
+        display: inline-block;
+        width: 4mm;
+        border-radius: 3mm;
+        position: absolute;
+        left: 1mm;
+    }
+    .spell-card .spell-name {
+        display: inline-block;
+        max-width: 48mm;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .spell-card .focus-spell .spell-name {
+        max-width: 40mm;
+    }
+    .spell-card .spell-level {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+    }
+    .spell-card .spell-level .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+        text-transform: capitalize;
+    }
+    .spell-card .saving-throw,
+    .spell-card .range {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 11mm;
+        width: 28.25mm;
+        height: 7.5mm;
+        text-transform: capitalize;
+    }
+    .spell-card .saving-throw {
+        left: 3mm;
+        text-transform: capitalize;
+    }
+    .spell-card .range {
+        left: 31.75mm;
+        text-transform: capitalize;
+    }
+    .spell-card .components,
+    .spell-card .duration {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 19mm;
+        width: 28.25mm;
+        height: 7.5mm;
+        text-transform: capitalize;
+    }
+    .spell-card .components {
+        left: 3mm;
+    }
+    .spell-card .duration {
+        left: 31.75mm;
+    }
+    .spell-card .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
+    .spell-card .description {
+        top: 27mm;
+        height: 58mm;
+    }
+</style>
+<style data="character-card">
+    .character-card .character-level {
+        position: absolute;
+        top: 8mm;
+        width: 100%;
+        height: 3mm;
+    }
+    .character-card .character-level .content {
+        color: #fff;
+        font-size: 2.5mm;
+        line-height: 2.75mm;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    .character-card .hp,
+    .character-card .ac,
+    .character-card .perception,
+    .character-card .fortitude,
+    .character-card .reflex,
+    .character-card .will {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        width: 18.8333333333mm;
+        height: 9mm;
+        text-transform: capitalize;
+    }
+    .character-card .hp,
+    .character-card .ac,
+    .character-card .perception {
+        top: 11mm;
+    }
+    .character-card .fortitude,
+    .character-card .reflex,
+    .character-card .will {
+        top: 20.25mm;
+    }
+    .character-card .hp,
+    .character-card .fortitude {
+        left: 3mm;
+    }
+    .character-card .ac,
+    .character-card .reflex {
+        left: 22.08333333333mm;
+    }
+    .character-card .perception,
+    .character-card .will {
+        right: 3mm;
+    }
+    .character-card .hp .header,
+    .character-card .ac .header,
+    .character-card .perception .header,
+    .character-card .fortitude .header,
+    .character-card .reflex .header,
+    .character-card .will .header {
+        text-transform: uppercase;
+        font-weight: initial;
+        font-size: 2.75mm;
+        line-height: 3mm;
+    }
+    .character-card .hp .content,
+    .character-card .ac .content,
+    .character-card .perception .content,
+    .character-card .fortitude .content,
+    .character-card .reflex .content,
+    .character-card .will .content {
+        font-size: 8mm;
+        line-height: 5.5mm;
+        text-transform: capitalize;
+    }
+    .character-card .acrobatics,
+    .character-card .arcana,
+    .character-card .athletics,
+    .character-card .crafting,
+    .character-card .deception,
+    .character-card .diplomacy,
+    .character-card .intimidation,
+    .character-card .lore-1,
+    .character-card .lore-2,
+    .character-card .medicine,
+    .character-card .nature,
+    .character-card .occultism,
+    .character-card .performance,
+    .character-card .religion,
+    .character-card .society,
+    .character-card .stealth,
+    .character-card .survival,
+    .character-card .thievery {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        width: 28.375mm;
+        height: 6mm;
+        text-transform: capitalize;
+    }
+    .character-card .acrobatics,
+    .character-card .arcana,
+    .character-card .athletics,
+    .character-card .crafting,
+    .character-card .deception,
+    .character-card .diplomacy,
+    .character-card .intimidation,
+    .character-card .lore-1,
+    .character-card .lore-2 {
+        left: 3mm;
+    }
+    .character-card .medicine,
+    .character-card .nature,
+    .character-card .occultism,
+    .character-card .performance,
+    .character-card .religion,
+    .character-card .society,
+    .character-card .stealth,
+    .character-card .survival,
+    .character-card .thievery {
+        right: 3mm;
+    }
+    .character-card .acrobatics,
+    .character-card .arcana,
+    .character-card .athletics,
+    .character-card .crafting,
+    .character-card .medicine,
+    .character-card .nature,
+    .character-card .occultism,
+    .character-card .performance {
+        width: 28.375mm;
+    }
+    .character-card .deception,
+    .character-card .diplomacy,
+    .character-card .intimidation,
+    .character-card .lore-1,
+    .character-card .lore-2,
+    .character-card .religion,
+    .character-card .society,
+    .character-card .stealth,
+    .character-card .survival,
+    .character-card .thievery {
+        width: 23.375mm;
+    }
+    .character-card .acrobatics,
+    .character-card .medicine {
+        top: 30mm;
+    }
+    .character-card .arcana,
+    .character-card .nature {
+        top: calc(30mm + 1 * 6.25mm);
+    }
+    .character-card .athletics,
+    .character-card .occultism {
+        top: calc(30mm + 2 * 6.25mm);
+    }
+    .character-card .crafting,
+    .character-card .performance {
+        top: calc(30mm + 3 * 6.25mm);
+    }
+    .character-card .deception,
+    .character-card .religion {
+        top: calc(30mm + 4 * 6.25mm);
+    }
+    .character-card .diplomacy,
+    .character-card .society {
+        top: calc(30mm + 5 * 6.25mm);
+    }
+    .character-card .intimidation,
+    .character-card .stealth {
+        top: calc(30mm + 6 * 6.25mm);
+    }
+    .character-card .lore-1,
+    .character-card .survival {
+        top: calc(30mm + 7 * 6.25mm);
+    }
+    .character-card .lore-2,
+    .character-card .thievery {
+        top: calc(30mm + 8 * 6.25mm);
+    }
+    .character-card .acrobatics .content,
+    .character-card .arcana .content,
+    .character-card .athletics .content,
+    .character-card .crafting .content,
+    .character-card .deception .content,
+    .character-card .diplomacy .content,
+    .character-card .intimidation .content,
+    .character-card .lore-1 .content,
+    .character-card .lore-2 .content,
+    .character-card .medicine .content,
+    .character-card .nature .content,
+    .character-card .occultism .content,
+    .character-card .performance .content,
+    .character-card .religion .content,
+    .character-card .society .content,
+    .character-card .stealth .content,
+    .character-card .survival .content,
+    .character-card .thievery .content {
+        position: absolute;
+        left: 0;
+        text-align: center;
+        font-size: 4mm;
+        line-height: 6mm;
+    }
+    .character-card .acrobatics .header,
+    .character-card .arcana .header,
+    .character-card .athletics .header,
+    .character-card .crafting .header,
+    .character-card .deception .header,
+    .character-card .diplomacy .header,
+    .character-card .intimidation .header,
+    .character-card .lore-1 .header,
+    .character-card .lore-2 .header,
+    .character-card .medicine .header,
+    .character-card .nature .header,
+    .character-card .occultism .header,
+    .character-card .performance .header,
+    .character-card .religion .header,
+    .character-card .society .header,
+    .character-card .stealth .header,
+    .character-card .survival .header,
+    .character-card .thievery .header {
+        display: table-cell;
+        height: 6mm;
+        position: relative;
+        left: 7.1mm;
+        text-align: left;
+        text-transform: capitalize;
+        line-height: 2.5mm;
+        vertical-align: middle;
+        font-weight: initial;
+    }
+    .character-card .acrobatics .header,
+    .character-card .arcana .header,
+    .character-card .athletics .header,
+    .character-card .crafting .header,
+    .character-card .medicine .header,
+    .character-card .nature .header,
+    .character-card .occultism .header,
+    .character-card .performance .header {
+        width: 21.25mm;
+    }
+    .character-card .deception .header,
+    .character-card .diplomacy .header,
+    .character-card .intimidation .header,
+    .character-card .lore-1 .header,
+    .character-card .lore-2 .header,
+    .character-card .religion .header,
+    .character-card .society .header,
+    .character-card .stealth .header,
+    .character-card .survival .header,
+    .character-card .thievery .header {
+        width: 16.25mm;
+    }
+    .character-card .peg {
+        position: relative;
+        top: 55mm;
+        left: 26.625mm;
+        width: 9.75mm;
+        height: 33.75mm;
+        background: #fff;
+    }
+</style>
+
+<div class="form-controls">
+    <div class="fetch-controls">
+        <div class="control-group">
+            <input
+                type="text"
+                id="character-id"
+                placeholder="Pathbuilder2e character id"
+            />
+            <input
+                type="text"
+                id="api-key"
+                placeholder="Pathfinder2.fr api key"
+            />
+            <div>
+                <select id="spell-list-picker">
+                    <option value="">Spell List</option>
+                    <option value="arcane">Arcane</option>
+                    <option value="divine">Divine</option>
+                    <option value="occult">Occult</option>
+                    <option value="primal">Primal</option>
+                </select>
+                <select id="spell-level-picker">
+                    <option value="">Spell Level</option>
+                    <option value="0">Cantrip</option>
+                    <option value="1">1st</option>
+                    <option value="2">2nd</option>
+                    <option value="3">3rd</option>
+                    <option value="4">4th</option>
+                    <option value="5">5th</option>
+                    <option value="6">6th</option>
+                    <option value="7">7th</option>
+                    <option value="8">8th</option>
+                    <option value="9">9th</option>
+                    <option value="10">10th</option>
+                </select>
             </div>
         </div>
-        <div id="cards"></div>
-        <script data="data-fetching">
-            function saveFormValues() {
-                var characterId = document.getElementById("character-id").value;
-                if (characterId) {
-                    localStorage.setItem("character-id", characterId);
-                }
+        <div class="control-group">
+            <div>
+                <input
+                    type="checkbox"
+                    checked="true"
+                    id="generate-character-cards"
+                />
+                <label for="generate-character-cards"
+                    >Generate Character cards</label
+                >
+            </div>
+            <div>
+                <input
+                    type="checkbox"
+                    checked="true"
+                    id="generate-spell-cards"
+                />
+                <label for="generate-spell-cards">Generate Spell cards</label>
+            </div>
+            <div>
+                <input
+                    type="checkbox"
+                    checked="true"
+                    id="generate-feat-cards"
+                />
+                <label for="generate-feat-cards">Generate Feat cards</label>
+            </div>
+            <div>
+                <input
+                    type="checkbox"
+                    checked="true"
+                    id="generate-action-cards"
+                />
+                <label for="generate-action-cards">Generate Action cards</label>
+            </div>
+        </div>
+        <div class="control-group">
+            <button id="fetch-data">Fetch</button>
+        </div>
+    </div>
+    <div class="print-controls">
+        <div class="control-group">
+            <div>
+                <select id="feat-picker">
+                    <option value="">Feat card colour</option>
+                    <optgroup label="Class">
+                        <option value="class-artificer">Artificer</option>
+                        <option value="class-barbarian">Barbarian</option>
+                        <option value="class-bard">Bard</option>
+                        <option value="class-cleric">Cleric</option>
+                        <option value="class-druid">Druid</option>
+                        <option value="class-fighter">Fighter</option>
+                        <option value="class-monk">Monk</option>
+                        <option value="class-paladin">Paladin</option>
+                        <option value="class-ranger">Ranger</option>
+                        <option value="class-rogue">Rogue</option>
+                        <option value="class-sorcerer">Sorcerer</option>
+                        <option value="class-warlock">Warlock</option>
+                        <option value="class-wizard">Wizard</option>
+                    </optgroup>
+                    <optgroup label="Gale Force Nine">
+                        <option value="gf9-arcane">Arcane</option>
+                        <option value="gf9-bard">Bard</option>
+                        <option value="gf9-cleric">Cleric</option>
+                        <option value="gf9-druid">Druid</option>
+                        <option value="gf9-paladin">Paladin</option>
+                        <option value="gf9-ranger">Ranger</option>
+                    </optgroup>
+                </select>
+                <select id="spell-picker">
+                    <option value="">Spell card colour</option>
+                    <optgroup label="Class">
+                        <option value="class-artificer">Artificer</option>
+                        <option value="class-barbarian">Barbarian</option>
+                        <option value="class-bard">Bard</option>
+                        <option value="class-cleric">Cleric</option>
+                        <option value="class-druid">Druid</option>
+                        <option value="class-fighter">Fighter</option>
+                        <option value="class-monk">Monk</option>
+                        <option value="class-paladin">Paladin</option>
+                        <option value="class-ranger">Ranger</option>
+                        <option value="class-rogue">Rogue</option>
+                        <option value="class-sorcerer">Sorcerer</option>
+                        <option value="class-warlock">Warlock</option>
+                        <option value="class-wizard">Wizard</option>
+                    </optgroup>
+                    <optgroup label="Gale Force Nine">
+                        <option value="gf9-arcane">Arcane</option>
+                        <option value="gf9-bard">Bard</option>
+                        <option value="gf9-cleric">Cleric</option>
+                        <option value="gf9-druid">Druid</option>
+                        <option value="gf9-paladin">Paladin</option>
+                        <option value="gf9-ranger">Ranger</option>
+                    </optgroup>
+                </select>
+                <select id="action-picker">
+                    <option value="">Action card colour</option>
+                    <optgroup label="Class">
+                        <option value="class-artificer">Artificer</option>
+                        <option value="class-barbarian">Barbarian</option>
+                        <option value="class-bard">Bard</option>
+                        <option value="class-cleric">Cleric</option>
+                        <option value="class-druid">Druid</option>
+                        <option value="class-fighter">Fighter</option>
+                        <option value="class-monk">Monk</option>
+                        <option value="class-paladin">Paladin</option>
+                        <option value="class-ranger">Ranger</option>
+                        <option value="class-rogue">Rogue</option>
+                        <option value="class-sorcerer">Sorcerer</option>
+                        <option value="class-warlock">Warlock</option>
+                        <option value="class-wizard">Wizard</option>
+                    </optgroup>
+                    <optgroup label="Gale Force Nine">
+                        <option value="gf9-arcane">Arcane</option>
+                        <option value="gf9-bard">Bard</option>
+                        <option value="gf9-cleric">Cleric</option>
+                        <option value="gf9-druid">Druid</option>
+                        <option value="gf9-paladin">Paladin</option>
+                        <option value="gf9-ranger">Ranger</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <select id="card-group-picker">
+                    <option value="">Card Group</option>
+                    <option value="character">Character</option>
+                    <option value="spell">Spell</option>
+                    <option value="feat">Feat</option>
+                    <option value="action">Action</option>
+                </select>
+                <button id="select-group">Select Group</button>
+                <button id="deselect-group">Deselect Group</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <button id="clear-cards">Delete All</button>
+        </div>
+    </div>
+</div>
+<div id="cards"></div>
 
-                var apiKey = document.getElementById("api-key").value;
-                if (apiKey) {
-                    localStorage.setItem("api-key", apiKey);
-                }
-            }
+<script data="data-fetching">
+    function saveFormValues() {
+        var characterId = document.getElementById("character-id").value;
+        if (characterId) {
+            localStorage.setItem("character-id", characterId);
+        }
 
-            async function getCharacterData(characterId) {
-                var req = new Request(
-                    `https://pathbuilder2e.com/json.php?id=${characterId}`,
-                    { method: "GET" }
-                );
-                var response = await fetch(req);
-                return response.json();
-            }
+        var apiKey = document.getElementById("api-key").value;
+        if (apiKey) {
+            localStorage.setItem("api-key", apiKey);
+        }
+    }
 
-            async function getFeatData(featName, featType, apiKey) {
-                var headers = new Headers();
-                headers.append("Authorization", apiKey);
-                var endpoint = featType === "Heritage" ? "heritage" : "feat";
+    async function fetchData(url, apiKey) {
+        var headers;
+        if (apiKey) {
+            headers = new Headers();
+            headers.append("Authorization", apiKey);
+        }
 
-                var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/${endpoint}?name=${featName}`,
-                    { method: "GET", headers }
-                );
+        var req = new Request(url, { method: "GET", headers });
 
-                var response = await fetch(req);
-                return response.json();
-            }
+        var response = await fetch(req);
+        return response.json();
+    }
 
-            async function getSpecialData(specialName, apiKey) {
-                var headers = new Headers();
-                headers.append("Authorization", apiKey);
-                var featData;
+    async function getCharacterData(characterId) {
+        return fetchData(
+            `https://pathbuilder2e.com/json.php?id=${characterId}`
+        );
+    }
 
-                var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/classFeature?name=${specialName}`,
-                    { method: "GET", headers }
-                );
+    async function getFeatData(featName, featType, apiKey) {
+        var endpoint = featType === "Heritage" ? "heritage" : "feat";
+        return fetchData(
+            `https://api.pathfinder2.fr/v1/pf2/${endpoint}?name=${featName}`,
+            apiKey
+        );
+    }
 
-                var response = await fetch(req);
-                var specialData = await response.json();
-                var specialDataResponse = specialData.results.find(
-                    (special) => special.name === specialName
-                );
-                if (specialDataResponse) {
-                    return specialDataResponse;
-                }
+    async function getSpecialData(specialName, apiKey) {
+        var specialData = await fetchData(
+            `https://api.pathfinder2.fr/v1/pf2/classFeature?name=${specialName}`,
+            apiKey
+        );
+        var specialDataResponse = specialData.results.find(
+            (special) => special.name === specialName
+        );
+        if (specialDataResponse) {
+            return specialDataResponse;
+        }
+        return fetchData(
+            `https://api.pathfinder2.fr/v1/pf2/ancestryFeature?name=${specialName}`,
+            apiKey
+        );
+    }
 
-                var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/ancestryFeature?name=${specialName}`,
-                    { method: "GET", headers }
-                );
+    async function getSpellData(spellName, apiKey) {
+        return fetchData(
+            `https://api.pathfinder2.fr/v1/pf2/spell?name=${spellName}`,
+            apiKey
+        );
+    }
 
-                var response = await fetch(req);
-                var specialData = response.json();
-                return specialData;
-            }
+    async function getSpellListData(spellList, spellLevel, apiKey) {
+        var cantripFilter = "";
+        var levelFilter = `&system.level.value=${spellLevel}`;
+        if (spellLevel === "0") {
+            cantripFilter = "&system.traits.value=cantrip";
+            levelFilter = `&system.level.value=1`;
+        }
 
-            async function getSpellData(spellName, apiKey) {
-                var headers = new Headers();
-                headers.append("Authorization", apiKey);
+        return fetchData(
+            `https://api.pathfinder2.fr/v1/pf2/spell?system.traditions.value=${spellList}${levelFilter}${cantripFilter}`,
+            apiKey
+        );
+    }
 
-                var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/spell?name=${spellName}`,
-                    { method: "GET", headers }
-                );
+    async function getActionData(apiKey) {
+        return fetchData(
+            "https://api.pathfinder2.fr/v1/pf2/action?system.source.value=Pathfinder Core Rulebook",
+            apiKey
+        );
+    }
 
-                var response = await fetch(req);
-                return response.json();
-            }
+    function generateCharacterCard(characterBuild) {
+        var characterLevel = generateLevel(
+            characterBuild.level,
+            `${characterBuild.heritage} ${characterBuild.class}`,
+            []
+        );
+        var hp = generateHp(
+            characterBuild.level,
+            characterBuild.attributes.ancestryhp,
+            characterBuild.attributes.bonushp,
+            characterBuild.attributes.classhp,
+            characterBuild.abilities.con,
+            characterBuild.attributes.bonushpPerLevel
+        );
+        var dc =
+            10 +
+            generateProficiency(
+                characterBuild.level,
+                characterBuild.proficiencies.classDC,
+                characterBuild.abilities[characterBuild.keyability]
+            );
+        var perception = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.perception,
+            characterBuild.abilities.wis
+        );
+        var fortitude = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.fortitude,
+            characterBuild.abilities.con
+        );
+        var reflex = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.reflex,
+            characterBuild.abilities.dex
+        );
+        var will = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.will,
+            characterBuild.abilities.wis
+        );
+        var acrobatics = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.acrobatics,
+            characterBuild.abilities.dex
+        );
+        var arcana = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.arcana,
+            characterBuild.abilities.int
+        );
+        var athletics = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.athletics,
+            characterBuild.abilities.str
+        );
+        var crafting = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.crafting,
+            characterBuild.abilities.int
+        );
+        var deception = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.deception,
+            characterBuild.abilities.cha
+        );
+        var diplomacy = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.diplomacy,
+            characterBuild.abilities.cha
+        );
+        var intimidation = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.intimidation,
+            characterBuild.abilities.cha
+        );
+        var medicine = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.medicine,
+            characterBuild.abilities.wis
+        );
+        var nature = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.nature,
+            characterBuild.abilities.wis
+        );
+        var occultism = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.occultism,
+            characterBuild.abilities.int
+        );
+        var performance = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.performance,
+            characterBuild.abilities.cha
+        );
+        var religion = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.religion,
+            characterBuild.abilities.wis
+        );
+        var society = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.society,
+            characterBuild.abilities.int
+        );
+        var stealth = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.stealth,
+            characterBuild.abilities.dex
+        );
+        var survival = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.survival,
+            characterBuild.abilities.wis
+        );
+        var thievery = generateProficiency(
+            characterBuild.level,
+            characterBuild.proficiencies.thievery,
+            characterBuild.abilities.dex
+        );
+        var lore1Bonus = 0;
+        var lore1Name = orDash(null);
+        if (characterBuild.lores[0]) {
+            lore1Name = `${characterBuild.lores[0][0]} (Lore)`;
+            lore1Bonus = generateProficiency(
+                characterBuild.level,
+                characterBuild.lores[0][1],
+                characterBuild.abilities.int
+            );
+        }
+        var lore2Bonus = 0;
+        var lore2Name = orDash(null);
+        if (characterBuild.lores[1]) {
+            lore2Name = `${characterBuild.lores[1][0]} (Lore)`;
+            lore2Bonus = generateProficiency(
+                characterBuild.level,
+                characterBuild.lores[1][1],
+                characterBuild.abilities.int
+            );
+        }
+        appendCard(`
+            <div class="card character-card" data-order="AAA--${characterBuild.name}--character">
+                <div class="name">
+                    <div class="content">${characterBuild.name} (HP: ${hp})</div>
+                </div>
 
-            async function getSpellListData(spellList, spellLevel, apiKey) {
-                var headers = new Headers();
-                headers.append("Authorization", apiKey);
+                <div class="character-level">
+                    <div class="content">${characterLevel}</div>
+                </div>
+                <div class="hp">
+                    <div class="header">DC</div>
+                    <div class="content">${dc}</div>
+                </div>
+                <div class="ac">
+                    <div class="header">AC</div>
+                    <div class="content">${characterBuild.acTotal.acTotal}</div>
+                </div>
+                <div class="perception">
+                    <div class="header">Perception</div>
+                    <div class="content">+${perception}</div>
+                </div>
+                <div class="fortitude">
+                    <div class="header">Fortitude</div>
+                    <div class="content">+${fortitude}</div>
+                </div>
+                <div class="reflex">
+                    <div class="header">Reflex</div>
+                    <div class="content">+${reflex}</div>
+                </div>
+                <div class="will">
+                    <div class="header">Will</div>
+                    <div class="content">+${will}</div>
+                </div>
+                <div class="acrobatics">
+                    <div class="content">+${acrobatics}</div>
+                    <div class="header">Acrobatics</div>
+                </div>
+                <div class="arcana">
+                    <div class="content">+${arcana}</div>
+                    <div class="header">Arcana</div>
+                </div>
+                <div class="athletics">
+                    <div class="content">+${athletics}</div>
+                    <div class="header">Athletics</div>
+                </div>
+                <div class="crafting">
+                    <div class="content">+${crafting}</div>
+                    <div class="header">Crafting</div>
+                </div>
+                <div class="deception">
+                    <div class="content">+${deception}</div>
+                    <div class="header">Deception</div>
+                </div>
+                <div class="diplomacy">
+                    <div class="content">+${diplomacy}</div>
+                    <div class="header">Diplomacy</div>
+                </div>
+                <div class="intimidation">
+                    <div class="content">+${intimidation}</div>
+                    <div class="header">Intimidation</div>
+                </div>
+                <div class="lore-1">
+                    <div class="content">+${lore1Bonus}</div>
+                    <div class="header">${lore1Name}</div>
+                </div>
+                <div class="lore-2">
+                    <div class="content">+${lore2Bonus}</div>
+                    <div class="header">${lore2Name}</div>
+                </div>
+                <div class="medicine">
+                    <div class="content">+${medicine}</div>
+                    <div class="header">Medicine</div>
+                </div>
+                <div class="nature">
+                    <div class="content">+${nature}</div>
+                    <div class="header">Nature</div>
+                </div>
+                <div class="occultism">
+                    <div class="content">+${occultism}</div>
+                    <div class="header">Occultism</div>
+                </div>
+                <div class="performance">
+                    <div class="content">+${performance}</div>
+                    <div class="header">Performance</div>
+                </div>
+                <div class="religion">
+                    <div class="content">+${religion}</div>
+                    <div class="header">Religion</div>
+                </div>
+                <div class="society">
+                    <div class="content">+${society}</div>
+                    <div class="header">Society</div>
+                </div>
+                <div class="stealth">
+                    <div class="content">+${stealth}</div>
+                    <div class="header">Stealth</div>
+                </div>
+                <div class="survival">
+                    <div class="content">+${survival}</div>
+                    <div class="header">Survival</div>
+                </div>
+                <div class="thievery">
+                    <div class="content">+${thievery}</div>
+                    <div class="header">Thievery</div>
+                </div>
+                <div class="peg"></div>
+            </div>
+        `);
+    }
 
-                var cantripFilter = "";
-                var levelFilter = `&system.level.value=${spellLevel}`;
-                if (spellLevel === "0") {
-                    cantripFilter = "&system.traits.value=cantrip";
-                    levelFilter = `&system.level.value=1`;
-                }
+    function generateFeatCard(featName, featData) {
+        if (featData.count === 0) {
+            console.log(`No data found for ${featName} card`);
+            return;
+        }
 
-                var req = new Request(
-                    `https://api.pathfinder2.fr/v1/pf2/spell?system.traditions.value=${spellList}${levelFilter}${cantripFilter}`,
-                    { method: "GET", headers }
-                );
+        var feat = featData.results.find((feat) => feat.name === featName);
+        console.log(
+            `Generating feat card: ${featName}`,
+            JSON.stringify(feat, null, 2)
+        );
 
-                var response = await fetch(req);
-                return response.json();
-            }
+        var actionClass = generateActionType(
+            feat.system.actionType,
+            feat.system.actions
+        );
+        var traits = [
+            feat.system.traits.rarity,
+            ...feat.system.traits.value,
+        ].join(", ");
+        var prerequisites = generatePrerequisites(feat.system.prerequisites);
+        var description = generateDescription(feat.system.description.value);
+        var category = feat.system.category ? feat.system.category : "Special";
 
-            async function getActionData(apiKey) {
-                var headers = new Headers();
-                headers.append("Authorization", apiKey);
-
-                var req = new Request(
-                    "https://api.pathfinder2.fr/v1/pf2/action?system.source.value=Pathfinder Core Rulebook",
-                    { method: "GET", headers }
-                );
-
-                var response = await fetch(req);
-                return response.json();
-            }
-
-            function generateCharacterCard(characterBuild) {
-                var characterLevel = generateLevel(
-                    characterBuild.level,
-                    `${characterBuild.heritage} ${characterBuild.class}`,
-                    []
-                );
-                var hp = generateHp(
-                    characterBuild.level,
-                    characterBuild.attributes.ancestryhp,
-                    characterBuild.attributes.bonushp,
-                    characterBuild.attributes.classhp,
-                    characterBuild.abilities.con,
-                    characterBuild.attributes.bonushpPerLevel
-                );
-                var dc =
-                    10 +
-                    generateProficiency(
-                        characterBuild.level,
-                        characterBuild.proficiencies.classDC,
-                        characterBuild.abilities[characterBuild.keyability]
-                    );
-                var perception = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.perception,
-                    characterBuild.abilities.wis
-                );
-                var fortitude = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.fortitude,
-                    characterBuild.abilities.con
-                );
-                var reflex = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.reflex,
-                    characterBuild.abilities.dex
-                );
-                var will = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.will,
-                    characterBuild.abilities.wis
-                );
-                var acrobatics = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.acrobatics,
-                    characterBuild.abilities.dex
-                );
-                var arcana = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.arcana,
-                    characterBuild.abilities.int
-                );
-                var athletics = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.athletics,
-                    characterBuild.abilities.str
-                );
-                var crafting = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.crafting,
-                    characterBuild.abilities.int
-                );
-                var deception = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.deception,
-                    characterBuild.abilities.cha
-                );
-                var diplomacy = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.diplomacy,
-                    characterBuild.abilities.cha
-                );
-                var intimidation = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.intimidation,
-                    characterBuild.abilities.cha
-                );
-                var medicine = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.medicine,
-                    characterBuild.abilities.wis
-                );
-                var nature = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.nature,
-                    characterBuild.abilities.wis
-                );
-                var occultism = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.occultism,
-                    characterBuild.abilities.int
-                );
-                var performance = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.performance,
-                    characterBuild.abilities.cha
-                );
-                var religion = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.religion,
-                    characterBuild.abilities.wis
-                );
-                var society = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.society,
-                    characterBuild.abilities.int
-                );
-                var stealth = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.stealth,
-                    characterBuild.abilities.dex
-                );
-                var survival = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.survival,
-                    characterBuild.abilities.wis
-                );
-                var thievery = generateProficiency(
-                    characterBuild.level,
-                    characterBuild.proficiencies.thievery,
-                    characterBuild.abilities.dex
-                );
-                var lore1Bonus = 0;
-                var lore1Name = orDash(null);
-                if (characterBuild.lores[0]) {
-                    lore1Name = `${characterBuild.lores[0][0]} (Lore)`;
-                    lore1Bonus = generateProficiency(
-                        characterBuild.level,
-                        characterBuild.lores[0][1],
-                        characterBuild.abilities.int
-                    );
-                }
-                var lore2Bonus = 0;
-                var lore2Name = orDash(null);
-                if (characterBuild.lores[1]) {
-                    lore2Name = `${characterBuild.lores[1][0]} (Lore)`;
-                    lore2Bonus = generateProficiency(
-                        characterBuild.level,
-                        characterBuild.lores[1][1],
-                        characterBuild.abilities.int
-                    );
-                }
-                appendCard(`<div class="card-wrapper" data-order="AAA--${characterBuild.name}--character">
-                    <div class="character-card">
-                        <div class="name">
-                            <div class="content">${characterBuild.name} (HP: ${hp})</div>
-                        </div>
-
-                        <div class="character-level">
-                            <div class="content">${characterLevel}</div>
-                        </div>
-                        <div class="hp">
-                            <div class="header">DC</div>
-                            <div class="content">${dc}</div>
-                        </div>
-                        <div class="ac">
-                            <div class="header">AC</div>
-                            <div class="content">${characterBuild.acTotal.acTotal}</div>
-                        </div>
-                        <div class="perception">
-                            <div class="header">Perception</div>
-                            <div class="content">+${perception}</div>
-                        </div>
-                        <div class="fortitude">
-                            <div class="header">Fortitude</div>
-                            <div class="content">+${fortitude}</div>
-                        </div>
-                        <div class="reflex">
-                            <div class="header">Reflex</div>
-                            <div class="content">+${reflex}</div>
-                        </div>
-                        <div class="will">
-                            <div class="header">Will</div>
-                            <div class="content">+${will}</div>
-                        </div>
-                        <div class="acrobatics">
-                            <div class="content">+${acrobatics}</div>
-                            <div class="header">Acrobatics</div>
-                        </div>
-                        <div class="arcana">
-                            <div class="content">+${arcana}</div>
-                            <div class="header">Arcana</div>
-                        </div>
-                        <div class="athletics">
-                            <div class="content">+${athletics}</div>
-                            <div class="header">Athletics</div>
-                        </div>
-                        <div class="crafting">
-                            <div class="content">+${crafting}</div>
-                            <div class="header">Crafting</div>
-                        </div>
-                        <div class="deception">
-                            <div class="content">+${deception}</div>
-                            <div class="header">Deception</div>
-                        </div>
-                        <div class="diplomacy">
-                            <div class="content">+${diplomacy}</div>
-                            <div class="header">Diplomacy</div>
-                        </div>
-                        <div class="intimidation">
-                            <div class="content">+${intimidation}</div>
-                            <div class="header">Intimidation</div>
-                        </div>
-                        <div class="lore-1">
-                            <div class="content">+${lore1Bonus}</div>
-                            <div class="header">${lore1Name}</div>
-                        </div>
-                        <div class="lore-2">
-                            <div class="content">+${lore2Bonus}</div>
-                            <div class="header">${lore2Name}</div>
-                        </div>
-                        <div class="medicine">
-                            <div class="content">+${medicine}</div>
-                            <div class="header">Medicine</div>
-                        </div>
-                        <div class="nature">
-                            <div class="content">+${nature}</div>
-                            <div class="header">Nature</div>
-                        </div>
-                        <div class="occultism">
-                            <div class="content">+${occultism}</div>
-                            <div class="header">Occultism</div>
-                        </div>
-                        <div class="performance">
-                            <div class="content">+${performance}</div>
-                            <div class="header">Performance</div>
-                        </div>
-                        <div class="religion">
-                            <div class="content">+${religion}</div>
-                            <div class="header">Religion</div>
-                        </div>
-                        <div class="society">
-                            <div class="content">+${society}</div>
-                            <div class="header">Society</div>
-                        </div>
-                        <div class="stealth">
-                            <div class="content">+${stealth}</div>
-                            <div class="header">Stealth</div>
-                        </div>
-                        <div class="survival">
-                            <div class="content">+${survival}</div>
-                            <div class="header">Survival</div>
-                        </div>
-                        <div class="thievery">
-                            <div class="content">+${thievery}</div>
-                            <div class="header">Thievery</div>
-                        </div>
-                        <div class="peg"></div>
+        appendCard(`
+            <div class="card feat-card" data-order="${feat.name}--feat">
+                <div class="name">
+                    <div class="content">
+                        ${feat.name}
+                        <span class="action"><span class="${actionClass}" /></span>
                     </div>
-                </div>`);
-            }
+                </div>
+                <div class="skill">
+                    <div class="content">${feat.type} (${category})</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
+                    </div>
+                    ${prerequisites}
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${feat.system.source.value}</div>
+            </div>
+        `);
+    }
 
-            function generateFeatCard(featName, featData) {
-                if (featData.count === 0) {
-                    console.log(`No data found for ${featName} card`);
+    function generateSpellCard(spellName, spellData) {
+        if (spellData.count === 0) {
+            console.log(`No data found for ${spellName} card`);
+            return;
+        }
+
+        var spell = spellData.results.find((spell) => spell.name === spellName);
+        console.log(
+            `Generating spell card: ${spellName}`,
+            JSON.stringify(spell, null, 2)
+        );
+
+        var actionClass = `action-action${
+            spell.system.time.value ? spell.system.time.value : ""
+        }`;
+        var spellLevel = generateLevel(
+            spell.system.level.value,
+            spell.system.school.value,
+            spell.system.traits.value
+        );
+        var focusMark = "";
+        var focusClass = "";
+        if (spell.system.category.value == "focus") {
+            spellLevel += ` (Focus)`;
+            focusMark = `<span class="focus">F</span>`;
+            focusClass = "focus-spell";
+        }
+        var components = generateSpellComponents(spell.system.components);
+        var duration = generateDuration(spell.system.duration.value);
+        var description = generateDescription(spell.system.description.value);
+
+        appendCard(`
+            <div class="card spell-card" data-order="${spell.name}--spell">
+                <div class="name">
+                    <div class="content ${focusClass}">
+                        ${focusMark}
+                        <span class="spell-name">${spell.name}</span>
+                        <span class="action"><span class="${actionClass}" /></span>
+                    </div>
+                </div>
+                <div class="spell-level">
+                    <div class="content">${spellLevel}</div>
+                </div>
+                <div class="saving-throw">
+                    <div class="header">Saving Throw</div>
+                    <div class="content">${orDash(
+                        spell.system.save.value
+                    )}</div>
+                </div>
+                <div class="range">
+                    <div class="header">Range</div>
+                    <div class="content">${orDash(
+                        spell.system.range.value
+                    )}</div>
+                </div>
+                <div class="components">
+                    <div class="header">Components</div>
+                    <div class="content">${orDash(components)}</div>
+                </div>
+                <div class="duration">
+                    <div class="header">Duration</div>
+                    <div class="content">${duration}</div>
+                </div>
+                <div class="description">${description}</div>
+                <div class="source">${spell.system.source.value}</div>
+            </div>
+        `);
+    }
+
+    function generateSpecialCard(specialName, specialData) {
+        console.log(
+            `Generating special card: ${specialName}`,
+            JSON.stringify(specialData, null, 2)
+        );
+
+        var special = specialData;
+        if (specialData.results) {
+            if (specialData.count === 0) {
+                console.log(`No data found for ${specialName} card`);
+                return;
+            }
+            special = specialData.results.find(
+                (special) => special.name === specialName
+            );
+        }
+
+        var actionClass = generateActionType(
+            special.system.actionType,
+            special.system.actions
+        );
+        var traits = [
+            special.system.traits.rarity,
+            ...special.system.traits.value,
+        ].join(", ");
+
+        var description = generateDescription(special.system.description.value);
+        var category = special.system.category
+            ? special.system.category.replace("feature", "")
+            : "Special";
+
+        appendCard(`
+            <div class="card feat-card" data-order="${special.name}--special">
+                <div class="name">
+                    <div class="content">
+                        ${special.name}
+                        <span class="action"><span class="${actionClass}" /></span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="content">${special.type} (${category})</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
+                    </div>
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${special.system.source.value}</div>
+            </div>
+        `);
+    }
+
+    function generateActionCard(actionName, actionData) {
+        console.log(
+            `Generating action card: ${actionName}`,
+            JSON.stringify(actionData, null, 2)
+        );
+
+        var actionClass = generateActionType(
+            actionData.system.actionType,
+            actionData.system.actions
+        );
+        var traits = [
+            actionData.system.traits.rarity,
+            ...actionData.system.traits.value,
+        ].join(", ");
+
+        var description = generateDescription(
+            actionData.system.description.value
+        );
+        var category = actionData.system.actionCategory.value
+            ? `(${actionData.system.actionCategory.value})`
+            : "";
+
+        appendCard(`
+            <div class="card action-card" data-order="${actionData.name}--action">
+                <div class="name">
+                    <div class="content">
+                        ${actionData.name}
+                        <span class="action"><span class="${actionClass}" /></span>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="content">${actionData.type} ${category}</div>
+                </div>
+                <div class="description">
+                    <div class="trait">
+                        <div class="header">Trait</div>
+                        <div class="content">${traits}</div>
+                    </div>
+                    <hr/>
+                    ${description}
+                </div>
+                <div class="source">${actionData.system.source.value}</div>
+            </div>
+        `);
+    }
+
+    function generateActionType(actionType, actions) {
+        if (actionType) {
+            return `action-${actionType.value}${
+                actions.value ? actions.value : ""
+            }`;
+        }
+    }
+
+    function generateDescription(description) {
+        return `${description
+            .replaceAll(/@UUID\[.*\]\{(.*)\}/g, "$1")
+            .replaceAll(/\[\[\/r \(\(.*\).*\).*\[.*\]\]\]\{.*\}/g, "")
+            .replaceAll(/\[\[\/r (.*)\[(.*)\]\]\]/g, "$1 $2")}`;
+    }
+
+    function generateLevel(level, schoolOrClass, traits) {
+        if (traits.includes("cantrip")) {
+            return `${schoolOrClass} Cantrip`;
+        }
+        switch (level) {
+            case 1:
+                return `${level}st-level ${schoolOrClass}`;
+            case 2:
+                return `${level}nd-level ${schoolOrClass}`;
+            case 3:
+                return `${level}rd-level ${schoolOrClass}`;
+            default:
+                return `${level}th-level ${schoolOrClass}`;
+        }
+    }
+
+    function generateDuration(duration) {
+        return orDash(
+            duration
+                .replaceAll(
+                    /sustained [for ]*up to (.*) minute/g,
+                    "Sustained ($1 min)"
+                )
+                .replaceAll(
+                    /(.*) minute or until dismissed/g,
+                    "Dismissed ($1 min)"
+                )
+                .replaceAll(
+                    "until your next daily preparations",
+                    "Next long rest"
+                )
+                .replaceAll("until the end of your turn", "End of turn")
+                .replaceAll(
+                    "until the start of your next turn",
+                    "Start of next turn"
+                )
+        );
+    }
+
+    function generatePrerequisites(prerequisites) {
+        if (prerequisites) {
+            var prereqs = prerequisites.value
+                .map((prereq) => prereq.value)
+                .join(", ");
+            if (prereqs) {
+                return `<hr/><strong>Requirements</strong> ${prereqs}`;
+            }
+            return "";
+        }
+        return "";
+    }
+
+    function generateSpellComponents(components) {
+        return [
+            ...(components.verbal ? ["V"] : []),
+            ...(components.somatic ? ["S"] : []),
+            ...(components.material ? ["M"] : []),
+            ...(components.focus ? ["focus"] : []),
+        ].join(", ");
+    }
+
+    function generateHp(
+        level,
+        ancestryHp,
+        bonusHp,
+        classHp,
+        constitution,
+        bonusHpPerLevel
+    ) {
+        return (
+            ancestryHp +
+            bonusHp +
+            level *
+                (Math.floor(constitution - 10) / 2 + classHp + bonusHpPerLevel)
+        );
+    }
+
+    function generateProficiency(level, skill, stat) {
+        var statMod = Math.floor((stat - 10) / 2);
+        if (skill === 0) {
+            return statMod;
+        }
+        return statMod + level + skill;
+    }
+
+    function orDash(val) {
+        return val ? val : `&mdash;`;
+    }
+
+    function appendCard(card) {
+        var element = document.createElement("div");
+        element.classList.add("card-wrapper");
+        element.innerHTML = card.trim();
+        element.addEventListener("click", (_) => {
+            if (element.classList.contains("no-print")) {
+                element.classList.remove("no-print");
+            } else {
+                element.classList.add("no-print");
+            }
+        });
+        document.getElementById("cards").appendChild(element);
+
+        reorderCards();
+    }
+
+    function reorderCards() {
+        var deck = document.getElementById("cards");
+        var cards = [...deck.children];
+
+        cards.sort((a, b) => {
+            a = a.firstChild.getAttribute("data-order");
+            b = b.firstChild.getAttribute("data-order");
+            console.log(`Sorting cards: "${a}" and "${b}"`);
+            return a > b;
+        });
+
+        var addedCardNames = [];
+        cards.forEach((card) => {
+            var thisCard = card.firstChild.getAttribute("data-order");
+
+            if (addedCardNames.indexOf(thisCard) !== -1) {
+                console.log(`Duplicate card ${thisCard.trim()} found`);
+                deck.removeChild(card);
+            } else {
+                addedCardNames.push(thisCard);
+                deck.appendChild(card);
+            }
+        });
+    }
+
+    async function createCards(characterId, cardsToGenerate, apiKey) {
+        console.log("Fetching character data");
+        var character = await getCharacterData(characterId);
+        console.log("Character fetched", JSON.stringify(character, null, 2));
+
+        if (cardsToGenerate.characters) {
+            generateCharacterCard(character.build);
+        }
+
+        if (cardsToGenerate.feats) {
+            var feats = character.build.feats.map((feat) => {
+                return { name: feat[0], type: feat[2] };
+            });
+
+            new Set(feats).forEach(async (feat) => {
+                console.log(`Fetching feat data for ${feat.name}`);
+                var featData = await getFeatData(feat.name, feat.type, apiKey);
+                generateFeatCard(feat.name, featData);
+            });
+
+            new Set(character.build.specials).forEach(async (specialName) => {
+                console.log(`Fetching special data for ${specialName}`);
+                var specialData = await getSpecialData(specialName, apiKey);
+                generateSpecialCard(specialName, specialData);
+            });
+        }
+
+        if (cardsToGenerate.spells) {
+            var spellNames = character.build.spellCasters
+                .map((spellCasters) =>
+                    spellCasters.spells.map((spells) => spells.list).flat()
+                )
+                .flat();
+            [
+                character.build.focus.arcane?.cha?.focusSpells,
+                character.build.focus.arcane?.int?.focusSpells,
+                character.build.focus.arcane?.wis?.focusSpells,
+                character.build.focus.divine?.cha?.focusSpells,
+                character.build.focus.divine?.int?.focusSpells,
+                character.build.focus.divine?.wis?.focusSpells,
+                character.build.focus.occult?.cha?.focusSpells,
+                character.build.focus.occult?.int?.focusSpells,
+                character.build.focus.occult?.wis?.focusSpells,
+                character.build.focus.primal?.cha?.focusSpells,
+                character.build.focus.primal?.int?.focusSpells,
+                character.build.focus.primal?.wis?.focusSpells,
+            ].forEach((list) => {
+                if (list) {
+                    spellNames.push(...list);
+                }
+            });
+
+            new Set(spellNames).forEach(async (spellName) => {
+                console.log(`Fetching spell data for ${spellName}`);
+                var spellData = await getSpellData(spellName, apiKey);
+                generateSpellCard(spellName, spellData);
+            });
+        }
+    }
+
+    async function createSpellListCards(
+        spellList,
+        spellLevel,
+        cardsToGenerate,
+        apiKey
+    ) {
+        if (
+            cardsToGenerate.spells === false ||
+            spellList === "" ||
+            spellLevel === ""
+        ) {
+            return;
+        }
+        console.log(
+            `Generating spell cards for level ${spellLevel} ${spellList}`
+        );
+        var spellListData = await getSpellListData(
+            spellList,
+            spellLevel,
+            apiKey
+        );
+        if (spellListData.count !== 0) {
+            spellListData.results.forEach((spell) => {
+                var spellName = spell.name;
+                var spellData = { results: [spell] };
+
+                // api doesnt let you select 1st level spells only. it also mixes in cantrips.
+                var isCantrip = spell.system.traits.value.includes("cantrip");
+                if (spellLevel === "1" && isCantrip) {
                     return;
                 }
+                console.log(`Generating card for ${spellName}`);
+                generateSpellCard(spellName, spellData);
+            });
+        }
+    }
 
-                var feat = featData.results.find(
-                    (feat) => feat.name === featName
-                );
-                console.log(
-                    `Generating feat card: ${featName}`,
-                    JSON.stringify(feat, null, 2)
-                );
+    async function createActionCards(cardsToGenerate, apiKey) {
+        if (cardsToGenerate.actions === false) {
+            return;
+        }
 
-                var actionClass = generateActionType(
-                    feat.system.actionType,
-                    feat.system.actions
-                );
-                var traits = [
-                    feat.system.traits.rarity,
-                    ...feat.system.traits.value,
-                ].join(", ");
+        var actionData = await getActionData(apiKey);
+        if (actionData.count !== 0) {
+            actionData.results.forEach((action) =>
+                generateActionCard(action.name, action)
+            );
+        }
+    }
+</script>
+<script data="on-load">
+    document
+        .getElementById("fetch-data")
+        .addEventListener("click", async (_) => {
+            saveFormValues();
+            var characterIds = document.getElementById("character-id").value;
+            var apiKey = document.getElementById("api-key").value;
+            var cardsToGenerate = {
+                characters: document.getElementById("generate-character-cards")
+                    .checked,
+                spells: document.getElementById("generate-spell-cards").checked,
+                feats: document.getElementById("generate-feat-cards").checked,
+                actions: document.getElementById("generate-action-cards")
+                    .checked,
+            };
 
-                var description = generateDescription(
-                    feat.system.description.value
-                );
-                var category = feat.system.category
-                    ? feat.system.category
-                    : "Special";
-
-                appendCard(`<div class="feat-card" data-order="${feat.name}--feat">
-                    <div class="name">
-                        <div class="content">
-                            ${feat.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="content">${feat.type} (${category})</div>
-                    </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${feat.system.source.value}</div>
-                </div>`);
-            }
-
-            function generateSpellCard(spellName, spellData) {
-                if (spellData.count === 0) {
-                    console.log(`No data found for ${spellName} card`);
-                    return;
-                }
-
-                var spell = spellData.results.find(
-                    (spell) => spell.name === spellName
-                );
-                console.log(
-                    `Generating spell card: ${spellName}`,
-                    JSON.stringify(spell, null, 2)
-                );
-
-                var actionClass = `action-action${
-                    spell.system.time.value ? spell.system.time.value : ""
-                }`;
-                var spellLevel = generateLevel(
-                    spell.system.level.value,
-                    spell.system.school.value,
-                    spell.system.traits.value
-                );
-                var focusMark = "";
-                var focusClass = "";
-                if (spell.system.category.value == "focus") {
-                    spellLevel += ` (Focus)`;
-                    focusMark = `<span class="focus">F</span>`;
-                    focusClass = "focus-spell";
-                }
-                var components = generateSpellComponents(
-                    spell.system.components
-                );
-                var duration = generateDuration(spell.system.duration.value);
-                var description = generateDescription(
-                    spell.system.description.value
-                );
-
-                appendCard(`<div class="spell-card" data-order="${
-                    spell.name
-                }--spell">
-                    <div class="name">
-                        <div class="content ${focusClass}">
-                            ${focusMark}
-                            <span class="spell-name">${spell.name}</span>
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="spell-level">
-                        <div class="content">${spellLevel}</div>
-                    </div>
-                    <div class="saving-throw">
-                        <div class="header">Saving Throw</div>
-                        <div class="content">${orDash(
-                            spell.system.save.value
-                        )}</div>
-                    </div>
-                    <div class="range">
-                        <div class="header">Range</div>
-                        <div class="content">${orDash(
-                            spell.system.range.value
-                        )}</div>
-                    </div>
-                    <div class="components">
-                        <div class="header">Components</div>
-                        <div class="content">${orDash(components)}</div>
-                    </div>
-                    <div class="duration">
-                        <div class="header">Duration</div>
-                        <div class="content">${duration}</div>
-                    </div>
-                    <div class="description">${description}</div>
-                    <div class="source">${spell.system.source.value}</div>
-                </div>`);
-            }
-
-            function generateSpecialCard(specialName, specialData) {
-                console.log(
-                    `Generating special card: ${specialName}`,
-                    JSON.stringify(specialData, null, 2)
-                );
-
-                var special = specialData;
-                if (specialData.results) {
-                    if (specialData.count === 0) {
-                        console.log(`No data found for ${specialName} card`);
-                        return;
-                    }
-                    special = specialData.results.find(
-                        (special) => special.name === specialName
+            var spellList = document.getElementById("spell-list-picker").value;
+            var spellLevel =
+                document.getElementById("spell-level-picker").value;
+            if (characterIds !== "") {
+                characterIds
+                    .split(",")
+                    .forEach((characterId) =>
+                        createCards(characterId, cardsToGenerate, apiKey)
                     );
-                }
-
-                var actionClass = generateActionType(
-                    special.system.actionType,
-                    special.system.actions
-                );
-                var traits = [
-                    special.system.traits.rarity,
-                    ...special.system.traits.value,
-                ].join(", ");
-
-                var description = generateDescription(
-                    special.system.description.value
-                );
-                var category = special.system.category
-                    ? special.system.category.replace("feature", "")
-                    : "Special";
-
-                appendCard(`<div class="feat-card" data-order="${special.name}--special">
-                    <div class="name">
-                        <div class="content">
-                            ${special.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="content">${special.type} (${category})</div>
-                    </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${special.system.source.value}</div>
-                </div>`);
             }
 
-            function generateActionCard(actionName, actionData) {
-                console.log(
-                    `Generating action card: ${actionName}`,
-                    JSON.stringify(actionData, null, 2)
-                );
-
-                var actionClass = generateActionType(
-                    actionData.system.actionType,
-                    actionData.system.actions
-                );
-                var traits = [
-                    actionData.system.traits.rarity,
-                    ...actionData.system.traits.value,
-                ].join(", ");
-
-                var description = generateDescription(
-                    actionData.system.description.value
-                );
-                var category = actionData.system.actionCategory.value
-                    ? `(${actionData.system.actionCategory.value})`
-                    : "";
-
-                appendCard(`<div class="action-card" data-order="${actionData.name}--action">
-                    <div class="name">
-                        <div class="content">
-                            ${actionData.name}
-                            <span class="action"><span class="${actionClass}" /></span>
-                        </div>
-                    </div>
-                    <div class="skill">
-                        <div class="content">${actionData.type} ${category}</div>
-                    </div>
-                    <div class="description">
-                        <div class="trait">
-                            <div class="header">Trait</div>
-                            <div class="content">${traits}</div>
-                        </div>
-                        <hr/>
-                        ${description}
-                    </div>
-                    <div class="source">${actionData.system.source.value}</div>
-                </div>`);
-            }
-
-            function generateActionType(actionType, actions) {
-                if (actionType) {
-                    return `action-${actionType.value}${
-                        actions.value ? actions.value : ""
-                    }`;
-                }
-            }
-
-            function generateDescription(description) {
-                return `${description
-                    .replaceAll(/@UUID\[.*\]\{(.*)\}/g, "$1")
-                    .replaceAll(/\[\[\/r \(\(.*\).*\).*\[.*\]\]\]\{.*\}/g, "")
-                    .replaceAll(/\[\[\/r (.*)\[(.*)\]\]\]/g, "$1 $2")}`;
-            }
-
-            function generateLevel(level, schoolOrClass, traits) {
-                if (traits.includes("cantrip")) {
-                    return `${schoolOrClass} Cantrip`;
-                }
-                switch (level) {
-                    case 1:
-                        return `${level}st-level ${schoolOrClass}`;
-                    case 2:
-                        return `${level}nd-level ${schoolOrClass}`;
-                    case 3:
-                        return `${level}rd-level ${schoolOrClass}`;
-                    default:
-                        return `${level}th-level ${schoolOrClass}`;
-                }
-            }
-
-            function generateDuration(duration) {
-                return orDash(
-                    duration
-                        .replaceAll(
-                            /sustained [for ]*up to (.*) minute/g,
-                            "Sustained ($1 min)"
-                        )
-                        .replaceAll(
-                            /(.*) minute or until dismissed/g,
-                            "Dismissed ($1 min)"
-                        )
-                        .replaceAll(
-                            "until your next daily preparations",
-                            "Next long rest"
-                        )
-                        .replaceAll("until the end of your turn", "End of turn")
-                        .replaceAll(
-                            "until the start of your next turn",
-                            "Start of next turn"
-                        )
-                );
-            }
-
-            function generateSpellComponents(components) {
-                return [
-                    ...(components.verbal ? ["V"] : []),
-                    ...(components.somatic ? ["S"] : []),
-                    ...(components.material ? ["M"] : []),
-                    ...(components.focus ? ["focus"] : []),
-                ].join(", ");
-            }
-
-            function generateHp(
-                level,
-                ancestryHp,
-                bonusHp,
-                classHp,
-                constitution,
-                bonusHpPerLevel
-            ) {
-                return (
-                    ancestryHp +
-                    bonusHp +
-                    level *
-                        (Math.floor(constitution - 10) / 2 +
-                            classHp +
-                            bonusHpPerLevel)
-                );
-            }
-
-            function generateProficiency(level, skill, stat) {
-                var statMod = Math.floor((stat - 10) / 2);
-                if (skill === 0) {
-                    return statMod;
-                }
-                return statMod + level + skill;
-            }
-
-            function orDash(val) {
-                return val ? val : `&mdash;`;
-            }
-
-            function appendCard(card) {
-                var element = document.createElement("div");
-                element.classList.add("card-wrapper");
-                element.innerHTML = card;
-                element.addEventListener("click", (_) => {
-                    if (element.classList.contains("no-print")) {
-                        element.classList.remove("no-print");
-                    } else {
-                        element.classList.add("no-print");
-                    }
-                });
-                document.getElementById("cards").appendChild(element);
-
-                reorderCards();
-            }
-
-            function reorderCards() {
-                var deck = document.getElementById("cards");
-                var cards = [...deck.children];
-
-                cards.sort((a, b) => {
-                    a = a.firstChild.getAttribute("data-order");
-                    b = b.firstChild.getAttribute("data-order");
-                    console.log(`Sorting cards: "${a}" and "${b}"`);
-                    return a > b;
-                });
-
-                var addedCardNames = [];
-                cards.forEach((card) => {
-                    var thisCard = card.firstChild.getAttribute("data-order");
-
-                    if (addedCardNames.indexOf(thisCard) !== -1) {
-                        console.log(`Duplicate card ${thisCard.trim()} found`);
-                        deck.removeChild(card);
-                    } else {
-                        addedCardNames.push(thisCard);
-                        deck.appendChild(card);
-                    }
-                });
-            }
-
-            async function createCards(characterId, cardsToGenerate, apiKey) {
-                console.log("Fetching character data");
-                var character = await getCharacterData(characterId);
-                console.log(
-                    "Character fetched",
-                    JSON.stringify(character, null, 2)
-                );
-
-                if (cardsToGenerate.characters) {
-                    generateCharacterCard(character.build);
-                }
-
-                if (cardsToGenerate.feats) {
-                    var feats = character.build.feats.map((feat) => {
-                        return { name: feat[0], type: feat[2] };
-                    });
-
-                    new Set(feats).forEach(async (feat) => {
-                        console.log(`Fetching feat data for ${feat.name}`);
-                        var featData = await getFeatData(
-                            feat.name,
-                            feat.type,
-                            apiKey
-                        );
-                        generateFeatCard(feat.name, featData);
-                    });
-
-                    new Set(character.build.specials).forEach(
-                        async (specialName) => {
-                            console.log(
-                                `Fetching special data for ${specialName}`
-                            );
-                            var specialData = await getSpecialData(
-                                specialName,
-                                apiKey
-                            );
-                            generateSpecialCard(specialName, specialData);
-                        }
-                    );
-                }
-
-                if (cardsToGenerate.spells) {
-                    var spellNames = character.build.spellCasters
-                        .map((spellCasters) =>
-                            spellCasters.spells
-                                .map((spells) => spells.list)
-                                .flat()
-                        )
-                        .flat();
-                    [
-                        character.build.focus.arcane?.cha?.focusSpells,
-                        character.build.focus.arcane?.int?.focusSpells,
-                        character.build.focus.arcane?.wis?.focusSpells,
-                        character.build.focus.divine?.cha?.focusSpells,
-                        character.build.focus.divine?.int?.focusSpells,
-                        character.build.focus.divine?.wis?.focusSpells,
-                        character.build.focus.occult?.cha?.focusSpells,
-                        character.build.focus.occult?.int?.focusSpells,
-                        character.build.focus.occult?.wis?.focusSpells,
-                        character.build.focus.primal?.cha?.focusSpells,
-                        character.build.focus.primal?.int?.focusSpells,
-                        character.build.focus.primal?.wis?.focusSpells,
-                    ].forEach((list) => {
-                        if (list) {
-                            spellNames.push(...list);
-                        }
-                    });
-
-                    new Set(spellNames).forEach(async (spellName) => {
-                        console.log(`Fetching spell data for ${spellName}`);
-                        var spellData = await getSpellData(spellName, apiKey);
-                        generateSpellCard(spellName, spellData);
-                    });
-                }
-            }
-
-            async function createSpellListCards(
+            createSpellListCards(
                 spellList,
                 spellLevel,
                 cardsToGenerate,
                 apiKey
-            ) {
-                if (
-                    cardsToGenerate.spells === false ||
-                    spellList === "" ||
-                    spellLevel === ""
-                ) {
-                    return;
-                }
-                console.log(
-                    `Generating spell cards for level ${spellLevel} ${spellList}`
+            );
+            createActionCards(cardsToGenerate, apiKey);
+        });
+
+    document.getElementById("feat-picker").addEventListener("change", (e) => {
+        var className = e.target.value;
+        document.querySelectorAll(".feat-card").forEach(function (element) {
+            element.className = "feat-card " + className;
+        });
+    });
+
+    document.getElementById("spell-picker").addEventListener("change", (e) => {
+        var className = e.target.value;
+        document.querySelectorAll(".spell-card").forEach(function (element) {
+            element.className = "spell-card " + className;
+        });
+    });
+
+    document.getElementById("action-picker").addEventListener("change", (e) => {
+        var className = e.target.value;
+        document.querySelectorAll(".action-card").forEach(function (element) {
+            element.className = "action-card " + className;
+        });
+    });
+
+    document.getElementById("select-group").addEventListener("click", (_) => {
+        var group = document.getElementById("card-group-picker").value;
+        console.log(`will select ${group}-card`);
+        if (group !== "") {
+            document
+                .querySelectorAll(`.${group}-card`)
+                .forEach((element) =>
+                    element.parentElement.classList.remove("no-print")
                 );
-                var spellListData = await getSpellListData(
-                    spellList,
-                    spellLevel,
-                    apiKey
+        } else {
+            document
+                .querySelectorAll(".card-wrapper")
+                .forEach((element) => element.classList.remove("no-print"));
+        }
+    });
+
+    document.getElementById("deselect-group").addEventListener("click", (_) => {
+        var group = document.getElementById("card-group-picker").value;
+        console.log(`will select ${group}-card`);
+        if (group !== "") {
+            document
+                .querySelectorAll(`.${group}-card`)
+                .forEach((element) =>
+                    element.parentElement.classList.add("no-print")
                 );
-                if (spellListData.count !== 0) {
-                    spellListData.results.forEach((spell) => {
-                        var spellName = spell.name;
-                        var spellData = { results: [spell] };
-
-                        // api doesnt let you select 1st level spells only. it also mixes in cantrips.
-                        var isCantrip =
-                            spell.system.traits.value.includes("cantrip");
-                        if (spellLevel === "1" && isCantrip) {
-                            return;
-                        }
-                        console.log(`Generating card for ${spellName}`);
-                        generateSpellCard(spellName, spellData);
-                    });
-                }
-            }
-
-            async function createActionCards(cardsToGenerate, apiKey) {
-                if (cardsToGenerate.actions === false) {
-                    return;
-                }
-
-                var actionData = await getActionData(apiKey);
-                if (actionData.count !== 0) {
-                    actionData.results.forEach((action) =>
-                        generateActionCard(action.name, action)
-                    );
-                }
-            }
-        </script>
-        <script data="on-load">
+        } else {
             document
-                .getElementById("fetch-data")
-                .addEventListener("click", async (_) => {
-                    saveFormValues();
-                    var characterIds =
-                        document.getElementById("character-id").value;
-                    var apiKey = document.getElementById("api-key").value;
-                    var cardsToGenerate = {
-                        characters: document.getElementById(
-                            "generate-character-cards"
-                        ).checked,
-                        spells: document.getElementById("generate-spell-cards")
-                            .checked,
-                        feats: document.getElementById("generate-feat-cards")
-                            .checked,
-                        actions: document.getElementById(
-                            "generate-action-cards"
-                        ).checked,
-                    };
+                .querySelectorAll(".card-wrapper")
+                .forEach((element) => element.classList.add("no-print"));
+        }
+    });
 
-                    var spellList =
-                        document.getElementById("spell-list-picker").value;
-                    var spellLevel =
-                        document.getElementById("spell-level-picker").value;
-                    if (characterIds !== "") {
-                        characterIds
-                            .split(",")
-                            .forEach((characterId) =>
-                                createCards(
-                                    characterId,
-                                    cardsToGenerate,
-                                    apiKey
-                                )
-                            );
-                    }
+    document.getElementById("clear-cards").addEventListener("click", (_) => {
+        document.getElementById("cards").innerHTML = "";
+    });
 
-                    createSpellListCards(
-                        spellList,
-                        spellLevel,
-                        cardsToGenerate,
-                        apiKey
-                    );
-                    createActionCards(cardsToGenerate, apiKey);
-                });
-
-            document
-                .getElementById("feat-picker")
-                .addEventListener("change", (e) => {
-                    var className = e.target.value;
-                    document
-                        .querySelectorAll(".feat-card")
-                        .forEach(function (element) {
-                            element.className = "feat-card " + className;
-                        });
-                });
-
-            document
-                .getElementById("spell-picker")
-                .addEventListener("change", (e) => {
-                    var className = e.target.value;
-                    document
-                        .querySelectorAll(".spell-card")
-                        .forEach(function (element) {
-                            element.className = "spell-card " + className;
-                        });
-                });
-
-            document
-                .getElementById("action-picker")
-                .addEventListener("change", (e) => {
-                    var className = e.target.value;
-                    document
-                        .querySelectorAll(".action-card")
-                        .forEach(function (element) {
-                            element.className = "action-card " + className;
-                        });
-                });
-
-            document
-                .getElementById("select-group")
-                .addEventListener("click", (_) => {
-                    var group =
-                        document.getElementById("card-group-picker").value;
-                    console.log(`will select ${group}-card`);
-                    if (group !== "") {
-                        document
-                            .querySelectorAll(`.${group}-card`)
-                            .forEach((element) =>
-                                element.parentElement.classList.remove(
-                                    "no-print"
-                                )
-                            );
-                    } else {
-                        document
-                            .querySelectorAll(".card-wrapper")
-                            .forEach((element) =>
-                                element.classList.remove("no-print")
-                            );
-                    }
-                });
-
-            document
-                .getElementById("deselect-group")
-                .addEventListener("click", (_) => {
-                    var group =
-                        document.getElementById("card-group-picker").value;
-                    console.log(`will select ${group}-card`);
-                    if (group !== "") {
-                        document
-                            .querySelectorAll(`.${group}-card`)
-                            .forEach((element) =>
-                                element.parentElement.classList.add("no-print")
-                            );
-                    } else {
-                        document
-                            .querySelectorAll(".card-wrapper")
-                            .forEach((element) =>
-                                element.classList.add("no-print")
-                            );
-                    }
-                });
-
-            document
-                .getElementById("clear-cards")
-                .addEventListener("click", (_) => {
-                    document.getElementById("cards").innerHTML = "";
-                });
-
-            (() => {
-                var characterId = localStorage.getItem("character-id");
-                if (characterId) {
-                    document.getElementById("character-id").value = characterId;
-                }
-                var apiKey = localStorage.getItem("api-key");
-                if (apiKey) {
-                    document.getElementById("api-key").value = apiKey;
-                }
-            })();
-        </script>
-        <script data="class-spell-lists">
-            function getSpells(spellList, spellLevel) {
-                var spells = {
-                    primal: [
-                        // First Level Primal Spells
-                        [
-                            "Air Bubble",
-                            "Alarm",
-                            "Ant Haul",
-                            "Burning Hands",
-                            "Charm",
-                            "Create Water",
-                            "Detect Poison",
-                            "Fear",
-                            "Feather Fall",
-                            "Fleet Step",
-                            "Goblin Pox",
-                            "Grease",
-                            "Gust of Wind",
-                            "Heal",
-                            "Hydraulic Push",
-                            "Jump",
-                            "Longstrider",
-                            "Magic Fang",
-                            "Mending",
-                            "Negate Aroma",
-                            "Pass Without Trace",
-                            "Pest Form",
-                            "Purify Food and Drink",
-                            "Shillelagh",
-                            "Shocking Grasp",
-                            "Spider Sting",
-                            "Summon Animal",
-                            "Summon Fey",
-                            "Summon Plant or Fungus",
-                            "Ventriloquism",
-                        ],
-                    ],
-                };
-
-                if (
-                    spellList === "" ||
-                    spellLevel === "" ||
-                    spells[spellList] === undefined
-                ) {
-                    return [];
-                }
-                return spells[spellList][spellLevel - 1];
-            }
-        </script>
-    </body>
-</html>
+    (() => {
+        var characterId = localStorage.getItem("character-id");
+        if (characterId) {
+            document.getElementById("character-id").value = characterId;
+        }
+        var apiKey = localStorage.getItem("api-key");
+        if (apiKey) {
+            document.getElementById("api-key").value = apiKey;
+        }
+    })();
+</script>

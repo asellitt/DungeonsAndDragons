@@ -1,8 +1,9 @@
 ---
-layout: card
+layout: tool
 title: Shargonoth
 thumb: /assets/images/items/shargonoth.jpg
 ---
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/66vqsk6"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/sxpgw3q"></iframe>

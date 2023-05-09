@@ -1,21 +1,23 @@
 ---
 layout: default
 title: Magic Items
+exclude: true
 ---
 
 <div class="home">
-  <ul class="post-list">
-
-    {% for item in site.items %}
-      <li>
-        <a href="{{item.url | prepend: site.baseurl}}" class="post-list-link">
-          <div class="post-list-info">
-            <h2 class="post-list-title">{{item.title}}</h2>
-          </div>
-        </a>
-        <img src="{{item.thumb}}" class="post-list-thumb" />
-      </li>
-    {% endfor %}
-
-  </ul>
+    <ul class="post-list">
+        {% for item in site.items %}
+        <li>
+            <a
+                href="{{item.url | prepend: site.baseurl}}"
+                class="post-list-link"
+            >
+                <div class="post-list-info">
+                    <h2 class="post-list-title">{{item.title}}</h2>
+                </div>
+            </a>
+            <img src="{{item.thumb}}" class="post-list-thumb" />
+        </li>
+        {% endfor %}
+    </ul>
 </div>

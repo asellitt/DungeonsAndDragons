@@ -1,8 +1,9 @@
 ---
-layout: card
+layout: tool
 title: Radac
 thumb: /assets/images/items/radac.jpg
 ---
+
 <iframe src="http://magic-items.herokuapp.com/item/embed/hk622bd"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/7w3hzfh"></iframe>
 <iframe src="http://magic-items.herokuapp.com/item/embed/czjqcs5"></iframe>
