@@ -1,0 +1,1120 @@
+---
+layout: default
+title: Encounter
+exclude: true
+---
+
+<div id="encounter">
+    <div class="inputs">
+        <div class="edition-switcher">
+            <a href="{{ '/encounter' | prepend: site.baseurl }}">
+                <button>PF 2e</button>
+            </a>
+            <button disabled="disabled">D&D 5e</button>
+        </div>
+        <div>
+            <label>Average Party Level</label>
+            <input
+                class="js-level"
+                type="number"
+                placeholder="Average Party Level"
+                min="1"
+                max="20"
+                autofocus="true"
+            />
+        </div>
+        <div>
+            <label>Number of Players</label>
+            <input
+                class="js-players"
+                type="number"
+                placeholder="Number of Players"
+                min="1"
+                max="20"
+            />
+        </div>
+        <div>
+            <label>Boss</label>
+            <select class="js-boss">
+                <option>None</option>
+                <option>Heavy</option>
+                <option>Light</option>
+                <option>Ranged</option>
+                <option>Arcane Caster</option>
+                <option>Divine Caster</option>
+                <option>Blighter</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="encounters"></div>
+
+    <div id="template" class="encounter">
+        <div class="name">
+            <span class="js-name"></span>
+        </div>
+        <hr />
+        <div>
+            <div class="two-column">
+                <div><b>Level</b> <span class="js-level"></span></div>
+                <div><b>Armour Class</b> <span class="js-ac"></span></div>
+                <div><b>Hit Points</b> <span class="js-hp"></span></div>
+            </div>
+            <div class="two-column">
+                <div>
+                    <b>CR</b> <span class="js-cr">4</span>
+                    <div class="reroll js-reroll">
+                        <svg
+                            class="dice"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 100 100"
+                        >
+                            <path
+                                stroke="#58170D"
+                                d="M80.644,87.982l16.592-41.483c0.054-0.128,0.088-0.26,0.108-0.394c0.006-0.039,0.007-0.077,0.011-0.116  c0.007-0.087,0.008-0.174,0.002-0.26c-0.003-0.046-0.007-0.091-0.014-0.137c-0.014-0.089-0.036-0.176-0.063-0.262  c-0.012-0.034-0.019-0.069-0.031-0.103c-0.047-0.118-0.106-0.229-0.178-0.335c-0.004-0.006-0.006-0.012-0.01-0.018L67.999,3.358  c-0.01-0.013-0.003-0.026-0.013-0.04L68,3.315V4c0,0-0.033,0-0.037,0c-0.403-1-1.094-1.124-1.752-0.976  c0,0.004-0.004-0.012-0.007-0.012C66.201,3.016,66.194,3,66.194,3H66.19h-0.003h-0.003h-0.004h-0.003c0,0-0.004,0-0.007,0  s-0.003-0.151-0.007-0.151L20.495,15.227c-0.025,0.007-0.046-0.019-0.071-0.011c-0.087,0.028-0.172,0.041-0.253,0.083  c-0.054,0.027-0.102,0.053-0.152,0.085c-0.051,0.033-0.101,0.061-0.147,0.099c-0.044,0.036-0.084,0.073-0.124,0.113  c-0.048,0.048-0.093,0.098-0.136,0.152c-0.03,0.039-0.059,0.076-0.085,0.117c-0.046,0.07-0.084,0.145-0.12,0.223  c-0.011,0.023-0.027,0.042-0.036,0.066L2.911,57.664C2.891,57.715,3,57.768,3,57.82v0.002c0,0.186,0,0.375,0,0.562  c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004v0.002c0,0.074-0.002,0.15,0.012,0.223  C3.015,58.631,3,58.631,3,58.633c0,0.004,0,0.004,0,0.008c0,0,0,0,0,0.002c0,0,0,0,0,0.004v0.004c0,0,0,0,0,0.002v0.004  c0,0.191-0.046,0.377,0.06,0.545c0-0.002-0.03,0.004-0.03,0.004c0,0.004-0.03,0.004-0.03,0.004c0,0.002,0,0.002,0,0.002  l-0.045,0.004c0.03,0.047,0.036,0.09,0.068,0.133l29.049,37.359c0.002,0.004,0,0.006,0.002,0.01c0.002,0.002,0,0.004,0.002,0.008  c0.006,0.008,0.014,0.014,0.021,0.021c0.024,0.029,0.052,0.051,0.078,0.078c0.027,0.029,0.053,0.057,0.082,0.082  c0.03,0.027,0.055,0.062,0.086,0.088c0.026,0.02,0.057,0.033,0.084,0.053c0.04,0.027,0.081,0.053,0.123,0.076  c0.005,0.004,0.01,0.008,0.016,0.01c0.087,0.051,0.176,0.09,0.269,0.123c0.042,0.014,0.082,0.031,0.125,0.043  c0.021,0.006,0.041,0.018,0.062,0.021c0.123,0.027,0.249,0.043,0.375,0.043c0.099,0,0.202-0.012,0.304-0.027l45.669-8.303  c0.057-0.01,0.108-0.021,0.163-0.037C79.547,88.992,79.562,89,79.575,89c0.004,0,0.004,0,0.004,0c0.021,0,0.039-0.027,0.06-0.035  c0.041-0.014,0.08-0.034,0.12-0.052c0.021-0.01,0.044-0.019,0.064-0.03c0.017-0.01,0.026-0.015,0.033-0.017  c0.014-0.008,0.023-0.021,0.037-0.028c0.14-0.078,0.269-0.174,0.38-0.285c0.014-0.016,0.024-0.034,0.038-0.048  c0.109-0.119,0.201-0.252,0.271-0.398c0.006-0.01,0.016-0.018,0.021-0.029c0.004-0.008,0.008-0.017,0.011-0.026  c0.002-0.004,0.003-0.006,0.005-0.01C80.627,88.021,80.635,88.002,80.644,87.982z M77.611,84.461L48.805,66.453l32.407-25.202  L77.611,84.461z M46.817,63.709L35.863,23.542l43.818,14.608L46.817,63.709z M84.668,40.542l8.926,5.952l-11.902,29.75  L84.668,40.542z M89.128,39.446L84.53,36.38l-6.129-12.257L89.128,39.446z M79.876,34.645L37.807,20.622L65.854,6.599L79.876,34.645  z M33.268,19.107l-6.485-2.162l23.781-6.487L33.268,19.107z M21.92,18.895l8.67,2.891L10.357,47.798L21.92,18.895z M32.652,24.649  l10.845,39.757L7.351,57.178L32.652,24.649z M43.472,67.857L32.969,92.363L8.462,60.855L43.472,67.857z M46.631,69.09l27.826,17.393  l-38.263,6.959L46.631,69.09z"
+                                data-reactid=".0.0.0.0.0.0"
+                            ></path>
+                        </svg>
+                    </div>
+                </div>
+                <div><b>Speed</b> 30ft.</div>
+                <div><b>Initiative</b> <span class="js-initiative"></span></div>
+            </div>
+        </div>
+        <div class="name">Attributes</div>
+        <table>
+            <tr>
+                <th></th>
+                <th>STR</th>
+                <th>DEX</th>
+                <th>CON</th>
+                <th>INT</th>
+                <th>WIS</th>
+                <th>CHA</th>
+            </tr>
+            <tr>
+                <td><b>Base</b></td>
+                <td><span class="js-str-base"></span></td>
+                <td><span class="js-dex-base"></span></td>
+                <td><span class="js-con-base"></span></td>
+                <td><span class="js-int-base"></span></td>
+                <td><span class="js-wis-base"></span></td>
+                <td><span class="js-cha-base"></span></td>
+            </tr>
+            <tr>
+                <td><b>Mod</b></td>
+                <td>(<span class="js-str-mod"></span>)</td>
+                <td>(<span class="js-dex-mod"></span>)</td>
+                <td>(<span class="js-con-mod"></span>)</td>
+                <td>(<span class="js-int-mod"></span>)</td>
+                <td>(<span class="js-wis-mod"></span>)</td>
+                <td>(<span class="js-cha-mod"></span>)</td>
+            </tr>
+            <tr>
+                <td><b>DC</b></td>
+                <td><span class="js-str-dc"></span></td>
+                <td><span class="js-dex-dc"></span></td>
+                <td><span class="js-con-dc"></span></td>
+                <td><span class="js-int-dc"></span></td>
+                <td><span class="js-wis-dc"></span></td>
+                <td><span class="js-cha-dc"></span></td>
+            </tr>
+            <tr>
+                <td><b>Save</b></td>
+                <td><span class="js-str-save"></span></td>
+                <td><span class="js-dex-save"></span></td>
+                <td><span class="js-con-save"></span></td>
+                <td><span class="js-int-save"></span></td>
+                <td><span class="js-wis-save"></span></td>
+                <td><span class="js-cha-save"></span></td>
+            </tr>
+        </table>
+        <div class="js-skills name">Skills &#9662;</div>
+        <div class="js-skills-list skills">
+            <div class="two-column">
+                <div><b>Acrobatics</b> <span class="js-acrobatics"></span></div>
+                <div>
+                    <b>Animal Handling</b>
+                    <span class="js-animal-handling"></span>
+                </div>
+                <div><b>Arcana</b> <span class="js-arcana"></span></div>
+                <div><b>Athletics</b> <span class="js-athletics"></span></div>
+                <div><b>Deception</b> <span class="js-deception"></span></div>
+                <div><b>History</b> <span class="js-history"></span></div>
+                <div><b>Insight</b> <span class="js-insight"></span></div>
+                <div>
+                    <b>Intimidation</b> <span class="js-intimidation"></span>
+                </div>
+                <div>
+                    <b>Investigation</b> <span class="js-investigation"></span>
+                </div>
+            </div>
+            <div class="two-column">
+                <div><b>Medicine</b> <span class="js-medicine"></span></div>
+                <div><b>Nature</b> <span class="js-nature"></span></div>
+                <div><b>Perception</b> <span class="js-perception"></span></div>
+                <div>
+                    <b>Performance</b> <span class="js-performance"></span>
+                </div>
+                <div><b>Persuasion</b> <span class="js-persuasion"></span></div>
+                <div><b>Religion</b> <span class="js-religion"></span></div>
+                <div>
+                    <b>Sleight of Hand</b>
+                    <span class="js-sleight-of-hand"></span>
+                </div>
+                <div><b>Stealth</b> <span class="js-stealth"></span></div>
+                <div><b>Survival</b> <span class="js-survival"></span></div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="js-actions name">Actions &#9662;</div>
+            <div class="js-actions-list">
+                <div>
+                    <b><i>Attack</i></b> <i>Melee Weapon attack:</i> (+<span
+                        class="js-attack-to-hit"
+                    ></span
+                    >) to hit.
+                </div>
+                <div>
+                    <i>Hit:</i>
+                    <span class="js-attack-average-damage"></span> (<span
+                        class="js-attack-damage-die"
+                    ></span>
+                    +<span class="js-attack-damage-mod"></span>) damage.
+                </div>
+                <div>
+                    <b><i>Multiattack</i></b>
+                    <span class="js-multiattack"></span>
+                </div>
+                <div>
+                    <i>Hit:</i>
+                    <span class="js-multiattack-average-damage"></span> (<span
+                        class="js-multiattack-damage-die"
+                    ></span>
+                    +<span class="js-multiattack-damage-mod"></span>) damage.
+                </div>
+                <div class="js-spellcasting">
+                    <div>
+                        <b><i>Spellcasting</i></b> <i>Spell attack:</i> (+<span
+                            class="js-spell-to-hit"
+                        ></span
+                        >) to hit.
+                    </div>
+                    <table class="spellcasting">
+                        <tr>
+                            <th>Cantrips</th>
+                            <th>1st</th>
+                            <th>2nd</th>
+                            <th>3rd</th>
+                            <th>4th</th>
+                            <th>5th</th>
+                            <th>6th</th>
+                            <th>7th</th>
+                            <th>8th</th>
+                            <th>9th</th>
+                        </tr>
+                        <tr>
+                            <td>At will</td>
+                            <td><span class="js-1-slot">&mdash;</span></td>
+                            <td><span class="js-2-slot">&mdash;</span></td>
+                            <td><span class="js-3-slot">&mdash;</span></td>
+                            <td><span class="js-4-slot">&mdash;</span></td>
+                            <td><span class="js-5-slot">&mdash;</span></td>
+                            <td><span class="js-6-slot">&mdash;</span></td>
+                            <td><span class="js-7-slot">&mdash;</span></td>
+                            <td><span class="js-8-slot">&mdash;</span></td>
+                            <td><span class="js-9-slot">&mdash;</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="bonus-actions">
+            <div class="js-bonus-actions name">Bonus Actions &#9662;</div>
+            <div class="js-bonus-actions-list"></div>
+        </div>
+        <div class="reactions">
+            <div class="js-reactions name">Reactions &#9662;</div>
+            <div class="js-reactions-list"></div>
+        </div>
+    </div>
+</div>
+
+<script
+    type="text/javascript"
+    src="{{ '/assets/js/5e-archetypes.js' | prepend: site.baseurl }}"
+></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#encounters").sortable();
+        $("#encounters").disableSelection();
+
+        $(".js-players").on("change", encounter);
+        $(".js-level").on("change", encounter);
+        $(".js-boss").on("change", bossEncounter);
+    });
+
+    function encounter() {
+        var players = parseInt($(".js-players").val());
+        var level = parseInt($(".js-level").val());
+
+        if (parseInt(players, 10) && parseInt(level, 10)) {
+            clearEncounters();
+            var numberOfEnemies = calculateNumberOfEnemies(players);
+
+            do {
+                var sizeOfGroup = d(4) + 1;
+                $("#encounters").append(
+                    generateEncounterGroup(
+                        sizeOfGroup,
+                        selectArchetype(),
+                        level
+                    )
+                );
+
+                numberOfEnemies -= sizeOfGroup;
+            } while (numberOfEnemies >= 5);
+            $("#encounters").append(
+                generateEncounterGroup(
+                    numberOfEnemies,
+                    selectArchetype(),
+                    level
+                )
+            );
+        }
+
+        sortEncounters();
+    }
+
+    function bossEncounter() {
+        var level = parseInt($(".js-level").val());
+        var archetype = $(".js-boss").val();
+
+        $(".js-boss-encounter").remove();
+
+        if (parseInt(level, 10) && archetype !== "None") {
+            boss = generateEncounterGroup(
+                1,
+                selectArchetype(archetype),
+                Math.min(20, level + 3)
+            );
+            boss.find(".js-name").text(
+                boss.find(".js-name").text().replace("(1)", "(BOSS)")
+            );
+            boss.removeClass("js-encounter-group");
+            boss.addClass("js-boss-encounter");
+            $("#encounters").prepend(boss);
+        }
+    }
+
+    function d(sides) {
+        return Math.floor(Math.random() * sides) + 1;
+    }
+
+    function clearEncounters() {
+        $(".js-encounter-group").remove();
+    }
+
+    function calculateNumberOfEnemies(numberOfPlayers) {
+        return numberOfPlayers + d(Math.min(numberOfPlayers, 2));
+    }
+
+    function sortEncounters() {
+        encountersContainer = $("#encounters");
+        encounters = encountersContainer.children(".js-encounter-group");
+
+        encounters.sort(function (a, b) {
+            var an = parseInt($(a).find(".js-initiative").text(), 10);
+            var bn = parseInt($(b).find(".js-initiative").text(), 10);
+            if (an > bn) {
+                return -1;
+            }
+            if (an < bn) {
+                return 1;
+            }
+            return 0;
+        });
+
+        encounters.detach().appendTo(encountersContainer);
+    }
+
+    function isProficientWithAttribute(archetype, ability) {
+        return archetype.abilityWeighting.indexOf(ability) != -1;
+    }
+
+    function isProficientWithSkill(archetype, skill) {
+        return archetype.skillProficiencies.indexOf(skill) != -1;
+    }
+
+    function calculateAttributes(averagePartyLevel) {
+        var baseAttributes = [15, 14, 13, 12, 10, 8];
+        var additionalAttributes = 4 + 2 * Math.floor(averagePartyLevel / 4);
+        for (i = 0; i < additionalAttributes; i++) {
+            baseAttributes[d(6) - 1] += 1;
+        }
+
+        return baseAttributes;
+    }
+
+    function calculateAttributeModifier(attribute) {
+        return Math.floor(attribute / 2 - 5);
+    }
+
+    function calculateDC(
+        abilityModifier,
+        proficiencyBonus,
+        isProficientWithAttribute
+    ) {
+        return (
+            10 +
+            abilityModifier +
+            (isProficientWithAttribute ? proficiencyBonus : 0)
+        );
+    }
+
+    function calculateSaveModifier(
+        abilityModifier,
+        proficiencyBonus,
+        isProficientWithAttribute
+    ) {
+        return (
+            abilityModifier + (isProficientWithAttribute ? proficiencyBonus : 0)
+        );
+    }
+
+    function calculateSkillModifier(
+        abilityModifier,
+        proficiencyBonus,
+        isProficientWithSkill
+    ) {
+        return abilityModifier + (isProficientWithSkill ? proficiencyBonus : 0);
+    }
+
+    function calculateProficiencyBonus(averagePartyLevel) {
+        return 1 + Math.ceil(averagePartyLevel / 4);
+    }
+
+    function calculateHitPoints(hitDie, conModifier, averagePartyLevel) {
+        return (
+            hitDie +
+            conModifier +
+            (averagePartyLevel - 1) * (Math.floor(hitDie / 2) + 1 + conModifier)
+        );
+    }
+
+    function calculateFullCasterSpellSlots(averagePartyLevel) {
+        var spellSlots = [
+            [2],
+            [3],
+            [4, 2],
+            [4, 3],
+            [4, 3, 2],
+            [4, 3, 3],
+            [4, 3, 3, 1],
+            [4, 3, 3, 2],
+            [4, 3, 3, 3, 1],
+            [4, 3, 3, 3, 2],
+            [4, 3, 3, 3, 2, 1],
+            [4, 3, 3, 3, 2, 1],
+            [4, 3, 3, 3, 2, 1, 1],
+            [4, 3, 3, 3, 2, 1, 1],
+            [4, 3, 3, 3, 2, 1, 1, 1],
+            [4, 3, 3, 3, 2, 1, 1, 1],
+            [4, 3, 3, 3, 2, 1, 1, 1, 1],
+            [4, 3, 3, 3, 3, 1, 1, 1, 1],
+            [4, 3, 3, 3, 3, 2, 1, 1, 1],
+            [4, 3, 3, 3, 3, 2, 2, 1, 1],
+        ];
+
+        return spellSlots[averagePartyLevel - 1];
+    }
+
+    function calculateBeastialLikelihood(archetype) {
+        if (archetype.role == "Heavy" || archetype.role == "Light") {
+            return d(4) === 1;
+        } else {
+            return false;
+        }
+    }
+
+    function calculateDefensiveCR(armourClass, hitPoints) {
+        if (hitPoints < 7) {
+            return (armourClass - 13) / 2 + 0;
+        } else if (hitPoints < 36) {
+            return (armourClass - 13) / 2 + 1 / 8;
+        } else if (hitPoints < 50) {
+            return (armourClass - 13) / 2 + 1 / 4;
+        } else if (hitPoints < 71) {
+            return (armourClass - 13) / 2 + 1 / 2;
+        } else if (hitPoints < 86) {
+            return (armourClass - 13) / 2 + 1;
+        } else if (hitPoints < 101) {
+            return (armourClass - 13) / 2 + 2;
+        } else if (hitPoints < 116) {
+            return (armourClass - 13) / 2 + 3;
+        } else if (hitPoints < 131) {
+            return (armourClass - 14) / 2 + 4;
+        } else if (hitPoints < 146) {
+            return (armourClass - 15) / 2 + 5;
+        } else if (hitPoints < 161) {
+            return (armourClass - 15) / 2 + 6;
+        } else if (hitPoints < 176) {
+            return (armourClass - 15) / 2 + 7;
+        } else if (hitPoints < 191) {
+            return (armourClass - 16) / 2 + 8;
+        } else if (hitPoints < 206) {
+            return (armourClass - 16) / 2 + 9;
+        } else if (hitPoints < 221) {
+            return (armourClass - 17) / 2 + 10;
+        } else if (hitPoints < 236) {
+            return (armourClass - 17) / 2 + 11;
+        } else if (hitPoints < 251) {
+            return (armourClass - 17) / 2 + 12;
+        } else if (hitPoints < 266) {
+            return (armourClass - 18) / 2 + 13;
+        } else if (hitPoints < 281) {
+            return (armourClass - 18) / 2 + 14;
+        } else if (hitPoints < 296) {
+            return (armourClass - 18) / 2 + 15;
+        } else if (hitPoints < 311) {
+            return (armourClass - 18) / 2 + 16;
+        } else if (hitPoints < 326) {
+            return (armourClass - 19) / 2 + 17;
+        } else if (hitPoints < 341) {
+            return (armourClass - 19) / 2 + 18;
+        } else if (hitPoints < 356) {
+            return (armourClass - 19) / 2 + 19;
+        } else if (hitPoints < 401) {
+            return (armourClass - 19) / 2 + 20;
+        } else if (hitPoints < 446) {
+            return (armourClass - 19) / 2 + 21;
+        } else if (hitPoints < 491) {
+            return (armourClass - 19) / 2 + 22;
+        } else if (hitPoints < 536) {
+            return (armourClass - 19) / 2 + 23;
+        } else if (hitPoints < 581) {
+            return (armourClass - 19) / 2 + 24;
+        } else if (hitPoints < 626) {
+            return (armourClass - 19) / 2 + 25;
+        } else if (hitPoints < 671) {
+            return (armourClass - 19) / 2 + 26;
+        } else if (hitPoints < 716) {
+            return (armourClass - 19) / 2 + 27;
+        } else if (hitPoints < 761) {
+            return (armourClass - 19) / 2 + 28;
+        } else if (hitPoints < 806) {
+            return (armourClass - 19) / 2 + 29;
+        } else {
+            return 30;
+        }
+    }
+
+    function calculateOffensiveCR(attackBonus, damagePerRound, saveDC) {
+        if (damagePerRound < 2) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 0;
+        } else if (damagePerRound < 4) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 1 / 8;
+        } else if (damagePerRound < 6) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 1 / 4;
+        } else if (damagePerRound < 9) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 1 / 2;
+        } else if (damagePerRound < 15) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 1;
+        } else if (damagePerRound < 21) {
+            return Math.max(saveDC - 13, attackBonus - 3) / 2 + 2;
+        } else if (damagePerRound < 27) {
+            return Math.max(saveDC - 13, attackBonus - 4) / 2 + 3;
+        } else if (damagePerRound < 33) {
+            return Math.max(saveDC - 14, attackBonus - 5) / 2 + 4;
+        } else if (damagePerRound < 39) {
+            return Math.max(saveDC - 15, attackBonus - 6) / 2 + 5;
+        } else if (damagePerRound < 45) {
+            return Math.max(saveDC - 15, attackBonus - 6) / 2 + 6;
+        } else if (damagePerRound < 51) {
+            return Math.max(saveDC - 15, attackBonus - 6) / 2 + 7;
+        } else if (damagePerRound < 57) {
+            return Math.max(saveDC - 16, attackBonus - 7) / 2 + 8;
+        } else if (damagePerRound < 63) {
+            return Math.max(saveDC - 16, attackBonus - 7) / 2 + 9;
+        } else if (damagePerRound < 69) {
+            return Math.max(saveDC - 17, attackBonus - 7) / 2 + 10;
+        } else if (damagePerRound < 75) {
+            return Math.max(saveDC - 17, attackBonus - 8) / 2 + 11;
+        } else if (damagePerRound < 81) {
+            return Math.max(saveDC - 17, attackBonus - 8) / 2 + 12;
+        } else if (damagePerRound < 87) {
+            return Math.max(saveDC - 18, attackBonus - 8) / 2 + 13;
+        } else if (damagePerRound < 93) {
+            return Math.max(saveDC - 18, attackBonus - 8) / 2 + 14;
+        } else if (damagePerRound < 99) {
+            return Math.max(saveDC - 18, attackBonus - 8) / 2 + 15;
+        } else if (damagePerRound < 105) {
+            return Math.max(saveDC - 18, attackBonus - 9) / 2 + 16;
+        } else if (damagePerRound < 111) {
+            return Math.max(saveDC - 19, attackBonus - 10) / 2 + 17;
+        } else if (damagePerRound < 117) {
+            return Math.max(saveDC - 19, attackBonus - 10) / 2 + 18;
+        } else if (damagePerRound < 123) {
+            return Math.max(saveDC - 19, attackBonus - 10) / 2 + 19;
+        } else if (damagePerRound < 141) {
+            return Math.max(saveDC - 19, attackBonus - 10) / 2 + 20;
+        } else if (damagePerRound < 159) {
+            return Math.max(saveDC - 19, attackBonus - 11) / 2 + 21;
+        } else if (damagePerRound < 177) {
+            return Math.max(saveDC - 19, attackBonus - 11) / 2 + 22;
+        } else if (damagePerRound < 195) {
+            return Math.max(saveDC - 19, attackBonus - 11) / 2 + 23;
+        } else if (damagePerRound < 213) {
+            return Math.max(saveDC - 19, attackBonus - 12) / 2 + 24;
+        } else if (damagePerRound < 231) {
+            return Math.max(saveDC - 19, attackBonus - 12) / 2 + 25;
+        } else if (damagePerRound < 249) {
+            return Math.max(saveDC - 19, attackBonus - 12) / 2 + 26;
+        } else if (damagePerRound < 267) {
+            return Math.max(saveDC - 19, attackBonus - 13) / 2 + 27;
+        } else if (damagePerRound < 285) {
+            return Math.max(saveDC - 19, attackBonus - 13) / 2 + 28;
+        } else if (damagePerRound < 303) {
+            return Math.max(saveDC - 19, attackBonus - 13) / 2 + 29;
+        } else {
+            return 30;
+        }
+    }
+
+    function calculateCR(
+        armourClass,
+        hitPoints,
+        attackBonus,
+        damagePerRound,
+        saveDC
+    ) {
+        var defensiveCr = Math.max(
+            0,
+            calculateDefensiveCR(armourClass, hitPoints)
+        );
+        var offensiveCr = Math.max(
+            0,
+            calculateOffensiveCR(attackBonus, damagePerRound, saveDC)
+        );
+        var cr = (defensiveCr + offensiveCr) / 2;
+
+        if (cr < 1 / 8) {
+            return "1/8";
+        } else if (cr < 1 / 4) {
+            return "1/4";
+        } else if (cr < 1 / 2) {
+            return "1/2";
+        } else if (cr < 1) {
+            return 1;
+        } else {
+            return Math.round(cr);
+        }
+    }
+
+    function generateEncounterGroup(sizeOfGroup, archetype, averagePartyLevel) {
+        if (sizeOfGroup < 1) {
+            return;
+        }
+
+        var template = $("#template").clone();
+        template.attr("id", "");
+        template.attr("data-id", generateUuid());
+        template.addClass("js-encounter-group");
+
+        var beastial = calculateBeastialLikelihood(archetype);
+        var baseAttributes = calculateAttributes(averagePartyLevel);
+        var proficiencyBonus = calculateProficiencyBonus(averagePartyLevel);
+
+        var abilityModifiers = fillInAbilityTable(
+            template,
+            baseAttributes,
+            beastial,
+            proficiencyBonus,
+            archetype
+        );
+        fillInSkillTable(
+            template,
+            abilityModifiers,
+            proficiencyBonus,
+            archetype
+        );
+
+        var hitPoints = calculateHitPoints(
+            archetype.hitDie,
+            abilityModifiers.con,
+            averagePartyLevel
+        );
+        var armourClass = archetype.ac(abilityModifiers.dex);
+        template
+            .find(".js-name")
+            .text(
+                (beastial ? "Beastial " : "") +
+                    archetype.role +
+                    " (" +
+                    sizeOfGroup +
+                    ")"
+            );
+        template.find(".js-level").text(averagePartyLevel);
+        template.find(".js-ac").text(armourClass);
+        template.find(".js-hp").text(hitPoints);
+        template.find(".js-initiative").text(abilityModifiers.dex + d(20));
+
+        var attackBonus =
+            Math.max(abilityModifiers.str, abilityModifiers.dex) +
+            proficiencyBonus +
+            d(2);
+        var numberOfDice = Math.ceil(proficiencyBonus / 2);
+        var diceSize = archetype.hitDie - 2;
+        var modifier =
+            Math.max(abilityModifiers.str, abilityModifiers.dex) + d(2);
+        var averageDamage =
+            modifier + numberOfDice + (numberOfDice * diceSize) / 2;
+        template.find(".js-attack-to-hit").text(attackBonus);
+        template.find(".js-attack-average-damage").text(averageDamage);
+        template
+            .find(".js-attack-damage-die")
+            .text(numberOfDice + "d" + diceSize);
+        template.find(".js-attack-damage-mod").text(modifier);
+
+        var multiattack = proficiencyBonus;
+        var multiattackNumberOfDice = Math.floor(proficiencyBonus / 3);
+        var multiattackDiceSize = archetype.hitDie - 4;
+        var multiattackModifier = Math.max(
+            abilityModifiers.str,
+            abilityModifiers.dex
+        );
+        var multiattackAverageDamage =
+            multiattack *
+            (multiattackModifier +
+                multiattackNumberOfDice +
+                (multiattackNumberOfDice * multiattackDiceSize) / 2);
+        template.find(".js-multiattack").text(multiattack);
+        template
+            .find(".js-multiattack-average-damage")
+            .text(multiattackAverageDamage);
+        template
+            .find(".js-multiattack-damage-die")
+            .text(multiattackNumberOfDice + "d" + multiattackDiceSize);
+        template.find(".js-multiattack-damage-mod").text(multiattackModifier);
+
+        var saveDC = Math.max(
+            Math.max(
+                template.find(".js-int-dc").text(),
+                template.find(".js-wis-dc").text()
+            ),
+            template.find(".js-cha-dc").text()
+        );
+        var cr = calculateCR(
+            armourClass,
+            hitPoints,
+            attackBonus,
+            multiattackAverageDamage,
+            saveDC
+        );
+        template.find(".js-cr").text(cr);
+
+        if (!archetype.spellcasting) {
+            template.find(".js-spellcasting").hide();
+        } else {
+            var spellSlots = calculateFullCasterSpellSlots(averagePartyLevel);
+            for (i = 0; i < spellSlots.length; i++) {
+                template.find(".js-" + (i + 1) + "-slot").text(spellSlots[i]);
+            }
+            if (archetype.role == "Divine Caster") {
+                template
+                    .find(".js-spell-to-hit")
+                    .text(abilityModifiers.wis + proficiencyBonus + d(2));
+            } else {
+                template
+                    .find(".js-spell-to-hit")
+                    .text(
+                        Math.max(abilityModifiers.int, abilityModifiers.cha) +
+                            proficiencyBonus +
+                            d(2)
+                    );
+            }
+            fillInCasterSchool(template, archetype);
+        }
+
+        if (!beastial) {
+            fillInReaction(template, archetype, proficiencyBonus);
+            template.find(".js-reactions").on("click", function () {
+                template.find(".js-reactions-list").toggle();
+            });
+            template.find(".js-reactions");
+        }
+
+        fillInBonusAction(template, archetype, proficiencyBonus);
+
+        template.find(".js-skills").on("click", function () {
+            template.find(".js-skills-list").toggle();
+        });
+        template.find(".js-actions").on("click", function () {
+            template.find(".js-actions-list").toggle();
+        });
+
+        template.find(".js-reroll").on("click", function () {
+            reroll(template.attr("data-id"), sizeOfGroup, averagePartyLevel);
+        });
+        return template;
+    }
+
+    function fillInAbilityTable(
+        encounterGroup,
+        baseAttributes,
+        beastial,
+        proficiencyBonus,
+        archetype
+    ) {
+        var modifiers = distributeAttributes(
+            encounterGroup,
+            baseAttributes,
+            archetype,
+            beastial
+        );
+
+        var attributes = ["str", "dex", "con", "int", "wis", "cha"];
+        for (i = 0; i < attributes.length; i++) {
+            var attribute = attributes[i];
+            var modifier = modifiers[attribute];
+            var plusSymbol = modifier < 0 ? "" : "+";
+
+            encounterGroup
+                .find(".js-" + attribute + "-mod")
+                .text(plusSymbol + modifier);
+            encounterGroup
+                .find(".js-" + attribute + "-dc")
+                .text(
+                    calculateDC(
+                        modifier,
+                        proficiencyBonus,
+                        isProficientWithAttribute(archetype, attribute)
+                    )
+                );
+            encounterGroup
+                .find(".js-" + attribute + "-save")
+                .text(
+                    plusSymbol +
+                        calculateSaveModifier(
+                            modifier,
+                            proficiencyBonus,
+                            isProficientWithAttribute(archetype, attribute)
+                        )
+                );
+        }
+
+        return modifiers;
+    }
+
+    function distributeAttributes(
+        encounterGroup,
+        baseAttributes,
+        archetype,
+        beastial
+    ) {
+        var abilityModifiers = {};
+        var dumpAbilities = ["str", "dex", "con", "int", "wis", "cha"];
+
+        for (i = 0; i < archetype.abilityWeighting.length; i++) {
+            var prioritizedAttribute = archetype.abilityWeighting[i];
+            var prioritizedAttributeIndex =
+                dumpAbilities.indexOf(prioritizedAttribute);
+            dumpAbilities.splice(prioritizedAttributeIndex, 1);
+
+            var largestAbility = Math.max.apply(Math, baseAttributes);
+            var largestAbilityIndex = baseAttributes.indexOf(largestAbility);
+            var ability = baseAttributes.splice(largestAbilityIndex, 1);
+
+            encounterGroup
+                .find(".js-" + prioritizedAttribute + "-base")
+                .text(ability);
+            abilityModifiers[prioritizedAttribute] =
+                calculateAttributeModifier(ability);
+        }
+
+        for (i = 0; i < dumpAbilities.length; i++) {
+            var randomAbility = dumpAbilities[i];
+            var randomAbilityIndex = d(baseAttributes.length) - 1;
+            var ability = baseAttributes.splice(randomAbilityIndex, 1);
+            encounterGroup.find(".js-" + randomAbility + "-base").text(ability);
+            abilityModifiers[randomAbility] =
+                calculateAttributeModifier(ability);
+        }
+
+        if (beastial) {
+            var int = d(6);
+            encounterGroup.find(".js-int-base").text(int);
+            abilityModifiers["int"] = calculateAttributeModifier(int);
+
+            var cha = d(6) + d(6);
+            encounterGroup.find(".js-cha-base").text(cha);
+            abilityModifiers["cha"] = calculateAttributeModifier(cha);
+        }
+
+        return abilityModifiers;
+    }
+
+    function fillInSkillTable(
+        encounterGroup,
+        modifiers,
+        proficiencyBonus,
+        archetype
+    ) {
+        encounterGroup
+            .find(".js-acrobatics")
+            .text(
+                calculateSkillModifier(
+                    modifiers.dex,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "acrobatics")
+                )
+            );
+        encounterGroup
+            .find(".js-animal-handling")
+            .text(
+                calculateSkillModifier(
+                    modifiers.wis,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "animal-handling")
+                )
+            );
+        encounterGroup
+            .find(".js-arcana")
+            .text(
+                calculateSkillModifier(
+                    modifiers.int,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "arcana")
+                )
+            );
+        encounterGroup
+            .find(".js-athletics")
+            .text(
+                calculateSkillModifier(
+                    modifiers.str,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "athletics")
+                )
+            );
+        encounterGroup
+            .find(".js-deception")
+            .text(
+                calculateSkillModifier(
+                    modifiers.cha,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "deception")
+                )
+            );
+        encounterGroup
+            .find(".js-history")
+            .text(
+                calculateSkillModifier(
+                    modifiers.int,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "history")
+                )
+            );
+        encounterGroup
+            .find(".js-insight")
+            .text(
+                calculateSkillModifier(
+                    modifiers.wis,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "insight")
+                )
+            );
+        encounterGroup
+            .find(".js-intimidation")
+            .text(
+                calculateSkillModifier(
+                    modifiers.cha,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "intimidation")
+                )
+            );
+        encounterGroup
+            .find(".js-investigation")
+            .text(
+                calculateSkillModifier(
+                    modifiers.int,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "investigation")
+                )
+            );
+        encounterGroup
+            .find(".js-medicine")
+            .text(
+                calculateSkillModifier(
+                    modifiers.wis,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "medicine")
+                )
+            );
+        encounterGroup
+            .find(".js-nature")
+            .text(
+                calculateSkillModifier(
+                    modifiers.int,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "nature")
+                )
+            );
+        encounterGroup
+            .find(".js-perception")
+            .text(
+                calculateSkillModifier(
+                    modifiers.wis,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "perception")
+                )
+            );
+        encounterGroup
+            .find(".js-performance")
+            .text(
+                calculateSkillModifier(
+                    modifiers.cha,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "performance")
+                )
+            );
+        encounterGroup
+            .find(".js-persuasion")
+            .text(
+                calculateSkillModifier(
+                    modifiers.cha,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "persuasion")
+                )
+            );
+        encounterGroup
+            .find(".js-religion")
+            .text(
+                calculateSkillModifier(
+                    modifiers.int,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "religion")
+                )
+            );
+        encounterGroup
+            .find(".js-sleight-of-hand")
+            .text(
+                calculateSkillModifier(
+                    modifiers.dex,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "sleight-of-hand")
+                )
+            );
+        encounterGroup
+            .find(".js-stealth")
+            .text(
+                calculateSkillModifier(
+                    modifiers.dex,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "stealth")
+                )
+            );
+        encounterGroup
+            .find(".js-survival")
+            .text(
+                calculateSkillModifier(
+                    modifiers.wis,
+                    proficiencyBonus,
+                    isProficientWithSkill(archetype, "survival")
+                )
+            );
+    }
+
+    function fillInBonusAction(encounterGroup, archetype, proficiencyBonus) {
+        if (archetype.bonusActions.length > 0) {
+            var reaction =
+                archetype.bonusActions[d(archetype.bonusActions.length) - 1];
+            encounterGroup
+                .find(".js-bonus-actions-list")
+                .append(
+                    "<div>" +
+                        "<b><i>" +
+                        reaction.name +
+                        "</i></b> " +
+                        reaction.description(proficiencyBonus) +
+                        "</div>"
+                );
+            encounterGroup.find(".bonus-actions").toggle();
+        }
+    }
+
+    function fillInReaction(encounterGroup, archetype, proficiencyBonus) {
+        if (archetype.reactions.length > 0) {
+            var reaction =
+                archetype.reactions[d(archetype.reactions.length) - 1];
+            encounterGroup
+                .find(".js-reactions-list")
+                .append(
+                    "<div>" +
+                        "<b><i>" +
+                        reaction.name +
+                        "</i></b> " +
+                        reaction.description(proficiencyBonus) +
+                        "</div>"
+                );
+            encounterGroup.find(".reactions").toggle();
+        }
+    }
+
+    function fillInCasterSchool(encounterGroup, archetype) {
+        var school = archetype.school[d(archetype.school.length) - 1];
+        encounterGroup.find(".js-name").prepend(school.name + " ");
+        for (i = 0; i < school.spells.length; i++) {
+            var spells = "<div>" + school.spells[i].level + ": ";
+            for (j = 0; j < school.spells[i].spells.length; j++) {
+                var grimoireLink =
+                    "https://thegrimoire.xyz/spells/" +
+                    school.spells[i].spells[j]
+                        .replace(" ", "-")
+                        .replace("/", "")
+                        .toLowerCase();
+                spells +=
+                    "<i>" +
+                    '<a target="_blank" href="' +
+                    grimoireLink +
+                    '">' +
+                    school.spells[i].spells[j] +
+                    "</a>, ";
+                ("</i>");
+            }
+            spells += "</div>";
+            if (
+                i === 0 ||
+                $.isNumeric(encounterGroup.find(".js-" + i + "-slot").text())
+            ) {
+                encounterGroup.find(".js-spellcasting").append(spells);
+            }
+        }
+    }
+
+    function reroll(encounterGroupId, sizeOfGroup, averagePartyLevel) {
+        encounterGroup = $('[data-id="' + encounterGroupId + '"');
+        if (encounterGroup.find(".js-name").text().indexOf("(BOSS)") > 0) {
+            bossEncounter();
+        } else {
+            encounterGroup.after(
+                generateEncounterGroup(
+                    sizeOfGroup,
+                    selectArchetype(),
+                    averagePartyLevel
+                )
+            );
+            encounterGroup.remove();
+        }
+    }
+
+    function generateUuid() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+            /[xy]/g,
+            function (c) {
+                var r = (Math.random() * 16) | 0,
+                    v = c == "x" ? r : (r & 0x3) | 0x8;
+                return v.toString(16);
+            }
+        );
+    }
+</script>

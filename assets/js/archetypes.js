@@ -1,692 +1,426 @@
-function selectArchetype(archetypeIdentifier) {
-  var archetypes = [
-    {
-      role: 'Heavy'
-      ,hitDie: 12
-      ,ac: function(dexModifier) { return 14 + d(6) }
-      ,abilityWeighting: ['str', 'con']
-      ,skillProficiencies: [ 'athletics', 'intimidation', 'perception', 'survival', 'medicine', 'history' ]
-      ,spellcasting: false
-      ,reactions: [
-        {
-          name: 'Parry'
-          ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
-        }
-        ,{
-          name: 'Shield'
-          ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
-        }
-        ,{
-          name: 'Redirect Attack'
-          ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
-        }
-      ]
-      ,bonusActions: []
-    }
-    ,{
-      role: 'Light'
-      ,hitDie: 10
-      ,ac: function(dexModifier) { return (11 + d(4) + Math.min(2, dexModifier)) }
-      ,abilityWeighting: ['dex', 'con']
-      ,skillProficiencies: [ 'acrobatics', 'stealth', 'sleight-of-hand', 'investigation', 'perception', 'deception' ]
-      ,spellcasting: false
-      ,reactions: [
-        {
-          name: 'Parry'
-          ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
-        }
-        ,{
-          name: 'Shield'
-          ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
-        }
-        ,{
-          name: 'Redirect Attack'
-          ,description: function(proficiencyBonus) { return 'Choose an ally within 5 feet and swap places. The chosen ally becomes the target instead.' }
-        }
-      ]
-      ,bonusActions: []
-    }
-    ,{
-      role: 'Ranged'
-      ,hitDie: 8
-      ,ac: function(dexModifier) { return (11 + d(4) + Math.min(2, dexModifier)) }
-      ,abilityWeighting: ['dex', 'wis']
-      ,skillProficiencies: [ 'acrobatics', 'stealth', 'nature', 'perception', 'survival', 'animal-handling' ]
-      ,spellcasting: false
-      ,reactions: []
-      ,bonusActions: []
-    }
-    ,{
-      role: 'Arcane Caster'
-      ,hitDie: 6
-      ,ac: function(dexModifier) { return 10 + dexModifier }
-      ,abilityWeighting: ['int', 'cha']
-      ,skillProficiencies: [ 'arcana', 'history', 'investigation', 'deception', 'persuasion' ,'sleight-of-hand' ]
-      ,spellcasting: true
-      ,school: [
-        {
-          name: 'Mage'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Fire Bolt', 'Light', 'Mage Hand', 'Prestidigitation']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Detect Magic', 'Mage Armor', 'Magic Missile', 'Shield']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Misty Step', 'Suggestion']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Counterspell', 'Fireball', 'Fly']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Greater Invisibility', 'Ice Storm']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Cone Of Cold']
-            }
-          ]
-        }
-        ,{
-          name: 'Archmage'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Fire Bolt', 'Light', 'Mage Hand', 'Prestidigitation', 'Shocking Grasp']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Detect Magic', 'Identify', 'Mage Armor', 'Magic Missile']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Detect Thoughts', 'Mirror Image', 'Misty Step']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Counterspell', 'Fly', 'Lightning Bolt']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Banishment', 'Fire Shield', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Cone Of Cold', 'Scrying', 'Wall Of Force']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Globe Of Invulnerability']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Teleport']
-            }
-            ,{
-              level: '8th level'
-              ,spells: ['Mind Blank']
-            }
-            ,{
-              level: '9th level'
-              ,spells: ['Time Stop']
-            }
-          ]
-        }
-        ,{
-          name: 'Abjurer'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Blade Ward', 'Dancing Lights', 'Mending', 'Message', 'Ray Of Frost']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Alarm', 'Mage Armor', 'Magic Missile', 'Shield']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Arcane Lock', 'Invisibility']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Counterspell', 'Dispel Magic', 'Fireball']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Banishment', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Cone Of Cold', 'Wall Of Force']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Flesh To Stone', 'Globe Of Invulnerability']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Symbol', 'Teleport']
-            }
-          ]
-        }
-        ,{
-          name: 'Apprentice Wizard'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Fire Bolt', 'Mending', 'Prestidigitation']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Burning Hands', 'Disguise Self', 'Shield']
-            }
-          ]
-        }
-        ,{
-          name: 'Bard'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Friends', 'Mage Hand', 'Vicious Mockery']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Charm Person', 'Healing Word', 'Heroism', 'Sleep', 'Thunderwave']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Invisibility', 'Shatter']
-            }
-          ]
-        }
-        ,{
-          name: 'Conjurer'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Acid Splash', 'Mage Hand', 'Poison Spray', 'Prestidigitation']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Mage Armor', 'Magic Missile', 'Unseen Servant']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Cloud Of Daggers', 'Misty Step', 'Web']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Fireball', 'Stinking Cloud']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Evards Black Tentacles', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Cloudkill', 'Conjure Elemental']
-            }
-          ]
-        }
-        ,{
-          name: 'Diviner'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Fire Bolt', 'Light', 'Mage Hand', 'Message', 'True Strike']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Detect Magic', 'Feather Fall', 'Mage Armor']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Detect Thoughts', 'Locate Object', 'Scorching Ray']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Clairvoyance', 'Fly', 'Fireball']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Acane Eye', 'Ice Storm', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Rarys Telepathic Bond', 'Scrying']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Mass Suggestion', 'True Seeing']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Delayed Blast Fireball', 'Teleport']
-            }
-            ,{
-              level: '8th level'
-              ,spells: ['Maze']
-            }
-          ]
-        }
-        ,{
-          name: 'Enchanter'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Friends', 'Mage Hand', 'Mending', 'Message']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Charm Person', 'Mage Armor', 'Magic Missile']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Hold Person', 'Invisibility', 'Suggestion']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Fireball', 'Haste', 'Tongues']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Dominate Beast', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Dominate Monster']
-            }
-          ]
-        }
-        ,{
-          name: 'Evoker'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Fire Bolt', 'Light', 'Prestidigitation', 'Ray Of Frost']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Burning Hands', 'Mage Armor', 'Magic Missile']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Mirror Image', 'Misty Step', 'Shatter']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Counterspell', 'Fireball', 'Lightning Bolt']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Ice Storm', 'Stoneskin']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Bigbys Hand', 'Cone Of Cold']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Chain Lightning', 'Wall Of Ice']
-            }
-          ]
-        }
-        ,{
-          name: 'Illusionist'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Dancing Lights', 'Mage Hand', 'Minor Illusion', 'Poison Spray']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Color Spray', 'Disguise Self', 'Mage Armor', 'Magic Missile']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Invisibility', 'Mirror Image', 'Phantasmal Force']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Major Image', 'Phantom Steed']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Phantasmal Killer']
-            }
-          ]
-        }
-        ,{
-          name: 'Necromancer'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Chill Touch', 'Dancing Lights', 'Mage Hand', 'Mending']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['False Life', 'Mage Armor', 'Ray Of Sickness']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Blindness/Deafness', 'Ray Of Enfeeblement', 'Web']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Animate Dead', 'Bestow Curse', 'Vampiric Touch']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Blight', 'Dimension Door', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Bigbys Hand', 'Cloudkill']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Circle Of Death']
-            }
-          ]
-        }
-        ,{
-          name: 'Transmuter'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Light', 'Mending', 'Prestidigitation', 'Ray Of Frost']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Chromatic Orb', 'Expeditious Retreat', 'Mage Armor']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Alter Self', 'Hold Person', 'Knock']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Blink', 'Fireball', 'Slow']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Polymorph', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Telekinesis']
-            }
-          ]
-        }
-      ]
-      ,reactions: [
-        {
-          name: 'Counterspell'
-          ,description: function(proficiencyBonus) { return '(3rd Level) If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell’s level. On a success, the creature’s spell fails and has no effect.' }
-        }
-        ,{
-          name: 'Feather Fall'
-          ,description: function(proficiencyBonus) { return '(1st Level) Choose up to five falling creatures within range. A falling creature’s rate of descent slows to 60 feet per round until the spell ends. If the creature lands before the spell ends, it takes no falling damage and can land on its feet, and the spell ends for that creature.' }
-        }
-        ,{
-          name: 'Hellish Rebuke'
-          ,description: function(proficiencyBonus) { return '(1st Level) The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.' }
-        }
-        ,{
-          name: 'Shield'
-          ,description: function(proficiencyBonus) { return '(1st Level) Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.' }
-        }
-      ]
-      ,bonusActions: []
-    }
-    ,{
-      role: 'Divine Caster'
-      ,hitDie: 8
-      ,ac: function(dexModifier) { return 13 + d(6) }
-      ,abilityWeighting: ['str', 'wis']
-      ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
-      ,spellcasting: true
-      ,school: [
-        {
-          name: 'Priest'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Light', 'Sacred Flame', 'Thaumaturgy']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Cure Wounds', 'Guiding Bolt', 'Sanctuary']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Lesser Restoration', 'Spiritual Weapon']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Dispel Magic', 'Spirit Guardians']
-            }
-          ]
-        }
-        ,{
-          name: 'Druid'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Druidcraft', 'Produce Flame', 'Shillelagh']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Entangle', 'Longstrider', 'Speak With Animals', 'Thunderwave']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Animal Messenger', 'Barkskin']
-            }
-          ]
-        }
-        ,{
-          name: 'Cultist'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Light', 'Sacredflame', 'Thaumaturgy']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Command', 'Inflict Wounds', 'Shield Of Faith']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Hold Person', 'Spiritual Weapon']
-            }
-          ]
-        }
-        ,{
-          name: 'Archdruid'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Druidcraft', 'Mending', 'Poison Spray', 'Produce Flame']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Cure Wounds', 'Entangle', 'Faerie Fire', 'Speak With Animals']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Animal Messenger', 'Beast Sense', 'Hold Person']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Conjure Animals', 'Meld Into Stone', 'Water Breathing']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Dominate Beast', 'Locate Creature', 'Stoneskin', 'Wall Of Fire']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Commune With Nature', 'Mass Cure Wounds', 'Tree Stride']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Heal', 'Heroes Feast', 'Sunbeam']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Firestorm']
-            }
-            ,{
-              level: '8th level'
-              ,spells: ['Animal Shapes']
-            }
-            ,{
-              level: '9th level'
-              ,spells: ['Foresight']
-            }
-          ]
-        }
-        ,{
-          name: 'Blackguard'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Command', 'Protection From Evil And Good', 'Thunderous Smite']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Branding Smite', 'Find Stead']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Binding Smite', 'Dispel Magic']
-            }
-          ]
-        }
-        ,{
-          name: 'War Priest'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Light', 'Mending', 'Sacred Flame', 'Spare The Dying']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Divine Favor', 'Guiding Bolt', 'Healing Word', 'Shield Of Faith']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Lesser Restoration', 'Magic Weapon', 'Prayer Of Healing', 'Silence', 'Spiritual Weapon']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Beacon Of Hope', 'Crusaders Mantle', 'Dispel Magic', 'Revivify', 'Spirit Guardians', 'Water Walk']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Banishment', 'Freedom Of Movement', 'Guardian Of Faith', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Flame Strike', 'Mass Cure Wounds', 'Hold Monster']
-            }
-          ]
-        }
-      ]
-      ,reactions: [
-        {
-          name: 'Parry'
-          ,description: function(proficiencyBonus) { return 'Add +' + proficiencyBonus + ' to AC against one melee attack that would hit it.' }
-        }
-        ,{
-          name: 'Shield'
-          ,description: function(proficiencyBonus) { return 'When a creature makes an attack against an ally wihtin 5 feet that would hit, add +2 to their AC' }
-        }
-      ]
-      ,bonusActions: []
-    }
-    ,{
-      role: 'Blighter'
-      ,hitDie: 8
-      ,ac: function(dexModifier) { return 13 + d(6) }
-      ,abilityWeighting: ['str', 'wis']
-      ,skillProficiencies: [ 'athletics', 'insight', 'perception', 'medicine', 'religion', 'persuasion' ]
-      ,spellcasting: true
-      ,school: [
-        {
-          name: 'Mirran'
-          ,spells: [
-            {
-              level: 'Cantrips'
-              ,spells: ['Chill Touch', 'Dancing Lights', 'Mending', 'Poison Spray']
-            }
-            ,{
-              level: '1st level'
-              ,spells: ['Cure Wounds', 'Entangle', 'False Life', 'Ray Of Sickness']
-            }
-            ,{
-              level: '2nd level'
-              ,spells: ['Blindness/Deafness', 'Ray Of Enfeeblement', 'Web']
-            }
-            ,{
-              level: '3rd level'
-              ,spells: ['Bestow Curse', 'Slow', 'Vampiric Touch']
-            }
-            ,{
-              level: '4th level'
-              ,spells: ['Blight', 'Dominate Beast', 'Stoneskin']
-            }
-            ,{
-              level: '5th level'
-              ,spells: ['Contagion', 'Cloudkill' , 'Tree Stride']
-            }
-            ,{
-              level: '6th level'
-              ,spells: ['Circle Of Death', 'Heal', 'Wall Of Thorns']
-            }
-            ,{
-              level: '7th level'
-              ,spells: ['Finger Of Death']
-            }
-            ,{
-              level: '8th level'
-              ,spells: ['Abi Dalzims Horrid Wilting']
-            }
-            ,{
-              level: '9th level'
-              ,spells: ['Power Word Kill']
-            }
-          ]
-        }
-      ]
-      ,reactions: []
-      ,bonusActions: [
-        {
-          name: 'Wild Shape'
-          ,description: function(proficiencyBonus) {
-            shapes = '<br/>'
-            if(proficiencyBonus >= 4) {
-              shapes += '<i>Blight Bear</i>: AC 12, HP 90 (Bite: +7, 1d8+5 and 2x Claw: +7, 2d6+5)<br/>On a bite, target must make a DC' + (10+proficiencyBonus) + ' Constitution saving throw, taking 2d8 poison damage on failure, half on success<br/><br/>'
-            }
-            shapes += '<i>Plague Wolf</i>: AC 14, HP 60 (Bite: +5, 2d6+3)<br/>On a bite, target must make a DC' + (10+proficiencyBonus) + ' Constitution saving throw, taking 2d8 poison damage on failure, half on success'
-            return shapes
-          }
-        }
-      ]
-    }
-  ]
+function abilityScores(enemy) {
+  var abilityScores = [
+    //        Extreme   High      Moderate  Low
+    /* -1 */ [ null,    3,        2,        0 ],
+    /*  0 */ [ null,    3,        2,        0 ],
+    /*  1 */ [ 5,       4,        3,        1 ],
+    /*  2 */ [ 5,       4,        3,        1 ],
+    /*  3 */ [ 5,       4,        3,        1 ],
+    /*  4 */ [ 6,       5,        3,        2 ],
+    /*  5 */ [ 6,       5,        4,        2 ],
+    /*  6 */ [ 7,       5,        4,        2 ],
+    /*  7 */ [ 7,       6,        4,        2 ],
+    /*  8 */ [ 7,       6,        4,        3 ],
+    /*  9 */ [ 7,       6,        4,        3 ],
+    /* 10 */ [ 8,       7,        5,        3 ],
+    /* 11 */ [ 8,       7,        5,        3 ],
+    /* 12 */ [ 8,       7,        5,        4 ],
+    /* 13 */ [ 9,       8,        5,        4 ],
+    /* 14 */ [ 9,       8,        5,        4 ],
+    /* 15 */ [ 9,       8,        6,        4 ],
+    /* 16 */ [ 10,      9,        6,        5 ],
+    /* 17 */ [ 10,      9,        6,        5 ],
+    /* 18 */ [ 10,      9,        6,        5 ],
+    /* 19 */ [ 11,      10,       6,        5 ],
+    /* 20 */ [ 11,      10,       7,        6 ],
+    /* 21 */ [ 11,      10,       7,        6 ],
+    /* 22 */ [ 11,      10,       8,        6 ],
+    /* 23 */ [ 11,      10,       8,        6 ],
+    /* 24 */ [ 13,      12,       9,        7 ],
+  ];
+  return abilityScores[enemy.level + 1];
+}
 
-  for(i = 0; i < archetypes.length; i++) {
-    if(archetypes[i].role == archetypeIdentifier) {
-      return archetypes[i]
-    }
-  }
-  return archetypes[d(archetypes.length) - 1]
+function perception(enemy) {
+  var perception = [
+    //        Extreme High  Moderate  Low Terrible
+    /* -1 */ [ 9,     8,    5,        2,  0  ],
+    /*  0 */ [ 10,    9,    6,        3,  1  ],
+    /*  1 */ [ 11,    10,   7,        4,  2  ],
+    /*  2 */ [ 12,    11,   8,        5,  3  ],
+    /*  3 */ [ 14,    12,   9,        6,  4  ],
+    /*  4 */ [ 15,    14,   11,       8,  6  ],
+    /*  5 */ [ 17,    15,   12,       9,  7  ],
+    /*  6 */ [ 18,    17,   14,       11, 8  ],
+    /*  7 */ [ 20,    18,   15,       12, 10 ],
+    /*  8 */ [ 21,    19,   16,       13, 11 ],
+    /*  9 */ [ 23,    21,   18,       15, 12 ],
+    /* 10 */ [ 24,    22,   19,       16, 14 ],
+    /* 11 */ [ 26,    24,   21,       18, 15 ],
+    /* 12 */ [ 27,    25,   22,       19, 16 ],
+    /* 13 */ [ 29,    26,   23,       20, 18 ],
+    /* 14 */ [ 30,    28,   25,       22, 19 ],
+    /* 15 */ [ 32,    29,   26,       23, 20 ],
+    /* 16 */ [ 33,    30,   28,       25, 22 ],
+    /* 17 */ [ 35,    32,   29,       26, 23 ],
+    /* 18 */ [ 36,    33,   30,       27, 24 ],
+    /* 19 */ [ 38,    35,   32,       29, 26 ],
+    /* 20 */ [ 39,    36,   33,       30, 27 ],
+    /* 21 */ [ 41,    38,   35,       32, 28 ],
+    /* 22 */ [ 43,    39,   36,       33, 30 ],
+    /* 23 */ [ 44,    40,   37,       34, 31 ],
+    /* 24 */ [ 46,    42,   38,       36, 32 ],
+  ];
+  return perception[enemy.level + 1];
+}
+
+function skills(enemy) {
+  var skills = [
+    //        Extreme High  Moderate  Low
+    /* -1 */ [ 8,     5,    4,        { high: 2,  low: 1  } ],
+    /*  0 */ [ 9,     6,    5,        { high: 3,  low: 2  } ],
+    /*  1 */ [ 10,    7,    6,        { high: 4,  low: 3  } ],
+    /*  2 */ [ 11,    8,    7,        { high: 5,  low: 4  } ],
+    /*  3 */ [ 13,    10,   9,        { high: 7,  low: 5  } ],
+    /*  4 */ [ 15,    12,   10,       { high: 8,  low: 7  } ],
+    /*  5 */ [ 16,    13,   12,       { high: 10, low: 8  } ],
+    /*  6 */ [ 18,    15,   13,       { high: 11, low: 9  } ],
+    /*  7 */ [ 20,    17,   15,       { high: 13, low: 11 } ],
+    /*  8 */ [ 21,    18,   16,       { high: 14, low: 12 } ],
+    /*  9 */ [ 23,    20,   18,       { high: 16, low: 13 } ],
+    /* 10 */ [ 25,    22,   19,       { high: 17, low: 15 } ],
+    /* 11 */ [ 26,    23,   21,       { high: 19, low: 16 } ],
+    /* 12 */ [ 28,    25,   22,       { high: 20, low: 17 } ],
+    /* 13 */ [ 30,    27,   24,       { high: 22, low: 19 } ],
+    /* 14 */ [ 31,    28,   25,       { high: 23, low: 20 } ],
+    /* 15 */ [ 33,    30,   27,       { high: 25, low: 21 } ],
+    /* 16 */ [ 35,    32,   28,       { high: 26, low: 23 } ],
+    /* 17 */ [ 36,    33,   30,       { high: 28, low: 24 } ],
+    /* 18 */ [ 38,    35,   31,       { high: 29, low: 25 } ],
+    /* 19 */ [ 40,    37,   33,       { high: 31, low: 27 } ],
+    /* 20 */ [ 41,    38,   34,       { high: 32, low: 28 } ],
+    /* 21 */ [ 43,    40,   36,       { high: 34, low: 29 } ],
+    /* 22 */ [ 45,    42,   37,       { high: 35, low: 31 } ],
+    /* 23 */ [ 46,    43,   38,       { high: 36, low: 32 } ],
+    /* 24 */ [ 48,    45,   40,       { high: 38, low: 33 } ],
+  ];
+  return skills[enemy.level + 1];
+}
+
+function armorClass(enemy) {
+  var armorClass = [
+    //        Extreme High  Moderate  Low
+    /* -1 */ [ 18,    15,   14,       12 ],
+    /*  0 */ [ 19,    16,   15,       13 ],
+    /*  1 */ [ 19,    16,   15,       13 ],
+    /*  2 */ [ 21,    18,   17,       15 ],
+    /*  3 */ [ 22,    19,   18,       16 ],
+    /*  4 */ [ 24,    21,   20,       18 ],
+    /*  5 */ [ 25,    22,   21,       19 ],
+    /*  6 */ [ 27,    24,   23,       21 ],
+    /*  7 */ [ 28,    25,   24,       22 ],
+    /*  8 */ [ 30,    27,   26,       24 ],
+    /*  9 */ [ 31,    28,   27,       25 ],
+    /* 10 */ [ 33,    30,   29,       27 ],
+    /* 11 */ [ 34,    31,   30,       28 ],
+    /* 12 */ [ 36,    33,   32,       30 ],
+    /* 13 */ [ 37,    34,   33,       31 ],
+    /* 14 */ [ 39,    36,   35,       33 ],
+    /* 15 */ [ 40,    37,   36,       34 ],
+    /* 16 */ [ 42,    39,   38,       36 ],
+    /* 17 */ [ 43,    40,   29,       37 ],
+    /* 18 */ [ 45,    42,   41,       39 ],
+    /* 19 */ [ 46,    43,   42,       40 ],
+    /* 20 */ [ 48,    45,   44,       42 ],
+    /* 21 */ [ 49,    46,   45,       43 ],
+    /* 22 */ [ 51,    48,   47,       45 ],
+    /* 23 */ [ 52,    49,   48,       46 ],
+    /* 24 */ [ 54,    51,   50,       48 ],
+  ];
+  return armorClass[enemy.level + 1];
+}
+
+function savingThrows(enemy) {
+  var savingThrows = [
+    //        Extreme High  Moderate  Low Terrible
+    /* -1 */ [ 9,     8,    5,        2,  0  ],
+    /*  0 */ [ 10,    9,    6,        3,  1  ],
+    /*  1 */ [ 11,    10,   7,        4,  2  ],
+    /*  2 */ [ 12,    11,   8,        5,  3  ],
+    /*  3 */ [ 14,    12,   9,        6,  4  ],
+    /*  4 */ [ 15,    14,   11,       8,  6  ],
+    /*  5 */ [ 17,    15,   12,       9,  7  ],
+    /*  6 */ [ 18,    17,   14,       11, 8  ],
+    /*  7 */ [ 20,    18,   15,       12, 10 ],
+    /*  8 */ [ 21,    19,   16,       13, 11 ],
+    /*  9 */ [ 23,    21,   18,       15, 12 ],
+    /* 10 */ [ 24,    22,   19,       16, 14 ],
+    /* 11 */ [ 26,    24,   21,       18, 15 ],
+    /* 12 */ [ 27,    25,   22,       19, 16 ],
+    /* 13 */ [ 29,    26,   23,       20, 18 ],
+    /* 14 */ [ 30,    28,   25,       22, 19 ],
+    /* 15 */ [ 32,    29,   26,       23, 20 ],
+    /* 16 */ [ 33,    30,   28,       25, 22 ],
+    /* 17 */ [ 35,    32,   29,       26, 23 ],
+    /* 18 */ [ 36,    33,   30,       27, 24 ],
+    /* 19 */ [ 38,    35,   32,       29, 26 ],
+    /* 20 */ [ 39,    36,   33,       30, 27 ],
+    /* 21 */ [ 41,    38,   35,       32, 28 ],
+    /* 22 */ [ 43,    39,   36,       33, 30 ],
+    /* 23 */ [ 44,    40,   37,       34, 31 ],
+    /* 24 */ [ 46,    42,   38,       36, 32 ],
+  ];
+  return savingThrows[enemy.level + 1];
+}
+
+function hitPoints(enemy) {
+  var hitPoints = [
+    //          High                      Moderate                  Low 
+    /* -1 */ [ { high: 9,   low: 9   },  { high: 8,   low: 7   },  { high: 6,   low: 5   } ],
+    /*  0 */ [ { high: 20,  low: 17  },  { high: 16,  low: 14  },  { high: 13,  low: 11  } ],
+    /*  1 */ [ { high: 26,  low: 24  },  { high: 21,  low: 19  },  { high: 16,  low: 14  } ],
+    /*  2 */ [ { high: 40,  low: 36  },  { high: 32,  low: 28  },  { high: 25,  low: 21  } ],
+    /*  3 */ [ { high: 59,  low: 53  },  { high: 48,  low: 42  },  { high: 37,  low: 31  } ],
+    /*  4 */ [ { high: 78,  low: 72  },  { high: 63,  low: 57  },  { high: 48,  low: 42  } ],
+    /*  5 */ [ { high: 97,  low: 91  },  { high: 78,  low: 72  },  { high: 59,  low: 53  } ],
+    /*  6 */ [ { high: 123, low: 115 },  { high: 99,  low: 91  },  { high: 75,  low: 67  } ],
+    /*  7 */ [ { high: 148, low: 140 },  { high: 119, low: 111 },  { high: 90,  low: 82  } ],
+    /*  8 */ [ { high: 173, low: 165 },  { high: 139, low: 131 },  { high: 105, low: 97  } ],
+    /*  9 */ [ { high: 198, low: 190 },  { high: 159, low: 151 },  { high: 120, low: 112 } ],
+    /* 10 */ [ { high: 223, low: 215 },  { high: 179, low: 171 },  { high: 135, low: 127 } ],
+    /* 11 */ [ { high: 248, low: 240 },  { high: 199, low: 191 },  { high: 150, low: 142 } ],
+    /* 12 */ [ { high: 273, low: 265 },  { high: 219, low: 211 },  { high: 165, low: 157 } ],
+    /* 13 */ [ { high: 298, low: 290 },  { high: 239, low: 231 },  { high: 180, low: 172 } ],
+    /* 14 */ [ { high: 323, low: 315 },  { high: 259, low: 251 },  { high: 195, low: 187 } ],
+    /* 15 */ [ { high: 348, low: 340 },  { high: 279, low: 271 },  { high: 210, low: 202 } ],
+    /* 16 */ [ { high: 373, low: 365 },  { high: 299, low: 291 },  { high: 225, low: 217 } ],
+    /* 17 */ [ { high: 398, low: 290 },  { high: 319, low: 311 },  { high: 240, low: 232 } ],
+    /* 18 */ [ { high: 423, low: 415 },  { high: 339, low: 331 },  { high: 255, low: 247 } ],
+    /* 19 */ [ { high: 448, low: 440 },  { high: 359, low: 351 },  { high: 270, low: 262 } ],
+    /* 20 */ [ { high: 473, low: 465 },  { high: 379, low: 371 },  { high: 285, low: 277 } ],
+    /* 21 */ [ { high: 505, low: 495 },  { high: 405, low: 395 },  { high: 305, low: 295 } ],
+    /* 22 */ [ { high: 544, low: 532 },  { high: 463, low: 423 },  { high: 329, low: 317 } ],
+    /* 23 */ [ { high: 581, low: 569 },  { high: 466, low: 454 },  { high: 351, low: 339 } ],
+    /* 24 */ [ { high: 633, low: 617 },  { high: 508, low: 492 },  { high: 383, low: 367 } ],
+  ];
+  return hitPoints[enemy.level + 1];
+}
+
+function resistancesAndWeaknesses(enemy) {
+  var resistancesAndWeaknesses = [
+    //        Maximum Minimum
+    /* -1 */ [ 1,     1,  ],
+    /*  0 */ [ 3,     1,  ],
+    /*  1 */ [ 3,     2,  ],
+    /*  2 */ [ 5,     2,  ],
+    /*  3 */ [ 6,     3,  ],
+    /*  4 */ [ 7,     4,  ],
+    /*  5 */ [ 8,     4,  ],
+    /*  6 */ [ 9,     5,  ],
+    /*  7 */ [ 10,    5,  ],
+    /*  8 */ [ 11,    6,  ],
+    /*  9 */ [ 12,    6,  ],
+    /* 10 */ [ 13,    7,  ],
+    /* 11 */ [ 14,    7,  ],
+    /* 12 */ [ 15,    8,  ],
+    /* 13 */ [ 16,    8,  ],
+    /* 14 */ [ 17,    9,  ],
+    /* 15 */ [ 18,    9,  ],
+    /* 16 */ [ 19,    9,  ],
+    /* 17 */ [ 19,    10, ],
+    /* 18 */ [ 20,    10, ],
+    /* 19 */ [ 21,    11, ],
+    /* 20 */ [ 22,    11, ],
+    /* 21 */ [ 23,    12, ],
+    /* 22 */ [ 24,    12, ],
+    /* 23 */ [ 25,    13, ],
+    /* 24 */ [ 26,    13, ],
+  ];
+  return resistancesAndWeaknesses[enemy.level + 1];
+}
+
+function attackBonus(enemy) {
+  var attackBonus = [
+    //        Extreme High  Moderate  Low
+    /* -1 */ [ 10,    8,    6,        4,  ],
+    /*  0 */ [ 10,    8,    6,        4,  ],
+    /*  1 */ [ 11,    9,    7,        5,  ],
+    /*  2 */ [ 13,    11,   9,        7,  ],
+    /*  3 */ [ 14,    12,   10,       8,  ],
+    /*  4 */ [ 16,    14,   12,       9,  ],
+    /*  5 */ [ 17,    15,   13,       11, ],
+    /*  6 */ [ 19,    17,   15,       12, ],
+    /*  7 */ [ 20,    18,   16,       13, ],
+    /*  8 */ [ 22,    20,   18,       15, ],
+    /*  9 */ [ 23,    21,   19,       16, ],
+    /* 10 */ [ 25,    23,   21,       17, ],
+    /* 11 */ [ 27,    24,   22,       19, ],
+    /* 12 */ [ 28,    26,   24,       20, ],
+    /* 13 */ [ 29,    27,   25,       21, ],
+    /* 14 */ [ 31,    29,   27,       23, ],
+    /* 15 */ [ 32,    30,   28,       24, ],
+    /* 16 */ [ 34,    32,   30,       25, ],
+    /* 17 */ [ 35,    33,   31,       27, ],
+    /* 18 */ [ 37,    35,   33,       28, ],
+    /* 19 */ [ 38,    36,   34,       29, ],
+    /* 20 */ [ 40,    38,   36,       31, ],
+    /* 21 */ [ 41,    39,   37,       32, ],
+    /* 22 */ [ 43,    41,   39,       33, ],
+    /* 23 */ [ 44,    42,   40,       35, ],
+    /* 24 */ [ 46,    44,   42,       36, ],
+  ];
+  return attackBonus[enemy.level + 1]; 
+}
+
+function strikeDamage(enemy) {
+  var strikeDamage = [
+    //        Extreme           High            Moderate        Low
+    /* -1 */ [ "1d6+1 (4)",     "1d4+1 (3)",    "1d4 (3)",      "1d4 (2)",     ],
+    /*  0 */ [ "1d6+3 (6)",     "1d6+2 (5)",    "1d4+2 (4)",    "1d4+1 (3)",   ],
+    /*  1 */ [ "1d8+4 (8)",     "1d6+3 (6)",    "1d6+2 (5)",    "1d4+2 (4)",   ],
+    /*  2 */ [ "1d12+4 (11)",   "1d10+4 (9)",   "1d8+4 (8)",    "1d6+3 (6)",   ],
+    /*  3 */ [ "1d12+8 (15)",   "1d10+6 (12)",  "1d8+6 (10)",   "1d6+5 (8)",   ],
+    /*  4 */ [ "2d10+7 (18)",   "2d8+5 (14)",   "2d6+5 (12)",   "2d4+4 (9)",   ],
+    /*  5 */ [ "2d12+7 (20)",   "2d8+7 (16)",   "2d6+6 (13)",   "2d4+6 (11)",  ],
+    /*  6 */ [ "2d12+10 (23)",  "2d8+9 (18)",   "2d6+8 (15)",   "2d4+7 (12)",  ],
+    /*  7 */ [ "2d12+12 (25)",  "2d10+9 (20)",  "2d8+8 (17)",   "2d6+6 (13)",  ],
+    /*  8 */ [ "2d12+15 (28)",  "2d10+11 (22)", "2d8+9 (18)",   "2d6+8 (15)",  ],
+    /*  9 */ [ "2d12+17 (30)",  "2d10+13 (24)", "2d8+11 (20)",  "2d6+9 (16)",  ],
+    /* 10 */ [ "2d12+20 (33)",  "2d12+13 (26)", "2d10+11 (22)", "2d6+10 (17)", ],
+    /* 11 */ [ "2d12+22 (35)",  "2d12+15 (28)", "2d10+12 (23)", "2d8+10 (19)", ],
+    /* 12 */ [ "3d12+19 (38)",  "3d10+14 (30)", "3d8+12 (25)",  "3d6+10 (20)", ],
+    /* 13 */ [ "3d12+21 (40)",  "3d10+16 (32)", "3d8+14 (27)",  "3d6+11 (21)", ],
+    /* 14 */ [ "3d12+24 (43)",  "3d10+18 (34)", "3d8+15 (28)",  "3d6+13 (23)", ],
+    /* 15 */ [ "3d12+26 (45)",  "3d12+17 (36)", "3d10+14 (30)", "3d6+14 (24)", ],
+    /* 16 */ [ "3d12+29 (48)",  "3d12+18 (37)", "3d10+15 (31)", "3d6+15 (25)", ],
+    /* 17 */ [ "3d12+31 (50)",  "3d12+19 (38)", "3d10+16 (32)", "3d6+16 (26)", ],
+    /* 18 */ [ "3d12+34 (53)",  "3d12+20 (40)", "3d10+17 (33)", "3d6+17 (27)", ],
+    /* 19 */ [ "4d12+29 (55)",  "4d10+20 (42)", "4d8+17 (35)",  "4d6+14 (28)", ],
+    /* 20 */ [ "4d12+32 (58)",  "4d10+22 (44)", "4d8+19 (37)",  "4d6+15 (29)", ],
+    /* 21 */ [ "4d12+34 (60)",  "4d10+24 (46)", "4d8+20 (38)",  "4d6+17 (31)", ],
+    /* 22 */ [ "4d12+37 (63)",  "4d10+26 (48)", "4d8+22 (40)",  "4d6+18 (32)", ],
+    /* 23 */ [ "4d12+39 (65)",  "4d12+24 (50)", "4d10+20 (42)", "4d6+19 (33)", ],
+    /* 24 */ [ "4d12+42 (68)",  "4d12+26 (52)", "4d10+22 (44)", "4d6+21 (35)", ],
+  ];
+  return strikeDamage[enemy.level + 1]; 
+}
+
+function spellDifficultyClass(enemy) {
+  var spellDifficultyClass = [
+    //        Extreme High  Moderate
+    /* –1 */ [ 19,    16,   13, ],
+    /*  0 */ [ 19,    16,   13, ],
+    /*  1 */ [ 20,    17,   14, ],
+    /*  2 */ [ 22,    18,   15, ],
+    /*  3 */ [ 23,    20,   17, ],
+    /*  4 */ [ 25,    21,   18, ],
+    /*  5 */ [ 26,    22,   19, ],
+    /*  6 */ [ 27,    24,   21, ],
+    /*  7 */ [ 29,    25,   22, ],
+    /*  8 */ [ 30,    26,   23, ],
+    /*  9 */ [ 32,    28,   25, ],
+    /* 10 */ [ 33,    29,   26, ],
+    /* 11 */ [ 34,    30,   27, ],
+    /* 12 */ [ 36,    32,   29, ],
+    /* 13 */ [ 37,    33,   30, ],
+    /* 14 */ [ 39,    34,   31, ],
+    /* 15 */ [ 40,    36,   33, ],
+    /* 16 */ [ 41,    37,   34, ],
+    /* 17 */ [ 43,    38,   35, ],
+    /* 18 */ [ 44,    40,   37, ],
+    /* 19 */ [ 46,    41,   38, ],
+    /* 20 */ [ 47,    42,   39, ],
+    /* 21 */ [ 48,    44,   41, ],
+    /* 22 */ [ 50,    45,   42, ],
+    /* 23 */ [ 51,    46,   43, ],
+    /* 24 */ [ 52,    48,   45, ],
+  ];
+  return spellDifficultyClass[enemy.level + 1]; 
+}
+
+function spellAttackBonus(enemy) {
+  var spellAttackBonus = [
+    //        Extreme High  Moderate
+    /* –1 */ [ 11,    8,    5,  ],
+    /*  0 */ [ 11,    8,    5,  ],
+    /*  1 */ [ 12,    9,    6,  ],
+    /*  2 */ [ 14,    10,   7,  ],
+    /*  3 */ [ 15,    12,   9,  ],
+    /*  4 */ [ 17,    13,   10, ],
+    /*  5 */ [ 18,    14,   11, ],
+    /*  6 */ [ 19,    16,   13, ],
+    /*  7 */ [ 21,    17,   14, ],
+    /*  8 */ [ 22,    18,   15, ],
+    /*  9 */ [ 24,    20,   17, ],
+    /* 10 */ [ 25,    21,   18, ],
+    /* 11 */ [ 26,    22,   19, ],
+    /* 12 */ [ 28,    24,   21, ],
+    /* 13 */ [ 29,    25,   22, ],
+    /* 14 */ [ 31,    26,   23, ],
+    /* 15 */ [ 32,    28,   25, ],
+    /* 16 */ [ 33,    29,   26, ],
+    /* 17 */ [ 35,    30,   27, ],
+    /* 18 */ [ 36,    32,   29, ],
+    /* 19 */ [ 38,    33,   30, ],
+    /* 20 */ [ 39,    34,   31, ],
+    /* 21 */ [ 40,    36,   33, ],
+    /* 22 */ [ 42,    37,   34, ],
+    /* 23 */ [ 43,    38,   35, ],
+    /* 24 */ [ 44,    40,   37, ],
+  ];
+  return spellAttackBonus[enemy.level + 1]; 
+}
+
+function limitedUseAreaDamage(enemy) {
+  var limitedUseAreaDamage = [
+    /* –1 */ "1d6 (4)",
+    /*  0 */ "1d10 (6)",
+    /*  1 */ "2d6 (7)",
+    /*  2 */ "3d6 (11)",
+    /*  3 */ "4d6 (14)",
+    /*  4 */ "5d6 (18)",
+    /*  5 */ "6d6 (21)",
+    /*  6 */ "7d6 (25)",
+    /*  7 */ "8d6 (28)",
+    /*  8 */ "9d6 (32)",
+    /*  9 */ "10d6 (35)",
+    /* 10 */ "11d6 (39)",
+    /* 11 */ "12d6 (42)",
+    /* 12 */ "13d6 (46)",
+    /* 13 */ "14d6 (49)",
+    /* 14 */ "15d6 (53)",
+    /* 15 */ "16d6 (56)",
+    /* 16 */ "17d6 (60)",
+    /* 17 */ "18d6 (63)",
+    /* 18 */ "19d6 (67)",
+    /* 19 */ "20d6 (70)",
+    /* 20 */ "21d6 (74)",
+    /* 21 */ "22d6 (77)",
+    /* 22 */ "23d6 (81)",
+    /* 23 */ "24d6 (84)",
+    /* 24 */ "25d6 (88)",
+  ];
+  return limitedUseAreaDamage[enemy.level + 1]; 
+}
+
+function unlimitedUseAreaDamage(enemy) {
+  var unlimitedUseAreaDamage = [
+    /* –1 */ "1d4 (2)",
+    /*  0 */ "1d6 (4)",
+    /*  1 */ "2d4 (5)",
+    /*  2 */ "2d6 (7)",
+    /*  3 */ "2d8 (9)",
+    /*  4 */ "3d6 (11)",
+    /*  5 */ "2d10 (12)",
+    /*  6 */ "4d6 (14)",
+    /*  7 */ "4d6 (15)",
+    /*  8 */ "5d6 (17)",
+    /*  9 */ "5d6 (18)",
+    /* 10 */ "6d6 (20)",
+    /* 11 */ "6d6 (21)",
+    /* 12 */ "5d8 (23)",
+    /* 13 */ "7d6 (24)",
+    /* 14 */ "4d12 (26)",
+    /* 15 */ "6d8 (27)",
+    /* 16 */ "8d6 (28)",
+    /* 17 */ "8d6 (29)",
+    /* 18 */ "9d6 (30)",
+    /* 19 */ "7d8 (32)",
+    /* 20 */ "6d10 (33)",
+    /* 21 */ "10d6 (35)",
+    /* 22 */ "8d8 (36)",
+    /* 23 */ "11d6 (38)",
+    /* 24 */ "11d6 (39)",
+  ];
+  return unlimitedUseAreaDamage[enemy.level + 1]; 
 }
