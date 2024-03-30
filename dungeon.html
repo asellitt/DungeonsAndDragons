@@ -9,14 +9,15 @@ title: Dungeon
   <script>
     var encodedData = new URL(location.href).searchParams.get('d');
     var data = JSON.parse(atob(encodedData));
+    var basePath = "/assets/images/dungeons/"+data.map+"/";
 
     var mapImage = document.createElement("img");
-    mapImage.setAttribute("src", "/assets/images/dungeons/"+data.map+"/map.png");
+    mapImage.setAttribute("src", basePath+"map.png");
     document.getElementById("map").appendChild(mapImage);
 
     data.visible.forEach(room => {
       var image = document.createElement("img");
-      image.setAttribute("src", "/assets/images/dungeons/"+data.map+"/"+room+".png");
+      image.setAttribute("src",  basePath+room+".png");
       document.getElementById("map").appendChild(image);
     })
   </script>
