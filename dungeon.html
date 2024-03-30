@@ -1,0 +1,36 @@
+---
+layout: tool
+title: Dungeon
+---
+
+<div id="dungeon">
+  <div id="map"></div>
+  
+  <script>
+    var encodedData = new URL(location.href).searchParams.get('d');
+    var data = JSON.parse(atob(encodedData));
+
+    var mapImage = document.createElement("img");
+    mapImage.setAttribute("src", "/assets/images/dungeons/"+data.map+"/map.png");
+    document.getElementById("map").appendChild(mapImage);
+
+    data.visible.forEach(room => {
+      var image = document.createElement("img");
+      image.setAttribute("src", "/assets/images/dungeons/"+data.map+"/"+room+".png");
+      document.getElementById("map").appendChild(image);
+    })
+  </script>
+
+  <style>
+    #map {
+      background-color: black;
+      position: relative;
+    }
+
+    #map img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</div>
