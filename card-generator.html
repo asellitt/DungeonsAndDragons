@@ -1100,85 +1100,118 @@ title: Card Generator
             characterBuild.proficiencies.will,
             characterBuild.abilities.wis
         );
+
         var acrobatics = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.acrobatics,
-            characterBuild.abilities.dex
+            characterBuild.abilities.dex,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Acrobatics"] : undefined
         );
         var arcana = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.arcana,
-            characterBuild.abilities.int
+            characterBuild.abilities.int,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Arcana"] : undefined
         );
         var athletics = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.athletics,
-            characterBuild.abilities.str
+            characterBuild.abilities.str,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Athletics"] : undefined
         );
         var crafting = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.crafting,
-            characterBuild.abilities.int
+            characterBuild.abilities.int,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Crafting"] : undefined
         );
         var deception = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.deception,
-            characterBuild.abilities.cha
+            characterBuild.abilities.cha,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Deception"] : undefined
         );
         var diplomacy = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.diplomacy,
-            characterBuild.abilities.cha
+            characterBuild.abilities.cha,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Diplomacy"] : undefined
         );
         var intimidation = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.intimidation,
-            characterBuild.abilities.cha
+            characterBuild.abilities.cha,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Intimidation"] : undefined
         );
         var medicine = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.medicine,
-            characterBuild.abilities.wis
+            characterBuild.abilities.wis,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Medicine"] : undefined
         );
         var nature = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.nature,
-            characterBuild.abilities.wis
+            characterBuild.abilities.wis,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Nature"] : undefined
         );
         var occultism = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.occultism,
-            characterBuild.abilities.int
+            characterBuild.abilities.int,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Occultism"] : undefined
         );
         var performance = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.performance,
-            characterBuild.abilities.cha
+            characterBuild.abilities.cha,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Perception"] : undefined
         );
         var religion = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.religion,
-            characterBuild.abilities.wis
+            characterBuild.abilities.wis,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Religion"] : undefined
         );
         var society = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.society,
-            characterBuild.abilities.int
+            characterBuild.abilities.int,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Society"] : undefined
         );
         var stealth = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.stealth,
-            characterBuild.abilities.dex
+            characterBuild.abilities.dex,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Stealth"] : undefined
         );
         var survival = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.survival,
-            characterBuild.abilities.wis
+            characterBuild.abilities.wis,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Survival"] : undefined
         );
         var thievery = generateProficiency(
             characterBuild.level,
             characterBuild.proficiencies.thievery,
-            characterBuild.abilities.dex
+            characterBuild.abilities.dex,
+            characterBuild.feats,
+            characterBuild.mods ? characterBuild.mods["Thievery"] : undefined
         );
         var lore1Bonus = 0;
         var lore1Name = orDash(null);
@@ -1621,16 +1654,38 @@ title: Card Generator
         );
     }
 
-    function generateProficiency(level, skill, stat) {
+    function generateProficiency(level, skill, stat, feats, item) {
+        var sanitizedFeats = (typeof feats !== "undefined") ? feats : [];
+        var untrainedImprovisation = hasUntrainedImprovisation(sanitizedFeats);
+        var featMod = 0;
+
+        if(level >= 7) {
+            featMod = untrainedImprovisation && skill === 0 ? featMod + level : featMod;
+        }
+        else {
+            featMod = untrainedImprovisation && skill === 0 ? featMod + Math.floor(level / 2) : featMod;
+        }
+
+        var sanitizedItems = (typeof item !== "undefined") ? item : { "Item Bonus": 0 }
         var statMod = Math.floor((stat - 10) / 2);
         if (skill === 0) {
-            return statMod;
+            return statMod + featMod + sanitizedItems["Item Bonus"];
         }
-        return statMod + level + skill;
+        return statMod + level + skill + featMod + sanitizedItems["Item Bonus"];
     }
 
     function orDash(val) {
         return val ? val : `&mdash;`;
+    }
+
+    function hasUntrainedImprovisation(feats) {
+        var found = false;
+        feats.forEach(feat => {
+            if(feat[0] === "Untrained Improvisation") {
+                found = true;
+            }
+        })
+        return found;
     }
 
     function appendCard(card) {
