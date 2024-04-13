@@ -1,0 +1,90 @@
+---
+layout: tool
+title: Dungeon
+---
+
+<div id="dungeon">
+  <div id="form">
+    <input id="url" />
+  </div>
+
+  </div>
+  <div id="map">
+    <div id="grid"></div>
+    <img id="terrain"/>
+  </div>
+  
+  <script>
+    var zoom = 1;
+
+    document
+      .getElementById("url")
+      .addEventListener("change", (e) => {
+        document.getElementById("terrain").setAttribute(
+          "src", 
+          document.getElementById("url").value);
+    });
+
+    document.body.addEventListener('keyup', (e) => {
+      console.log(e);
+      e.stopImmediatePropagation();
+      
+      // zoom out
+      if(e.keyCode == 173) {
+        zoom -= 0.1;
+      }
+
+      //zoom in
+      if(e.keyCode == 61) {
+        zoom += 0.1;
+      }
+
+      // reset
+      if(e.keyCode == 18) {
+        zoom = 1;
+      }
+
+      document.getElementById("terrain").style.transform = "scale("+zoom+")";
+    });
+  </script>
+
+  <style>
+    * {
+      background-color: black;
+      color: white;
+    }
+
+    #form {
+      z-index: 100;
+      position: fixed;
+      top: 1180px;
+      left: 25px;
+    }
+
+    #map {
+      position: relative;
+    }
+
+    #map img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+    }
+
+    #grid {
+      position: relative;
+      background-image: url("/assets/images/square-grid.png");
+      background-repeat: repeat;
+      background-color: transparent;
+      min-width: 10800px;
+      min-height: 19200px;
+      z-index: 10;
+    }
+
+    #terrain {
+      z-index: 1;
+      transform-origin: top left;
+    }
+  </style>
+</div>
