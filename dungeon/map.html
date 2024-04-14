@@ -4,87 +4,668 @@ title: Dungeon
 ---
 
 <div id="dungeon">
-  <div id="form">
-    <input id="url" />
-  </div>
+    <div id="form">
+        <input id="url" placeholder="paste a url" />
+        <select id="maps">
+            <option>select a map</option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/abandoned-graveyard.jpg' | prepend: site.baseurl }}"
+            >
+                Abandoned Graveyard
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/abandoned-village.jpg' | prepend: site.baseurl }}"
+            >
+                Abandoned Village
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/ancient-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Ancient Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/arena.jpg' | prepend: site.baseurl }}"
+            >
+                Arena
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/astral-path.jpg' | prepend: site.baseurl }}"
+            >
+                Astral Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/avernus-lava-field.jpg' | prepend: site.baseurl }}"
+            >
+                Avernus Lava Field
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/beach-cove.jpg' | prepend: site.baseurl }}"
+            >
+                Beach Cove
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/beach-field.jpg' | prepend: site.baseurl }}"
+            >
+                Beach Field
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/bridge-waterfall.jpg' | prepend: site.baseurl }}"
+            >
+                Bridge Waterfall
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/burial-mounds.jpg' | prepend: site.baseurl }}"
+            >
+                Burial Mounds
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/camp-cave.jpg' | prepend: site.baseurl }}"
+            >
+                Camp Cave
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/camp-forest.jpg' | prepend: site.baseurl }}"
+            >
+                Camp Forest
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/camp-lakeside.jpg' | prepend: site.baseurl }}"
+            >
+                Camp Lakeside
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/camp-waterfall.jpg' | prepend: site.baseurl }}"
+            >
+                Camp Waterfall
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/canyon-path.jpg' | prepend: site.baseurl }}"
+            >
+                Canyon Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/canyon.jpg' | prepend: site.baseurl }}"
+            >
+                Canyon
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/cave-entrance.jpg' | prepend: site.baseurl }}"
+            >
+                Cave Entrance
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/church.jpg' | prepend: site.baseurl }}"
+            >
+                Church
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/city-arena.jpg' | prepend: site.baseurl }}"
+            >
+                City Arena
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/city-bridge-entrance.jpg' | prepend: site.baseurl }}"
+            >
+                City Bridge Entrance
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/coastal-grassland.jpg' | prepend: site.baseurl }}"
+            >
+                Coastal Grassland
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/crystal-cave.jpg' | prepend: site.baseurl }}"
+            >
+                Crystal Cave
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/desert-fortress.jpg' | prepend: site.baseurl }}"
+            >
+                Desert Fortress
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/desert-temple-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Desert Temple Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/docks-day.jpg' | prepend: site.baseurl }}"
+            >
+                Docks Day
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/docks-night.jpg' | prepend: site.baseurl }}"
+            >
+                Docks Night
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/druid-circle.jpg' | prepend: site.baseurl }}"
+            >
+                Druid Circle
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/elven-ship.jpg' | prepend: site.baseurl }}"
+            >
+                Elven Ship
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/entertainment-hall.jpg' | prepend: site.baseurl }}"
+            >
+                Entertainment Hall
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/farm.jpg' | prepend: site.baseurl }}"
+            >
+                Farm
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/farmland-crossroads.jpg' | prepend: site.baseurl }}"
+            >
+                Farmland Crossroads
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/feywild-pond.jpg' | prepend: site.baseurl }}"
+            >
+                Feywild Pond
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/floating-market.jpg' | prepend: site.baseurl }}"
+            >
+                Floating Market
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/flooded-grasslands.jpg' | prepend: site.baseurl }}"
+            >
+                Flooded Grasslands
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/flooded-graveyard-night.jpg' | prepend: site.baseurl }}"
+            >
+                Flooded Graveyard Night
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/flying-ship.jpg' | prepend: site.baseurl }}"
+            >
+                Flying Ship
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-1.jpg' | prepend: site.baseurl }}"
+            >
+                Forest 1
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-bank.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Bank
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-bridge-river.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Bridge River
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-cave.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Cave
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-crater.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Crater
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-crossroads.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Crossroads
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-overpass.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Overpass
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-plateau-waterfalls.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Plateau Waterfalls
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-ritual-ruin.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Ritual Ruin
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-river-road.jpg' | prepend: site.baseurl }}"
+            >
+                Forest River Road
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-river.jpg' | prepend: site.baseurl }}"
+            >
+                Forest River
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest-spire.jpg' | prepend: site.baseurl }}"
+            >
+                Forest Spire
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forest.jpg' | prepend: site.baseurl }}"
+            >
+                Forest
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/forested-canyon.jpg' | prepend: site.baseurl }}"
+            >
+                Forested Canyon
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/fortified-bridge.jpg' | prepend: site.baseurl }}"
+            >
+                Fortified Bridge
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/fortified-gorge-passage.jpg' | prepend: site.baseurl }}"
+            >
+                Fortified Gorge Passage
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/frozen-path.jpg' | prepend: site.baseurl }}"
+            >
+                Frozen Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/garden-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Garden Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-bridge-crossroad.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Bridge Crossroad
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-bridge-ruin.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Bridge Ruin
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-broken-bridge.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Broken Bridge
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-cave-entrance.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Cave Entrance
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-clearing-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Clearing Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-hill-stones.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Hill Stones
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-nature-circle.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Nature Circle
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-road.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Road
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/grassland-stone-path.jpg' | prepend: site.baseurl }}"
+            >
+                Grassland Stone Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/graveyard-night.jpg' | prepend: site.baseurl }}"
+            >
+                Graveyard Night
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/hive-caves.jpg' | prepend: site.baseurl }}"
+            >
+                Hive Caves
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/island-ruin.jpg' | prepend: site.baseurl }}"
+            >
+                Island Ruin
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/lava-chamber.jpg' | prepend: site.baseurl }}"
+            >
+                Lava Chamber
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/magma-chamber.jpg' | prepend: site.baseurl }}"
+            >
+                Magma Chamber
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/market-square.jpg' | prepend: site.baseurl }}"
+            >
+                Market Square
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/marsh-hut-camp.jpg' | prepend: site.baseurl }}"
+            >
+                Marsh Hut Camp
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/marsh-palisade.jpg' | prepend: site.baseurl }}"
+            >
+                Marsh Palisade
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/military-camp.jpg' | prepend: site.baseurl }}"
+            >
+                Military Camp
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-cave.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Cave
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-passage-2.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Passage 2
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-passage-3.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Passage 3
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-passage.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Passage
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-path.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-ritual-ruin.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Ritual Ruin
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-ruin.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Ruin
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mountain-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Mountain Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/mushroom-caves.jpg' | prepend: site.baseurl }}"
+            >
+                Mushroom Caves
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/necropolis-interior.jpg' | prepend: site.baseurl }}"
+            >
+                Necropolis Interior
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/oasis-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Oasis Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/palace-entrance-exterior.jpg' | prepend: site.baseurl }}"
+            >
+                Palace Entrance Exterior
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/quarry.jpg' | prepend: site.baseurl }}"
+            >
+                Quarry
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/river-crossing.jpg' | prepend: site.baseurl }}"
+            >
+                River Crossing
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/river-outpost.jpg' | prepend: site.baseurl }}"
+            >
+                River Outpost
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/river.jpg' | prepend: site.baseurl }}"
+            >
+                River
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/rocky-desert-temple-entrance.jpg' | prepend: site.baseurl }}"
+            >
+                Rocky Desert Temple Entrance
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/rocky-desert.jpg' | prepend: site.baseurl }}"
+            >
+                Rocky Desert
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/rocky-gorge.jpg' | prepend: site.baseurl }}"
+            >
+                Rocky Gorge
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/rocky-promontory.jpg' | prepend: site.baseurl }}"
+            >
+                Rocky Promontory
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/ruined-village.jpg' | prepend: site.baseurl }}"
+            >
+                Ruined Village
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/ruins-entrance.jpg' | prepend: site.baseurl }}"
+            >
+                Ruins Entrance
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/sacrificial-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Sacrificial Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/sand-canyon-river.jpg' | prepend: site.baseurl }}"
+            >
+                Sand Canyon River
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/snow-bridge.webp' | prepend: site.baseurl }}"
+            >
+                Snow Bridge
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/snow-farm.jpg' | prepend: site.baseurl }}"
+            >
+                Snow Farm
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/snow-field.jpg' | prepend: site.baseurl }}"
+            >
+                Snow Field
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/stone-bridge.jpg' | prepend: site.baseurl }}"
+            >
+                Stone Bridge
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/swamp-1.jpg' | prepend: site.baseurl }}"
+            >
+                Swamp 1
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/swamp-path.jpg' | prepend: site.baseurl }}"
+            >
+                Swamp Path
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/swamp-shelter.jpg' | prepend: site.baseurl }}"
+            >
+                Swamp Shelter
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/swamp.jpg' | prepend: site.baseurl }}"
+            >
+                Swamp
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/tavern-interior.jpg' | prepend: site.baseurl }}"
+            >
+                Tavern Interior
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/temple-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Temple Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/town-keep.jpg' | prepend: site.baseurl }}"
+            >
+                Town Keep
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/treetop-village.jpg' | prepend: site.baseurl }}"
+            >
+                Treetop Village
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/underground-river.jpg' | prepend: site.baseurl }}"
+            >
+                Underground River
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/village-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Village Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/village.jpg' | prepend: site.baseurl }}"
+            >
+                Village
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/volcano.jpg' | prepend: site.baseurl }}"
+            >
+                Volcano
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/walled-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Walled Ruins
+            </option>
+            <option
+                value="{{ '/assets/images/dungeons/maps/ziggurat-ruins.jpg' | prepend: site.baseurl }}"
+            >
+                Ziggurat Ruins
+            </option>
+        </select>
+    </div>
 
-  </div>
-  <div id="map">
-    <div id="grid"></div>
-    <img id="terrain"/>
-  </div>
-  
-  <script>
-    var zoom = 1;
+    <div id="map">
+        <div id="grid"></div>
+        <img id="terrain" />
+    </div>
 
-    document
-      .getElementById("url")
-      .addEventListener("change", (e) => {
-        document.getElementById("terrain").setAttribute(
-          "src", 
-          document.getElementById("url").value);
-    });
+    <script>
+        var zoom = 1;
 
-    document.body.addEventListener('keyup', (e) => {
-      console.log(e);
-      e.stopImmediatePropagation();
-      
-      // zoom out
-      if(e.keyCode == 173) {
-        zoom -= 0.1;
-      }
+        document.getElementById("url").addEventListener("input", (e) => {
+            console.log(e.target.value);
+            document
+                .getElementById("terrain")
+                .setAttribute("src", e.target.value);
+        });
 
-      //zoom in
-      if(e.keyCode == 61) {
-        zoom += 0.1;
-      }
+        document.getElementById("maps").addEventListener("change", (e) => {
+            console.log(e.target.value);
+            document
+                .getElementById("terrain")
+                .setAttribute("src", e.target.value);
+        });
 
-      // reset
-      if(e.keyCode == 18) {
-        zoom = 1;
-      }
+        document.body.addEventListener("keyup", (e) => {
+            console.log(e);
+            e.stopImmediatePropagation();
 
-      document.getElementById("terrain").style.transform = "scale("+zoom+")";
-    });
-  </script>
+            // zoom out
+            if (e.keyCode == 173) {
+                zoom -= 0.1;
+            }
 
-  <style>
-    * {
-      background-color: black;
-      color: white;
-    }
+            //zoom in
+            if (e.keyCode == 61) {
+                zoom += 0.1;
+            }
 
-    #form {
-      z-index: 100;
-      position: fixed;
-      top: 1180px;
-      left: 25px;
-    }
+            // reset
+            if (e.keyCode == 48) {
+                zoom = 1;
+            }
 
-    #map {
-      position: relative;
-    }
+            document.getElementById("terrain").style.transform =
+                "scale(" + zoom + ")";
+        });
+    </script>
 
-    #map img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: transparent;
-    }
+    <style>
+        * {
+            background-color: black;
+            color: white;
+        }
 
-    #grid {
-      position: relative;
-      background-image: url("/assets/images/square-grid.png");
-      background-repeat: repeat;
-      background-color: transparent;
-      min-width: 10800px;
-      min-height: 19200px;
-      z-index: 10;
-    }
+        #form {
+            z-index: 100;
+            position: fixed;
+            left: 25px;
+            bottom: 25px;
+        }
 
-    #terrain {
-      z-index: 1;
-      transform-origin: top left;
-    }
-  </style>
+        #map {
+            position: relative;
+        }
+
+        #map img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: transparent;
+        }
+
+        #grid {
+            position: relative;
+            background-image: url("/assets/images/square-grid.png");
+            background-repeat: repeat;
+            background-color: transparent;
+            min-width: 10800px;
+            min-height: 19200px;
+            z-index: 10;
+            cursor: url("{{ '/assets/images/dungeons/maps/cursor.png' | prepend: site.baseurl }}"),
+                auto;
+        }
+
+        #terrain {
+            z-index: 1;
+            transform-origin: top left;
+        }
+    </style>
 </div>
