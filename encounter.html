@@ -108,48 +108,48 @@ title: Encounter
             console.log(">>> generateEnemies", level, group);
             var enemies = [
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: Math.max(level - 4, -1),
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: Math.max(level - 3, -1),
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: Math.max(level - 2, -1),
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: Math.max(level - 1, -1),
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: level,
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: level + 1,
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: level + 2,
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: level + 3,
                 }),
                 rollEnemy({
+                    ...creatureType(),
                     archetype: archetype(),
-                    trait: creatureType(),
                     level: level + 4,
                 }),
             ];
@@ -238,24 +238,71 @@ title: Encounter
 
         function creatureType() {
             var creatureType = [
-                "Aberration",
-                "Animal",
-                "Astral",
-                "Beast",
-                "Celestial",
-                "Construct",
-                "Dragon",
-                "Elemental",
-                "Ethereal",
-                "Fey",
-                "Fiend",
-                "Fungus",
-                "Monitor",
-                "Ooze",
-                "Plant",
-                "Spirit",
-                "Undead",
-                "Humanoid",
+                {
+                    trait: "Aberration",
+                    senses: "darkvision",
+                    languages: "Aklo",
+                },
+                { trait: "Aeon", weakness: "chaotic", languages: "Utopian" },
+                { trait: "Air", languages: "Auran", fly: true },
+                { trait: "Angel", fly: true },
+                { trait: "Animal", int: -5 },
+                { trait: "Animal", int: -4 },
+                { trait: "Archon" },
+                { trait: "Astral", senses: "darkvision" },
+                { trait: "Azata", weakness: "cold iron, evil" },
+                { trait: "Beast", int: -3 },
+                {
+                    trait: "Celestial",
+                    senses: "darkvision",
+                    languages: "Celestial",
+                    weakness: "evil",
+                },
+                { trait: "Cold", resistance: "cold" },
+                { trait: "Cold", immunity: "cold" },
+                {
+                    trait: "Construct, mindless",
+                    immunity:
+                        "bleed, death effects, diseased, doomed, drained, fatigued, healing, necromancy, nonlethal attacks, paralyzed, poison, sickened, unconscious, mental",
+                },
+                {
+                    trait: "Construct",
+                    immunity:
+                        "bleed, death effects, diseased, doomed, drained, fatigued, healing, necromancy, nonlethal attacks, paralyzed, poison, sickened, unconscious",
+                },
+                {
+                    trait: "Daemon",
+                    languages: "Daemonic, telepathy 100ft",
+                    immunity: "death effects",
+                },
+                {
+                    trait: "Demon",
+                    languages: "Abyssal, telepathy 100ft",
+                    weakness: "cold iron, good",
+                },
+                {
+                    trait: "Devil",
+                    languages: "Infernal, telepathy 100ft",
+                    immunity: "fire",
+                    resistance: "physical (except silver), poison",
+                },
+                {
+                    trait: "Dragon",
+                    senses: "darkvision",
+                    languages: "Draconic",
+                    fly: true,
+                },
+                { trait: "Elemental" },
+                { trait: "Ethereal" },
+                { trait: "Fey" },
+                { trait: "Fiend" },
+                { trait: "Fungus" },
+                { trait: "Monitor" },
+                { trait: "Ooze" },
+                { trait: "Plant" },
+                { trait: "Spirit" },
+                { trait: "Undead" },
+                { trait: "Humanoid" },
             ];
             return creatureType[d(creatureType.length - 1)];
         }
@@ -271,29 +318,31 @@ title: Encounter
             enemy.wis = abilityScores(enemy)[2];
             enemy.cha = abilityScores(enemy)[2];
             enemy.perception = perception(enemy)[2];
-            enemy.acrobatics = skills(enemy)[2];
-            enemy.arcana = skills(enemy)[2];
-            enemy.athletics = skills(enemy)[2];
-            enemy.crafting = skills(enemy)[2];
-            enemy.deception = skills(enemy)[2];
-            enemy.diplomacy = skills(enemy)[2];
-            enemy.intimidation = skills(enemy)[2];
-            enemy.lore = skills(enemy)[2];
-            enemy.medicine = skills(enemy)[2];
-            enemy.nature = skills(enemy)[2];
-            enemy.occultism = skills(enemy)[2];
-            enemy.performance = skills(enemy)[2];
-            enemy.religion = skills(enemy)[2];
-            enemy.society = skills(enemy)[2];
-            enemy.stealth = skills(enemy)[2];
-            enemy.survival = skills(enemy)[2];
+            enemy.acrobatics = skills(enemy)[3].low;
+            enemy.arcana = skills(enemy)[3].low;
+            enemy.athletics = skills(enemy)[3].low;
+            enemy.crafting = skills(enemy)[3].low;
+            enemy.deception = skills(enemy)[3].low;
+            enemy.diplomacy = skills(enemy)[3].low;
+            enemy.intimidation = skills(enemy)[3].low;
+            enemy.lore = skills(enemy)[3].low;
+            enemy.medicine = skills(enemy)[3].low;
+            enemy.nature = skills(enemy)[3].low;
+            enemy.occultism = skills(enemy)[3].low;
+            enemy.performance = skills(enemy)[3].low;
+            enemy.religion = skills(enemy)[3].low;
+            enemy.society = skills(enemy)[3].low;
+            enemy.stealth = skills(enemy)[3].low;
+            enemy.survival = skills(enemy)[3].low;
             enemy.armorClass = armorClass(enemy)[2];
             enemy.fortitude = savingThrows(enemy)[2];
             enemy.reflex = savingThrows(enemy)[2];
             enemy.will = savingThrows(enemy)[2];
             enemy.hitPoints = rollHitPoints(hitPoints(enemy)[1]);
-            enemy.attackBonus = attackBonus(enemy)[2];
-            enemy.strikeDamage = strikeDamage(enemy)[2];
+            enemy.meleeAttackBonus = attackBonus(enemy)[2];
+            enemy.meleeStrikeDamage = strikeDamage(enemy)[2];
+            enemy.rangedAttackBonus = attackBonus(enemy)[2];
+            enemy.rangedStrikeDamage = strikeDamage(enemy)[2 + d(2) - 1];
             enemy.spellDifficultyClass = spellDifficultyClass(enemy)[2];
             enemy.spellAttackBonus = spellAttackBonus(enemy)[2];
             enemy.limitedUseAreaDamage = limitedUseAreaDamage(enemy);
@@ -346,10 +395,10 @@ title: Encounter
             }
             enemy.hitPoints = rollHitPoints(hitPoints(enemy)[0]); // high hp
             if (d(20) % 2 == 0) {
-                enemy.attackBonus = attackBonus(enemy)[1]; // high attack bonus
-                enemy.strikeDamage = strikeDamage(enemy)[1]; // high strike damage
+                enemy.meleeAttackBonus = attackBonus(enemy)[1]; // high attack bonus
+                enemy.meleeStrikeDamage = strikeDamage(enemy)[1]; // high strike damage
             } else {
-                enemy.strikeDamage = strikeDamage(enemy)[0]; // extreme strike damage
+                enemy.meleeStrikeDamage = strikeDamage(enemy)[0]; // extreme strike damage
             }
 
             console.log(">>> rollBrute", enemy);
@@ -358,9 +407,9 @@ title: Encounter
 
         function rollMagicalStriker(enemy) {
             console.log(">>> rollMagicalStriker", enemy);
-            enemy.attackBonus = attackBonus(enemy)[1]; // high attack
+            enemy.meleeAttackBonus = attackBonus(enemy)[1]; // high attack
             enemy.spellAttackBonus = spellAttackBonus(enemy)[1]; // high attack
-            enemy.strikeDamage = strikeDamage(enemy)[1]; // high damage
+            enemy.meleeStrikeDamage = strikeDamage(enemy)[1]; // high damage
             enemy.spellDifficultyClass =
                 spellDifficultyClass(enemy)[1 + d(2) - 1]; // moderate-high spell DC
             // either a scattering of innate spells or prepared or spontaneous spells up to half the creature’s level (rounded up) minus 1
@@ -370,12 +419,163 @@ title: Encounter
 
         function rollSkillParagon(enemy) {
             console.log(">>> rollSkillParagon", enemy);
-            // high or extreme ability modifier matching its best skills;
-            // typically high Reflex or Will and low Fortitude;
-            // many skills at moderate or high and potentially one or two extreme skills;
+
+            // many skills at moderate or high
+            if (d(20) % 2 == 0) {
+                enemy.acrobatics = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.acrobatics = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.arcana = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.arcana = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.athletics = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.athletics = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.crafting = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.crafting = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.deception = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.deception = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.diplomacy = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.diplomacy = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.intimidation = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.intimidation = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.lore = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.lore = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.medicine = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.medicine = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.nature = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.nature = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.occultism = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.occultism = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.performance = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.performance = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.religion = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.religion = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.society = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.society = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.stealth = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.stealth = skills(enemy)[3].low;
+            }
+            if (d(20) % 2 == 0) {
+                enemy.survival = skills(enemy)[1 + d(2) - 1];
+            } else {
+                enemy.survival = skills(enemy)[3].low;
+            }
+
+            // high or extreme ability modifier matching its best skills
+            var mainAbility = ["str", "dex", "int", "wis", "cha"][d(5) - 1];
+            enemy[mainAbility] = abilityScores(enemy)[0];
+
+            // potentially one or two extreme skills
+            switch (mainAbility) {
+                case "str":
+                    enemy.strength = skills(enemy)[0];
+                    break;
+                case "dex":
+                    twoRandomExtremeSkills(enemy, [
+                        "acrobatics",
+                        "stealth",
+                        "thievery",
+                    ]).forEach((skill) => {
+                        enemy[skill.skill] = skill.modifier;
+                    });
+                    break;
+                case "int":
+                    twoRandomExtremeSkills(enemy, [
+                        "arcana",
+                        "crafting",
+                        "lore",
+                        "occultism",
+                        "society",
+                    ]).forEach((skill) => {
+                        enemy[skill.skill] = skill.modifier;
+                    });
+                    break;
+                case "wis":
+                    twoRandomExtremeSkills(enemy, [
+                        "medicine",
+                        "nature",
+                        "religion",
+                        "survival",
+                    ]).forEach((skill) => {
+                        enemy[skill.skill] = skill.modifier;
+                    });
+                    break;
+                case "cha":
+                    twoRandomExtremeSkills(enemy, [
+                        "deception",
+                        "diplomacy",
+                        "intimidation",
+                        "performance",
+                    ]).forEach((skill) => {
+                        enemy[skill.skill] = skill.modifier;
+                    });
+                    break;
+            }
+
+            // typically high Reflex or Will
+            var mainSave = ["reflex", "will"][d(2) - 1];
+            enemy[mainSave] = savingThrows(enemy)[d(2) - 1];
+
+            enemy.fortitude = savingThrows(enemy)[3]; // low Fortitude
             // at least one special ability to use the creature’s skills in combat
             console.log(">>> rollSkillParagon", enemy);
             return enemy;
+        }
+
+        function twoRandomExtremeSkills(enemy, skillList) {
+            console.log(">>> twoRandomExtremeSkills", enemy, skillList);
+            var extremeSkills = [];
+            var twoTimes = [...Array(2).keys()];
+            twoTimes.forEach((_) => {
+                var index = d(skillList.length) - 1;
+                var skill = skillList[index];
+                var modifier = skills(enemy)[0];
+                extremeSkills.push({ skill, modifier });
+                skillList.splice(index, 1);
+            });
+            console.log(">>> twoRandomExtremeSkills", extremeSkills);
+            return extremeSkills;
         }
 
         function rollSkirmisher(enemy) {
@@ -396,10 +596,10 @@ title: Encounter
             enemy.reflex = savingThrows(enemy)[1]; // high reflex
             enemy.hitPoints = rollHitPoints(hitPoints(enemy)[[1 + d(2) - 1]]); // moderate-low hp
             if (d(20) % 2 == 0) {
-                enemy.attackBonus = attackBonus(enemy)[1]; // high attack bonus
-                enemy.strikeDamage = strikeDamage(enemy)[1]; // high strike damage
+                enemy.meleeAttackBonus = attackBonus(enemy)[1]; // high attack bonus
+                enemy.meleeStrikeDamage = strikeDamage(enemy)[1]; // high strike damage
             } else {
-                enemy.strikeDamage = strikeDamage(enemy)[0]; // extreme strike damage
+                enemy.meleeStrikeDamage = strikeDamage(enemy)[0]; // extreme strike damage
             }
             // (melee Strikes are weaker)
             console.log(">>> rollSniper", enemy);
@@ -411,8 +611,8 @@ title: Encounter
             enemy.str = abilityScores(enemy)[1]; // high str
             enemy.armorClass = armorClass(enemy)[d(2) - 1]; // high-extreme AC
             enemy.fortitude = savingThrows(enemy)[1]; // high fortitude
-            enemy.attackBonus = attackBonus(enemy)[1]; // high attack bonus
-            enemy.strikeDamage = strikeDamage(enemy)[1]; // high strike damage
+            enemy.meleeAttackBonus = attackBonus(enemy)[1]; // high attack bonus
+            enemy.meleeStrikeDamage = strikeDamage(enemy)[1]; // high strike damage
             // Attack of Opportunity or other tactical abilities
             console.log(">>> rollSoldier", enemy);
             return enemy;
@@ -429,9 +629,9 @@ title: Encounter
             enemy.fortitude = savingThrows(enemy)[3]; // low fortitude
             enemy.will = savingThrows(enemy)[1]; // high will
             enemy.hitPoints = rollHitPoints(hitPoints(enemy)[[2]]); // low hp
-            enemy.attackBonus = attackBonus(enemy)[3]; // low attack bonus
+            enemy.meleeAttackBonus = attackBonus(enemy)[3]; // low attack bonus
             if (d(20) % 2 == 0) {
-                enemy.strikeDamage = strikeDamage(enemy)[3]; // low strike damage
+                enemy.meleeStrikeDamage = strikeDamage(enemy)[3]; // low strike damage
             }
             enemy.spellDifficultyClass = spellDifficultyClass(enemy)[d(2) - 1]; // high-extreme spell DCs
             // prepared or spontaneous spells up to half the creature’s level (rounded up)
@@ -442,15 +642,11 @@ title: Encounter
         function addToEncounter(enemy) {
             var statBlock = `
                       <div class="name">
-                          <span class="js-name">${enemy.role} ${
-                enemy.archetype
-            }</span>
-                          <span class="level">Creature <span class="js-level">${
-                              enemy.level
-                          }</span></span>
+                          ${enemy.role} ${enemy.archetype}
+                          <span class="level">Creature ${enemy.level}</span>
                       </div>
                       <hr />
-                      <div class="reroll js-reroll">
+                      <div class="reroll">
                           <svg
                               class="dice"
                               xmlns="http://www.w3.org/2000/svg"
@@ -463,130 +659,79 @@ title: Encounter
                               ></path>
                           </svg>
                       </div>
-                      <div><span class="js-trait">${enemy.trait}</span></div>
-                      <div><b>Initiative</b> <span class="js-initiative">${
-                          enemy.perception + d(20)
-                      }</span></div>
-                      <div><b>Perception</b> <span class="js-perception">${
-                          enemy.perception
-                      }</span></div>
+                      <div>${enemy.trait}</div>
+                      <div><b>Initiative</b> ${enemy.perception + d(20)}</div>
+                      <div><b>Perception</b> ${enemy.perception}</div>
                       <div>
                           <b>Skills</b>
-                          Acrobatics <span class="js-acrobatics">+${
-                              enemy.acrobatics
-                          }</span>,
-                          Arcana <span class="js-arcana">+${
-                              enemy.arcana
-                          }</span>,
-                          Athletics <span class="js-athletics">+${
-                              enemy.athletics
-                          }</span>,
-                          Crafting <span class="js-crafting">+${
-                              enemy.crafting
-                          }</span>,
-                          Deception <span class="js-deception">+${
-                              enemy.deception
-                          }</span>,
-                          Diplomacy <span class="js-diplomacy">+${
-                              enemy.diplomacy
-                          }</span>,
-                          Intimidation <span class="js-intimidation">+${
-                              enemy.intimidation
-                          }</span>,
-                          Lore <span class="js-lore">+${enemy.lore}</span>,
-                          Medicine <span class="js-medicine">+${
-                              enemy.medicine
-                          }</span>,
-                          Nature <span class="js-nature">+${
-                              enemy.nature
-                          }</span>,
-                          Occultism <span class="js-occultism">+${
-                              enemy.occultism
-                          }</span>,
-                          Performance <span class="js-performance">+${
-                              enemy.performance
-                          }</span>,
-                          Religion <span class="js-religion">+${
-                              enemy.religion
-                          }</span>,
-                          Society <span class="js-society">+${
-                              enemy.society
-                          }</span>,
-                          Stealth <span class="js-stealth">+${
-                              enemy.stealth
-                          }</span>,
-                          Survival <span class="js-survival">+${
-                              enemy.survival
-                          }</span>
+                          Acrobatics +${enemy.acrobatics},
+                          Arcana +${enemy.arcana},
+                          Athletics +${enemy.athletics},
+                          Crafting +${enemy.crafting},
+                          Deception +${enemy.deception},
+                          Diplomacy +${enemy.diplomacy},
+                          Intimidation +${enemy.intimidation},
+                          Lore +${enemy.lore},
+                          Medicine +${enemy.medicine},
+                          Nature +${enemy.nature},
+                          Occultism +${enemy.occultism},
+                          Performance +${enemy.performance},
+                          Religion +${enemy.religion},
+                          Society +${enemy.society},
+                          Stealth +${enemy.stealth},
+                          Survival +${enemy.survival}
                       </div>
                       <div>
-                          <b>Str</b> <span class="js-str">+${enemy.str}</span>,
-                          <b>Dex</b> <span class="js-dex">+${enemy.dex}</span>,
-                          <b>Con</b> <span class="js-con">+${enemy.con}</span>,
-                          <b>Int</b> <span class="js-int">+${enemy.int}</span>,
-                          <b>Wis</b> <span class="js-wis">+${enemy.wis}</span>,
-                          <b>Cha</b> <span class="js-cha">+${enemy.cha}</span>
+                          <b>Str</b> +${enemy.str},
+                          <b>Dex</b> +${enemy.dex},
+                          <b>Con</b> +${enemy.con},
+                          <b>Int</b> +${enemy.int},
+                          <b>Wis</b> +${enemy.wis},
+                          <b>Cha</b> +${enemy.cha}
                       </div>
                       <hr />
                       <div>
-                          <b>AC</b> <span class="js-ac">${
-                              enemy.armorClass
-                          }</span>,
-                          <b>Fort</b> <span class="js-fort">+${
-                              enemy.fortitude
-                          }</span>,
-                          <b>Ref</b> <span class="js-ref">+${
-                              enemy.reflex
-                          }</span>,
-                          <b>Will</b> <span class="js-will">+${
-                              enemy.will
-                          }</span>
+                          <b>AC</b> ${enemy.armorClass},
+                          <b>Fort</b> +${enemy.fortitude},
+                          <b>Ref</b> +${enemy.reflex},
+                          <b>Will</b> +${enemy.will}
                       </div>
                       <div>
-                          <b>HP</b> <span class="js-hp">${
-                              enemy.hitPoints
-                          }</span>,
-                          <b>Immunities</b> <span class="js-immunities">${
-                              enemy.immunities
-                          }</span>,
-                          <b>Weaknesses</b> <span class="js-weaknesses">${
-                              enemy.weaknesses
-                          }</span>,
-                          <b>Resistances</b> <span class="js-resistances">${
-                              enemy.resistances
-                          }</span>
+                          <b>HP</b> ${enemy.hitPoints},
+                          <b>Immunities</b> ${enemy.immunities},
+                          <b>Weaknesses</b> ${enemy.weaknesses},
+                          <b>Resistances</b> ${enemy.resistances}
                       </div>
                       <hr />
-                      <div><b>Speed</b> <span class="js-speed">${
-                          enemy.speed
-                      }</span> feet</div>
+                      <div><b>Speed</b> ${enemy.speed} feet</div>
                       <div>
-                          <b>Melee</b> <span class="action-icon">á</span> <span class="js-melee-attack-bonus">${
-                              enemy.attackBonus
-                          }</span>,
-                          <b>Damage</b> <span class="js-melee-damage">${
-                              enemy.strikeDamage
-                          }</span>
+                          <b>Melee</b> strike <span class="action-icon">á</span> +${
+                              enemy.meleeAttackBonus
+                          };
+                          <b>Damage</b> ${enemy.meleeStrikeDamage}
                       </div>
                       <div>
-                          <b>Spell</b> <span class="action-icon">á</span> <span class="js-spell-attack-bonus">${
+                          <b>Ranged</b> strike <span class="action-icon">á</span> +${
+                              enemy.rangedAttackBonus
+                          };
+                          <b>Damage</b> ${enemy.rangedStrikeDamage}
+                      </div>
+                      <div>
+                          <b>Spell</b> DC ${enemy.spellDifficultyClass},
+                          attack <span class="action-icon">â</span> +${
                               enemy.spellAttackBonus
-                          }</span>,
-                          <b>Damage</b> <span class="js-spell-damage">${
-                              enemy.strikeDamage
-                          }</span>
+                          };
+                          <b>Damage</b> ${enemy.meleeStrikeDamage}
                       </div>
                       <div>
-                          <b>Unlimited Use AOE</b> <span class="action-icon">á</span> <span class="js-unlimited-area-attack-bonus"></span>,
-                          <b>Damage</b> <span class="js-unlimited-area-damage">${
-                              enemy.unlimitedUseAreaDamage
-                          }</span>
+                          <b>Unlimited Use</b> DC ${enemy.spellDifficultyClass},
+                          AOE <span class="action-icon">â</span>;
+                          <b>Damage</b> ${enemy.unlimitedUseAreaDamage}
                       </div>
                       <div>
-                          <b>Limited Use AOE</b> <span class="action-icon">á</span> <span class="js-limited-area-attack-bonus"></span>,
-                          <b>Damage</b> <span class="js-limited-area-damage">${
-                              enemy.limitedUseAreaDamage
-                          }</span>
+                          <b>Limited Use</b> DC ${enemy.spellDifficultyClass},
+                          AOE <span class="action-icon">â</span>;
+                          <b>Damage</b> ${enemy.limitedUseAreaDamage}
                       </div>`;
 
             var element = document.createElement("div");
