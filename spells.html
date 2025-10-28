@@ -191,6 +191,15 @@ exclude: true
         text-align: justify;
         font-size: 2mm;
     }
+    .class-label {
+        font-size: 3.5mm;
+        text-transform: uppercase;
+        font-weight: bold;
+        position: absolute;
+        top: 83mm;
+        left: 5mm;
+        color: white;
+    }
 
     .class-artificer {
         background-color: #d59139;
@@ -203,6 +212,9 @@ exclude: true
     }
     .class-artificer .concentration:after {
         border-top-color: #d59139;
+    }
+    .class-artificer .class-label::after {
+        content: "artficer";
     }
 
     .class-barbarian {
@@ -217,6 +229,9 @@ exclude: true
     .class-barbarian .concentration:after {
         border-top-color: #e5623e;
     }
+    .class-barbarian .class-label::after {
+        content: "barbarian";
+    }
 
     .class-bard {
         background-color: #aa6dab;
@@ -229,6 +244,9 @@ exclude: true
     }
     .class-bard .concentration:after {
         border-top-color: #aa6dab;
+    }
+    .class-bard .class-label::after {
+        content: "bard";
     }
 
     .class-cleric {
@@ -243,6 +261,9 @@ exclude: true
     .class-cleric .concentration:after {
         border-top-color: #92a2b3;
     }
+    .class-cleric .class-label::after {
+        content: "cleric";
+    }
 
     .class-druid {
         background-color: #79853c;
@@ -256,18 +277,8 @@ exclude: true
     .class-druid .concentration:after {
         border-top-color: #79853c;
     }
-
-    .class-fighter {
-        background-color: #7e4f3d;
-    }
-    .class-fighter .header {
-        color: #7e4f3d;
-    }
-    .class-fighter .concentration {
-        border-bottom-color: #7e4f3d;
-    }
-    .class-fighter .concentration:after {
-        border-top-color: #7e4f3d;
+    .class-druid .class-label::after {
+        content: "druid";
     }
 
     .class-fighter {
@@ -281,6 +292,9 @@ exclude: true
     }
     .class-fighter .concentration:after {
         border-top-color: #7e4f3d;
+    }
+    .class-fighter .class-label::after {
+        content: "fighter";
     }
 
     .class-monk {
@@ -295,6 +309,9 @@ exclude: true
     .class-monk .concentration:after {
         border-top-color: #53a5c5;
     }
+    .class-monk .class-label::after {
+        content: "monk";
+    }
 
     .class-paladin {
         background-color: #b59e54;
@@ -307,6 +324,9 @@ exclude: true
     }
     .class-paladin .concentration:after {
         border-top-color: #b59e54;
+    }
+    .class-paladin .class-label::after {
+        content: "paladin";
     }
 
     .class-ranger {
@@ -321,6 +341,9 @@ exclude: true
     .class-ranger .concentration:after {
         border-top-color: #4f7e61;
     }
+    .class-ranger .class-label::after {
+        content: "ranger";
+    }
 
     .class-rogue {
         background-color: #555752;
@@ -333,6 +356,9 @@ exclude: true
     }
     .class-rogue .concentration:after {
         border-top-color: #555752;
+    }
+    .class-rogue .class-label::after {
+        content: "rogue";
     }
 
     .class-sorcerer {
@@ -347,6 +373,9 @@ exclude: true
     .class-sorcerer .concentration:after {
         border-top-color: #972e2e;
     }
+    .class-sorcerer .class-label::after {
+        content: "sorcerer";
+    }
 
     .class-warlock {
         background-color: #8137af;
@@ -359,6 +388,9 @@ exclude: true
     }
     .class-warlock .concentration:after {
         border-top-color: #8137af;
+    }
+    .class-warlock .class-label::after {
+        content: "warlock";
     }
 
     .class-wizard {
@@ -373,6 +405,9 @@ exclude: true
     .class-wizard .concentration:after {
         border-top-color: #0045b7;
     }
+    .class-wizard .class-label::after {
+        content: "wizard";
+    }
 
     .gf9-arcane {
         background-color: #cd503f;
@@ -385,6 +420,9 @@ exclude: true
     }
     .gf9-arcane .concentration:after {
         border-top-color: #cd503f;
+    }
+    .gf9-arcane .class-label::after {
+        content: "arcane";
     }
 
     .gf9-bard {
@@ -399,6 +437,9 @@ exclude: true
     .gf9-bard .concentration:after {
         border-top-color: #923674;
     }
+    .gf9-bard .class-label::after {
+        content: "bard";
+    }
 
     .gf9-cleric {
         background-color: #e2af18;
@@ -411,6 +452,9 @@ exclude: true
     }
     .gf9-cleric .concentration:after {
         border-top-color: #e2af18;
+    }
+    .gf9-cleric .class-label::after {
+        content: "cleric";
     }
 
     .gf9-druid {
@@ -425,6 +469,9 @@ exclude: true
     .gf9-druid .concentration:after {
         border-top-color: #77aa58;
     }
+    .gf9-druid .class-label::after {
+        content: "druid";
+    }
 
     .gf9-paladin {
         background-color: #41b3d1;
@@ -438,6 +485,9 @@ exclude: true
     .gf9-paladin .concentration:after {
         border-top-color: #41b3d1;
     }
+    .gf9-paladin .class-label::after {
+        content: "paladin";
+    }
 
     .gf9-ranger {
         background-color: #745e2a;
@@ -450,6 +500,9 @@ exclude: true
     }
     .gf9-ranger .concentration:after {
         border-top-color: #745e2a;
+    }
+    .gf9-ranger .class-label::after {
+        content: "ranger";
     }
 
     .char-rulke {
@@ -527,10 +580,10 @@ exclude: true
         </div>
         <div class="description short-description">
             <p>
-                <i
-                    >Reaction: which you take when you take acid, cold, fire,
-                    lightning, or thunder damage.</i
-                >
+                <i>
+                    Reaction: which you take when you take acid, cold, fire,
+                    lightning, or thunder damage.
+                </i>
             </p>
             <p>
                 The spell captures some of the incoming energy, lessening its
@@ -548,6 +601,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the extra damage increases by 1d6 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -597,6 +651,7 @@ exclude: true
                 you're asleep.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -643,6 +698,7 @@ exclude: true
             a target's hit points increase by an additional 5 for each slot
             level above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -690,6 +746,7 @@ exclude: true
             both the temporary hit points and the cold damage increase by 5 for
             each slot.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -727,6 +784,7 @@ exclude: true
                 aura, that ally regains 1 Hit Point.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -763,6 +821,7 @@ exclude: true
                 aura (including you) to regain 2d6 hit points.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -811,6 +870,7 @@ exclude: true
             you can target one additional creature for each slot level above
             1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -869,6 +929,7 @@ exclude: true
             you can target one additional creature for each slot level above
             4th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -923,6 +984,7 @@ exclude: true
             the damage from the clenched fist option increases by 2d8 for each
             slot level above 5th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -973,6 +1035,7 @@ exclude: true
                 with the target to remain within 5 feet of it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1029,6 +1092,7 @@ exclude: true
             the damage from the grasping hand increases by 2d6 for each slot
             level above 5th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1080,6 +1144,7 @@ exclude: true
                 space is difficult terrain for the target.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1130,6 +1195,7 @@ exclude: true
                 you, unless they have the ability to do so.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1177,6 +1243,7 @@ exclude: true
             you can target one additional creature for each slot level above
             1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1215,6 +1282,7 @@ exclude: true
                 you cast it again.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1262,6 +1330,7 @@ exclude: true
             increases by 5 pounds, and the damage increases by 1d8, for each
             spell slot level above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1328,6 +1397,7 @@ exclude: true
                 </li>
             </ul>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1374,6 +1444,7 @@ exclude: true
             you can target one additional humanoid within 30 feet for each slot
             level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1421,6 +1492,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the damage increases by 1d8 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1470,6 +1542,7 @@ exclude: true
             When you cast this spell using a spell slot of 7th level or higher,
             the damage increases by 2d6 for each slot level above 6th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1512,6 +1585,7 @@ exclude: true
                 no damage if it succeeds on the saving throws.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1577,6 +1651,7 @@ exclude: true
             you can affect one additional creature within 30 feet for each slot
             level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1625,6 +1700,7 @@ exclude: true
                 the target.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1668,6 +1744,7 @@ exclude: true
                 such as an arcane sigil, that isn't part of a written language.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1717,6 +1794,7 @@ exclude: true
             When you cast this spell using a spell slot of 6th level or higher,
             the damage increases by 1d8 for each slot level above 5th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1763,6 +1841,7 @@ exclude: true
             the interrupted spell has no effect if its level is less than or
             equal to the level of the spell slot you used.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1799,6 +1878,7 @@ exclude: true
                 is clean and doesn't go bad.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1840,6 +1920,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the healing increases by 1d8 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1879,6 +1960,7 @@ exclude: true
         <div class="empower-spell">
             The healing increases by 2d8 for each spell slot level above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1921,6 +2003,7 @@ exclude: true
                 3 feet of wood or dirt.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -1963,6 +2046,7 @@ exclude: true
                 3 feet of wood or dirt.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2007,6 +2091,7 @@ exclude: true
                 3 feet of wood or dirt.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2058,6 +2143,7 @@ exclude: true
                 (Investigation) check against your spell save DC.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2107,6 +2193,7 @@ exclude: true
                 4d6 force damage, and the spell fails to teleport you.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2151,6 +2238,7 @@ exclude: true
             end the effects of a spell if the spell's level is equal to or less
             than the level of the spell slot you used.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2186,6 +2274,7 @@ exclude: true
                 hit.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2245,6 +2334,7 @@ exclude: true
             When you cast this spell with a 9th-level spell slot, the duration
             is concentration, up to 8 hours.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2304,6 +2394,7 @@ exclude: true
             7th level slot, the duration increases to 1 hour. For an 8th or
             higher slot, the duration increases to 8 hours.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2345,6 +2436,7 @@ exclude: true
                 each beam.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2399,6 +2491,7 @@ exclude: true
                 can't reduce the damage below 1).
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2433,6 +2526,7 @@ exclude: true
                 that action again as a Bonus Action.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2475,6 +2569,7 @@ exclude: true
                 or object can't benefit from being invisible.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2513,6 +2608,7 @@ exclude: true
             You gain 5 additional Temporary Hit Points for each spell slot level
             above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2556,6 +2652,7 @@ exclude: true
                 that creature.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2606,16 +2703,18 @@ exclude: true
                 attack, but it can take other actions as normal.
             </p>
             <p>
-                <b>Disappearance.</b> When it drops to 0 HP, it disappears. It reappears after you cast this spell
-                again. As a Magic action, you can temporarily dismiss the
-                familiar to a pocket dimension. Alternatively, you can dismiss
-                it forever. As a Magic action while it is temporarily dismissed,
-                you can cause it to reappear in an unoccupied space within 30
-                feet of you. Whenever the familiar drops to 0 Hit Points or
-                disappears into the pocket dimension, it leaves behind in its
-                space anything it was wearing or carrying.
+                <b>Disappearance.</b> When it drops to 0 HP, it disappears. It
+                reappears after you cast this spell again. As a Magic action,
+                you can temporarily dismiss the familiar to a pocket dimension.
+                Alternatively, you can dismiss it forever. As a Magic action
+                while it is temporarily dismissed, you can cause it to reappear
+                in an unoccupied space within 30 feet of you. Whenever the
+                familiar drops to 0 Hit Points or disappears into the pocket
+                dimension, it leaves behind in its space anything it was wearing
+                or carrying.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2671,6 +2770,7 @@ exclude: true
                 steed bonded by this spell at a time.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2713,6 +2813,7 @@ exclude: true
             This spell's damage increases by 1d10 when you reach 5th level
             (2d10), 11th level (3d10), and 17th level (4d10).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2764,6 +2865,7 @@ exclude: true
             When you cast this spell using a spell slot of 4th level or higher,
             the damage increases by 1d6 for each slot level above 3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2822,6 +2924,7 @@ exclude: true
                 effect is removed.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2868,6 +2971,7 @@ exclude: true
             you can target one additional creature for each slot level above
             3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2926,6 +3030,7 @@ exclude: true
             </p>
             <p>This spell can't be dispelled by dispel magic.</p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -2976,6 +3081,7 @@ exclude: true
                 duration ends.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3027,6 +3133,7 @@ exclude: true
             When you cast this spell using a spell slot of 4th level or higher,
             the damage increases by 1d6 for each slot level above 3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3070,6 +3177,7 @@ exclude: true
                 succeed on that save or fall Prone.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3105,6 +3213,7 @@ exclude: true
                 long as it is on the target's person.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3159,6 +3268,7 @@ exclude: true
             the damage from the clenched fist option increases by 2d8 for each
             slot level above 5th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3209,6 +3319,7 @@ exclude: true
                 with the target to remain within 5 feet of it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3265,6 +3376,7 @@ exclude: true
             the damage from the grasping hand increases by 2d6 for each slot
             level above 5th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3316,6 +3428,7 @@ exclude: true
                 space is difficult terrain for the target.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3352,6 +3465,7 @@ exclude: true
                 the ability check. The spell then ends.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3396,6 +3510,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the damage increases by 1d6 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3441,6 +3556,7 @@ exclude: true
                 after its next turn, as a wave of lethargy sweeps over it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3482,6 +3598,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the healing increases by 1d4 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3529,6 +3646,7 @@ exclude: true
         <div class="empower-spell">
             The damage increases by 1d10 for each spell slot level above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3583,6 +3701,7 @@ exclude: true
             increases to up to 8 hours. When you use a spell slot of 5th or
             higher, duration increases to up to 24 hours.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3628,6 +3747,7 @@ exclude: true
                 learn which ongoing spells, if any, are currently affecting it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3676,6 +3796,7 @@ exclude: true
                 to ripple in a breeze.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3721,6 +3842,7 @@ exclude: true
             you can target one additional creature for each slot level above
             1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3770,6 +3892,7 @@ exclude: true
             5th. The creatures must be within 30 feet of each other when you
             target them.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3818,6 +3941,7 @@ exclude: true
             you can target one additional humanoid within 30 feet for each slot
             level above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3865,6 +3989,7 @@ exclude: true
             to 8 hours. When using 5th or higher slot, you can maintain
             concentration for up to 24 hours.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3921,6 +4046,7 @@ exclude: true
             When you cast this spell using a spell slot of 4th level or higher,
             the damage increases by 1d8 for each slot level above 3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -3973,6 +4099,7 @@ exclude: true
             the bludgeoning damage increases by 1d8 for each slot level above
             4th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4020,6 +4147,7 @@ exclude: true
             you can target one additional creature for each slot level above
             2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4064,6 +4192,7 @@ exclude: true
             You can target one additional creature for each spell slot level
             above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4114,6 +4243,7 @@ exclude: true
                 color you choose, but it is transparent from the inside.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4159,6 +4289,7 @@ exclude: true
                 spell.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4202,6 +4333,7 @@ exclude: true
             You can target one additional creature for each spell slot level
             above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4248,6 +4380,7 @@ exclude: true
                 10 pounds.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4291,6 +4424,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the spell creates one more dart for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4334,6 +4468,7 @@ exclude: true
                 the spell can't restore magic to such an object.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4379,6 +4514,7 @@ exclude: true
                 around corners or through openings.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4422,6 +4558,7 @@ exclude: true
             This spell's damage increases by 1d6 when you reach certain levels:
             5th level (2d6), 11th level (3d6), and 17th level (4d6).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4469,6 +4606,7 @@ exclude: true
             When you cast this spell using a spell slot of 3rd level or higher,
             the damage increases by 1d8 for each slot level above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4526,6 +4664,7 @@ exclude: true
                 to the creature.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4578,6 +4717,7 @@ exclude: true
                 can perceive illusions as false, as with truesight.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4624,6 +4764,7 @@ exclude: true
                 were located where it is.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4657,6 +4798,7 @@ exclude: true
                 to an unoccupied space that you can see.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4716,6 +4858,7 @@ exclude: true
             days ago (7th level), 1 year ago (8th level), or any time (9th
             level).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4774,6 +4917,7 @@ exclude: true
         <div class="empower-spell">
             The damage increases by 1d10 for each spell slot level above 2.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4830,6 +4974,7 @@ exclude: true
             When you cast this spell using a spell slot of 7th level or higher,
             the damage increases by 1d6 for each slot level above 6th
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4874,6 +5019,7 @@ exclude: true
                 no tracks or other traces of its passage.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -4933,6 +5079,7 @@ exclude: true
                 equipment.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5000,6 +5147,7 @@ exclude: true
                 dismiss such an effect as an action.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5049,6 +5197,7 @@ exclude: true
                 against the relevant effect.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5083,6 +5232,7 @@ exclude: true
                 rendered free of poison and disease.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5133,6 +5283,7 @@ exclude: true
             When you cast this spell using a spell slot of 5th level or higher,
             the damage increases by 1d6 for each slot level above 4th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5173,6 +5324,7 @@ exclude: true
                 restore any missing body parts.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5222,6 +5374,7 @@ exclude: true
             When you cast this spell using a spell slot of 3rd level or higher,
             increase the cold damage by 1d8 for each slot level above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5280,6 +5433,7 @@ exclude: true
                 spell ends.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5323,6 +5477,7 @@ exclude: true
                 casts a spell, or deals damage.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5373,6 +5528,7 @@ exclude: true
             the initial extra damage dealt by the attack increases by 1d6 for
             each slot.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5409,6 +5565,7 @@ exclude: true
                 ghostly.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5450,6 +5607,7 @@ exclude: true
                 duration.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5485,6 +5643,7 @@ exclude: true
                 from magic missile.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5530,6 +5689,7 @@ exclude: true
                 ends.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5572,6 +5732,7 @@ exclude: true
                 only one use of this spell at a time.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5630,6 +5791,7 @@ exclude: true
                 concentration.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5680,6 +5842,7 @@ exclude: true
                 against this spell.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5739,6 +5902,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             roll an additional 2d8 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5795,6 +5959,7 @@ exclude: true
                 restrained by it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5845,6 +6010,7 @@ exclude: true
                 since it died, and can't speculate about future events.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5895,6 +6061,7 @@ exclude: true
                 it.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -5951,6 +6118,7 @@ exclude: true
             When you cast this spell using a spell slot of 4th level or higher,
             the damage increases by 1d8 for each slot level above 3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6005,6 +6173,7 @@ exclude: true
             When you cast this spell using a spell slot of 3rd level or higher,
             the damage increases by 1d8 for every two slot levels above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6053,6 +6222,7 @@ exclude: true
             When you cast this spell using a spell slot of 4th level or higher,
             the damage increases by 1d6 for each slot level above 3rd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6110,6 +6280,7 @@ exclude: true
             use the higher level wherever the spell's level appears in the stat
             block.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6153,6 +6324,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the damage increases by 1d6 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6198,6 +6370,7 @@ exclude: true
                 turns, ending the effect on itself on a success.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6247,6 +6420,7 @@ exclude: true
             When you cast this spell using a spell slot of 2nd level or higher,
             the damage increases by 2d4 for each slot level above 1st.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6294,6 +6468,7 @@ exclude: true
             you can target one additional creature for each slot above 2nd.
             Creatures must be within 30 ft. of each other.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6354,6 +6529,7 @@ exclude: true
                 such an effect as an action.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6392,6 +6568,7 @@ exclude: true
                 pushed 10 feet away from you and knocked prone.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6439,6 +6616,7 @@ exclude: true
         <div class="empower-spell">
             The damage increases by 1d8 for each spell slot level above 1.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6483,6 +6661,7 @@ exclude: true
             (2d8 or 2d12), 11th level (3d8 or 3d12), and 17th level (4d8 or
             4d12).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6542,6 +6721,7 @@ exclude: true
             increases by 2d6, and the damage from the frigid air increases by
             1d6, for each slot level above 6th.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6591,6 +6771,7 @@ exclude: true
                 You can also dismiss the spell as an action.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6647,6 +6828,7 @@ exclude: true
                 that starts its turn in the fire.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6692,6 +6874,7 @@ exclude: true
             The spell's damage increases by 1d6 when you reach 5th level (2d6),
             11th level (3d6), and 17th level (4d6).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6730,6 +6913,7 @@ exclude: true
                 save DC to steel its resolve and end this spell.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6790,6 +6974,7 @@ exclude: true
                 </li>
             </ul>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6828,6 +7013,7 @@ exclude: true
             The range doubles when you reach levels 5 (30 feet), 11 (60 feet),
             and 17 (120 feet).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6871,6 +7057,7 @@ exclude: true
             The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8),
             and 17 (4d8).
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6916,6 +7103,7 @@ exclude: true
             level or higher, you can create two additional globes of fresh air
             for each slot level above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -6985,6 +7173,7 @@ exclude: true
                 after the first that you get no answer.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -7022,6 +7211,7 @@ exclude: true
             </p>
             <p>* - (ruby dust worth 50+ GP, which the spell consumes)</p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -7059,6 +7249,7 @@ exclude: true
                 early.
             </p>
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
@@ -7110,6 +7301,7 @@ exclude: true
             2nd, and the number of Hit Dice that can be spent and added to the
             healing roll increases by one for each slot above 2nd.
         </div>
+        <div class="class-label"></div>
     </div>
 </div>
 
