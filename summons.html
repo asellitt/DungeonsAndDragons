@@ -6545,6 +6545,7 @@
         Spirit
         <select id="spell">
             <option value="all">All</option>
+            <option value="homunculus">Homunculus</option>
             <option value="aberrant">Aberrant (4th)</option>
             <option value="beast">Beast (2nd)</option>
             <option value="celestial">Celestial (5th)</option>
@@ -6603,6 +6604,120 @@
 </div>
 
 <div class="phb" id="summons">
+    <hr class="stat-separator" />
+
+    <section id="homunculus">
+        <section>
+            <blockquote>
+                <section>
+                    <h2>Homunculus Servant</h2>
+                    <p><em>Tiny Construct</em></p>
+                    <hr />
+                    <ul>
+                        <li>
+                            <strong>Armor Class</strong>
+                            13 (natural armor)
+                        </li>
+                        <li>
+                            <strong>Hit Points</strong>
+                            <span class="homunculus-hp">1 + Artificier Level + Intelligence Modifier</span> (<span class="homunculus-hd">Artificer Level</span>d4)
+                        </li>
+                        <li><strong>Speed</strong> 20 ft. fly 30 ft.</li>
+                    </ul>
+                    <hr />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="text-align: center">STR</th>
+                                <th style="text-align: center">DEX</th>
+                                <th style="text-align: center">CON</th>
+                                <th style="text-align: center">INT</th>
+                                <th style="text-align: center">WIS</th>
+                                <th style="text-align: center">CHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center">4 (-3)</td>
+                                <td style="text-align: center">15 (+2)</td>
+                                <td style="text-align: center">12 (+1)</td>
+                                <td style="text-align: center">10 (+0)</td>
+                                <td style="text-align: center">10 (+0)</td>
+                                <td style="text-align: center">7 (-2)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr />
+                    <ul>
+                        <li><strong>Saving Throws</strong> Dex +<span class="homunculus-dexsave">2 + PB</span></li>
+                        <li><strong>Skills</strong> Perception +<span class="homunculus-perceptionskill">0 + (PB x 2)</span>, Stealth +<span class="homunculus-stealthskill">2 + PB</span></li>
+                        <li><strong>Damage Immunities</strong> poison</li>
+                        <li>
+                            <strong>Damage Immunities</strong> exhaustion,
+                            poisoned
+                        </li>
+                        <li>
+                            <strong>Senses</strong> darkvision 60 ft., passive
+                            Perception <span class="homunculus-perceptionsense">10 + (PB x 2)</span>
+                        </li>
+                        <li>
+                            <strong>Languages</strong> Common, Dwarvish, Gnomish
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        <em><strong>Evasion.</strong></em> If the homunculus is
+                        subjected to an effect that allows it to make a
+                        Dexterity saving throw to take only half damage, it
+                        instead takes no damage if it succeeds on the saving
+                        throw, and only half damage if it fails. It can't use
+                        this trait if it's incapacitated.
+                    </p>
+                    <section>
+                        <h3>Actions</h3>
+                        <p>
+                            <em><strong>Force Strike.</strong></em>
+                            <em>Ranged Weapon Attack:</em>
+                            <span class="spellAttack">+5</span>
+                            to hit, range 30 ft., one target you can see.
+                            <em>Hit:</em> 1d4 +<span class="homunculus-forcestrike">PB</span> force damage.
+                        </p>
+                        <h3>Reactions</h3>
+                        <p>
+                            <em><strong>Channel Magic.</strong></em>
+                            The homunculus delivers a spell you cast that has a range of touch. The homunculus must be within 120 feet of you.
+                        </p>
+                        <h3>Variants</h3>
+                        <p>
+                            <em><strong>B.E.A.:</strong></em>
+                            Burst Energy Amplifier (Thunderwave).
+                        </p>
+                        <p>
+                            <em><strong>C.I.N.D.E.R.:</strong></em>
+                            Constructed Identifier of Nodal Distortions and Energetic Resonance (Identify).
+                        </p>
+                        <p>
+                            <em><strong>H.E.T.T.I.E.:</strong></em>
+                            High Energy Threat Termination Instrumentation Engine (Magic Missile).
+                        </p>
+                        <p>
+                            <em><strong>L.U.N.A.:</strong></em>
+                            Logic-bound Unifying Numinal Aid-unit (Aid).
+                        </p>
+                        <p>
+                            <em><strong>S.A.L.E.M.:</strong></em>
+                            Servomechanical Agent for Localized Etheric Maintenance (Mending).
+                        </p>
+                        <p>
+                            <em><strong>T.E.R.R.I.:</strong></em>
+                            Technomagical Engine for Regulating Random Influences (Guidance).
+                        </p>
+                    </section>
+                </section>
+            </blockquote>
+        </section>
+    </section>
+
     <hr class="stat-separator" />
 
     <section id="aberrant">
@@ -7844,6 +7959,8 @@
 
     document.getElementById("spell").addEventListener("change", function (e) {
         const spell = e.target.value;
+        document.getElementById("homunculus").style.display =
+            spell === "all" || spell === "homunculus" ? "contents" : "none";
         document.getElementById("aberrant").style.display =
             spell === "all" || spell === "aberrant" ? "contents" : "none";
         document.getElementById("beast").style.display =
@@ -7939,6 +8056,42 @@
             Array.from(document.getElementsByClassName("saveDC")).forEach(
                 function (element) {
                     element.textContent = "(DC" + spellDC + ")";
+                }
+            );
+
+            Array.from(document.getElementsByClassName("homunculus-hp")).forEach(
+                function (element) {
+                    element.textContent = 1 + characterLevel + statScore;
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-hd")).forEach(
+                function (element) {
+                    element.textContent = characterLevel;
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-dexsave")).forEach(
+                function (element) {
+                    element.textContent = 2 + proficiencyBonus;
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-perceptionskill")).forEach(
+                function (element) {
+                    element.textContent = 2 * proficiencyBonus;
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-stealthskill")).forEach(
+                function (element) {
+                    element.textContent = 2 + proficiencyBonus;
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-perceptionsense")).forEach(
+                function (element) {
+                    element.textContent = 10 + (2 * proficiencyBonus);
+                }
+            );
+            Array.from(document.getElementsByClassName("homunculus-forcestrike")).forEach(
+                function (element) {
+                    element.textContent = proficiencyBonus;
                 }
             );
         }
