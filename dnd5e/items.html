@@ -1,0 +1,472 @@
+---
+layout: tool
+title: D&D 5e Magic Items
+exclude: true
+---
+
+<style>
+    @media print {
+        .card-picker {
+            display: none !important;
+        }
+
+        .no-print {
+            display: none !important;
+        }
+    }
+
+    .no-print {
+        filter: opacity(0.2);
+    }
+
+    .card-picker {
+        display: flex;
+        justify-content: center;
+    }
+
+    .card,
+    .card-wrapper {
+        display: inline-block;
+    }
+    .card {
+        position: relative;
+        width: 63mm;
+        height: 89mm;
+        padding: 0;
+        margin: 5px;
+        border-radius: 4.7619047619%;
+        font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+        font-weight: 400;
+        font-size: 3mm;
+        color: #111;
+        text-align: center;
+        overflow: hidden;
+        background-color: #000;
+    }
+    .name {
+        background-color: #fff;
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        width: 57mm;
+        height: 10mm;
+        border-radius: 2mm 2mm 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .name .content {
+        font-size: 3.5mm;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .type {
+        position: absolute;
+        top: 13mm;
+        width: 100%;
+        height: 3mm;
+    }
+    .type .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+    }
+    .weight,
+    .proficiency {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 16mm;
+        width: 28.25mm;
+        height: 8mm;
+    }
+    .weight {
+        left: 3mm;
+    }
+    .weight .content::after {
+        content: " lbs.";
+    }
+    .proficiency {
+        left: 31.75mm;
+    }
+    .attunement {
+        width: 0;
+        height: 0;
+        border: 3mm solid transparent;
+        position: relative;
+        top: -8.1mm;
+        left: 22.5mm;
+        font-weight: bold;
+        color: #fff;
+        border-bottom-color: #000;
+    }
+    .attunement:after {
+        content: "";
+        position: absolute;
+        left: -3mm;
+        top: 2.9mm;
+        width: 0;
+        height: 0;
+        border: 3mm solid transparent;
+        border-top-color: #000;
+    }
+    .attunement div {
+        position: absolute;
+        top: 0.8mm;
+        left: -1.1mm;
+        z-index: 100;
+    }
+    .header {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3mm;
+        color: #000;
+    }
+    .description {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 27mm;
+        left: 3mm;
+        width: 55mm;
+        padding: 1mm;
+        text-align: justify;
+        font-size: 2mm;
+    }
+    .description p {
+        margin: 0;
+        padding-left: 0;
+        border: 0;
+        padding-bottom: 1mm;
+    }
+    .description ul {
+        margin: 0;
+        padding-left: 3mm;
+        border: 0;
+        padding-bottom: 1mm;
+    }
+    .long-description {
+        height: 54mm;
+        border-radius: 0 0 2mm 2mm;
+    }
+    .short-description {
+        height: 42mm;
+    }
+    .recharge {
+        display: inline-block;
+        position: absolute;
+        top: 70.5mm;
+        left: 0mm;
+        height: 3mm;
+        width: 100%;
+    }
+    .recharge .content {
+        color: #fff;
+        font-size: 2mm;
+        line-height: 3mm;
+    }
+    .timing {
+        background-color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 73.5mm;
+        left: 3mm;
+        width: 55mm;
+        height: 8mm;
+        padding: 1mm;
+        border-radius: 0 0 2mm 2mm;
+        text-align: justify;
+        font-size: 2mm;
+    }
+
+    .common {
+        background-color: #9d9d9d;
+    }
+    .common .header {
+        color: #9d9d9d;
+    }
+    .common .attunement {
+        border-bottom-color: #9d9d9d;
+    }
+    .common .attunement:after {
+        border-top-color: #9d9d9d;
+    }
+
+    .uncommon {
+        background-color: #40d167;
+    }
+    .uncommon .header {
+        color: #40d167;
+    }
+    .uncommon .attunement {
+        border-bottom-color: #40d167;
+    }
+    .uncommon .attunement:after {
+        border-top-color: #40d167;
+    }
+
+    .rare {
+        background-color: #3f8cff;
+    }
+    .rare .header {
+        color: #3f8cff;
+    }
+    .rare .attunement {
+        border-bottom-color: #3f8cff;
+    }
+    .rare .attunement:after {
+        border-top-color: #3f8cff;
+    }
+
+    .very-rare {
+        background-color: #b363ed;
+    }
+    .very-rare .header {
+        color: #b363ed;
+    }
+    .very-rare .attunement {
+        border-bottom-color: #b363ed;
+    }
+    .very-rare .attunement:after {
+        border-top-color: #b363ed;
+    }
+
+    .legendary {
+        background-color: #ff9d68;
+    }
+    .legendary .header {
+        color: #ff9d68;
+    }
+    .legendary .attunement {
+        border-bottom-color: #ff9d68;
+    }
+    .legendary .attunement:after {
+        border-top-color: #ff9d68;
+    }
+
+    .artifact {
+        background-color: #e6cc80;
+    }
+    .artifact .header {
+        color: #e6cc80;
+    }
+    .artifact .attunement {
+        border-bottom-color: #e6cc80;
+    }
+    .artifact .attunement:after {
+        border-top-color: #e6cc80;
+    }
+</style>
+
+<div class="card-picker">
+    <button id="select-all">Select All</button>
+    <button id="deselect-all">Deselect All</button>
+</div>
+
+<div class="card-wrapper">
+    <div class="card common">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description long-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+            <p>
+                Once used, this property can't be used again until the next
+                dawn.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card uncommon">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description short-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            Once used, this property can't be used again until the next dawn.
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card rare">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description long-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+            <p>
+                Once used, this property can't be used again until the next
+                dawn.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card very-rare">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description short-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            Once used, this property can't be used again until the next dawn.
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card legendary">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description long-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+            <p>
+                Once used, this property can't be used again until the next
+                dawn.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card artifact">
+        <div class="name">
+            <div class="content">Clockwork Amulet</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0.5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description short-description">
+            <p>
+                When the bearer makes an attack roll while wearing the amulet,
+                they can forgo rolling the d20 to get a 10 on the die.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            Once used, this property can't be used again until the next dawn.
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".card-wrapper").forEach((element) =>
+        element.addEventListener("click", (_) => {
+            if (element.classList.contains("no-print")) {
+                element.classList.remove("no-print");
+            } else {
+                element.classList.add("no-print");
+            }
+        })
+    );
+    document.getElementById("select-all").addEventListener("click", (_) => {
+        document
+            .querySelectorAll(".card-wrapper")
+            .forEach((element) => element.classList.remove("no-print"));
+    });
+    document.getElementById("deselect-all").addEventListener("click", (_) => {
+        document
+            .querySelectorAll(".card-wrapper")
+            .forEach((element) => element.classList.add("no-print"));
+    });
+</script>
