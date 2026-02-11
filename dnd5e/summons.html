@@ -6554,13 +6554,24 @@
     #configuration {
         display: none;
     }
-    
+
     @media print {
         .controls {
             display: none !important;
         }
         #configuration {
-            display: initial !important;
+            display: block !important;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            width: 100px;
+        }
+        #configuration blockquote {
+            width: 130px;
+            padding: 5px;
+        }
+        #configuration p {
+            text-indent: 0;
         }
     }
 </style>
@@ -6629,14 +6640,32 @@
     </div>
 </div>
 
-<div id="configuration">
-    <p><em><strong>Spell Level:</strong></em> <span id="configuration-spell-level"></span></p>
-    <p><em><strong>Main Casting Stat Score:</strong></em> <span id="configuration-stat-score"></span></p>
-    <p><em><strong>Character Level:</strong></em> <span id="configuration-character-level"></span></p>
-    <p><em><strong>Stat Bonus:</strong></em> <span id="configuration-stat-bonus"></span></p>
-</div>
-
 <div class="phb" id="summons">
+    <section id="configuration">
+        <section>
+            <blockquote>
+                <section>
+                    <p>
+                        <em><strong>Spell Level:</strong></em>
+                        <span id="configuration-spell-level">0</span>
+                    </p>
+                    <p>
+                        <em><strong>Casting Stat:</strong></em>
+                        <span id="configuration-stat-score">0</span>
+                    </p>
+                    <p>
+                        <em><strong>Character Level:</strong></em>
+                        <span id="configuration-character-level">0</span>
+                    </p>
+                    <p>
+                        <em><strong>Stat Bonus:</strong></em>
+                        <span id="configuration-stat-bonus">0</span>
+                    </p>
+                </section>
+            </blockquote>
+        </section>
+    </section>
+
     <hr class="stat-separator" />
 
     <!-- <section style="display: flex; flex-direction: column">
@@ -7937,8 +7966,8 @@
                             >your spell attack modifier</span
                         >
                         to hit, reach 5 ft. or range 30 ft., one target.
-                        <em>Hit:</em> 1d6
-                        + <span class="attack" data-base="0"
+                        <em>Hit:</em> 1d6 +
+                        <span class="attack" data-base="0"
                             >the spell's level</span
                         >
                         force damage.
@@ -8374,7 +8403,11 @@
                                     element.getAttribute("data-min-spell"),
                                 )) *
                                 parseInt(element.getAttribute("data-increase"));
-                        if (stat >= 0 && handle != "hp" && handle != "passive-perception") {
+                        if (
+                            stat >= 0 &&
+                            handle != "hp" &&
+                            handle != "passive-perception"
+                        ) {
                             stat = "+" + stat;
                         }
                         element.textContent = !!element.getAttribute(
@@ -8416,10 +8449,15 @@
             const spellAttack = proficiencyBonus + statMod + bonus;
             const spellDC = 8 + proficiencyBonus + statMod + bonus;
 
-            document.getElementById("configuration-spell-level").textContent = spellLevel;
-            document.getElementById("configuration-stat-score").textContent = statScore;
-            document.getElementById("configuration-character-level").textContent = characterLevel;
-            document.getElementById("configuration-stat-bonus").textContent = statBonus;
+            document.getElementById("configuration-spell-level").textContent =
+                spellLevel;
+            document.getElementById("configuration-stat-score").textContent =
+                statScore;
+            document.getElementById(
+                "configuration-character-level",
+            ).textContent = characterLevel;
+            document.getElementById("configuration-stat-bonus").textContent =
+                statBonus;
 
             Array.from(document.getElementsByClassName("spellAttack")).forEach(
                 function (element) {
