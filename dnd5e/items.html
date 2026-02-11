@@ -35,7 +35,10 @@ exclude: true
         padding: 0;
         margin: 5px;
         border-radius: 4.7619047619%;
-        font-family: Helvetica Neue, Open Sans Condensed, sans-serif;
+        font-family:
+            Helvetica Neue,
+            Open Sans Condensed,
+            sans-serif;
         font-weight: 400;
         font-size: 3mm;
         color: #111;
@@ -261,6 +264,53 @@ exclude: true
 <div class="card-picker">
     <button id="select-all">Select All</button>
     <button id="deselect-all">Deselect All</button>
+</div>
+
+<div class="card-wrapper">
+    <div class="card uncommon">
+        <div class="name">
+            <div class="content">Bag Of Holding</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">5</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+        </div>
+        <div class="description long-description">
+            <p>
+                This bag has an interior space considerably larger than its
+                outside dimensions—roughly 2 feet square and 4 feet deep on the
+                inside. The bag can hold up to 500 pounds, not exceeding a
+                volume of 64 cubic feet. The bag weighs 5 pounds, regardless of
+                its contents. Retrieving an item from the bag requires a Utilize
+                action.
+            </p>
+            <p>
+                If the bag is overloaded, pierced, or torn, it is destroyed, and
+                its contents are scattered in the Astral Plane. If the bag is
+                turned inside out, its contents spill forth unharmed, but the
+                bag must be put right before it can be used again. The bag holds
+                enough air for 10 minutes of breathing, divided by the number of
+                breathing creatures inside.
+            </p>
+            <p>
+                Placing a Bag of Holding inside an extradimensional space
+                created by a Heward's Handy Haversack, Portable Hole, or similar
+                item instantly destroys both items and opens a gate to the
+                Astral Plane. The gate originates where the one item was placed
+                inside the other. Any creature within a 10-foot-radius Sphere
+                centered on the gate is sucked through it to a random location
+                on the Astral Plane. The gate then closes. The gate is one-way
+                and can't be reopened.
+            </p>
+        </div>
+    </div>
 </div>
 
 <div class="card-wrapper">
@@ -675,6 +725,104 @@ exclude: true
 <div class="card-wrapper">
     <div class="card uncommon">
         <div class="name">
+            <div class="content">Pearl of Power</div>
+        </div>
+        <div class="type">
+            <div class="content">Wondrous Item</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">Spellcaster</div>
+            <div class="attunement"><div>A</div></div>
+        </div>
+        <div class="description short-description">
+            <p>
+                While this pearl is on your person, you can take a Magic action
+                to regain one expended spell slot of level 3 or lower.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            Once used, this property can't be used again until the next dawn.
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card rare">
+        <div class="name">
+            <div class="content">Plate +1</div>
+        </div>
+        <div class="type">
+            <div class="content">Armor (plate)</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">65</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">Heavy Armor</div>
+        </div>
+        <div class="description long-description">
+            <p>You have a 19 AC while wearing this armor.</p>
+            <p>You have disadvantage on Stealth checks.</p>
+            <p>
+                Plate consists of shaped, interlocking metal plates to cover the
+                entire body. A suit of plate includes gauntlets, heavy leather
+                boots, a visored helmet, and thick layers of padding underneath
+                the armor. Buckles and straps distribute the weight over the
+                body.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card uncommon">
+        <div class="name">
+            <div class="content">Repulsion Shield</div>
+        </div>
+        <div class="type">
+            <div class="content">Armor (Shield)</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+        </div>
+        <div class="description short-description">
+            <p>
+                You gain a +1 bonus to Armor Class while wielding this shield.
+            </p>
+            <p>
+                The shield has 4 charges. While holding it, when a Large or
+                smaller creature within 5 feet of you hits you with a melee
+                attack roll, you can take a Reaction to expend 1 of the shield's
+                charges and push the attacker up to 15 feet straight away.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            The shield regains 1d4 expended charges daily at dawn.
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card uncommon">
+        <div class="name">
             <div class="content">Ring of Swimming</div>
         </div>
         <div class="type">
@@ -742,7 +890,7 @@ exclude: true
 <div class="card-wrapper">
     <div class="card uncommon">
         <div class="name">
-            <div class="content">Pearl of Power</div>
+            <div class="content">Sending Stones</div>
         </div>
         <div class="type">
             <div class="content">Wondrous Item</div>
@@ -753,13 +901,20 @@ exclude: true
         </div>
         <div class="proficiency">
             <div class="header">Proficiency</div>
-            <div class="content">Spellcaster</div>
-            <div class="attunement"><div>A</div></div>
+            <div class="content">&mdash;</div>
         </div>
         <div class="description short-description">
             <p>
-                While this pearl is on your person, you can take a Magic action
-                to regain one expended spell slot of level 3 or lower.
+                Sending Stones come in pairs, with each stone carved to match
+                the other so the pairing is easily recognized. While you touch
+                one stone, you can cast Sending from it. The target is the
+                bearer of the other stone. If no creature bears the other stone,
+                you know that fact as soon as you use the stone, and you don't
+                cast the spell.
+            </p>
+            <p>
+                If one of the stones in a pair is destroyed, the other one
+                becomes nonmagical.
             </p>
         </div>
         <div class="recharge">
@@ -767,6 +922,37 @@ exclude: true
         </div>
         <div class="timing">
             Once used, this property can't be used again until the next dawn.
+        </div>
+    </div>
+</div>
+
+<div class="card-wrapper">
+    <div class="card uncommon">
+        <div class="name">
+            <div class="content">Wand Of Detect Magic</div>
+        </div>
+        <div class="type">
+            <div class="content">Wand</div>
+        </div>
+        <div class="weight">
+            <div class="header">Weight</div>
+            <div class="content">0</div>
+        </div>
+        <div class="proficiency">
+            <div class="header">Proficiency</div>
+            <div class="content">&mdash;</div>
+        </div>
+        <div class="description short-description">
+            <p>
+                This wand has 3 charges. While holding it, you can expend 1
+                charge to cast Detect Magic from it.
+            </p>
+        </div>
+        <div class="recharge">
+            <div class="content">Recharge</div>
+        </div>
+        <div class="timing">
+            The wand regains 1d3 expended charges daily at dawn.
         </div>
     </div>
 </div>
@@ -779,7 +965,7 @@ exclude: true
             } else {
                 element.classList.add("no-print");
             }
-        })
+        }),
     );
     document.getElementById("select-all").addEventListener("click", (_) => {
         document
