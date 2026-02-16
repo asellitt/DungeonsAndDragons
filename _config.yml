@@ -29,4 +29,8 @@ collections:
   dnd5e_items:
     output: false
     permalink: /dnd5e_items/:path/
+
+  dnd5e_spells:
+    output: false
+    permalink: /dnd5e_spells/:path/
   
