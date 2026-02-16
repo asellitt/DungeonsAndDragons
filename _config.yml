@@ -25,3 +25,8 @@ collections:
   items:
     output: true
     permalink: /magic-items/:path/
+  
+  dnd5e_items:
+    output: false
+    permalink: /dnd5e_items/:path/
+  
